@@ -56,13 +56,15 @@ class KVzapPress(ScorerPress):
     """
 
     model_type: Literal["linear", "mlp"] = "mlp"
-    kvzap_model_name: Optional[str] = field(default=None, init=False)
+    kvzap_model_name: Optional[str] = None
+    loaded_kvzap_model_name: Optional[str] = field(default=None, init=False, repr=False)
+    kvzap_model: Optional[KVzapModel] = field(default=None, init=False, repr=False)
 
     def post_init_from_model(self, model):
-        kvzap_model_name = f"nvidia/KVzap-{self.model_type}-{model.config.name_or_path.split('/')[-1]}"
-        if kvzap_model_name != self.kvzap_model_name:
-            self.kvzap_model_name = kvzap_model_name
-            self.kvzap_model = KVzapModel.from_pretrained(self.kvzap_model_name)
+        kvzap_model_name = self.kvzap_model_name or f"nvidia/KVzap-{self.model_type}-{model.config.name_or_path.split('/')[-1]}"
+        if kvzap_model_name != self.loaded_kvzap_model_name:
+            self.loaded_kvzap_model_name = kvzap_model_name
+            self.kvzap_model = KVzapModel.from_pretrained(kvzap_model_name)
 
     def score(
         self,
@@ -73,6 +75,7 @@ class KVzapPress(ScorerPress):
         attentions: torch.Tensor,
         kwargs: dict,
     ) -> torch.Tensor:
+        assert self.kvzap_model is not None, "KVzap model not loaded. Make sure to call post_init_from_model first."
         kvzap_module = self.kvzap_model.layers[module.layer_idx]
         kvzap_module = kvzap_module.to(hidden_states.device, dtype=hidden_states.dtype).eval()
         scores = kvzap_module(hidden_states).transpose(1, 2)

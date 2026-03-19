@@ -29,6 +29,7 @@ from kvpress import (
     ObservedAttentionPress,
     ScorerPress,
     ThinKPress,
+    KVzapPress,
 )
 
 logger = logging.getLogger(__name__)
@@ -69,6 +70,7 @@ class EvaluationConfig:
 
     # Press information (will be set after press setup)
     press_init_command: Optional[str] = None
+    kvzap_model_name: Optional[str] = None
 
     # For reproducibility
     seed: int = 42
@@ -251,6 +253,7 @@ class EvaluationRunner:
         key_channel_compression_ratio = self.config.key_channel_compression_ratio
 
         press = PRESS_REGISTRY[press_name]
+        self._set_kvzap_model_name(press)
 
         # Apply compression ratios based on press type
         if isinstance(press, DuoAttentionPress):
@@ -301,6 +304,27 @@ class EvaluationRunner:
         # Set the press info in the config for saving to YAML
         self.config.press_init_command = str(press)
         logger.info(f"KV Press '{press_name}' setup.")
+
+    def _set_kvzap_model_name(self, press):
+        """
+        Propagate a custom KVzap model path/name to nested KVzapPress instances.
+        """
+        if self.config.kvzap_model_name is None or press is None:
+            return
+
+        if isinstance(press, KVzapPress):
+            press.kvzap_model_name = self.config.kvzap_model_name
+            logger.info(f"Set KVzap model name/path to {self.config.kvzap_model_name}")
+            return
+
+        for attr in ("press", "base_press"):
+            nested_press = getattr(press, attr, None)
+            if nested_press is not None:
+                self._set_kvzap_model_name(nested_press)
+
+        if isinstance(press, ComposedPress):
+            for nested_press in press.presses:
+                self._set_kvzap_model_name(nested_press)
 
     def _load_and_prepare_dataset(self):
         """

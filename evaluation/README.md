@@ -33,6 +33,7 @@ python evaluate.py --config_file <your_config.yaml>
 Customize your evaluation by editing `evaluate_config.yaml`. This allows you to flexibly configure a variety of settings, like the `fraction` of dataset to use (for quick testing) and the model arguments (e.g. for scaling RoPE). For complete parameter details, see the `evaluation_config.yaml`
 
 💡 Set `query_aware: true` to include the question in the context during compression. This enables query-aware compression as used in methods like SnapKV and FinchPress.
+💡 To evaluate a locally trained KVzap checkpoint, set `kvzap_model_name` to the local `mlp` or `linear` directory produced by `kvzap/train.py`.
 
 
 ### Available Presses and Datasets 

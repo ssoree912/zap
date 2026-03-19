@@ -37,6 +37,7 @@ def evaluate(
     model_name: str = "Qwen/Qwen3-8B",
     device: str = "cuda:0",
     max_new_tokens: int = 32000,
+    kvzap_model_name: str | None = None,
 ):
     """Evaluate KVzap on the AIME25 benchmark using model.generate instead of the
     KVpress pipeline in order to use sampling parameters and not greedy decoding.
@@ -53,6 +54,8 @@ def evaluate(
         Device to use, by default "cuda:0"
     max_new_tokens : int, optional
         Maximum number of tokens to generate, by default 32000
+    kvzap_model_name : str, optional
+        Local path or Hugging Face repo id for a trained KVzap checkpoint
     """
 
     # Create press
@@ -61,7 +64,7 @@ def evaluate(
         press = nullcontext
     else:
         press = DMSPress(
-            KVzapPress(model_type=kvzap_model_type),
+            KVzapPress(model_type=kvzap_model_type, kvzap_model_name=kvzap_model_name),
             threshold=threshold,
             decoding=True,
         )

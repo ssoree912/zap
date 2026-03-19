@@ -60,3 +60,5 @@ python evaluate_aime.py <model_type> --threshold <threshold> --model_name <base_
 ```
 
 where `<model_type>` is the type of KVzap model to use ("mlp", "linear" or "no_press") and `<base_model_name>` the name of the base model to use (e.g. "Qwen/Qwen3-8B").
+
+To evaluate a locally trained KVzap checkpoint, pass `--kvzap_model_name <path_or_repo>` where the path points to a saved `mlp` or `linear` directory produced by `train.py`.
