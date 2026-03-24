@@ -23,6 +23,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, FineGrainedFP8Conf
 
 from kvpress.presses.kvzap_press import KVzapConfig, KVzapModel
 from kvzap.data import KVzapDataCollector, load_nemotron_dataset
+from kvzap.llava_extractor import extract_llava_analysis_data as run_llava_analysis_extraction
 
 
 def train_mlp(
@@ -231,7 +232,36 @@ def train(
     print(f"Training complete. Models saved to {output_path}")
 
 
-if __name__ == "__main__":
+def extract_llava(**kwargs):
+    """
+    Extract LLaVA prompt/answer/attention/hidden-state analysis records.
+
+    This keeps the `train.py` default CLI stable while exposing a second entrypoint:
+
+    `python train.py extract_llava --dataset_path ... --output_dir ...`
+    """
+
+    return run_llava_analysis_extraction(**kwargs)
+
+
+def _main() -> None:
+    import sys
+
     import fire
 
+    commands = {
+        "train": train,
+        "extract_llava": extract_llava,
+        "extract_llava_analysis": extract_llava,
+    }
+
+    if len(sys.argv) > 1 and sys.argv[1] in commands:
+        command = sys.argv.pop(1)
+        fire.Fire(commands[command])
+        return
+
     fire.Fire(train)
+
+
+if __name__ == "__main__":
+    _main()

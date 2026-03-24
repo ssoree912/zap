@@ -62,3 +62,15 @@ python evaluate_aime.py <model_type> --threshold <threshold> --model_name <base_
 where `<model_type>` is the type of KVzap model to use ("mlp", "linear" or "no_press") and `<base_model_name>` the name of the base model to use (e.g. "Qwen/Qwen3-8B").
 
 To evaluate a locally trained KVzap checkpoint, pass `--kvzap_model_name <path_or_repo>` where the path points to a saved `mlp` or `linear` directory produced by `train.py`.
+
+## LLaVA Analysis Extraction
+
+The same CLI now exposes a LLaVA analysis extractor for prompt/answer token splits, hidden states, attention blocks, W_O, and optional `||W_O v_i||` collection. The recommended implementation model is `llava-hf/llava-1.5-7b-hf`, while `liuhaotian/llava-v1.5-7b` remains the report reference model name.
+
+```bash
+python train.py extract_llava \
+  --dataset_path <samples.jsonl> \
+  --output_dir <output_dir>
+```
+
+The dataset should be a `.jsonl` or `.json` file with at least `question` and `image_path` fields. Optional fields include `sample_id`; `image_root`, `question_column`, `image_column`, and `id_column` can be overridden from the CLI.
