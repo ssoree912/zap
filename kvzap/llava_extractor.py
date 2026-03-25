@@ -398,15 +398,17 @@ def compute_wov_norm_from_hooks(
         if vcat.ndim != 3:
             raise RuntimeError(f"Unexpected v_proj activation shape for layer {layer_idx}: {tuple(vcat.shape)}")
 
-        num_heads = int(layer.self_attn.num_heads)
-        num_kv_heads = int(getattr(layer.self_attn, "num_key_value_heads", num_heads))
+        num_heads = int(getattr(layer.self_attn, "num_heads", layer.self_attn.config.num_attention_heads))
+        num_kv_heads = int(
+            getattr(layer.self_attn, "num_key_value_heads", getattr(layer.self_attn.config, "num_key_value_heads", num_heads))
+        )
         num_kv_groups = int(getattr(layer.self_attn, "num_key_value_groups", num_heads // num_kv_heads))
-        head_dim = int(vcat.shape[-1] // num_kv_heads)
+        head_dim = int(getattr(layer.self_attn, "head_dim", vcat.shape[-1] // num_kv_heads))
 
         values = vcat.view(vcat.shape[0], vcat.shape[1], num_kv_heads, head_dim).permute(0, 2, 1, 3)
         values = repeat_kv(values, num_kv_groups)
 
-        wo = _get_effective_linear_weight(layer.self_attn.o_proj, dtype=values.dtype).transpose(0, 1)
+        wo = _get_effective_linear_weight(layer.self_attn.o_proj, dtype=values.dtype).transpose(0, 1).cpu()
         wo = wo.view(num_heads, head_dim, wo.shape[-1])
         projected = torch.einsum("h d m, b h s d -> b h s m", wo, values)
         norms.append(projected.norm(dim=-1)[0, :, :prompt_len_mm].detach().cpu())
