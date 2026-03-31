@@ -23,7 +23,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, FineGrainedFP8Conf
 
 from kvpress.presses.kvzap_press import KVzapConfig, KVzapModel
 from kvzap.data import KVzapDataCollector, load_nemotron_dataset
-from kvzap.llava_extractor import extract_llava_analysis_data as run_llava_analysis_extraction
+from kvzap.llava_extractor import (
+    extract_llava_analysis_data as run_llava_analysis_extraction,
+    extract_llava_postvision_data as run_llava_postvision_extraction,
+)
 
 
 def train_mlp(
@@ -244,6 +247,16 @@ def extract_llava(**kwargs):
     return run_llava_analysis_extraction(**kwargs)
 
 
+def extract_llava_postvision(**kwargs):
+    """
+    Extract minimal postvision-only tensors for image-token teacher/probe pipelines.
+
+    `python train.py extract_llava_postvision --dataset_path ... --output_dir ...`
+    """
+
+    return run_llava_postvision_extraction(**kwargs)
+
+
 def _main() -> None:
     import sys
 
@@ -253,6 +266,8 @@ def _main() -> None:
         "train": train,
         "extract_llava": extract_llava,
         "extract_llava_analysis": extract_llava,
+        "extract_llava_postvision": extract_llava_postvision,
+        "extract_llava_postvision_minimal": extract_llava_postvision,
     }
 
     if len(sys.argv) > 1 and sys.argv[1] in commands:

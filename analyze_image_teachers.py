@@ -3,11 +3,12 @@
 Analyze image-only VLM teachers from LLaVA extractor outputs.
 
 This script focuses on the next-step teacher design after the global text/image
-score gap becomes clear. It computes image-token-only scores for three teachers:
+score gap becomes clear. It computes image-token-only scores for four teachers:
 
-- att_only_answer:     max_{j in answer} a_{ji}
-- splus_answer:        max_{j in answer} a_{ji} * ||W_O v_i|| / ||h_j||
-- splus_postvision:    max_{j in postvision prompt text} a_{ji} * ||W_O v_i|| / ||h_j||
+- att_only_answer:       max_{j in answer} a_{ji}
+- att_only_postvision:   max_{j in postvision prompt text} a_{ji}
+- splus_answer:          max_{j in answer} a_{ji} * ||W_O v_i|| / ||h_j||
+- splus_postvision:      max_{j in postvision prompt text} a_{ji} * ||W_O v_i|| / ||h_j||
 
 The script saves compact per-sample teacher tensors and aggregates the following:
 - image-only histograms
@@ -35,10 +36,11 @@ import torch
 
 EPS = 1e-8
 DEFAULT_KEEP_RATIOS = (0.05, 0.10, 0.20, 0.40)
-SCORE_NAMES = ("att_only_answer", "splus_answer", "splus_postvision")
+SCORE_NAMES = ("att_only_answer", "att_only_postvision", "splus_answer", "splus_postvision")
 COMPARE_PAIRS = (
     ("att_only_answer", "splus_answer"),
-    ("att_only_answer", "splus_postvision"),
+    ("att_only_postvision", "splus_postvision"),
+    ("att_only_answer", "att_only_postvision"),
     ("splus_answer", "splus_postvision"),
 )
 
@@ -253,6 +255,7 @@ def compute_image_teacher_tensors(rec: Dict[str, Any], eps: float = EPS) -> Dict
     wov_norm_prompt = infer_wov_norm_prompt(rec, prompt_len_mm, n_layers)
 
     att_only_answer = []
+    att_only_postvision = []
     splus_answer = []
     splus_postvision = []
 
@@ -274,6 +277,7 @@ def compute_image_teacher_tensors(rec: Dict[str, Any], eps: float = EPS) -> Dict
         postvision_norm = torch.norm(postvision_hidden, dim=-1).clamp_min(eps)  # [Q]
 
         att_only_answer.append(answer_block.max(dim=1).values)
+        att_only_postvision.append(postvision_block.max(dim=1).values)
         splus_answer.append((answer_block * (1.0 / answer_norm.view(1, -1, 1)) * wnorm_image.view(answer_block.shape[0], 1, -1)).max(dim=1).values)
         splus_postvision.append(
             (postvision_block * (1.0 / postvision_norm.view(1, -1, 1)) * wnorm_image.view(postvision_block.shape[0], 1, -1)).max(dim=1).values
@@ -286,6 +290,7 @@ def compute_image_teacher_tensors(rec: Dict[str, Any], eps: float = EPS) -> Dict
         "image_pos_mm": image_pos,
         "postvision_query_pos_mm": postvision_pos,
         "att_only_answer": torch.stack(att_only_answer, dim=0).float(),
+        "att_only_postvision": torch.stack(att_only_postvision, dim=0).float(),
         "splus_answer": torch.stack(splus_answer, dim=0).float(),
         "splus_postvision": torch.stack(splus_postvision, dim=0).float(),
     }

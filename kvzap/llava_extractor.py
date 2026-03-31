@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Any
 
 import torch
+from kvzap.image_teacher_utils import build_prompt as _shared_build_prompt, load_vlm_samples
 from tqdm.auto import tqdm
 from transformers import AutoProcessor, LlavaForConditionalGeneration
 from transformers.integrations.finegrained_fp8 import FP8Linear
@@ -75,39 +76,15 @@ def load_llava_samples(
     id_column: str = "sample_id",
     limit: int | None = None,
 ) -> list[dict[str, Any]]:
-    dataset_file = Path(dataset_path).resolve()
-    image_base = Path(image_root).resolve() if image_root is not None else dataset_file.parent
-    raw_records = _load_json_records(dataset_file)
-
-    samples = []
-    for idx, record in enumerate(raw_records):
-        if question_column not in record:
-            raise KeyError(f"Missing `{question_column}` in sample #{idx}")
-
-        image_value = record.get(image_column)
-        if image_value is None and image_column != "image_path":
-            image_value = record.get("image_path")
-        if image_value is None and image_column != "image":
-            image_value = record.get("image")
-        if image_value is None:
-            raise KeyError(f"Missing image path field `{image_column}` in sample #{idx}")
-
-        image_path = Path(str(image_value))
-        if not image_path.is_absolute():
-            image_path = image_base / image_path
-
-        sample = {
-            "sample_id": _sanitize_sample_id(record.get(id_column), idx),
-            "question": str(record[question_column]),
-            "image_path": str(image_path.resolve()),
-            "raw": record,
-        }
-        samples.append(sample)
-
-        if limit is not None and len(samples) >= limit:
-            break
-
-    return samples
+    return load_vlm_samples(
+        dataset_path=dataset_path,
+        image_root=image_root,
+        question_column=question_column,
+        image_column=image_column,
+        id_column=id_column,
+        answer_column=None,
+        limit=limit,
+    )
 
 
 def _get_model_device(model: LlavaForConditionalGeneration) -> torch.device:
@@ -355,7 +332,9 @@ def get_attention_output_projection_weight(model: LlavaForConditionalGeneration,
 
 
 def register_analysis_hooks(
-    model: LlavaForConditionalGeneration, capture_vproj: bool = True
+    model: LlavaForConditionalGeneration,
+    capture_vproj: bool = True,
+    store_on_cpu: bool = True,
 ) -> dict[str, Any]:
     ctx: dict[str, Any] = {"hooks": [], "vproj_outputs": {}}
     if not capture_vproj:
@@ -371,7 +350,10 @@ def register_analysis_hooks(
 
         def hook_fn(module, inputs, outputs, layer_idx: int = layer_idx):
             tensor = outputs[0] if isinstance(outputs, tuple) else outputs
-            ctx["vproj_outputs"][layer_idx] = tensor.detach().cpu()
+            out = tensor.detach()
+            if store_on_cpu:
+                out = out.cpu()
+            ctx["vproj_outputs"][layer_idx] = out
 
         handle = layer.self_attn.v_proj.register_forward_hook(hook_fn)
         ctx["hooks"].append(handle)
@@ -385,7 +367,10 @@ def remove_analysis_hooks(hook_ctx: dict[str, Any]) -> None:
 
 
 def compute_wov_norm_from_hooks(
-    model: LlavaForConditionalGeneration, hook_ctx: dict[str, Any], prompt_len_mm: int
+    model: LlavaForConditionalGeneration,
+    hook_ctx: dict[str, Any],
+    prompt_len_mm: int,
+    to_cpu: bool = True,
 ) -> list[torch.Tensor]:
     norms = []
     decoder = get_decoder_module(model)
@@ -408,10 +393,14 @@ def compute_wov_norm_from_hooks(
         values = vcat.view(vcat.shape[0], vcat.shape[1], num_kv_heads, head_dim).permute(0, 2, 1, 3)
         values = repeat_kv(values, num_kv_groups)
 
-        wo = _get_effective_linear_weight(layer.self_attn.o_proj, dtype=values.dtype).transpose(0, 1).cpu()
+        wo = _get_effective_linear_weight(layer.self_attn.o_proj, dtype=values.dtype).transpose(0, 1)
+        wo = wo.to(values.device)
         wo = wo.view(num_heads, head_dim, wo.shape[-1])
         projected = torch.einsum("h d m, b h s d -> b h s m", wo, values)
-        norms.append(projected.norm(dim=-1)[0, :, :prompt_len_mm].detach().cpu())
+        norm = projected.norm(dim=-1)[0, :, :prompt_len_mm].detach()
+        if to_cpu:
+            norm = norm.cpu()
+        norms.append(norm)
 
     return norms
 
@@ -434,15 +423,18 @@ def _decode_answer(processor: Any, answer_ids: torch.Tensor) -> str:
     ).strip()
 
 
-def _build_prompt(question: str, prompt_template: str) -> str:
-    return prompt_template.format(question=question.strip())
+def _build_prompt(question: str, prompt_template: str, image_count: int = 1) -> str:
+    return _shared_build_prompt(question, prompt_template=prompt_template, image_count=image_count)
 
 
-def _open_image(image_path: str):
+def _open_images(image_paths: list[str]):
     from PIL import Image
 
-    with Image.open(image_path) as image:
-        return image.convert("RGB")
+    images = []
+    for image_path in image_paths:
+        with Image.open(image_path) as image:
+            images.append(image.convert("RGB"))
+    return images[0] if len(images) == 1 else images
 
 
 def _get_visual_inputs(prompt_inputs: dict[str, Any]) -> dict[str, Any]:
@@ -468,7 +460,7 @@ def validate_extraction_record(record: dict[str, Any]) -> dict[str, Any]:
     if full_len_mm != prompt_len_mm + answer_len_text:
         errors.append("full_len_mm does not equal prompt_len_mm + answer_len_text")
 
-    n_layers = len(record["W_O"])
+    n_layers = len(record["attn_answer_to_prompt"])
     if len(record["hidden_prompt"]) != n_layers + 1:
         errors.append("hidden_prompt should contain embeddings plus one tensor per layer")
     if len(record["hidden_answer"]) != n_layers + 1:
@@ -494,9 +486,13 @@ def validate_extraction_record(record: dict[str, Any]) -> dict[str, Any]:
         if torch.any(row_sums > 1 + 1e-4):
             errors.append(f"attn_answer_to_prompt[{idx}] contains row sums greater than 1")
 
-    for idx, weight in enumerate(record["W_O"]):
-        if weight.ndim != 2 or weight.shape[0] != weight.shape[1]:
-            errors.append(f"W_O[{idx}] has invalid shape {tuple(weight.shape)}")
+    weights = record.get("W_O")
+    if weights is not None:
+        if len(weights) != n_layers:
+            errors.append("W_O should contain one tensor per decoder layer")
+        for idx, weight in enumerate(weights):
+            if weight.ndim != 2 or weight.shape[0] != weight.shape[1]:
+                errors.append(f"W_O[{idx}] has invalid shape {tuple(weight.shape)}")
 
     is_image_pos_mm = record["is_image_pos_mm"]
     is_text_prompt_pos_mm = record["is_text_prompt_pos_mm"]
@@ -530,11 +526,12 @@ class LlavaAnalysisDataCollector:
         capture_vproj: bool = True,
         save_image_hidden_states: bool = False,
         save_full_attentions: bool = False,
+        save_wo: bool = False,
     ) -> dict[str, Any]:
-        image = _open_image(sample["image_path"])
-        prompt_text = _build_prompt(sample["question"], prompt_template)
+        images = _open_images(sample["image_paths"])
+        prompt_text = _build_prompt(sample["question"], prompt_template, image_count=len(sample["image_paths"]))
 
-        prompt_inputs = self.processor(text=prompt_text, images=image, return_tensors="pt")
+        prompt_inputs = self.processor(text=prompt_text, images=images, return_tensors="pt")
         prompt_inputs = _move_batch_to_device(prompt_inputs, self.device, self.float_dtype)
         prompt_input_ids = prompt_inputs["input_ids"]
         prompt_len_text = int(prompt_input_ids.shape[1])
@@ -604,9 +601,12 @@ class LlavaAnalysisDataCollector:
             attn[0, :, prompt_len_mm:full_len_mm, :prompt_len_mm].detach().cpu() for attn in full_out.attentions
         ]
 
-        weights = [
-            get_attention_output_projection_weight(self.model, layer_idx) for layer_idx in range(get_num_decoder_layers(self.model))
-        ]
+        weights = None
+        if save_wo:
+            weights = [
+                get_attention_output_projection_weight(self.model, layer_idx)
+                for layer_idx in range(get_num_decoder_layers(self.model))
+            ]
 
         wov_norm_prompt = None
         if capture_vproj:
@@ -616,6 +616,7 @@ class LlavaAnalysisDataCollector:
             "sample_id": sample["sample_id"],
             "question": sample["question"],
             "image_path": sample["image_path"],
+            "image_paths": list(sample["image_paths"]),
             "prompt_text": prompt_text,
             "prompt_len_text": prompt_len_text,
             "answer_len_text": answer_len_text,
@@ -631,10 +632,12 @@ class LlavaAnalysisDataCollector:
             "hidden_prompt": hidden_prompt,
             "hidden_answer": hidden_answer,
             "attn_answer_to_prompt": attn_answer_to_prompt,
-            "W_O": weights,
             "wov_norm_prompt": wov_norm_prompt,
             "answer_text": _decode_answer(self.processor, answer_ids_text.detach().cpu()),
         }
+
+        if weights is not None:
+            record["W_O"] = weights
 
         if save_image_hidden_states:
             record["image_hidden_states"] = _to_cpu_nested(full_out.image_hidden_states)
@@ -663,6 +666,7 @@ def extract_llava_analysis_data(
     capture_vproj: bool = True,
     save_image_hidden_states: bool = False,
     save_full_attentions: bool = False,
+    save_wo: bool = False,
     max_full_attention_samples: int = 0,
     overwrite: bool = False,
     continue_on_error: bool = True,
@@ -740,6 +744,7 @@ def extract_llava_analysis_data(
                 "capture_vproj": capture_vproj,
                 "save_image_hidden_states": save_image_hidden_states,
                 "save_full_attentions": save_full_attentions,
+                "save_wo": save_wo,
                 "max_full_attention_samples": max_full_attention_samples,
             },
             f,
@@ -756,6 +761,7 @@ def extract_llava_analysis_data(
                     capture_vproj=capture_vproj,
                     save_image_hidden_states=save_image_hidden_states,
                     save_full_attentions=save_full_attentions and sample_idx < max_full_attention_samples,
+                    save_wo=save_wo,
                 )
                 validation = validate_extraction_record(record)
 
@@ -766,12 +772,433 @@ def extract_llava_analysis_data(
                     "sample_id": sample["sample_id"],
                     "question": sample["question"],
                     "image_path": sample["image_path"],
+                    "image_paths": sample["image_paths"],
                     "record_path": str(record_file),
                     "answer_text": record["answer_text"],
                     "prompt_len_text": record["prompt_len_text"],
                     "answer_len_text": record["answer_len_text"],
                     "prompt_len_mm": record["prompt_len_mm"],
                     "full_len_mm": record["full_len_mm"],
+                    "validation_ok": validation["ok"],
+                    "validation_errors": validation["errors"],
+                }
+                metadata_file.write(json.dumps(metadata) + "\n")
+
+                summary["n_samples_succeeded"] += 1
+                if not validation["ok"]:
+                    summary["n_validation_failures"] += 1
+                    summary["failures"].append(
+                        {
+                            "sample_id": sample["sample_id"],
+                            "type": "validation",
+                            "errors": validation["errors"],
+                        }
+                    )
+            except Exception as exc:
+                summary["n_samples_failed"] += 1
+                failure = {"sample_id": sample["sample_id"], "type": "exception", "error": str(exc)}
+                summary["failures"].append(failure)
+                metadata_file.write(json.dumps(failure) + "\n")
+                if not continue_on_error:
+                    raise
+            finally:
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+
+    with validation_path.open("w") as f:
+        json.dump(summary, f, indent=2)
+
+    return summary
+
+
+def _to_storage_cpu(tensor: torch.Tensor, storage_dtype: torch.dtype | None) -> torch.Tensor:
+    out = tensor.detach()
+    if storage_dtype is not None and torch.is_floating_point(out):
+        out = out.to(storage_dtype)
+    return out.cpu()
+
+
+def _collect_postvision_minimal_sample(
+    model: LlavaForConditionalGeneration,
+    processor: Any,
+    sample: dict[str, Any],
+    prompt_template: str,
+    capture_vproj: bool = True,
+    save_hidden_image: bool = False,
+    save_attn_postvision_to_image: bool = False,
+    save_wov_norm_image: bool = False,
+    save_h_norm_postvision: bool = False,
+    save_teacher_scores: bool = True,
+    storage_dtype: torch.dtype | None = torch.float16,
+    eps: float = 1e-8,
+) -> dict[str, Any]:
+    """
+    Collect minimal per-sample tensors for post-vision image teacher analysis.
+
+    Heavy tensor math stays on GPU, and only final tensors are copied to CPU for
+    disk serialization.
+    """
+
+    need_attention = save_teacher_scores or save_attn_postvision_to_image
+    need_hidden = save_teacher_scores or save_hidden_image or save_h_norm_postvision
+    need_wov_norm = save_teacher_scores or save_wov_norm_image
+
+    if not need_attention:
+        raise ValueError(
+            "At least one of `save_teacher_scores` or `save_attn_postvision_to_image` must be enabled"
+        )
+    if need_wov_norm and not capture_vproj:
+        raise ValueError("capture_vproj must be True when teacher scores or WOV norms are requested")
+
+    device = _get_model_device(model)
+    float_dtype = _get_model_float_dtype(model)
+
+    images = _open_images(sample["image_paths"])
+    prompt_text = _build_prompt(sample["question"], prompt_template, image_count=len(sample["image_paths"]))
+
+    prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
+    prompt_inputs = _move_batch_to_device(prompt_inputs, device, float_dtype)
+    prompt_input_ids = prompt_inputs["input_ids"]
+    prompt_len_text = int(prompt_input_ids.shape[1])
+
+    trace_ctx = enable_merge_trace(model)
+    hook_ctx = register_analysis_hooks(
+        model,
+        capture_vproj=need_wov_norm,
+        store_on_cpu=False,
+    )
+    try:
+        with torch.no_grad():
+            prompt_out = model(
+                **prompt_inputs,
+                use_cache=False,
+                output_attentions=True,
+                output_hidden_states=need_hidden,
+                return_dict=True,
+            )
+    finally:
+        remove_analysis_hooks(hook_ctx)
+        disable_merge_trace(trace_ctx)
+
+    if prompt_out.attentions is None:
+        raise RuntimeError(
+            "Prompt forward pass did not return attentions. "
+            "Ensure dense attention outputs are enabled by the model backend."
+        )
+    if need_hidden and prompt_out.hidden_states is None:
+        raise RuntimeError(
+            "Prompt forward pass did not return hidden states. "
+            "Enable hidden-state outputs when saving hidden/teacher tensors."
+        )
+
+    prompt_len_mm = int(prompt_out.logits.shape[1])
+    is_image_pos_mm = _resolve_prompt_image_mask(model, prompt_input_ids, prompt_len_mm, trace_ctx)
+    is_text_prompt_pos_mm = ~is_image_pos_mm
+
+    image_indices_mm = is_image_pos_mm.nonzero(as_tuple=False).flatten().long()
+    if image_indices_mm.numel() == 0:
+        raise ValueError("No image tokens found in merged prompt positions")
+
+    last_image = int(image_indices_mm.max().item())
+    all_positions = torch.arange(prompt_len_mm, dtype=torch.long)
+    postvision_text_indices_mm = all_positions[(all_positions > last_image) & is_text_prompt_pos_mm]
+    if postvision_text_indices_mm.numel() == 0:
+        raise ValueError("No postvision text positions found after the image span")
+
+    n_layers = len(prompt_out.attentions)
+
+    hidden_prompt_layers: list[torch.Tensor] | None = None
+    if need_hidden:
+        hidden_prompt = [hidden[0, :prompt_len_mm, :].detach() for hidden in prompt_out.hidden_states]
+        if len(hidden_prompt) == n_layers + 1:
+            hidden_prompt_layers = hidden_prompt[1:]
+        elif len(hidden_prompt) == n_layers:
+            hidden_prompt_layers = hidden_prompt
+        else:
+            raise ValueError(
+                f"hidden_prompt length mismatch: got {len(hidden_prompt)}, expected {n_layers} or {n_layers + 1}"
+            )
+
+    wov_norm_prompt: list[torch.Tensor] | None = None
+    if need_wov_norm:
+        wov_norm_prompt = compute_wov_norm_from_hooks(model, hook_ctx, prompt_len_mm, to_cpu=False)
+        if len(wov_norm_prompt) != n_layers:
+            raise ValueError(
+                f"wov_norm_prompt length mismatch: got {len(wov_norm_prompt)}, expected {n_layers}"
+            )
+
+    attn_blocks: list[torch.Tensor] = []
+    wov_norm_image_layers: list[torch.Tensor] = []
+    h_norm_postvision_layers: list[torch.Tensor] = []
+    hidden_image_layers: list[torch.Tensor] = []
+    att_only_postvision_layers: list[torch.Tensor] = []
+    splus_postvision_layers: list[torch.Tensor] = []
+
+    for layer_idx in range(n_layers):
+        attn = prompt_out.attentions[layer_idx][0].detach()  # [H, S, S]
+        if attn.dim() != 3:
+            raise ValueError(f"Unexpected prompt attention shape at layer {layer_idx}: {tuple(attn.shape)}")
+
+        idx_q_attn = postvision_text_indices_mm.to(attn.device)
+        idx_i_attn = image_indices_mm.to(attn.device)
+        block = attn.index_select(1, idx_q_attn).index_select(2, idx_i_attn)  # [H, Q, I]
+
+        if save_attn_postvision_to_image:
+            attn_blocks.append(_to_storage_cpu(block, storage_dtype))
+
+        h_norm = None
+        if need_hidden:
+            assert hidden_prompt_layers is not None
+            hidden_layer = hidden_prompt_layers[layer_idx]
+            if hidden_layer.dim() != 2 or hidden_layer.shape[0] < prompt_len_mm:
+                raise ValueError(
+                    f"Unexpected hidden prompt shape at layer {layer_idx}: {tuple(hidden_layer.shape)}"
+                )
+
+            idx_q_hidden = postvision_text_indices_mm.to(hidden_layer.device)
+            postvision_hidden = hidden_layer.index_select(0, idx_q_hidden)  # [Q, D]
+            h_norm = torch.norm(postvision_hidden, dim=-1).clamp_min(eps)  # [Q]
+
+            if save_h_norm_postvision:
+                h_norm_postvision_layers.append(_to_storage_cpu(h_norm, storage_dtype))
+
+            if save_hidden_image:
+                idx_i_hidden = image_indices_mm.to(hidden_layer.device)
+                hidden_image_layers.append(_to_storage_cpu(hidden_layer.index_select(0, idx_i_hidden), storage_dtype))
+
+        if wov_norm_prompt is not None:
+            wnorm_layer = wov_norm_prompt[layer_idx]
+            idx_i_wov = image_indices_mm.to(wnorm_layer.device)
+            wnorm_image = wnorm_layer.index_select(1, idx_i_wov)  # [H, I]
+
+            if save_wov_norm_image:
+                wov_norm_image_layers.append(_to_storage_cpu(wnorm_image, storage_dtype))
+
+            if save_teacher_scores:
+                if h_norm is None:
+                    raise RuntimeError("Hidden-state norms are required for teacher score computation")
+                wnorm_for_block = wnorm_image.to(block.device)
+                h_norm_for_block = h_norm.to(block.device)
+                att_only = block.max(dim=1).values  # [H, I]
+                splus = (
+                    block
+                    * h_norm_for_block.reciprocal().view(1, -1, 1)
+                    * wnorm_for_block.unsqueeze(1)
+                ).max(dim=1).values  # [H, I]
+                att_only_postvision_layers.append(_to_storage_cpu(att_only, storage_dtype))
+                splus_postvision_layers.append(_to_storage_cpu(splus, storage_dtype))
+
+    record: dict[str, Any] = {
+        "sample_id": sample["sample_id"],
+        "question": sample["question"],
+        "image_path": sample["image_path"],
+        "image_paths": list(sample["image_paths"]),
+        "prompt_text": prompt_text,
+        "prompt_len_text": prompt_len_text,
+        "prompt_len_mm": prompt_len_mm,
+        "is_image_pos_mm": is_image_pos_mm.detach().cpu(),
+        "is_text_prompt_pos_mm": is_text_prompt_pos_mm.detach().cpu(),
+        "image_indices_mm": image_indices_mm.detach().cpu(),
+        "postvision_text_indices_mm": postvision_text_indices_mm.detach().cpu(),
+    }
+
+    if save_h_norm_postvision and h_norm_postvision_layers:
+        record["h_norm_postvision"] = torch.stack(h_norm_postvision_layers, dim=0)  # [L, Q]
+
+    if save_attn_postvision_to_image and attn_blocks:
+        record["attn_postvision_to_image"] = torch.stack(attn_blocks, dim=0)  # [L, H, Q, I]
+
+    if save_wov_norm_image and wov_norm_image_layers:
+        record["wov_norm_image"] = torch.stack(wov_norm_image_layers, dim=0)  # [L, H, I]
+
+    if save_hidden_image and hidden_image_layers:
+        record["hidden_image"] = torch.stack(hidden_image_layers, dim=0)  # [L, I, D]
+
+    if save_teacher_scores and att_only_postvision_layers:
+        record["att_only_postvision"] = torch.stack(att_only_postvision_layers, dim=0)  # [L, H, I]
+        record["splus_postvision"] = torch.stack(splus_postvision_layers, dim=0)  # [L, H, I]
+
+    return record
+
+
+def validate_postvision_record(record: dict[str, Any]) -> dict[str, Any]:
+    errors: list[str] = []
+
+    image_idx = record.get("image_indices_mm")
+    postvision_idx = record.get("postvision_text_indices_mm")
+    if not isinstance(image_idx, torch.Tensor) or image_idx.ndim != 1 or image_idx.numel() == 0:
+        errors.append("image_indices_mm must be a non-empty 1D tensor")
+    if not isinstance(postvision_idx, torch.Tensor) or postvision_idx.ndim != 1 or postvision_idx.numel() == 0:
+        errors.append("postvision_text_indices_mm must be a non-empty 1D tensor")
+
+    h_norm = record.get("h_norm_postvision")
+    if h_norm is not None and (not isinstance(h_norm, torch.Tensor) or h_norm.ndim != 2):
+        errors.append("h_norm_postvision must be a 2D tensor [L, Q]")
+
+    attn_block = record.get("attn_postvision_to_image")
+    if attn_block is not None:
+        if not isinstance(attn_block, torch.Tensor) or attn_block.ndim != 4:
+            errors.append("attn_postvision_to_image must be a 4D tensor [L, H, Q, I]")
+
+    wov = record.get("wov_norm_image")
+    if wov is not None and (not isinstance(wov, torch.Tensor) or wov.ndim != 3):
+        errors.append("wov_norm_image must be a 3D tensor [L, H, I]")
+
+    hidden_image = record.get("hidden_image")
+    if hidden_image is not None and (not isinstance(hidden_image, torch.Tensor) or hidden_image.ndim != 3):
+        errors.append("hidden_image must be a 3D tensor [L, I, D]")
+
+    att_only = record.get("att_only_postvision")
+    if att_only is not None and (not isinstance(att_only, torch.Tensor) or att_only.ndim != 3):
+        errors.append("att_only_postvision must be a 3D tensor [L, H, I]")
+
+    splus = record.get("splus_postvision")
+    if splus is not None and (not isinstance(splus, torch.Tensor) or splus.ndim != 3):
+        errors.append("splus_postvision must be a 3D tensor [L, H, I]")
+
+    return {"ok": len(errors) == 0, "errors": errors}
+
+
+def extract_llava_postvision_data(
+    dataset_path: str,
+    output_dir: str,
+    implementation_model_name: str = "llava-hf/llava-1.5-7b-hf",
+    report_model_name: str = "liuhaotian/llava-v1.5-7b",
+    image_root: str | None = None,
+    question_column: str = "question",
+    image_column: str = "image_path",
+    id_column: str = "sample_id",
+    prompt_template: str = "USER: <image>\n{question}\nASSISTANT:",
+    torch_dtype: str = "auto",
+    device_map: str | None = "auto",
+    attn_implementation: str = "eager",
+    limit: int | None = None,
+    capture_vproj: bool = True,
+    save_hidden_image: bool = False,
+    save_attn_postvision_to_image: bool = False,
+    save_wov_norm_image: bool = False,
+    save_h_norm_postvision: bool = False,
+    save_teacher_scores: bool = True,
+    storage_dtype: str | None = "float16",
+    overwrite: bool = False,
+    continue_on_error: bool = True,
+) -> dict[str, Any]:
+    """
+    Extract postvision-focused image teacher tensors with GPU-first computation.
+
+    By default this writes only compact teacher tensors (`att_only_postvision`,
+    `splus_postvision`) plus indices/metadata.
+    """
+
+    output_path = Path(output_dir).resolve()
+    records_path = output_path / "records"
+    metadata_path = output_path / "metadata.jsonl"
+    validation_path = output_path / "validation_report.json"
+    config_path = output_path / "run_config.json"
+
+    output_path.mkdir(parents=True, exist_ok=True)
+    if not overwrite and any(output_path.iterdir()):
+        raise ValueError(f"Output directory is not empty: {output_path}")
+    records_path.mkdir(parents=True, exist_ok=True)
+
+    samples = load_llava_samples(
+        dataset_path=dataset_path,
+        image_root=image_root,
+        question_column=question_column,
+        image_column=image_column,
+        id_column=id_column,
+        limit=limit,
+    )
+
+    model_kwargs = {
+        "attn_implementation": attn_implementation,
+        "device_map": device_map,
+        "torch_dtype": _parse_torch_dtype(torch_dtype),
+    }
+    model_kwargs = {key: value for key, value in model_kwargs.items() if value is not None}
+
+    storage_dtype_obj = None
+    if storage_dtype not in (None, "", "none", "None"):
+        parsed_storage_dtype = _parse_torch_dtype(storage_dtype)
+        if isinstance(parsed_storage_dtype, str):
+            raise ValueError(f"Invalid storage_dtype: {storage_dtype}")
+        storage_dtype_obj = parsed_storage_dtype
+
+    print(f"Loading LLaVA processor and model: {implementation_model_name}")
+    processor = AutoProcessor.from_pretrained(implementation_model_name)
+    model = LlavaForConditionalGeneration.from_pretrained(implementation_model_name, **model_kwargs)
+    model.eval()
+
+    summary = {
+        "report_model_name": report_model_name,
+        "implementation_model_name": implementation_model_name,
+        "dataset_path": str(Path(dataset_path).resolve()),
+        "n_samples_requested": len(samples),
+        "n_samples_succeeded": 0,
+        "n_samples_failed": 0,
+        "n_validation_failures": 0,
+        "failures": [],
+    }
+
+    with config_path.open("w") as f:
+        json.dump(
+            {
+                "mode": "postvision_minimal",
+                "report_model_name": report_model_name,
+                "implementation_model_name": implementation_model_name,
+                "dataset_path": str(Path(dataset_path).resolve()),
+                "image_root": str(Path(image_root).resolve()) if image_root is not None else None,
+                "question_column": question_column,
+                "image_column": image_column,
+                "id_column": id_column,
+                "prompt_template": prompt_template,
+                "torch_dtype": torch_dtype,
+                "device_map": device_map,
+                "attn_implementation": attn_implementation,
+                "limit": limit,
+                "capture_vproj": capture_vproj,
+                "save_hidden_image": save_hidden_image,
+                "save_attn_postvision_to_image": save_attn_postvision_to_image,
+                "save_wov_norm_image": save_wov_norm_image,
+                "save_h_norm_postvision": save_h_norm_postvision,
+                "save_teacher_scores": save_teacher_scores,
+                "storage_dtype": storage_dtype,
+            },
+            f,
+            indent=2,
+        )
+
+    with metadata_path.open("w") as metadata_file:
+        for sample in tqdm(samples, desc="Extracting LLaVA postvision-minimal records"):
+            try:
+                record = _collect_postvision_minimal_sample(
+                    model=model,
+                    processor=processor,
+                    sample=sample,
+                    prompt_template=prompt_template,
+                    capture_vproj=capture_vproj,
+                    save_hidden_image=save_hidden_image,
+                    save_attn_postvision_to_image=save_attn_postvision_to_image,
+                    save_wov_norm_image=save_wov_norm_image,
+                    save_h_norm_postvision=save_h_norm_postvision,
+                    save_teacher_scores=save_teacher_scores,
+                    storage_dtype=storage_dtype_obj,
+                )
+                validation = validate_postvision_record(record)
+
+                record_file = records_path / f"{sample['sample_id']}.pt"
+                torch.save(record, record_file)
+
+                metadata = {
+                    "sample_id": sample["sample_id"],
+                    "question": sample["question"],
+                    "image_path": sample["image_path"],
+                    "image_paths": sample["image_paths"],
+                    "record_path": str(record_file),
+                    "prompt_len_text": int(record["prompt_len_text"]),
+                    "prompt_len_mm": int(record["prompt_len_mm"]),
+                    "n_image_tokens": int(record["image_indices_mm"].numel()),
+                    "n_postvision_tokens": int(record["postvision_text_indices_mm"].numel()),
                     "validation_ok": validation["ok"],
                     "validation_errors": validation["errors"],
                 }
