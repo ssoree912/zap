@@ -18,6 +18,7 @@ from kvzap.llava_extractor import (
     _parse_torch_dtype,
     _trim_after_eos,
     compute_wov_norm_from_hooks,
+    configure_llava_processor,
     register_analysis_hooks,
     remove_analysis_hooks,
 )
@@ -260,6 +261,7 @@ def main() -> None:
     print(f"Loading processor/model: {args.implementation_model_name}")
     processor = AutoProcessor.from_pretrained(args.implementation_model_name)
     model = LlavaForConditionalGeneration.from_pretrained(args.implementation_model_name, **model_kwargs)
+    configure_llava_processor(processor, model.config)
     model.eval()
 
     summary = {

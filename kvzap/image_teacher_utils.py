@@ -81,7 +81,38 @@ def _inject_image_tokens(question: str, image_count: int, image_token: str = "<i
     return question.strip()
 
 
-def build_prompt(question: str, prompt_template: str = DEFAULT_PROMPT_TEMPLATE, image_count: int = 1) -> str:
+def build_prompt(
+    question: str | dict[str, Any],
+    prompt_template: str = DEFAULT_PROMPT_TEMPLATE,
+    image_count: int = 1,
+) -> str:
+    if isinstance(question, dict):
+        fields: dict[str, str] = {}
+        for key, value in question.items():
+            if value is None:
+                fields[key] = ""
+            elif isinstance(value, list):
+                fields[key] = "\n".join(str(item) for item in value)
+            else:
+                fields[key] = str(value)
+
+        fields.setdefault("question", "")
+        fields.setdefault("hint", "")
+        fields.setdefault("options", "")
+        fields.setdefault("prompt_body", fields["question"])
+        fields.setdefault("image_tokens", "\n".join(["<image>"] * image_count))
+
+        template_has_image = ("<image>" in prompt_template) or ("{image_tokens}" in prompt_template)
+        if not template_has_image:
+            fields["question"] = _inject_image_tokens(fields["question"], image_count=image_count)
+        elif IMAGE_PLACEHOLDER_PATTERN.search(fields["question"]):
+            fields["question"] = _inject_image_tokens(fields["question"], image_count=image_count)
+
+        formatted = prompt_template.format(**fields).strip()
+        if not template_has_image and "<image>" not in formatted:
+            formatted = _inject_image_tokens(formatted, image_count=image_count)
+        return re.sub(r"\n{3,}", "\n\n", formatted).strip()
+
     question_with_images = _inject_image_tokens(question, image_count=image_count)
     normalized_template = _normalize_prompt_template(prompt_template)
     return normalized_template.format(question=question_with_images).strip()

@@ -39,53 +39,6 @@ def _parse_torch_dtype(dtype: str | None) -> torch.dtype | str:
     return parsed
 
 
-def _sanitize_sample_id(value: Any, idx: int) -> str:
-    text = str(value) if value is not None else f"sample-{idx:06d}"
-    text = text.strip() or f"sample-{idx:06d}"
-    text = re.sub(r"[^A-Za-z0-9._-]+", "_", text)
-    return text[:128]
-
-
-def _load_json_records(dataset_path: Path) -> list[dict[str, Any]]:
-    if dataset_path.suffix == ".jsonl":
-        records = []
-        with dataset_path.open() as f:
-            for line in f:
-                line = line.strip()
-                if line:
-                    records.append(json.loads(line))
-        return records
-
-    if dataset_path.suffix == ".json":
-        with dataset_path.open() as f:
-            data = json.load(f)
-        if isinstance(data, list):
-            return data
-        if isinstance(data, dict) and "data" in data and isinstance(data["data"], list):
-            return data["data"]
-        raise ValueError("JSON dataset must be either a list of records or a dict with a `data` list")
-
-    raise ValueError("Unsupported dataset format. Expected `.jsonl` or `.json`.")
-
-
-def load_llava_samples(
-    dataset_path: str,
-    image_root: str | None = None,
-    question_column: str = "question",
-    image_column: str = "image_path",
-    id_column: str = "sample_id",
-    limit: int | None = None,
-) -> list[dict[str, Any]]:
-    return load_vlm_samples(
-        dataset_path=dataset_path,
-        image_root=image_root,
-        question_column=question_column,
-        image_column=image_column,
-        id_column=id_column,
-        answer_column=None,
-        limit=limit,
-    )
-
 
 def _get_model_device(model: LlavaForConditionalGeneration) -> torch.device:
     try:
@@ -137,6 +90,113 @@ def _get_image_seq_length(config: Any) -> int | None:
     if hasattr(config, "image_seq_length") and getattr(config, "image_seq_length") is not None:
         return int(getattr(config, "image_seq_length"))
     return None
+
+
+def configure_llava_processor(processor: Any, config: Any) -> Any:
+    """
+    Populate processor-side image-token metadata from the model config when it is
+    missing. This keeps placeholder expansion behavior consistent across scripts.
+    """
+
+    vision_config = getattr(config, "vision_config", None)
+    if getattr(processor, "patch_size", None) is None and vision_config is not None:
+        patch_size = getattr(vision_config, "patch_size", None)
+        if patch_size is not None:
+            processor.patch_size = int(patch_size)
+
+    if getattr(processor, "vision_feature_select_strategy", None) is None:
+        select_strategy = getattr(config, "vision_feature_select_strategy", None)
+        if select_strategy is not None:
+            processor.vision_feature_select_strategy = str(select_strategy)
+
+    if getattr(processor, "num_additional_image_tokens", None) is None:
+        num_additional = getattr(config, "num_additional_image_tokens", None)
+        processor.num_additional_image_tokens = 0 if num_additional is None else int(num_additional)
+
+    return processor
+
+
+def infer_llava_image_positions_no_forward(
+    prompt_inputs: dict[str, Any],
+    model_config: Any,
+    num_images: int,
+) -> tuple[torch.Tensor, int]:
+    """
+    Recover multimodal prompt-space image positions without running an extra
+    forward pass.
+
+    This intentionally uses a strict, fail-closed policy:
+    - either the processor emitted exactly one placeholder per image
+    - or it already expanded placeholders to the full image token span
+    - anything else raises
+    """
+
+    input_ids = prompt_inputs.get("input_ids")
+    if not isinstance(input_ids, torch.Tensor) or input_ids.ndim != 2 or input_ids.shape[0] != 1:
+        raise ValueError("Expected `prompt_inputs['input_ids']` to be a [1, T] tensor")
+    if num_images <= 0:
+        raise ValueError(f"Expected a positive number of images, got {num_images}")
+
+    attention_mask = prompt_inputs.get("attention_mask")
+    if attention_mask is not None:
+        if not isinstance(attention_mask, torch.Tensor) or attention_mask.shape != input_ids.shape:
+            raise ValueError("`attention_mask` must be a tensor with the same shape as `input_ids`")
+        valid_ids = input_ids[0][attention_mask[0].to(torch.bool)]
+    else:
+        valid_ids = input_ids[0]
+
+    valid_ids_list = valid_ids.detach().cpu().tolist()
+    prompt_len_text = len(valid_ids_list)
+    if prompt_len_text <= 0:
+        raise ValueError("Prompt is empty after applying the attention mask")
+
+    image_token_id = _get_image_token_id(model_config)
+    expected_tokens_per_image = _get_image_seq_length(model_config)
+    if expected_tokens_per_image is None or expected_tokens_per_image <= 0:
+        raise ValueError("Model config is missing a valid `image_seq_length`")
+
+    raw_positions = [idx for idx, token_id in enumerate(valid_ids_list) if token_id == image_token_id]
+    n_placeholders = len(raw_positions)
+    if n_placeholders == 0:
+        raise ValueError("No image placeholders found in the prompt input ids")
+
+    expected_total_image_tokens = num_images * expected_tokens_per_image
+    if n_placeholders == expected_total_image_tokens:
+        image_positions = torch.tensor(raw_positions, dtype=torch.long)
+        prompt_len_mm = prompt_len_text
+    elif n_placeholders == num_images:
+        image_positions_list: list[int] = []
+        cursor = 0
+        for token_id in valid_ids_list:
+            if token_id == image_token_id:
+                image_positions_list.extend(range(cursor, cursor + expected_tokens_per_image))
+                cursor += expected_tokens_per_image
+            else:
+                cursor += 1
+        image_positions = torch.tensor(image_positions_list, dtype=torch.long)
+        prompt_len_mm = cursor
+    else:
+        raise ValueError(
+            "Ambiguous image placeholder count: "
+            f"found {n_placeholders}, expected either {num_images} or {expected_total_image_tokens}"
+        )
+
+    if image_positions.numel() != expected_total_image_tokens:
+        raise ValueError(
+            "Recovered image token count does not match expectation: "
+            f"found {image_positions.numel()}, expected {expected_total_image_tokens}"
+        )
+    if image_positions.numel() == 0:
+        raise ValueError("Recovered image position set is empty")
+    if prompt_len_mm <= 0:
+        raise ValueError(f"Recovered multimodal prompt length must be positive, got {prompt_len_mm}")
+    if int(image_positions.max().item()) >= prompt_len_mm:
+        raise ValueError(
+            "Recovered image positions exceed the multimodal prompt length: "
+            f"max_pos={int(image_positions.max().item())}, prompt_len_mm={prompt_len_mm}"
+        )
+
+    return image_positions, prompt_len_mm
 
 
 def _infer_merged_length_from_merge_output(merged: Any) -> int | None:
@@ -423,8 +483,8 @@ def _decode_answer(processor: Any, answer_ids: torch.Tensor) -> str:
     ).strip()
 
 
-def _build_prompt(question: str, prompt_template: str, image_count: int = 1) -> str:
-    return _shared_build_prompt(question, prompt_template=prompt_template, image_count=image_count)
+def _build_prompt(sample_or_question: str | dict[str, Any], prompt_template: str, image_count: int = 1) -> str:
+    return _shared_build_prompt(sample_or_question, prompt_template=prompt_template, image_count=image_count)
 
 
 def _open_images(image_paths: list[str]):
@@ -529,7 +589,7 @@ class LlavaAnalysisDataCollector:
         save_wo: bool = False,
     ) -> dict[str, Any]:
         images = _open_images(sample["image_paths"])
-        prompt_text = _build_prompt(sample["question"], prompt_template, image_count=len(sample["image_paths"]))
+        prompt_text = _build_prompt(sample, prompt_template, image_count=len(sample["image_paths"]))
 
         prompt_inputs = self.processor(text=prompt_text, images=images, return_tensors="pt")
         prompt_inputs = _move_batch_to_device(prompt_inputs, self.device, self.float_dtype)
@@ -615,7 +675,7 @@ class LlavaAnalysisDataCollector:
         record = {
             "sample_id": sample["sample_id"],
             "question": sample["question"],
-            "image_path": sample["image_path"],
+            "image_path": sample.get("image_path", sample["image_paths"][0] if sample.get("image_paths") else ""),
             "image_paths": list(sample["image_paths"]),
             "prompt_text": prompt_text,
             "prompt_len_text": prompt_len_text,
@@ -691,7 +751,7 @@ def extract_llava_analysis_data(
         raise ValueError(f"Output directory is not empty: {output_path}")
     records_path.mkdir(parents=True, exist_ok=True)
 
-    samples = load_llava_samples(
+    samples = load_vlm_samples(
         dataset_path=dataset_path,
         image_root=image_root,
         question_column=question_column,
@@ -710,6 +770,7 @@ def extract_llava_analysis_data(
     print(f"Loading LLaVA processor and model: {implementation_model_name}")
     processor = AutoProcessor.from_pretrained(implementation_model_name)
     model = LlavaForConditionalGeneration.from_pretrained(implementation_model_name, **model_kwargs)
+    configure_llava_processor(processor, model.config)
     model.eval()
 
     collector = LlavaAnalysisDataCollector(model, processor)
@@ -771,7 +832,7 @@ def extract_llava_analysis_data(
                 metadata = {
                     "sample_id": sample["sample_id"],
                     "question": sample["question"],
-                    "image_path": sample["image_path"],
+                    "image_path": sample.get("image_path", sample["image_paths"][0] if sample.get("image_paths") else ""),
                     "image_paths": sample["image_paths"],
                     "record_path": str(record_file),
                     "answer_text": record["answer_text"],
@@ -829,6 +890,9 @@ def _collect_postvision_minimal_sample(
     save_wov_norm_image: bool = False,
     save_h_norm_postvision: bool = False,
     save_teacher_scores: bool = True,
+    teacher_head_reduction: str = "none",
+    teacher_att_key: str = "att_only_postvision",
+    teacher_splus_key: str = "splus_postvision",
     storage_dtype: torch.dtype | None = torch.float16,
     eps: float = 1e-8,
 ) -> dict[str, Any]:
@@ -849,12 +913,16 @@ def _collect_postvision_minimal_sample(
         )
     if need_wov_norm and not capture_vproj:
         raise ValueError("capture_vproj must be True when teacher scores or WOV norms are requested")
+    if teacher_head_reduction not in ("none", "mean"):
+        raise ValueError(f"Unsupported teacher_head_reduction: {teacher_head_reduction}")
+    if not teacher_att_key or not teacher_splus_key:
+        raise ValueError("teacher_att_key and teacher_splus_key must be non-empty strings")
 
     device = _get_model_device(model)
     float_dtype = _get_model_float_dtype(model)
 
     images = _open_images(sample["image_paths"])
-    prompt_text = _build_prompt(sample["question"], prompt_template, image_count=len(sample["image_paths"]))
+    prompt_text = _build_prompt(sample, prompt_template, image_count=len(sample["image_paths"]))
 
     prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
     prompt_inputs = _move_batch_to_device(prompt_inputs, device, float_dtype)
@@ -985,13 +1053,18 @@ def _collect_postvision_minimal_sample(
                     * h_norm_for_block.reciprocal().view(1, -1, 1)
                     * wnorm_for_block.unsqueeze(1)
                 ).max(dim=1).values  # [H, I]
+
+                if teacher_head_reduction == "mean":
+                    att_only = att_only.mean(dim=0)  # [I]
+                    splus = splus.mean(dim=0)  # [I]
+
                 att_only_postvision_layers.append(_to_storage_cpu(att_only, storage_dtype))
                 splus_postvision_layers.append(_to_storage_cpu(splus, storage_dtype))
 
     record: dict[str, Any] = {
         "sample_id": sample["sample_id"],
         "question": sample["question"],
-        "image_path": sample["image_path"],
+        "image_path": sample.get("image_path", sample["image_paths"][0] if sample.get("image_paths") else ""),
         "image_paths": list(sample["image_paths"]),
         "prompt_text": prompt_text,
         "prompt_len_text": prompt_len_text,
@@ -1015,8 +1088,11 @@ def _collect_postvision_minimal_sample(
         record["hidden_image"] = torch.stack(hidden_image_layers, dim=0)  # [L, I, D]
 
     if save_teacher_scores and att_only_postvision_layers:
-        record["att_only_postvision"] = torch.stack(att_only_postvision_layers, dim=0)  # [L, H, I]
-        record["splus_postvision"] = torch.stack(splus_postvision_layers, dim=0)  # [L, H, I]
+        record[teacher_att_key] = torch.stack(att_only_postvision_layers, dim=0)  # [L, H, I] or [L, I]
+        record[teacher_splus_key] = torch.stack(splus_postvision_layers, dim=0)  # [L, H, I] or [L, I]
+        record["teacher_head_reduction"] = teacher_head_reduction
+        record["teacher_att_key"] = teacher_att_key
+        record["teacher_splus_key"] = teacher_splus_key
 
     return record
 
@@ -1048,13 +1124,18 @@ def validate_postvision_record(record: dict[str, Any]) -> dict[str, Any]:
     if hidden_image is not None and (not isinstance(hidden_image, torch.Tensor) or hidden_image.ndim != 3):
         errors.append("hidden_image must be a 3D tensor [L, I, D]")
 
-    att_only = record.get("att_only_postvision")
-    if att_only is not None and (not isinstance(att_only, torch.Tensor) or att_only.ndim != 3):
-        errors.append("att_only_postvision must be a 3D tensor [L, H, I]")
+    teacher_att_key = str(record.get("teacher_att_key", "att_only_postvision"))
+    teacher_splus_key = str(record.get("teacher_splus_key", "splus_postvision"))
 
-    splus = record.get("splus_postvision")
-    if splus is not None and (not isinstance(splus, torch.Tensor) or splus.ndim != 3):
-        errors.append("splus_postvision must be a 3D tensor [L, H, I]")
+    att_only = record.get(teacher_att_key)
+    if att_only is not None:
+        if not isinstance(att_only, torch.Tensor) or att_only.ndim not in (2, 3):
+            errors.append(f"{teacher_att_key} must be a 2D [L, I] or 3D [L, H, I] tensor")
+
+    splus = record.get(teacher_splus_key)
+    if splus is not None:
+        if not isinstance(splus, torch.Tensor) or splus.ndim not in (2, 3):
+            errors.append(f"{teacher_splus_key} must be a 2D [L, I] or 3D [L, H, I] tensor")
 
     return {"ok": len(errors) == 0, "errors": errors}
 
@@ -1079,6 +1160,9 @@ def extract_llava_postvision_data(
     save_wov_norm_image: bool = False,
     save_h_norm_postvision: bool = False,
     save_teacher_scores: bool = True,
+    teacher_head_reduction: str = "none",
+    teacher_att_key: str = "att_only_postvision",
+    teacher_splus_key: str = "splus_postvision",
     storage_dtype: str | None = "float16",
     overwrite: bool = False,
     continue_on_error: bool = True,
@@ -1101,7 +1185,7 @@ def extract_llava_postvision_data(
         raise ValueError(f"Output directory is not empty: {output_path}")
     records_path.mkdir(parents=True, exist_ok=True)
 
-    samples = load_llava_samples(
+    samples = load_vlm_samples(
         dataset_path=dataset_path,
         image_root=image_root,
         question_column=question_column,
@@ -1127,6 +1211,7 @@ def extract_llava_postvision_data(
     print(f"Loading LLaVA processor and model: {implementation_model_name}")
     processor = AutoProcessor.from_pretrained(implementation_model_name)
     model = LlavaForConditionalGeneration.from_pretrained(implementation_model_name, **model_kwargs)
+    configure_llava_processor(processor, model.config)
     model.eval()
 
     summary = {
@@ -1162,6 +1247,9 @@ def extract_llava_postvision_data(
                 "save_wov_norm_image": save_wov_norm_image,
                 "save_h_norm_postvision": save_h_norm_postvision,
                 "save_teacher_scores": save_teacher_scores,
+                "teacher_head_reduction": teacher_head_reduction,
+                "teacher_att_key": teacher_att_key,
+                "teacher_splus_key": teacher_splus_key,
                 "storage_dtype": storage_dtype,
             },
             f,
@@ -1182,6 +1270,9 @@ def extract_llava_postvision_data(
                     save_wov_norm_image=save_wov_norm_image,
                     save_h_norm_postvision=save_h_norm_postvision,
                     save_teacher_scores=save_teacher_scores,
+                    teacher_head_reduction=teacher_head_reduction,
+                    teacher_att_key=teacher_att_key,
+                    teacher_splus_key=teacher_splus_key,
                     storage_dtype=storage_dtype_obj,
                 )
                 validation = validate_postvision_record(record)
@@ -1192,13 +1283,16 @@ def extract_llava_postvision_data(
                 metadata = {
                     "sample_id": sample["sample_id"],
                     "question": sample["question"],
-                    "image_path": sample["image_path"],
+                    "image_path": sample.get("image_path", sample["image_paths"][0] if sample.get("image_paths") else ""),
                     "image_paths": sample["image_paths"],
                     "record_path": str(record_file),
                     "prompt_len_text": int(record["prompt_len_text"]),
                     "prompt_len_mm": int(record["prompt_len_mm"]),
                     "n_image_tokens": int(record["image_indices_mm"].numel()),
                     "n_postvision_tokens": int(record["postvision_text_indices_mm"].numel()),
+                    "teacher_att_key": teacher_att_key,
+                    "teacher_splus_key": teacher_splus_key,
+                    "teacher_head_reduction": teacher_head_reduction,
                     "validation_ok": validation["ok"],
                     "validation_errors": validation["errors"],
                 }

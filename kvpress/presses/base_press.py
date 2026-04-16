@@ -173,14 +173,15 @@ class BasePress:
 
         Examples
         --------
-        >>> from kvpress import KnormPress
-        >>> press = KnormPress(compression_ratio=0.5)
+        >>> press = my_press
         >>> with press(model):
         ...     # Forward pass with compression applied
         ...     outputs = model(input_ids, past_key_values=cache)
         """
         if not isinstance(model, SUPPORTED_MODELS):
-            logger.warning(f"Model {type(model)} not tested, supported models: {SUPPORTED_MODELS}")
+            if not getattr(self, "_warned_unsupported_model", False):
+                logger.warning(f"Model {type(model)} not tested, supported models: {SUPPORTED_MODELS}")
+                self._warned_unsupported_model = True
 
         if isinstance(model, Gemma3ForConditionalGeneration):
             logger.warning_once("Compression in Gemma3 is only applied to layer without sliding window attention")

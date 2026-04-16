@@ -1,56 +1,39 @@
 SHELL := /bin/bash
 UV ?= $(shell which uv)
-BUILD_VERSION:=$(APP_VERSION)
-TESTS_FILTER:=
+PYTHON ?= python
 
-PYTEST_LOG=--log-cli-level=debug --log-format="%(asctime)s %(levelname)s [%(name)s:%(filename)s:%(lineno)d] %(message)s" --log-date-format="%Y-%m-%d %H:%M:%S"
+RETAINED_PY := \
+	build_docvqa_teacher4.py \
+	build_scienceqa_manifest.py \
+	collect_scienceqa_teacher_xy.py \
+	evaluate_image_teacher_pruning.py \
+	train_image_teacher_probe.py \
+	train_image_teacher_probe_shards.py \
+	kvpress/__init__.py \
+	kvpress/utils.py \
+	kvpress/presses/__init__.py \
+	kvpress/presses/base_press.py \
+	kvpress/presses/image_token_press.py \
+	kvpress/presses/kvzap_press.py \
+	kvzap/__init__.py \
+	kvzap/image_teacher_utils.py \
+	kvzap/llava_extractor.py \
+	kvzap/milebench_look_metrics.py \
+	scripts/export_efficiency_comparison_csv.py \
+	scripts/export_probe_lookm_performance_csv.py \
+	scripts/export_scienceqa_probe_csv_summaries.py \
+	scripts/measure_milebench_efficiency.py
 
-.PHONY: isort
-isort:
+.PHONY: format
+format:
 	$(UV) run isort .
-
-.PHONY: black
-black:
 	$(UV) run black .
 
-PHONY: format
-format: isort black
+.PHONY: lint
+lint:
+	$(UV) run flake8 $(RETAINED_PY)
+	$(UV) run mypy $(RETAINED_PY)
 
-.PHONY: style
-style: reports
-	@echo -n > reports/flake8_errors.log
-	@echo -n > reports/mypy_errors.log
-	@echo -n > reports/mypy.log
-	@echo -n > reports/copyright_errors.log
-	@echo
-
-	-$(UV) run flake8 | tee -a reports/flake8_errors.log
-	@if [ -s reports/flake8_errors.log ]; then exit 1; fi
-
-	-$(UV) run mypy . --check-untyped-defs | tee -a reports/mypy.log
-	@if ! grep -Eq "Success: no issues found in [0-9]+ source files" reports/mypy.log ; then exit 1; fi
-
-	@echo "Checking for SPDX-FileCopyrightText headers in Python files..."
-	@find . -name "*.py" -not -path "*/\.*" | xargs grep -L "SPDX-FileCopyrightText:" | tee reports/copyright_errors.log || true
-	@if [ -s reports/copyright_errors.log ]; then echo "Error: Missing SPDX-FileCopyrightText headers in files listed above"; exit 1; fi
-	@echo "Success: All Python files have SPDX-FileCopyrightText headers."
-
-
-reports:
-	mkdir -p reports
-
-.PHONY: test
-test: reports
-	$(UV) pip install flash-attn --no-build-isolation --find-links https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/expanded_assets/v0.7.12
-	PYTHONPATH=. \
-	$(UV) run pytest \
-		--cov-report xml:reports/coverage.xml \
-		--cov=kvpress/ \
-		--junitxml=./reports/junit.xml \
-		-v \
-		tests/ | tee reports/pytest_output.log
-	@if grep -q "FAILED" reports/pytest_output.log; then \
-		echo "Error: Some tests failed."; \
-		grep "FAILED" reports/pytest_output.log; \
-		exit 1; \
-	fi
+.PHONY: compile
+compile:
+	$(PYTHON) -m py_compile $(RETAINED_PY)

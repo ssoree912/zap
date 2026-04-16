@@ -7,25 +7,33 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from copy import deepcopy
 from pathlib import Path
 from typing import Any, Optional
 
+import numpy as np
 import pandas as pd
 import torch
 from tqdm.auto import tqdm
 from transformers import AutoProcessor, LlavaForConditionalGeneration
 
-from kvpress import OracleImageTeacherPress, ProbeImageTeacherPress
+REPO_ROOT = Path(__file__).resolve().parent
+LOOKM_ROOT = REPO_ROOT.parent / "LOOK-M"
+if str(LOOKM_ROOT) not in sys.path:
+    sys.path.insert(0, str(LOOKM_ROOT))
+
+from utils import MileBenchDataset
+
+from kvpress.presses.image_token_press import H2OImageOnlyPress, OracleAllTokenPress, OracleImageTeacherPress, ProbeImageTeacherPress
 from kvzap.image_teacher_utils import build_prompt, load_pt_record, load_vlm_samples, normalize_answer, resolve_teacher_dir
 from kvzap.llava_extractor import (
     _get_model_device,
     _get_model_float_dtype,
     _move_batch_to_device,
-    _resolve_prompt_image_mask,
     _trim_after_eos,
-    disable_merge_trace,
-    enable_merge_trace,
+    configure_llava_processor,
+    infer_llava_image_positions_no_forward,
 )
 from kvzap.milebench_look_metrics import LookMileBenchEvaluator
 
@@ -33,25 +41,6 @@ HD_DOCVQA_DATASET_PATH = "/workspace/hd/data/MileBench/DocVQA/DocVQA.json"
 HD_DOCVQA_IMAGE_ROOT = "/workspace/hd/data/MileBench/DocVQA/images"
 HD_ZAP_ARTIFACT_ROOT = "/workspace/hd/artifacts/zap"
 IMAGE_PLACEHOLDER_PATTERN = re.compile(r"\{image#\d+\}")
-
-
-def infer_prompt_image_positions(model: LlavaForConditionalGeneration, prompt_inputs: dict[str, Any]) -> torch.Tensor:
-    prompt_input_ids = prompt_inputs["input_ids"]
-    trace_ctx = enable_merge_trace(model)
-    try:
-        with torch.no_grad():
-            prompt_out = model(
-                **prompt_inputs,
-                use_cache=False,
-                output_attentions=False,
-                output_hidden_states=False,
-                return_dict=True,
-            )
-    finally:
-        disable_merge_trace(trace_ctx)
-    prompt_len_mm = int(prompt_out.logits.shape[1])
-    mask = _resolve_prompt_image_mask(model, prompt_input_ids, prompt_len_mm, trace_ctx)
-    return mask.nonzero(as_tuple=False).flatten().cpu()
 
 
 def decode_answer(processor: Any, generated_ids: torch.Tensor, prompt_len_text: int) -> str:
@@ -86,13 +75,98 @@ def resolve_teacher_image_positions(teacher_record: dict[str, Any]) -> torch.Ten
     raise KeyError("Teacher record must contain one of: image_pos_mm, image_indices_mm, is_image_pos_mm")
 
 
+def extract_att_only_postvision_on_the_fly(
+    *,
+    model: Any,
+    prompt_inputs: dict[str, torch.Tensor],
+    image_positions: torch.Tensor,
+    device: torch.device,
+) -> torch.Tensor:
+    """Compute att_only_postvision teacher scores from a full forward pass.
+
+    Returns:
+      [n_layers, n_heads, n_image]
+    """
+    if image_positions.numel() == 0:
+        raise ValueError("image_positions is empty")
+
+    prompt_len = int(prompt_inputs["input_ids"].shape[1])
+    img_idx = image_positions.to(device=device, dtype=torch.long)
+    last_image_pos = int(img_idx.max().item())
+
+    all_pos = torch.arange(prompt_len, dtype=torch.long, device=device)
+    is_image = torch.zeros(prompt_len, dtype=torch.bool, device=device)
+    is_image[img_idx] = True
+    is_text = ~is_image
+
+    postvision_text_idx = all_pos[(all_pos > last_image_pos) & is_text]
+    if postvision_text_idx.numel() == 0:
+        text_idx = all_pos[is_text]
+        n_text = int(text_idx.numel())
+        postvision_text_idx = text_idx[max(0, n_text - max(1, n_text // 10)):]
+    if postvision_text_idx.numel() == 0:
+        raise ValueError("Failed to resolve postvision text indices")
+
+    with torch.no_grad():
+        out = model(
+            **prompt_inputs,
+            use_cache=False,
+            output_attentions=True,
+            output_hidden_states=False,
+            return_dict=True,
+        )
+
+    if out.attentions is None:
+        raise RuntimeError("Model forward returned no attentions")
+
+    layers: list[torch.Tensor] = []
+    for layer_attn in out.attentions:
+        attn = layer_attn[0].detach() if layer_attn.dim() == 4 else layer_attn.detach()  # [H,S,S]
+        block = attn.index_select(1, postvision_text_idx).index_select(2, img_idx)  # [H,Q,I]
+        layers.append(block.amax(dim=1).cpu().to(torch.float32))  # [H,I]
+
+    return torch.stack(layers, dim=0)
+
+
 def build_press(args: argparse.Namespace):
-    if args.mode == "oracle":
-        return OracleImageTeacherPress(image_keep_ratio=args.image_keep_ratio, head_reduce=args.head_reduce)
+    # Determine budget: prefer total_keep_ratio (unified basis); fall back to image_keep_ratio
+    total_keep_ratio = getattr(args, "total_keep_ratio", None)
+    image_keep_ratio = getattr(args, "image_keep_ratio", None)
+    if total_keep_ratio is None and image_keep_ratio is None:
+        raise ValueError("One of --total_keep_ratio or --image_keep_ratio is required")
+
+    # Positional forced-keep kwargs (EXP-20260412-003)
+    forced_kwargs = dict(
+        n_initial_keep=getattr(args, "n_initial_keep", 0),
+        n_recent_keep=getattr(args, "n_recent_keep", 0),
+        n_random_keep=getattr(args, "n_random_keep", 0),
+        per_image_forced=getattr(args, "per_image_forced", False),
+    )
+
+    if args.mode in ("oracle", "oracle_onthefly"):
+        return OracleImageTeacherPress(
+            total_keep_ratio=total_keep_ratio,
+            image_keep_ratio=image_keep_ratio,
+            head_reduce=args.head_reduce,
+            **forced_kwargs,
+        )
+    if args.mode == "oracle_all_token":
+        if total_keep_ratio is None:
+            raise ValueError("--total_keep_ratio is required for oracle_all_token mode")
+        return OracleAllTokenPress(total_keep_ratio=total_keep_ratio, head_reduce=args.head_reduce)
+    if args.mode == "h2o_image_only":
+        return H2OImageOnlyPress(
+            total_keep_ratio=total_keep_ratio,
+            image_keep_ratio=image_keep_ratio,
+            head_reduce=args.head_reduce,
+            **forced_kwargs,
+        )
     return ProbeImageTeacherPress(
-        image_keep_ratio=args.image_keep_ratio,
+        total_keep_ratio=total_keep_ratio,
+        image_keep_ratio=image_keep_ratio,
         head_reduce=args.head_reduce,
         probe_model_name=args.probe_model_name,
+        **forced_kwargs,
     )
 
 
@@ -190,18 +264,58 @@ def subset_core_annotation(core_annotation: dict[str, Any], prediction_ids: set[
     }
 
 
+def prepare_lookm_truncated_inputs(
+    samples: list[dict[str, Any]],
+    *,
+    core_annotation: dict[str, Any],
+    image_root: str,
+    tokenizer: Any,
+    dataset_name: str,
+    max_context_len: int,
+    n_tokens_per_image: int,
+    combine_image: int | None = None,
+) -> dict[str, dict[str, Any]]:
+    raw_annotations: list[dict[str, Any]] = []
+    for sample in samples:
+        raw = sample.get("raw") if isinstance(sample.get("raw"), dict) else None
+        if raw is None:
+            raise ValueError("LOOK-M style truncation requires `raw` sample records")
+        raw_annotations.append(raw)
+
+    dataset = MileBenchDataset(
+        annotation=raw_annotations,
+        task_instructions=core_annotation["meta_data"]["task_instruction"],
+        img_dir=image_root,
+        max_context_len=max_context_len,
+        n_tokens_per_image=n_tokens_per_image,
+        tokenizer=tokenizer,
+        dataset_name=dataset_name,
+        combine_image=combine_image,
+    )
+
+    prepared: dict[str, dict[str, Any]] = {}
+    for idx, sample in enumerate(samples):
+        item = dataset[idx]
+        prepared[str(sample["sample_id"])] = {
+            "question": item["context"],
+            "image_paths": item["raw_img_list"],
+        }
+    return prepared
+
+
 def build_look_prediction_record(
     sample: dict[str, Any],
     question_for_export: str,
     prediction: str,
     gold: Optional[str],
     args: argparse.Namespace,
+    image_paths: list[str],
 ) -> dict[str, Any]:
     raw = sample.get("raw") if isinstance(sample.get("raw"), dict) else {}
     raw_sample_id = raw.get("sample_id", sample["sample_id"])
     return {
         "sample_id": to_int_if_possible(raw_sample_id),
-        "image": sample["image_paths"],
+        "image": image_paths,
         "question": question_for_export,
         "gt_response": "" if gold is None else str(gold),
         "gen_model_id": args.look_model_name,
@@ -217,7 +331,7 @@ def build_look_prediction_record(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=["oracle", "probe"], required=True)
+    parser.add_argument("--mode", choices=["oracle", "oracle_onthefly", "probe", "h2o_image_only", "oracle_all_token"], required=True)
     parser.add_argument("--dataset_path", type=str, default=HD_DOCVQA_DATASET_PATH)
     parser.add_argument("--output_dir", type=str, default=f"{HD_ZAP_ARTIFACT_ROOT}/docvqa_image_pruning")
     parser.add_argument("--implementation_model_name", type=str, default="llava-hf/llava-1.5-7b-hf")
@@ -231,24 +345,63 @@ def main() -> None:
     parser.add_argument("--prompt_style", choices=["default", "look_milebench"], default="look_milebench")
     parser.add_argument("--max_new_tokens", type=int, default=32)
     parser.add_argument("--torch_dtype", type=str, default="auto")
-    parser.add_argument("--device_map", type=str, default="auto")
+    parser.add_argument("--device", type=str, default="cuda:0")
+    parser.add_argument("--device_map", type=str, default="none")
     parser.add_argument("--attn_implementation", type=str, default="eager")
-    parser.add_argument("--image_keep_ratio", type=float, required=True)
+    parser.add_argument("--image_keep_ratio", type=float, default=None,
+                        help="Fraction of IMAGE tokens to keep (legacy). Use --total_keep_ratio for unified comparison.")
+    parser.add_argument("--total_keep_ratio", type=float, default=None,
+                        help="Fraction of ALL tokens (text+image) to keep. Makes r_eff_prompt comparable across methods.")
     parser.add_argument("--head_reduce", choices=["amax", "mean"], default="amax")
+    parser.add_argument("--n_initial_keep", type=int, default=0,
+                        help="Force-keep first N image tokens (global or per-image). EXP-20260412-003.")
+    parser.add_argument("--n_recent_keep", type=int, default=0,
+                        help="Force-keep last N image tokens (global or per-image). EXP-20260412-003.")
+    parser.add_argument("--n_random_keep", type=int, default=0,
+                        help="Force-keep N randomly chosen image tokens (control). EXP-20260412-003.")
+    parser.add_argument("--per_image_forced", action="store_true", default=False,
+                        help="Apply initial/recent forced-keep per image block instead of globally.")
     parser.add_argument("--look_dataset_name", type=str, default="DocVQA")
     parser.add_argument("--look_model_name", type=str, default="zap_docvqa")
     parser.add_argument("--look_result_root", type=str, default=HD_ZAP_ARTIFACT_ROOT)
     parser.add_argument("--save_look_files", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--evaluate_with_look_metrics", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--allow_partial_look_eval", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--truncate_like_lookm", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--look_max_context_len", type=int, default=None)
+    parser.add_argument("--look_n_tokens_per_image", type=int, default=None)
+    parser.add_argument("--combine_image", type=int, default=None)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--continue_on_error", action="store_true")
+    parser.add_argument(
+        "--save_viz_for_first_n",
+        type=int,
+        default=0,
+        help=(
+            "Save per-layer score/mask data for the first N samples (0 = disabled). "
+            "Data is written as .npz + .json pairs to {output_dir}/viz_data/ (or --viz_output_dir). "
+            "Only works for ImageTokenTopKPress subclasses (probe, oracle, h2o_image_only). "
+            "Has zero overhead when disabled."
+        ),
+    )
+    parser.add_argument(
+        "--viz_output_dir",
+        type=str,
+        default=None,
+        help="Directory for visualization data files. Defaults to {output_dir}/viz_data/.",
+    )
     args = parser.parse_args()
 
-    if args.mode == "oracle" and args.teacher_dir is None:
-        raise ValueError("teacher_dir is required for oracle mode")
+    if getattr(args, "total_keep_ratio", None) is None and getattr(args, "image_keep_ratio", None) is None:
+        raise ValueError("One of --total_keep_ratio or --image_keep_ratio is required")
+    if args.mode in ("oracle", "oracle_all_token") and args.teacher_dir is None:
+        raise ValueError("teacher_dir is required for oracle and oracle_all_token modes")
     if args.mode == "probe" and not args.probe_model_name:
         raise ValueError("probe_model_name is required for probe mode")
+    if args.mode in ("oracle", "oracle_all_token") and args.truncate_like_lookm:
+        raise ValueError("LOOK-M style truncation is currently supported only for probe mode")
+    # h2o_image_only and oracle_all_token require output_attentions=True (eager attention)
+    needs_output_attentions = args.mode in ("h2o_image_only", "oracle_all_token")
 
     output_dir = Path(args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -271,53 +424,135 @@ def main() -> None:
     if args.torch_dtype != "auto":
         model_kwargs["torch_dtype"] = getattr(torch, args.torch_dtype)
     model = LlavaForConditionalGeneration.from_pretrained(args.implementation_model_name, **model_kwargs)
+    configure_llava_processor(processor, model.config)
+    if model_kwargs["device_map"] is None and args.device not in ("", "none", "None"):
+        model = model.to(torch.device(args.device))
+    model.eval()
 
     device = _get_model_device(model)
     float_dtype = _get_model_float_dtype(model)
     press = build_press(args)
 
+    prepared_inputs: dict[str, dict[str, Any]] = {}
+    if args.truncate_like_lookm:
+        if core_annotation is None:
+            raise ValueError("LOOK-M style truncation requires a MileBench core annotation JSON")
+        max_context_len = args.look_max_context_len
+        if max_context_len is None:
+            max_context_len = getattr(getattr(model.config, "text_config", None), "max_position_embeddings", None)
+        if max_context_len is None:
+            max_context_len = getattr(model.config, "max_position_embeddings", None)
+        if max_context_len is None:
+            max_context_len = 4096
+
+        n_tokens_per_image = args.look_n_tokens_per_image
+        if n_tokens_per_image is None:
+            n_tokens_per_image = getattr(model.config, "image_seq_length", None)
+        if n_tokens_per_image is None:
+            n_tokens_per_image = 576
+
+        prepared_inputs = prepare_lookm_truncated_inputs(
+            samples,
+            core_annotation=core_annotation,
+            image_root=args.image_root,
+            tokenizer=processor.tokenizer,
+            dataset_name=args.look_dataset_name,
+            max_context_len=int(max_context_len),
+            n_tokens_per_image=int(n_tokens_per_image),
+            combine_image=args.combine_image,
+        )
+
     rows: list[dict[str, Any]] = []
     failures: list[dict[str, Any]] = []
     look_predictions: list[dict[str, Any]] = []
 
+    # ── VizCapture setup ──────────────────────────────────────────────────────
+    viz_capture = None
+    viz_dir: Optional[Path] = None
+    if args.save_viz_for_first_n > 0:
+        from kvpress.presses.image_token_press import VizCapture
+        viz_capture = VizCapture()
+        viz_dir = (
+            Path(args.viz_output_dir).resolve()
+            if args.viz_output_dir
+            else output_dir / "viz_data"
+        )
+        viz_dir.mkdir(parents=True, exist_ok=True)
+        if hasattr(press, "attach_viz_capture"):
+            press.attach_viz_capture(viz_capture)
+        else:
+            print(
+                f"Warning: press {type(press).__name__} does not support VizCapture. "
+                "Visualization will be skipped."
+            )
+            viz_capture = None
+
+    viz_sample_idx = 0
+
     for sample in tqdm(samples, desc=f"Evaluating {args.mode} image pruning"):
         try:
             raw_record = sample.get("raw") if isinstance(sample.get("raw"), dict) else None
-            question_for_prompt = sample["question"]
-            if (
-                args.prompt_style == "look_milebench"
-                and core_annotation is not None
-                and raw_record is not None
-                and "task_instance" in raw_record
-            ):
-                question_for_prompt = build_look_question(raw_record, core_annotation, dataset_name=args.look_dataset_name)
+            prepared = prepared_inputs.get(str(sample["sample_id"]))
+            if prepared is not None:
+                question_for_prompt = prepared["question"]
+                image_paths = prepared["image_paths"]
+            else:
+                question_for_prompt = sample["question"]
+                image_paths = sample["image_paths"]
+                if (
+                    args.prompt_style == "look_milebench"
+                    and core_annotation is not None
+                    and raw_record is not None
+                    and "task_instance" in raw_record
+                ):
+                    question_for_prompt = build_look_question(raw_record, core_annotation, dataset_name=args.look_dataset_name)
 
-            images = open_images(sample["image_paths"])
+            images = open_images(image_paths)
             prompt_text = build_prompt(
                 question_for_prompt,
                 args.prompt_template,
-                image_count=len(sample["image_paths"]),
+                image_count=len(image_paths),
             )
             prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
             prompt_inputs = _move_batch_to_device(prompt_inputs, device, float_dtype)
             prompt_len_text = int(prompt_inputs["input_ids"].shape[1])
 
-            if args.mode == "oracle":
+            if args.mode in ("oracle", "oracle_all_token"):
                 teacher_record = load_pt_record(teacher_root / f"{sample['sample_id']}.pt")
                 image_positions = resolve_teacher_image_positions(teacher_record)
                 press.set_sample_teacher(image_positions, teacher_record[args.teacher_score_name])
+            elif args.mode == "oracle_onthefly":
+                image_positions, _ = infer_llava_image_positions_no_forward(
+                    prompt_inputs=prompt_inputs,
+                    model_config=model.config,
+                    num_images=len(image_paths),
+                )
+                teacher_scores = extract_att_only_postvision_on_the_fly(
+                    model=model,
+                    prompt_inputs=prompt_inputs,
+                    image_positions=image_positions,
+                    device=device,
+                )
+                press.set_sample_teacher(image_positions, teacher_scores)
             else:
-                image_positions = infer_prompt_image_positions(model, prompt_inputs)
+                image_positions, _ = infer_llava_image_positions_no_forward(
+                    prompt_inputs=prompt_inputs,
+                    model_config=model.config,
+                    num_images=len(image_paths),
+                )
                 press.set_image_positions(image_positions)
+
+            generate_kwargs: dict = dict(
+                do_sample=False,
+                max_new_tokens=args.max_new_tokens,
+                use_cache=True,
+            )
+            if needs_output_attentions:
+                generate_kwargs["output_attentions"] = True
 
             with press(model):
                 with torch.no_grad():
-                    generated_ids = model.generate(
-                        **prompt_inputs,
-                        do_sample=False,
-                        max_new_tokens=args.max_new_tokens,
-                        use_cache=True,
-                    )
+                    generated_ids = model.generate(**prompt_inputs, **generate_kwargs)
             prediction = decode_answer(processor, generated_ids[0], prompt_len_text)
             gold = sample.get("answer")
             exact_match = None if gold is None else normalize_answer(prediction) == normalize_answer(gold)
@@ -325,7 +560,7 @@ def main() -> None:
                 {
                     "sample_id": sample["sample_id"],
                     "question": question_for_prompt,
-                    "image_paths": sample["image_paths"],
+                    "image_paths": image_paths,
                     "gold_answer": gold,
                     "prediction": prediction,
                     "exact_match": exact_match,
@@ -341,8 +576,42 @@ def main() -> None:
                         prediction=prediction,
                         gold=gold,
                         args=args,
+                        image_paths=image_paths,
                     )
                 )
+
+            # ── Save VizCapture data ─────────────────────────────────────────
+            if viz_capture is not None and viz_sample_idx < args.save_viz_for_first_n:
+                arrays = viz_capture.to_arrays()
+                arrays["image_positions"] = (
+                    image_positions.cpu().numpy().astype("int64")
+                    if image_positions is not None and image_positions.numel() > 0
+                    else np.zeros(0, dtype="int64")
+                )
+                stem = f"{viz_sample_idx:04d}_{sample['sample_id']}"
+                np.savez_compressed(viz_dir / f"{stem}_scores.npz", **arrays)
+                meta_path = viz_dir / f"{stem}_meta.json"
+                with meta_path.open("w", encoding="utf-8") as _mf:
+                    json.dump(
+                        {
+                            "sample_idx": viz_sample_idx,
+                            "sample_id": sample["sample_id"],
+                            "image_paths": image_paths,
+                            "dataset": args.look_dataset_name,
+                            "mode": args.mode,
+                            "total_keep_ratio": getattr(args, "total_keep_ratio", None),
+                            "image_keep_ratio": getattr(args, "image_keep_ratio", None),
+                            "n_images": len(image_paths),
+                            "question": question_for_prompt,
+                            "gold_answer": sample.get("answer"),
+                            "prediction": prediction,
+                        },
+                        _mf,
+                        ensure_ascii=False,
+                    )
+                viz_capture.reset()
+                viz_sample_idx += 1
+
         except Exception as exc:  # noqa: BLE001
             failures.append({"sample_id": sample["sample_id"], "error": repr(exc)})
             if not args.continue_on_error:
@@ -401,8 +670,9 @@ def main() -> None:
         "n_samples": len(samples),
         "n_predictions": int(len(predictions_df)),
         "n_failures": int(len(failures_df)),
-        "image_keep_ratio": args.image_keep_ratio,
-        "teacher_score_name": args.teacher_score_name if args.mode == "oracle" else None,
+        "image_keep_ratio": getattr(args, "image_keep_ratio", None),
+        "total_keep_ratio": getattr(args, "total_keep_ratio", None),
+        "teacher_score_name": args.teacher_score_name if args.mode in ("oracle", "oracle_onthefly") else None,
         "probe_model_name": args.probe_model_name if args.mode == "probe" else None,
         "prompt_style": args.prompt_style,
         "look_model_name": args.look_model_name if args.save_look_files else None,

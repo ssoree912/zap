@@ -4,12 +4,11 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Sequence
+from typing import Any, Sequence
 
 import numpy as np
 import pandas as pd
 import torch
-from sklearn.linear_model import Ridge
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset, random_split
 from tqdm.auto import tqdm
@@ -47,6 +46,75 @@ def _get_input_hidden_for_layer(hidden_prompt: Sequence[torch.Tensor], layer_idx
 
 
 
+def _resolve_image_positions(teacher: dict[str, Any]) -> torch.Tensor:
+    if "image_pos_mm" in teacher:
+        return teacher["image_pos_mm"].long().flatten()
+    if "image_indices_mm" in teacher:
+        return teacher["image_indices_mm"].long().flatten()
+    if "is_image_pos_mm" in teacher:
+        return teacher["is_image_pos_mm"].nonzero(as_tuple=False).flatten().long()
+    raise KeyError("Teacher record must contain one of: image_pos_mm, image_indices_mm, is_image_pos_mm")
+
+
+
+def _format_layer_targets(layer_scores: torch.Tensor, n_image_tokens: int) -> torch.Tensor:
+    if layer_scores.ndim == 1:
+        if int(layer_scores.shape[0]) != n_image_tokens:
+            raise ValueError(
+                f"Target/image length mismatch: target={tuple(layer_scores.shape)}, n_image_tokens={n_image_tokens}"
+            )
+        return layer_scores.unsqueeze(-1)  # [I, 1]
+
+    if layer_scores.ndim == 2:
+        if int(layer_scores.shape[0]) == n_image_tokens:
+            return layer_scores  # [I, H]
+        if int(layer_scores.shape[1]) == n_image_tokens:
+            return layer_scores.transpose(0, 1)  # [I, H]
+        raise ValueError(
+            "Could not align layer target shape with image tokens: "
+            f"target={tuple(layer_scores.shape)}, n_image_tokens={n_image_tokens}"
+        )
+
+    raise ValueError(f"Unsupported layer target ndim={layer_scores.ndim}; expected 1D or 2D")
+
+
+
+def _apply_target_transform(y: torch.Tensor, target_transform: str, target_eps: float) -> torch.Tensor:
+    if target_transform == "none":
+        return y
+    if target_transform == "log":
+        return torch.log(y.clamp_min(0) + target_eps)
+    raise ValueError(f"Unsupported target_transform: {target_transform}")
+
+
+
+def _extract_image_hidden_for_layer(
+    extractor: dict[str, Any],
+    teacher: dict[str, Any],
+    layer_idx: int,
+    n_layers: int,
+) -> torch.Tensor:
+    if "hidden_prompt" in extractor:
+        image_pos = _resolve_image_positions(teacher)
+        hidden_prompt = extractor["hidden_prompt"]
+        hidden_layer = _get_input_hidden_for_layer(hidden_prompt, layer_idx, n_layers).float()
+        return hidden_layer[image_pos]
+
+    hidden_image = extractor.get("hidden_image")
+    if hidden_image is None:
+        hidden_image = teacher.get("hidden_image")
+    if isinstance(hidden_image, torch.Tensor):
+        if hidden_image.ndim != 3:
+            raise ValueError(f"hidden_image must be [L, I, D], got {tuple(hidden_image.shape)}")
+        return hidden_image[layer_idx].float()
+
+    raise KeyError(
+        "Could not find image-token hidden inputs. Expected extractor.hidden_prompt "
+        "or extractor/teacher hidden_image"
+    )
+
+
+
 def load_layer_dataset(
     extractor_dir: str | Path,
     teacher_dir: str | Path,
@@ -56,6 +124,8 @@ def load_layer_dataset(
     n_layers: int,
     max_image_tokens_per_sample: int | None = None,
     seed: int = 42,
+    target_transform: str = "none",
+    target_eps: float = 1e-8,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     extractor_records = resolve_records_dir(extractor_dir)
     teacher_records = resolve_teacher_dir(teacher_dir)
@@ -67,15 +137,21 @@ def load_layer_dataset(
         extractor = load_pt_record(extractor_records / f"{sample_id}.pt")
         teacher = load_pt_record(teacher_records / f"{sample_id}.pt")
 
-        image_pos = teacher["image_pos_mm"].long()
-        score_tensor = teacher[target_score_name][layer_idx].transpose(0, 1).float()  # [I, H]
-        hidden_prompt = extractor["hidden_prompt"]
-        hidden_layer = _get_input_hidden_for_layer(hidden_prompt, layer_idx, n_layers).float()
-        x = hidden_layer[image_pos]  # [I, D]
+        x = _extract_image_hidden_for_layer(
+            extractor=extractor,
+            teacher=teacher,
+            layer_idx=layer_idx,
+            n_layers=n_layers,
+        )  # [I, D]
+
+        layer_scores = teacher[target_score_name][layer_idx].float()
+        score_tensor = _format_layer_targets(layer_scores, n_image_tokens=int(x.shape[0]))
+        score_tensor = _apply_target_transform(score_tensor, target_transform=target_transform, target_eps=target_eps)
 
         if x.shape[0] != score_tensor.shape[0]:
             raise ValueError(
-                f"Hidden/score image length mismatch for sample {sample_id}, layer {layer_idx}: {x.shape[0]} vs {score_tensor.shape[0]}"
+                f"Hidden/score image length mismatch for sample {sample_id}, layer {layer_idx}: "
+                f"{x.shape[0]} vs {score_tensor.shape[0]}"
             )
 
         if max_image_tokens_per_sample is not None and x.shape[0] > max_image_tokens_per_sample:
@@ -94,12 +170,37 @@ def load_layer_dataset(
 
 
 
-def train_linear_layer(X_train: torch.Tensor, y_train: torch.Tensor, X_test: torch.Tensor, y_test: torch.Tensor) -> tuple[np.ndarray, np.ndarray, float]:
-    model = Ridge()
-    model.fit(X_train.float().numpy(), y_train.float().numpy())
-    pred = model.predict(X_test.float().numpy())
-    mse = float(np.mean((pred - y_test.float().numpy()) ** 2))
-    return np.atleast_2d(model.coef_), np.atleast_1d(model.intercept_), mse
+def train_linear_layer(
+    X_train: torch.Tensor,
+    y_train: torch.Tensor,
+    X_test: torch.Tensor,
+    y_test: torch.Tensor,
+    device: str,
+    ridge_alpha: float = 1.0,
+) -> tuple[np.ndarray, np.ndarray, float]:
+    if device.startswith("cuda") and not torch.cuda.is_available():
+        device = "cpu"
+
+    with torch.no_grad():
+        X_train_f = X_train.float().to(device)
+        y_train_f = y_train.float().to(device)
+        X_test_f = X_test.float().to(device)
+        y_test_f = y_test.float().to(device)
+
+        ones_train = torch.ones((X_train_f.shape[0], 1), device=device, dtype=X_train_f.dtype)
+        ones_test = torch.ones((X_test_f.shape[0], 1), device=device, dtype=X_test_f.dtype)
+        X_train_aug = torch.cat([X_train_f, ones_train], dim=1)
+        X_test_aug = torch.cat([X_test_f, ones_test], dim=1)
+
+        reg = torch.eye(X_train_aug.shape[1], device=device, dtype=X_train_f.dtype) * ridge_alpha
+        reg[-1, -1] = 0.0
+        beta = torch.linalg.solve(X_train_aug.T @ X_train_aug + reg, X_train_aug.T @ y_train_f)
+        pred = X_test_aug @ beta
+        mse = float(torch.mean((pred - y_test_f) ** 2).item())
+
+    weight = beta[:-1].transpose(0, 1).contiguous().cpu().numpy()
+    bias = beta[-1].contiguous().cpu().numpy()
+    return np.atleast_2d(weight), np.atleast_1d(bias), mse
 
 
 
@@ -181,10 +282,13 @@ def main() -> None:
     parser.add_argument("--teacher_dir", type=str, required=True)
     parser.add_argument("--output_dir", type=str, required=True)
     parser.add_argument("--target_score_name", type=str, default="splus_postvision")
+    parser.add_argument("--target_transform", choices=["none", "log"], default="none")
+    parser.add_argument("--target_eps", type=float, default=1e-8)
     parser.add_argument("--train_fraction", type=float, default=0.8)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max_image_tokens_per_sample", type=int, default=None)
     parser.add_argument("--methods", nargs="*", default=["linear", "mlp"])
+    parser.add_argument("--linear_alpha", type=float, default=1.0)
     parser.add_argument("--mlp_hidden_dim", type=int, default=512)
     parser.add_argument("--mlp_max_epochs", type=int, default=10)
     parser.add_argument("--mlp_batch_size", type=int, default=2048)
@@ -204,10 +308,32 @@ def main() -> None:
     extractor_root = resolve_records_dir(args.extractor_dir)
     first_teacher = load_pt_record(teacher_root / f"{sample_ids[0]}.pt")
     first_extractor = load_pt_record(extractor_root / f"{sample_ids[0]}.pt")
+
     target = first_teacher[args.target_score_name]
-    n_layers, output_dim, _ = target.shape
-    hidden_prompt = first_extractor["hidden_prompt"]
-    input_dim = _get_input_hidden_for_layer(hidden_prompt, 0, n_layers).shape[-1]
+    if not isinstance(target, torch.Tensor):
+        raise TypeError(f"Teacher target `{args.target_score_name}` must be a tensor")
+    if target.ndim not in (2, 3):
+        raise ValueError(
+            f"Teacher target `{args.target_score_name}` must be [L,I] or [L,H,I], got {tuple(target.shape)}"
+        )
+
+    n_layers = int(target.shape[0])
+
+    first_x = _extract_image_hidden_for_layer(
+        extractor=first_extractor,
+        teacher=first_teacher,
+        layer_idx=0,
+        n_layers=n_layers,
+    )
+    first_layer_target = _format_layer_targets(target[0].float(), n_image_tokens=int(first_x.shape[0]))
+    first_layer_target = _apply_target_transform(
+        first_layer_target,
+        target_transform=args.target_transform,
+        target_eps=args.target_eps,
+    )
+
+    input_dim = int(first_x.shape[-1])
+    output_dim = int(first_layer_target.shape[-1])
 
     methods = set(args.methods)
     linear_model = None
@@ -228,6 +354,8 @@ def main() -> None:
             n_layers,
             max_image_tokens_per_sample=args.max_image_tokens_per_sample,
             seed=args.seed,
+            target_transform=args.target_transform,
+            target_eps=args.target_eps,
         )
         X_test, y_test = load_layer_dataset(
             args.extractor_dir,
@@ -238,10 +366,19 @@ def main() -> None:
             n_layers,
             max_image_tokens_per_sample=args.max_image_tokens_per_sample,
             seed=args.seed,
+            target_transform=args.target_transform,
+            target_eps=args.target_eps,
         )
 
         if linear_model is not None:
-            W, b, mse = train_linear_layer(X_train, y_train, X_test, y_test)
+            W, b, mse = train_linear_layer(
+                X_train,
+                y_train,
+                X_test,
+                y_test,
+                device=args.device,
+                ridge_alpha=args.linear_alpha,
+            )
             linear_model.layers[layer_idx].weight.data = torch.tensor(W, dtype=torch.float32)
             linear_model.layers[layer_idx].bias.data = torch.tensor(b, dtype=torch.float32)
             metrics.append(
