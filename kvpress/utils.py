@@ -3,10 +3,32 @@
 
 import torch
 from torch import nn
-from transformers import Cache, QuantizedCache
-from transformers.models.gemma3.modeling_gemma3 import Gemma3Attention
-from transformers.models.phi3.modeling_phi3 import Phi3Attention
-from transformers.models.qwen3.modeling_qwen3 import Qwen3Attention
+
+from transformers import Cache
+
+try:
+    from transformers import QuantizedCache
+except ImportError:
+    class QuantizedCache:  # type: ignore[override]
+        pass
+
+try:
+    from transformers.models.gemma3.modeling_gemma3 import Gemma3Attention
+except ImportError:
+    class Gemma3Attention(nn.Module):  # type: ignore[override]
+        pass
+
+try:
+    from transformers.models.phi3.modeling_phi3 import Phi3Attention
+except ImportError:
+    class Phi3Attention(nn.Module):  # type: ignore[override]
+        pass
+
+try:
+    from transformers.models.qwen3.modeling_qwen3 import Qwen3Attention
+except ImportError:
+    class Qwen3Attention(nn.Module):  # type: ignore[override]
+        pass
 
 
 def get_prerope_query_states(module: nn.Module, hidden_states: torch.Tensor) -> torch.Tensor:

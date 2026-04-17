@@ -2,9 +2,9 @@
 set -euo pipefail
 
 GPU_INDEX="${GPU_INDEX:-0}"
-DATA_ROOT="${DATA_ROOT:-/workspace/hd/data/MileBench}"
-PROB_ARTIFACT_ROOT="${PROB_ARTIFACT_ROOT:-/workspace/hd/artifacts/prob}"
-LOOK_RESULT_ROOT="${LOOK_RESULT_ROOT:-}"
+DATA_ROOT="${DATA_ROOT:-/workspace/zap/data/MileBench}"
+PROB_ARTIFACT_ROOT="${PROB_ARTIFACT_ROOT:-/workspace/zap/artifacts/combine_prob}"
+LOOK_RESULT_ROOT="${LOOK_RESULT_ROOT:-${PROB_ARTIFACT_ROOT}/_look_runs}"
 KEEP_RATIOS="${KEEP_RATIOS:-0.02 0.05 0.10 0.20}"
 TEACHERS="${TEACHERS:-att_only_postvision}"
 METHODS="${METHODS:-mlp}"
@@ -17,7 +17,7 @@ TRUNCATE_LIKE_LOOKM="${TRUNCATE_LIKE_LOOKM:-0}"
 LOOK_MAX_CONTEXT_LEN="${LOOK_MAX_CONTEXT_LEN:-}"
 LOOK_N_TOKENS_PER_IMAGE="${LOOK_N_TOKENS_PER_IMAGE:-}"
 COMBINE_IMAGE="${COMBINE_IMAGE:-}"
-PROBE_LABEL="${PROBE_LABEL:-scienceqa}"
+PROBE_LABEL="${PROBE_LABEL:-combined}"
 
 slugify() {
   local text="$1"
@@ -45,7 +45,7 @@ run_one() {
   local slug="$2"
   local dataset_path="${DATA_ROOT}/${dataset_name}/${dataset_name}.json"
   local image_root="${DATA_ROOT}/${dataset_name}/images"
-  local output_root="${PROB_ARTIFACT_ROOT}/${slug}_${PROBE_LABEL}_probe_sweep"
+  local output_root="${PROB_ARTIFACT_ROOT}/${slug}"
 
   if [[ ! -f "${dataset_path}" ]]; then
     echo "[${dataset_name}] skip missing dataset json: ${dataset_path}"
@@ -92,6 +92,7 @@ run_one() {
 }
 
 mkdir -p "${PROB_ARTIFACT_ROOT}"
+mkdir -p "${LOOK_RESULT_ROOT}"
 
 if [[ -n "${DATASETS}" ]]; then
   for dataset_name in ${DATASETS}; do

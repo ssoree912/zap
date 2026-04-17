@@ -19,7 +19,8 @@ from tqdm.auto import tqdm
 from transformers import AutoProcessor, LlavaForConditionalGeneration
 
 REPO_ROOT = Path(__file__).resolve().parent
-LOOKM_ROOT = REPO_ROOT.parent / "LOOK-M"
+LOOKM_CANDIDATES = [REPO_ROOT.parent / "LOOK-M", REPO_ROOT.parent / "look-m"]
+LOOKM_ROOT = next((path for path in LOOKM_CANDIDATES if path.is_dir()), LOOKM_CANDIDATES[0])
 if str(LOOKM_ROOT) not in sys.path:
     sys.path.insert(0, str(LOOKM_ROOT))
 
@@ -37,9 +38,9 @@ from kvzap.llava_extractor import (
 )
 from kvzap.milebench_look_metrics import LookMileBenchEvaluator
 
-HD_DOCVQA_DATASET_PATH = "/workspace/hd/data/MileBench/DocVQA/DocVQA.json"
-HD_DOCVQA_IMAGE_ROOT = "/workspace/hd/data/MileBench/DocVQA/images"
-HD_ZAP_ARTIFACT_ROOT = "/workspace/hd/artifacts/zap"
+HD_DOCVQA_DATASET_PATH = "/workspace/zap/data/MileBench/DocVQA/DocVQA.json"
+HD_DOCVQA_IMAGE_ROOT = "/workspace/zap/data/MileBench/DocVQA/images"
+HD_ZAP_ARTIFACT_ROOT = "/workspace/zap/artifacts/combine_prob"
 IMAGE_PLACEHOLDER_PATTERN = re.compile(r"\{image#\d+\}")
 
 
@@ -334,7 +335,7 @@ def main() -> None:
     parser.add_argument("--mode", choices=["oracle", "oracle_onthefly", "probe", "h2o_image_only", "oracle_all_token"], required=True)
     parser.add_argument("--dataset_path", type=str, default=HD_DOCVQA_DATASET_PATH)
     parser.add_argument("--output_dir", type=str, default=f"{HD_ZAP_ARTIFACT_ROOT}/docvqa_image_pruning")
-    parser.add_argument("--implementation_model_name", type=str, default="llava-hf/llava-1.5-7b-hf")
+    parser.add_argument("--implementation_model_name", type=str, default="/workspace/zap/ckpts/llava-1.5-7b-hf")
     parser.add_argument("--image_root", type=str, default=HD_DOCVQA_IMAGE_ROOT)
     parser.add_argument("--image_column", type=str, default="images_path")
     parser.add_argument("--answer_column", type=str, default=None)
@@ -416,7 +417,7 @@ def main() -> None:
     core_annotation = load_core_annotation(args.dataset_path)
     teacher_root = resolve_teacher_dir(args.teacher_dir) if args.teacher_dir else None
 
-    processor = AutoProcessor.from_pretrained(args.implementation_model_name)
+    processor = AutoProcessor.from_pretrained(args.implementation_model_name, use_fast=False)
     model_kwargs = {
         "attn_implementation": args.attn_implementation,
         "device_map": None if args.device_map in ("", "none", "None") else args.device_map,
@@ -507,40 +508,58 @@ def main() -> None:
                 ):
                     question_for_prompt = build_look_question(raw_record, core_annotation, dataset_name=args.look_dataset_name)
 
-            images = open_images(image_paths)
+            image_paths = image_paths or []
             prompt_text = build_prompt(
                 question_for_prompt,
                 args.prompt_template,
                 image_count=len(image_paths),
             )
-            prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
+            if image_paths:
+                images = open_images(image_paths)
+                prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
+            else:
+                # LOOK-M style truncation can legitimately drop all images for very long contexts.
+                # In that case run text-only tokenization instead of passing an empty image list.
+                prompt_inputs = processor(text=prompt_text, return_tensors="pt")
+
             prompt_inputs = _move_batch_to_device(prompt_inputs, device, float_dtype)
             prompt_len_text = int(prompt_inputs["input_ids"].shape[1])
+            num_images = int(len(image_paths))
+            empty_image_positions = torch.empty(0, dtype=torch.long)
 
             if args.mode in ("oracle", "oracle_all_token"):
-                teacher_record = load_pt_record(teacher_root / f"{sample['sample_id']}.pt")
-                image_positions = resolve_teacher_image_positions(teacher_record)
-                press.set_sample_teacher(image_positions, teacher_record[args.teacher_score_name])
+                if num_images == 0:
+                    press.set_image_positions(empty_image_positions)
+                else:
+                    teacher_record = load_pt_record(teacher_root / f"{sample['sample_id']}.pt")
+                    image_positions = resolve_teacher_image_positions(teacher_record)
+                    press.set_sample_teacher(image_positions, teacher_record[args.teacher_score_name])
             elif args.mode == "oracle_onthefly":
-                image_positions, _ = infer_llava_image_positions_no_forward(
-                    prompt_inputs=prompt_inputs,
-                    model_config=model.config,
-                    num_images=len(image_paths),
-                )
-                teacher_scores = extract_att_only_postvision_on_the_fly(
-                    model=model,
-                    prompt_inputs=prompt_inputs,
-                    image_positions=image_positions,
-                    device=device,
-                )
-                press.set_sample_teacher(image_positions, teacher_scores)
+                if num_images == 0:
+                    press.set_image_positions(empty_image_positions)
+                else:
+                    image_positions, _ = infer_llava_image_positions_no_forward(
+                        prompt_inputs=prompt_inputs,
+                        model_config=model.config,
+                        num_images=num_images,
+                    )
+                    teacher_scores = extract_att_only_postvision_on_the_fly(
+                        model=model,
+                        prompt_inputs=prompt_inputs,
+                        image_positions=image_positions,
+                        device=device,
+                    )
+                    press.set_sample_teacher(image_positions, teacher_scores)
             else:
-                image_positions, _ = infer_llava_image_positions_no_forward(
-                    prompt_inputs=prompt_inputs,
-                    model_config=model.config,
-                    num_images=len(image_paths),
-                )
-                press.set_image_positions(image_positions)
+                if num_images == 0:
+                    press.set_image_positions(empty_image_positions)
+                else:
+                    image_positions, _ = infer_llava_image_positions_no_forward(
+                        prompt_inputs=prompt_inputs,
+                        model_config=model.config,
+                        num_images=num_images,
+                    )
+                    press.set_image_positions(image_positions)
 
             generate_kwargs: dict = dict(
                 do_sample=False,

@@ -1,3 +1,5 @@
+ckpts/
+data/
 artifacts/
 dev_notebooks/
 results*/

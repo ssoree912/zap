@@ -10,27 +10,44 @@ from typing import Generator
 import torch
 from torch import nn
 from transformers import (
-    Gemma3ForConditionalGeneration,
     LlamaForCausalLM,
     MistralForCausalLM,
     Phi3ForCausalLM,
     PreTrainedModel,
-    QuantizedCache,
     Qwen2ForCausalLM,
-    Qwen3ForCausalLM,
 )
+
+try:
+    from transformers import QuantizedCache
+except ImportError:
+    class QuantizedCache:  # type: ignore[override]
+        pass
+
+try:
+    from transformers import Qwen3ForCausalLM
+except ImportError:
+    Qwen3ForCausalLM = None  # type: ignore[assignment]
+
+try:
+    from transformers import Gemma3ForConditionalGeneration
+except ImportError:
+    Gemma3ForConditionalGeneration = None  # type: ignore[assignment]
 
 from kvpress.utils import extract_keys_and_values
 
 logger = logging.getLogger(__name__)
 
-SUPPORTED_MODELS = (
-    LlamaForCausalLM,
-    MistralForCausalLM,
-    Phi3ForCausalLM,
-    Qwen2ForCausalLM,
-    Qwen3ForCausalLM,
-    Gemma3ForConditionalGeneration,
+SUPPORTED_MODELS = tuple(
+    model_cls
+    for model_cls in (
+        LlamaForCausalLM,
+        MistralForCausalLM,
+        Phi3ForCausalLM,
+        Qwen2ForCausalLM,
+        Qwen3ForCausalLM,
+        Gemma3ForConditionalGeneration,
+    )
+    if model_cls is not None
 )
 
 
@@ -183,7 +200,8 @@ class BasePress:
                 logger.warning(f"Model {type(model)} not tested, supported models: {SUPPORTED_MODELS}")
                 self._warned_unsupported_model = True
 
-        if isinstance(model, Gemma3ForConditionalGeneration):
+        is_gemma3 = Gemma3ForConditionalGeneration is not None and isinstance(model, Gemma3ForConditionalGeneration)
+        if is_gemma3:
             logger.warning_once("Compression in Gemma3 is only applied to layer without sliding window attention")
 
         self.post_init_from_model(model)
@@ -191,7 +209,7 @@ class BasePress:
         try:
             language_model = model.model.language_model if hasattr(model.model, "language_model") else model.model
             for layer in language_model.layers:
-                if isinstance(model, Gemma3ForConditionalGeneration) and layer.self_attn.is_sliding:
+                if is_gemma3 and layer.self_attn.is_sliding:
                     # Skip layers with sliding window attention, only for Gemma3
                     continue
                 layer.self_attn.rotary_emb = language_model.rotary_emb

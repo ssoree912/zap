@@ -13,6 +13,7 @@ import torch
 
 DEFAULT_PROMPT_TEMPLATE = "USER: <image>\n{question}\nASSISTANT:"
 IMAGE_PLACEHOLDER_PATTERN = re.compile(r"\{image#\d+\}")
+LEGACY_IMAGE_PLACEHOLDER_PATTERN = re.compile(r"<ImageHere>", re.IGNORECASE)
 
 
 def _sanitize_sample_id(value: Any, idx: int) -> str:
@@ -65,21 +66,33 @@ def _normalize_prompt_template(prompt_template: str, image_token: str = "<image>
 
 def _inject_image_tokens(question: str, image_count: int, image_token: str = "<image>") -> str:
     question = str(question).strip()
-    placeholders = IMAGE_PLACEHOLDER_PATTERN.findall(question)
-    if placeholders:
-        if image_count != len(placeholders):
-            raise ValueError(
-                f"Question contains {len(placeholders)} image placeholders but received {image_count} images"
-            )
-        question = IMAGE_PLACEHOLDER_PATTERN.sub(f"{image_token}\n", question)
-    elif image_token not in question:
+    image_count = max(0, int(image_count))
+
+    marker = "__KVZAP_IMAGE_MARKER__"
+
+    # Normalize all known placeholder variants to a temporary marker.
+    question = IMAGE_PLACEHOLDER_PATTERN.sub(marker, question)
+    question = LEGACY_IMAGE_PLACEHOLDER_PATTERN.sub(marker, question)
+    question = question.replace(image_token, marker)
+
+    marker_count = question.count(marker)
+    if marker_count < image_count:
+        missing = image_count - marker_count
+        prefix = "\n".join([marker] * missing)
+        question = f"{prefix}\n{question}" if question else prefix
+    elif marker_count > image_count:
+        extras = marker_count - image_count
+        # Drop extra placeholders from left to keep the most recent context.
+        question = question.replace(marker, "", extras)
+
+    question = question.replace(marker, f"{image_token}\n")
+    if image_count > 0 and image_token not in question:
         prefix = "\n".join([image_token] * image_count)
-        question = f"{prefix}\n{question}" if prefix else question
+        question = f"{prefix}\n{question}" if question else prefix
 
     question = re.sub(r"[ \t]+\n", "\n", question)
     question = re.sub(r"\n{3,}", "\n\n", question)
     return question.strip()
-
 
 def build_prompt(
     question: str | dict[str, Any],
@@ -105,7 +118,7 @@ def build_prompt(
         template_has_image = ("<image>" in prompt_template) or ("{image_tokens}" in prompt_template)
         if not template_has_image:
             fields["question"] = _inject_image_tokens(fields["question"], image_count=image_count)
-        elif IMAGE_PLACEHOLDER_PATTERN.search(fields["question"]):
+        elif IMAGE_PLACEHOLDER_PATTERN.search(fields["question"]) or LEGACY_IMAGE_PLACEHOLDER_PATTERN.search(fields["question"]):
             fields["question"] = _inject_image_tokens(fields["question"], image_count=image_count)
 
         formatted = prompt_template.format(**fields).strip()

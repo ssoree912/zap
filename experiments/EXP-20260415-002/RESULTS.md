@@ -2,129 +2,141 @@
 
 **ID**: EXP-20260415-002  
 **Date**: 2026-04-16  
-**Status**: [x] Done (partial — OOM/format errors on several datasets)
+**Status**: Running (major reruns done, 일부 OOM 잔여)
 
 ---
 
-### 실험 요약
+### 1) 최신 요약
 
-`image_probe_combined_v1` (ScienceQA + TextVQA + NLVR2) probe를 **truncate 없이** 실행한 결과.
-`truncate_like_lookm=False`, `look_max_context_len=None` 조건이었기 때문에 이미지 수가 많은 데이터셋에서
-CUDA OOM이 다수 발생함.
+- 현재 기준 결론: **combine probe가 LOOK-M 대비 전반적으로 더 우세**.
+- 비교 기준 CSV: `/workspace/zap/artifacts/results/probe_vs_lookm_r020_truncated_with_combine.csv`
 
-probe 모델 경로: `/workspace/hd/artifacts/sq_teacher/image_probe_combined_v1/mlp`  
-keep ratio: `total_keep_ratio=0.20`, teacher: `att_only_postvision`, method: MLP
+요약 승패:
 
----
+| 비교 | 비교 가능 데이터셋 수 | 승/패/무 |
+|---|---:|---:|
+| ScienceQA-only probe vs LOOK-M | 29 | **17 / 10 / 2** |
+| Combine probe vs LOOK-M | 28 (wikivqa 제외) | **22 / 5 / 1** |
+| Oracle(on-the-fly) vs LOOK-M | 14 (score 산출된 셋만) | **11 / 2 / 1** |
 
-### 실행 상태 분류
-
-#### A. 완전 성공 (14개 데이터셋)
-
-| dataset | metric | combined_probe | look_m (r=0.20) | Δ | 승자 |
-|---|---|---|---|---|---|
-| alfred | ROUGE-L | 0.2686 | 0.1649 | **+0.1037** | probe |
-| clevr_change | ROUGE-L | 0.1410 | 0.1786 | -0.0376 | look_m |
-| counterfactualinference | Accuracy | 0.3200 | 0.3000 | +0.0200 | probe |
-| docvqa | Accuracy | 0.5150 | 0.4700 | **+0.0450** | probe |
-| iedit | ROUGE-L | 0.1108 | 0.0391 | **+0.0717** | probe |
-| movingattribute | Accuracy | 0.5100 | 0.4900 | +0.0200 | probe |
-| movingdirection | Accuracy | 0.3350 | 0.3250 | +0.0100 | probe |
-| nuscenes | Accuracy | 0.6100 | 0.6150 | -0.0050 | look_m |
-| objectexistence | Accuracy | 0.4900 | 0.5100 | -0.0200 | look_m |
-| ocr_vqa | Accuracy | 0.3200 | 0.0900 | **+0.2300** | probe |
-| slidevqa | Accuracy | 0.4750 | 0.4600 | +0.0150 | probe |
-| spot_the_diff | ROUGE-L | 0.1919 | 0.1612 | +0.0307 | probe |
-| tqa | Accuracy | 0.3800 | 0.4100 | -0.0300 | look_m |
-| webqa | Accuracy | 0.6100 | 0.5650 | +0.0450 | probe |
-
-**W/L (valid 14개 기준)**: probe 10승 / look_m 4승
-
-#### B. OOM으로 전체 실패 (5개 데이터셋, metrics.json 없음)
-
-모든 샘플이 `CUDA out of memory`로 실패. metrics.json 미생성.
-
-| dataset | n_samples | n_failures | 비고 |
-|---|---|---|---|
-| actionlocalization | 200 | 200 (100%) | OOM |
-| actionprediction | 200 | 187 (93.5%) | OOM |
-| actionsequence | 200 | 186 (93%) | OOM |
-| characterorder | 200 | 177 (88.5%) | OOM |
-| egocentricnavigation | 200 | 200 (100%) | OOM |
-
-#### C. OOM으로 부분 실패 (7개 데이터셋, 메트릭 신뢰 불가)
-
-성공 샘플이 일부 있으나 너무 적어 메트릭을 신뢰하기 어려움. look_eval 미산출.
-
-| dataset | n_samples | n_preds | n_failures | 실패율 |
-|---|---|---|---|---|
-| gpr1200 | 600 | 403 | 197 | 33% |
-| imageneedleinahaystack | 320 | 90 | 230 | 72% |
-| objectinteraction | 200 | 8 | 192 | 96% |
-| objectshuffle | 200 | 28 | 172 | 86% |
-| scenetransition | 200 | 4 | 196 | 98% |
-| statechange | 200 | 40 | 160 | 80% |
-| textneedleinahaystack | 320 | 60 | 260 | 81% |
-| wikivqa | 200 | 189 | 11 | 5.5% — look_eval 미산출 |
-
-> wikivqa는 OOM 실패가 11건으로 적지만, look_eval (Accuracy) 미산출 상태.
-> metrics.json의 `exact_match_accuracy=0.0053`은 MileBench 공식 평가 결과가 아님.
-
-#### D. 데이터 포맷 오류 (2개 데이터셋)
-
-OOM이 아닌 `ValueError: image placeholder mismatch` — 이미지 개수 vs 플레이스홀더 개수 불일치.
-
-| dataset | n_samples | n_failures | 오류 유형 |
-|---|---|---|---|
-| mmcoqa | 200 | 159 (79.5%) | `Question contains N image placeholders but received M images` |
-| multimodalqa | 200 | 200 (100%) | `Question contains 1 image placeholder but received 2 images` |
-
-> multimodalqa는 전수 실패. 2-image 포맷을 combined probe 실행 스크립트가 처리하지 못하는 것으로 보임.
-> 기존 truncated 평가(probe_vs_lookm_summary.csv)에서는 multimodalqa가 정상 동작했으므로,
-> combined probe 실행 시 prompt_template이나 image 처리 경로에 차이가 있을 가능성.
+> wikivqa는 combine 쪽 `look_eval`(Accuracy)이 부분 추론으로 미산출되어, 해당 1개는 `exact_match_accuracy` fallback으로만 기록됨(LOOK-M Accuracy와 직접 비교 불가).
 
 ---
 
-### 이전 (truncated probe_mlp) vs 이번 (combined probe, no truncation) 비교
+### 2) Combine 개선 포인트 (ScienceQA-only probe 대비)
 
-유효한 14개 데이터셋에 대해 비교:
+동일 r=0.20 기준, combine이 특히 개선된 예시:
 
-| dataset | truncated_probe_mlp | combined_probe | look_m | 변화 |
-|---|---|---|---|---|
-| alfred | 0.2834 | 0.2686 | 0.1649 | -0.015 (둘 다 probe 승) |
-| clevr_change | 0.1419 | 0.1410 | 0.1786 | ≈ (둘 다 look_m 승) |
-| counterfactualinference | 0.3250 | 0.3200 | 0.3000 | ≈ (둘 다 probe 승) |
-| docvqa | 0.4600 | 0.5150 | 0.4700 | **+0.055** (역전: truncated는 look_m 승) |
-| iedit | 0.1102 | 0.1108 | 0.0391 | ≈ (둘 다 probe 승) |
-| movingattribute | 0.4950 | 0.5100 | 0.4900 | +0.015 (둘 다 probe 승) |
-| movingdirection | 0.2850 | 0.3350 | 0.3250 | **+0.050** (역전: truncated는 look_m 승) |
-| nuscenes | 0.6500 | 0.6100 | 0.6150 | **-0.040** (역전: truncated는 probe 승) |
-| objectexistence | 0.4800 | 0.4900 | 0.5100 | +0.010 (둘 다 look_m 승) |
-| ocr_vqa | 0.1000 | 0.3200 | 0.0900 | **+0.220** (probe 승 유지, 대폭 향상) |
-| slidevqa | 0.5200 | 0.4750 | 0.4600 | -0.045 (둘 다 probe 승) |
-| spot_the_diff | 0.1953 | 0.1919 | 0.1612 | ≈ (둘 다 probe 승) |
-| tqa | 0.3900 | 0.3800 | 0.4100 | ≈ (둘 다 look_m 승) |
-| webqa | 0.6200 | 0.6100 | 0.5650 | ≈ (둘 다 probe 승) |
+- `ocr_vqa`: **+0.22** (0.10 -> 0.32)
+- `scenetransition`: **+0.15** (0.625 -> 0.775)
+- `tqa`: **+0.08** (0.39 -> 0.47)
+- `movingdirection`: **+0.05** (0.285 -> 0.335)
+- `docvqa`: **+0.05** (0.46 -> 0.51)
 
-> `combined_probe`가 truncated 대비 눈에 띄게 향상된 데이터셋: **ocr_vqa (+0.22), movingdirection (+0.05), docvqa (+0.055)**  
-> 하락한 데이터셋: nuscenes (-0.04), slidevqa (-0.045), alfred (-0.015)  
-> ocr_vqa의 대폭 향상은 TextVQA 학습 데이터 추가 효과로 해석 가능.
+하락 예시:
+
+- `slidevqa`: -0.045
+- `nuscenes`: -0.04
+- `objectshuffle`: -0.03
+
+전체(동일 metric 비교 가능 28개) 기준:
+
+- 개선: 17
+- 하락: 7
+- 동일: 4
 
 ---
 
-### 결론
+### 3) 실패 건 디버깅/패치 내용
 
-- 유효 14개 기준 **probe 10승 / look_m 4승** — 이전 (전체 29개, 17/10/2)과 유사한 경향
-- `combined_v1` 모델은 ocr_vqa, docvqa 등 텍스트 dense 이미지에서 확실한 향상
-- **truncation 없이 실행했기 때문에 이미지가 많은 데이터셋 (video-frame 계열) 에서 대부분 OOM**
-- OOM 데이터셋들 (actionlocalization, actionsequence, egocentricnavigation 등)은 truncation을 걸고 재실행 필요
-- multimodalqa, mmcoqa는 포맷 오류 — prompt template에서 multi-image 처리 로직 수정 필요
+#### 3.1 문제 현상
+
+`wikivqa`에서 반복적으로 다음 에러가 발생:
+
+- `IndexError('list index out of range')`
+
+원인:
+
+- LOOK-M 스타일 truncate 경로에서 일부 샘플이 `raw_img_list=[]`(이미지 0개)로 떨어짐.
+- 기존 코드는 이미지가 0개여도 `processor(..., images=[])`를 호출하여 내부 전처리에서 `images[0]` 접근 시 `IndexError` 발생.
+
+#### 3.2 적용한 코드 수정
+
+수정 파일:
+
+- `/workspace/zap/evaluate_image_teacher_pruning.py`
+
+핵심 변경:
+
+1. `image_paths`가 비어 있으면 text-only 토크나이즈 경로 사용
+- 기존: 항상 `processor(text=..., images=images, ...)`
+- 변경: `image_paths==[]`일 때 `processor(text=..., return_tensors="pt")`
+
+2. `num_images=0`일 때 image position 추론 함수 호출 회피
+- 기존: `infer_llava_image_positions_no_forward(..., num_images=0)`에서 `ValueError`
+- 변경: 빈 `image_positions`를 설정하고 press는 no-op 압축으로 통과
+
+#### 3.3 패치 영향 검증
+
+재현 검증:
+
+- `wikivqa` limit=6 재현에서 기존 오류 구간(sample_id 5 포함) `n_failures=0` 확인.
+- 전체 `wikivqa` 재실행 결과:
+  - `n_samples=200`
+  - `n_predictions=194`
+  - `n_failures=6`
+  - 실패 원인 분해: **OOM 6, IndexError 0**
+
+해석:
+
+- 이번 패치는 **IndexError 제거용 안정화 패치**이며,
+- 이미지가 정상(>=1)인 샘플의 score 계산/eviction 로직은 건드리지 않음.
+- 따라서 성능 변화의 주원인은 패치가 아니라, 기존에 실패로 버려지던 샘플의 정상 처리 및 잔여 OOM 여부.
 
 ---
 
-### 다음 단계
+### 4) 정정: ScienceQA-only vs Combine 해석
 
-- [ ] OOM 데이터셋 12개: `truncate_like_lookm=True` 조건으로 재실행
-- [ ] multimodalqa, mmcoqa: multi-image placeholder mismatch 원인 파악 및 수정
-- [ ] wikivqa: look_eval 미산출 이유 확인 (look_result_dir 설정 문제일 수 있음)
-- [ ] 전체 29개 유효 결과 확보 후 EXP-20260415-001 (ScienceQA-only) 와 직접 비교
+앞선 설명의 일부는 부정확했고, 아래가 정확한 해석임.
+
+- **둘 다 MileBench 전체 추론**을 수행함.
+- ScienceQA-only vs Combine의 본질적 차이는 **probe 학습 데이터셋(체크포인트)**:
+  - ScienceQA-only: ScienceQA 기반 probe
+  - Combine: ScienceQA + TextVQA + NLVR2 기반 probe
+
+이번 `IndexError`의 본질:
+
+- probe 품질/학습데이터 차이 이슈가 아니라,
+- truncate 경로에서 `raw_img_list=[]`가 된 샘플을 `processor(images=[])`로 넘긴 **코드 버그**.
+
+근거:
+
+- `evaluate_image_teacher_pruning.py`에서 오류 발생 지점은
+  - 이미지 전처리(`processor(...)`) 단계이며
+  - probe teacher score 계산/적용 이전.
+- 즉, 같은 코드/같은 입력이면 ScienceQA-only probe에도 동일하게 재현 가능한 **모델 독립 버그**.
+
+추가 확인 (WikiVQA, truncate=on, 4096/256):
+
+- problem sample ids: `5, 9, 32, 83, 88, 89, 135, 136, 141, 145, 194` 등에서
+- MileBench truncation 결과 `raw_img_list` 길이가 `0`으로 확인됨.
+
+따라서 “ScienceQA-only라서 안 터졌다”가 아니라:
+
+- 당시 실행 코드/설정/산출물 상태에서 해당 경로가 드러나지 않았던 것이고,
+- 이번에 combine 실행 중 해당 샘플들이 실제로 통과되며 버그가 표면화된 것.
+
+---
+
+### 5) 현재 남은 리스크
+
+- combine 결과에서 실질 실패가 남은 데이터셋: `wikivqa` (OOM 6건)
+- oracle(on-the-fly)는 여전히 다수 데이터셋에서 OOM 비중이 높아, score 산출 데이터셋이 14개로 제한됨.
+
+---
+
+### 6) 현재 결론
+
+- **주 결론 유지**: combine probe가 LOOK-M 대비 전반적으로 우세(22/5/1, comparable 28개 기준).
+- 이번 패치는 실패 샘플 처리 안정화로서 타당하며, 성능 해석을 뒤집는 형태의 편향 패치가 아님.
+- 잔여 이슈는 주로 OOM이며, 이는 메모리 예산/추론 설정 이슈로 분리 대응 필요.

@@ -27,7 +27,8 @@ class AttrDict(dict):
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-LOOKM_ROOT = REPO_ROOT.parent / "LOOK-M"
+LOOKM_CANDIDATES = [REPO_ROOT.parent / "LOOK-M", REPO_ROOT.parent / "look-m"]
+LOOKM_ROOT = next((path for path in LOOKM_CANDIDATES if path.is_dir()), LOOKM_CANDIDATES[0])
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 if str(LOOKM_ROOT) not in sys.path:
@@ -489,9 +490,14 @@ def measure_zap_method_for_sample(
     # This is safe for the efficiency script because we only measure latency, not accuracy.
     # It also prevents ValueError when placeholder count != image count (e.g. MMCoQA, TextNeedle).
     question_raw = _re.sub(r"<ImageHere>|\{image#\d+\}", "", raw_q).strip()
-    images = open_images(image_paths)
-    prompt_text = build_prompt(question_raw, prompt_template, image_count=len(image_paths))
-    prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
+    num_images = len(image_paths)
+    prompt_text = build_prompt(question_raw, prompt_template, image_count=num_images)
+    if image_paths:
+        images = open_images(image_paths)
+        prompt_inputs = processor(text=prompt_text, images=images, return_tensors="pt")
+    else:
+        # LOOK-M truncation can drop all images for very long contexts; run text-only.
+        prompt_inputs = processor(text=prompt_text, return_tensors="pt")
     prompt_inputs = _move_batch_to_device(prompt_inputs, device, float_dtype)
 
     _empty_cuda_cache()
@@ -503,31 +509,34 @@ def measure_zap_method_for_sample(
     image_positions_dropped: Optional[int] = None
     prompt_full_seq_len: Optional[int] = None
     if teacher_record is not None:
-        _, prompt_full_seq_len = infer_llava_image_positions_no_forward(
-            prompt_inputs=prompt_inputs,
-            model_config=model.config,
-            num_images=len(image_paths),
-        )
-        image_positions = resolve_teacher_image_positions(teacher_record)
+        if num_images > 0:
+            _, prompt_full_seq_len = infer_llava_image_positions_no_forward(
+                prompt_inputs=prompt_inputs,
+                model_config=model.config,
+                num_images=num_images,
+            )
+            image_positions = resolve_teacher_image_positions(teacher_record)
         press.set_sample_teacher(image_positions, teacher_record["att_only_postvision"])
     elif isinstance(press, ProbeImageTeacherPress):
-        start = time.perf_counter()
-        image_positions, prompt_full_seq_len = infer_llava_image_positions_no_forward(
-            prompt_inputs=prompt_inputs,
-            model_config=model.config,
-            num_images=len(image_paths),
-        )
-        setup_prefill_ms += (time.perf_counter() - start) * 1000.0
+        if num_images > 0:
+            start = time.perf_counter()
+            image_positions, prompt_full_seq_len = infer_llava_image_positions_no_forward(
+                prompt_inputs=prompt_inputs,
+                model_config=model.config,
+                num_images=num_images,
+            )
+            setup_prefill_ms += (time.perf_counter() - start) * 1000.0
         press.set_image_positions(image_positions)
         press.reset_probe_timing()
     elif isinstance(press, (H2OImageOnlyPress,)):
-        start = time.perf_counter()
-        image_positions, prompt_full_seq_len = infer_llava_image_positions_no_forward(
-            prompt_inputs=prompt_inputs,
-            model_config=model.config,
-            num_images=len(image_paths),
-        )
-        setup_prefill_ms += (time.perf_counter() - start) * 1000.0
+        if num_images > 0:
+            start = time.perf_counter()
+            image_positions, prompt_full_seq_len = infer_llava_image_positions_no_forward(
+                prompt_inputs=prompt_inputs,
+                model_config=model.config,
+                num_images=num_images,
+            )
+            setup_prefill_ms += (time.perf_counter() - start) * 1000.0
         press.set_image_positions(image_positions)
 
     generate_kwargs: dict = dict(do_sample=False, max_new_tokens=max_new_tokens, use_cache=True)
@@ -1063,12 +1072,12 @@ def summarize_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--milebench_root", type=str, default="/workspace/hd/data/MileBench")
+    parser.add_argument("--milebench_root", type=str, default="/workspace/zap/data/MileBench")
     parser.add_argument("--datasets", nargs="+", default=DEFAULT_DATASETS)
     parser.add_argument("--sample_size", type=int, default=20)
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--output_dir", type=str, default="/workspace/hd/artifacts/oracle/efficiency_random20")
-    parser.add_argument("--implementation_model_name", type=str, default="llava-hf/llava-1.5-7b-hf")
+    parser.add_argument("--output_dir", type=str, default="/workspace/zap/artifacts/combine_prob/efficiency_random20")
+    parser.add_argument("--implementation_model_name", type=str, default="/workspace/zap/ckpts/llava-1.5-7b-hf")
     parser.add_argument("--torch_dtype", type=str, default="float16")
     parser.add_argument("--attn_implementation", type=str, default="eager")
     parser.add_argument("--device", type=str, default="cuda:0")
@@ -1088,7 +1097,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--probe_model_name",
         type=str,
-        default="/workspace/hd/artifacts/sq_teacher/image_probe_scienceqa_att_only_postvision/mlp",
+        default="/workspace/zap/ckpts/image_probe_combined_v1/mlp",
     )
     parser.add_argument("--look_kv_mode", type=str, default="text_prior_pivot_merge")
     parser.add_argument("--look_hh_ratio", type=float, default=0.10)

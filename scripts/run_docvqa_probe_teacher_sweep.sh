@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
 PYTHON_BIN="${PYTHON_BIN:-/opt/conda/envs/kv/bin/python}"
 GPU_INDEX="${GPU_INDEX:-0}"
 
-DATASET_PATH="${DATASET_PATH:-/workspace/hd/data/MileBench/DocVQA/DocVQA.json}"
-IMAGE_ROOT="${IMAGE_ROOT:-/workspace/hd/data/MileBench/DocVQA/images}"
-OUTPUT_ROOT="${OUTPUT_ROOT:-/workspace/hd/artifacts/prob/docvqa_scienceqa_probe_sweep}"
+DATASET_PATH="${DATASET_PATH:-/workspace/zap/data/MileBench/DocVQA/DocVQA.json}"
+IMAGE_ROOT="${IMAGE_ROOT:-/workspace/zap/data/MileBench/DocVQA/images}"
+OUTPUT_ROOT="${OUTPUT_ROOT:-/workspace/zap/artifacts/combine_prob/docvqa}"
 LOOK_RESULT_ROOT="${LOOK_RESULT_ROOT:-}"
 LOOK_MODEL_PREFIX="${LOOK_MODEL_PREFIX:-zap_docvqa_scienceqa_probe}"
 LOOK_DATASET_NAME="${LOOK_DATASET_NAME:-DocVQA}"
 SKIP_EXISTING="${SKIP_EXISTING:-1}"
 
-IMPLEMENTATION_MODEL_NAME="${IMPLEMENTATION_MODEL_NAME:-llava-hf/llava-1.5-7b-hf}"
+IMPLEMENTATION_MODEL_NAME="${IMPLEMENTATION_MODEL_NAME:-/workspace/zap/ckpts/llava-1.5-7b-hf}"
 TORCH_DTYPE="${TORCH_DTYPE:-float16}"
 DEVICE="${DEVICE:-cuda:0}"
 DEVICE_MAP="${DEVICE_MAP:-none}"
@@ -31,7 +32,7 @@ TEACHERS="${TEACHERS:-att_only_postvision splus_postvision}"
 METHODS="${METHODS:-linear mlp}"
 USE_TOTAL_KEEP_RATIO="${USE_TOTAL_KEEP_RATIO:-0}"
 
-ATT_ONLY_PROBE_ROOT="${ATT_ONLY_PROBE_ROOT:-/workspace/hd/artifacts/sq_teacher/image_probe_scienceqa_att_only_postvision}"
+ATT_ONLY_PROBE_ROOT="${ATT_ONLY_PROBE_ROOT:-/workspace/zap/ckpts/image_probe_combined_v1}"
 SPLUS_PROBE_ROOT="${SPLUS_PROBE_ROOT:-/workspace/hd/artifacts/sq_teacher/image_probe_scienceqa_splus_postvision_small}"
 
 resolve_probe_root() {
@@ -50,6 +51,18 @@ resolve_probe_root() {
   esac
 }
 
+resolve_method_dir_name() {
+  local teacher="$1"
+  local method="$2"
+  if [[ "${teacher}" == "att_only_postvision" ]]; then
+    echo "probe_${method}"
+  elif [[ "${teacher}" == "splus_postvision" ]]; then
+    echo "probe_splus_${method}"
+  else
+    echo "${teacher}_${method}"
+  fi
+}
+
 export CUDA_VISIBLE_DEVICES="${GPU_INDEX}"
 mkdir -p "${OUTPUT_ROOT}"
 
@@ -63,9 +76,11 @@ for teacher in ${TEACHERS}; do
       continue
     fi
 
+    method_dir_name="$(resolve_method_dir_name "${teacher}" "${method}")"
+
     for ratio in ${KEEP_RATIOS}; do
       ratio_tag="${ratio//./p}"
-      out_dir="${OUTPUT_ROOT}/${teacher}/${method}/keep_${ratio_tag}"
+      out_dir="${OUTPUT_ROOT}/${method_dir_name}/keep_${ratio_tag}"
       look_model_name="${LOOK_MODEL_PREFIX}_${teacher}_${method}_k${ratio_tag}"
       mkdir -p "${out_dir}"
 

@@ -4,8 +4,8 @@ set -euo pipefail
 export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
 export PYTORCH_CUDA_ALLOC_CONF=${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}
 
-OUT_DIR=${OUT_DIR:-/workspace/hd/artifacts/prob/efficiency_successful_random20_zap}
-MILEBENCH_ROOT=${MILEBENCH_ROOT:-/workspace/hd/data/MileBench}
+OUT_DIR=${OUT_DIR:-/workspace/zap/artifacts/combine_prob/efficiency_successful_random20_zap}
+MILEBENCH_ROOT=${MILEBENCH_ROOT:-/workspace/zap/data/MileBench}
 SAMPLE_SIZE=${SAMPLE_SIZE:-20}
 SEED=${SEED:-42}
 DATASETS=(ALFRED CLEVR-Change CounterfactualInference DocVQA IEdit MovingAttribute MovingDirection ObjectExistence OCR-VQA Spot-the-Diff)

@@ -24,7 +24,11 @@ import torch
 from kvzap.image_teacher_utils import build_prompt as _shared_build_prompt, load_vlm_samples
 from tqdm.auto import tqdm
 from transformers import AutoProcessor, LlavaForConditionalGeneration
-from transformers.integrations.finegrained_fp8 import FP8Linear
+try:
+    from transformers.integrations.finegrained_fp8 import FP8Linear
+except Exception:
+    class FP8Linear(torch.nn.Module):
+        pass
 from transformers.models.llama.modeling_llama import repeat_kv
 
 
