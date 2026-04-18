@@ -18,6 +18,15 @@ LOOK_MAX_CONTEXT_LEN="${LOOK_MAX_CONTEXT_LEN:-}"
 LOOK_N_TOKENS_PER_IMAGE="${LOOK_N_TOKENS_PER_IMAGE:-}"
 COMBINE_IMAGE="${COMBINE_IMAGE:-}"
 PROBE_LABEL="${PROBE_LABEL:-combined}"
+N_ITERATIVE_ROUNDS="${N_ITERATIVE_ROUNDS:-1}"
+LAYERWISE_ITERATIVE="${LAYERWISE_ITERATIVE:-0}"
+METRICS_PYTHON_BIN="${METRICS_PYTHON_BIN:-python3}"
+EXPORT_RESULTS_AFTER_RUN="${EXPORT_RESULTS_AFTER_RUN:-1}"
+COMBINE_VARIANT="${COMBINE_VARIANT:-probe_mlp}"
+ITERATIVE_VARIANT="${ITERATIVE_VARIANT:-auto}"
+BASE_COMPARE_CSV="${BASE_COMPARE_CSV:-/workspace/zap/artifacts/probe_global/probe_vs_lookm_r020_truncated.csv}"
+RESULTS_SOURCE_CSV="${RESULTS_SOURCE_CSV:-/workspace/zap/artifacts/results/probe_vs_lookm_r020_truncated_with_combine.csv}"
+RESULTS_OUTPUT_CSV="${RESULTS_OUTPUT_CSV:-/workspace/zap/artifacts/results/results.csv}"
 
 slugify() {
   local text="$1"
@@ -28,11 +37,50 @@ slugify() {
 
 count_done() {
   local root="$1"
-  if [[ -d "${root}" ]]; then
-    find "${root}" -maxdepth 4 -type f -name metrics.json | wc -l
-  else
-    echo 0
+  # When running iterative, only count within the iterative_N subdir to avoid
+  # false-positive skip caused by pre-existing probe_mlp results.
+  if [[ "${N_ITERATIVE_ROUNDS}" -gt 1 ]]; then
+    if [[ "${LAYERWISE_ITERATIVE}" == "1" ]]; then
+      root="${root}/iterative_ver2_${N_ITERATIVE_ROUNDS}"
+    else
+      root="${root}/iterative_${N_ITERATIVE_ROUNDS}"
+    fi
   fi
+  if [[ ! -d "${root}" ]]; then
+    echo 0
+    return
+  fi
+
+  local count=0 metrics_path
+  while IFS= read -r metrics_path; do
+    if "${METRICS_PYTHON_BIN}" - "${metrics_path}" <<'PY'
+import json
+import sys
+
+path = sys.argv[1]
+try:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+except Exception:
+    sys.exit(1)
+
+n_failures = data.get("n_failures")
+if n_failures is None:
+    sys.exit(0)
+
+try:
+    n_failures = int(n_failures)
+except Exception:
+    sys.exit(1)
+
+sys.exit(0 if n_failures == 0 else 1)
+PY
+    then
+      count=$((count + 1))
+    fi
+  done < <(find "${root}" -maxdepth 4 -type f -name metrics.json)
+
+  echo "${count}"
 }
 
 count_words() {
@@ -88,6 +136,8 @@ run_one() {
   COMBINE_IMAGE="${COMBINE_IMAGE}" \
   GPU_INDEX="${GPU_INDEX}" \
   LIMIT="${LIMIT}" \
+  N_ITERATIVE_ROUNDS="${N_ITERATIVE_ROUNDS}" \
+  LAYERWISE_ITERATIVE="${LAYERWISE_ITERATIVE}" \
   bash /workspace/zap/scripts/run_docvqa_probe_teacher_sweep.sh
 }
 
@@ -108,3 +158,14 @@ else
 fi
 
 echo "All MileBench probe datasets completed"
+
+if [[ "${EXPORT_RESULTS_AFTER_RUN}" == "1" && -z "${DATASETS}" ]]; then
+  echo "Exporting aggregated MileBench results"
+  python3 /workspace/zap/scripts/export_probe_vs_lookm_with_combine.py \
+    --base_csv "${BASE_COMPARE_CSV}" \
+    --combine_root "${PROB_ARTIFACT_ROOT}" \
+    --combine_variant "${COMBINE_VARIANT}" \
+    --iterative_variant "${ITERATIVE_VARIANT}" \
+    --output_csv "${RESULTS_SOURCE_CSV}" \
+    --results_csv "${RESULTS_OUTPUT_CSV}"
+fi

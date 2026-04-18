@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from copy import deepcopy
@@ -26,7 +27,14 @@ if str(LOOKM_ROOT) not in sys.path:
 
 from utils import MileBenchDataset
 
-from kvpress.presses.image_token_press import H2OImageOnlyPress, OracleAllTokenPress, OracleImageTeacherPress, ProbeImageTeacherPress
+from kvpress.presses.image_token_press import (
+    H2OImageOnlyPress,
+    OracleAllTokenPress,
+    OracleImageTeacherPress,
+    PreselectedImagePress,
+    ProbeImageTeacherPress,
+    _compute_n_image_keep,
+)
 from kvzap.image_teacher_utils import build_prompt, load_pt_record, load_vlm_samples, normalize_answer, resolve_teacher_dir
 from kvzap.llava_extractor import (
     _get_model_device,
@@ -37,6 +45,7 @@ from kvzap.llava_extractor import (
     infer_llava_image_positions_no_forward,
 )
 from kvzap.milebench_look_metrics import LookMileBenchEvaluator
+from kvzap.phase2_metrics import aggregate_phase2_records, compute_oracle_keep_masks, summarize_phase2_sample
 
 HD_DOCVQA_DATASET_PATH = "/workspace/zap/data/MileBench/DocVQA/DocVQA.json"
 HD_DOCVQA_IMAGE_ROOT = "/workspace/zap/data/MileBench/DocVQA/images"
@@ -129,6 +138,143 @@ def extract_att_only_postvision_on_the_fly(
     return torch.stack(layers, dim=0)
 
 
+def _vote_topk(per_layer_scores: list[torch.Tensor], k: int) -> torch.Tensor:
+    """Vote-based pool reduction using per-layer top-k.
+
+    Each layer independently casts top-k votes. Final pool: top-k tokens by vote
+    count, ties broken by max score across all layers.
+
+    Args:
+        per_layer_scores: list of (n_pool,) CPU float tensors, one per probe layer.
+                          Each value is the head-aggregated score for that pool token.
+        k: target pool size.
+
+    Returns:
+        (k,) long tensor of indices into the current pool (CPU).
+    """
+    n_pool = per_layer_scores[0].numel()
+    k = min(k, n_pool)
+
+    vote_counts = torch.zeros(n_pool, dtype=torch.long)
+    max_scores = torch.full((n_pool,), float("-inf"))
+
+    for layer_scores in per_layer_scores:
+        layer_k = min(k, n_pool)
+        topk_idx = torch.topk(layer_scores, k=layer_k).indices
+        vote_counts[topk_idx] += 1
+        max_scores = torch.maximum(max_scores, layer_scores)
+
+    # Lexicographic sort: primary = vote_count (desc), secondary = max_score (desc).
+    # Encode as combined = vote_count * (n_pool + 1) + rank_within_score_bucket.
+    score_min, score_max = max_scores.min(), max_scores.max()
+    score_range = score_max - score_min
+    norm = (max_scores - score_min) / score_range if score_range > 0 else torch.zeros_like(max_scores)
+    combined = vote_counts.float() * (n_pool + 1) + norm
+    return torch.topk(combined, k=k).indices
+
+
+def _iterative_probe_preselect(
+    *,
+    model: Any,
+    prompt_inputs: dict[str, Any],
+    image_positions: torch.Tensor,
+    probe_press: Any,
+    n_rounds: int,
+    n_image_keep: int,
+    device: torch.device,
+    float_dtype: Optional[torch.dtype],
+    layerwise: bool = False,
+) -> torch.Tensor:
+    """Run n_rounds LLaVA forward passes, narrowing the image token pool each round.
+
+    Round 1: normal forward on all tokens → probe scores → keep top schedule[0].
+    Rounds 2+: inputs_embeds from round-1 embedding output, with evicted image
+               positions zeroed in attention_mask → updated hidden states →
+               probe re-scores surviving tokens → keep top schedule[i].
+
+    Hidden states genuinely change each round because evicted tokens no longer
+    contribute to attention of surviving tokens.
+
+    Returns: (n_image_keep,) long tensor of final surviving mm-space positions (CPU).
+    """
+    n_image = image_positions.numel()
+    n_image_keep = min(max(0, n_image_keep), n_image)
+
+    if n_image_keep >= n_image or n_rounds <= 1:
+        return image_positions
+
+    # Linear schedule: n_image → n_image_keep over n_rounds steps
+    schedule = [
+        max(n_image_keep, int(math.ceil(n_image - (n_image - n_image_keep) * (i + 1) / n_rounds)))
+        for i in range(n_rounds)
+    ]
+    schedule[-1] = n_image_keep
+
+    img_pos_dev = image_positions.to(device=device, dtype=torch.long)
+    pool_cpu = torch.arange(n_image, dtype=torch.long)  # indices into image_positions
+    probe_model = probe_press.probe_model
+    n_probe_layers = len(probe_model.layers)
+    merged_embeds: Optional[torch.Tensor] = None
+
+    for round_idx, round_k in enumerate(schedule):
+        current_img_pos = img_pos_dev[pool_cpu.to(device)]  # (|pool|,) mm-space on device
+
+        if round_idx == 0:
+            with torch.no_grad():
+                out = model(
+                    **prompt_inputs,
+                    use_cache=False,
+                    output_hidden_states=True,
+                    return_dict=True,
+                )
+            # hidden_states[0] = embedding layer output = merged input embeddings [1, mm_len, D]
+            merged_embeds = out.hidden_states[0].detach().clone()
+        else:
+            mm_len = merged_embeds.shape[1]
+            # Attention mask: 1 for all non-image positions + surviving image positions, 0 for evicted
+            is_image = torch.zeros(mm_len, dtype=torch.bool, device=device)
+            is_image[img_pos_dev[img_pos_dev < mm_len]] = True  # guard against out-of-range
+            attn_mask = (~is_image).long().unsqueeze(0)  # text positions = 1, all image = 0
+            attn_mask[0, current_img_pos] = 1            # surviving image positions = 1
+
+            with torch.no_grad():
+                # pixel_values intentionally omitted: merged_embeds already contains vision features.
+                # input_ids intentionally omitted: inputs_embeds takes precedence in LLaVA forward.
+                out = model(
+                    inputs_embeds=merged_embeds,
+                    attention_mask=attn_mask,
+                    use_cache=False,
+                    output_hidden_states=True,
+                    return_dict=True,
+                )
+
+        # Score current pool tokens with probe at each transformer layer
+        per_layer_scores: list[torch.Tensor] = []
+        for layer_idx in range(n_probe_layers):
+            hs = out.hidden_states[layer_idx + 1]  # [1, mm_len, D] output of layer layer_idx
+            probe_layer = probe_model.layers[layer_idx].to(device=hs.device, dtype=hs.dtype).eval()
+            pool_hs = hs[:, current_img_pos, :]            # [1, |pool|, D]
+            with torch.no_grad():
+                scores = probe_layer(pool_hs).transpose(1, 2)  # [1, n_heads, |pool|]
+            agg = scores[0].amax(dim=0).detach().cpu().float()  # (|pool|,) amax across heads
+            per_layer_scores.append(agg)
+
+        # Free GPU memory: hidden states from all layers are no longer needed after scoring
+        del out
+
+        k = min(round_k, pool_cpu.numel())
+        if layerwise:
+            # Per-layer vote: each layer votes for its top-k, ties broken by max score.
+            local_topk = _vote_topk(per_layer_scores, k=k)
+        else:
+            # Global consensus: amax across all probe layers → single score per pool token.
+            global_scores = torch.stack(per_layer_scores, dim=0).amax(dim=0)  # (|pool|,)
+            local_topk = torch.topk(global_scores, k=k).indices
+        pool_cpu = pool_cpu[local_topk]
+
+    return image_positions[pool_cpu]  # (n_image_keep,) CPU
+
+
 def build_press(args: argparse.Namespace):
     # Determine budget: prefer total_keep_ratio (unified basis); fall back to image_keep_ratio
     total_keep_ratio = getattr(args, "total_keep_ratio", None)
@@ -142,6 +288,7 @@ def build_press(args: argparse.Namespace):
         n_recent_keep=getattr(args, "n_recent_keep", 0),
         n_random_keep=getattr(args, "n_random_keep", 0),
         per_image_forced=getattr(args, "per_image_forced", False),
+        n_iterative_rounds=getattr(args, "n_iterative_rounds", 1),
     )
 
     if args.mode in ("oracle", "oracle_onthefly"):
@@ -362,6 +509,17 @@ def main() -> None:
                         help="Force-keep N randomly chosen image tokens (control). EXP-20260412-003.")
     parser.add_argument("--per_image_forced", action="store_true", default=False,
                         help="Apply initial/recent forced-keep per image block instead of globally.")
+    parser.add_argument("--n_iterative_rounds", type=int, default=1,
+                        help=(
+                            "Iterative pruning rounds (EXP-20260417-001). "
+                            "1 = one-shot (default). 4 = 4-round linear schedule matching PLAN.md."
+                        ))
+    parser.add_argument("--layerwise_iterative", action="store_true", default=False,
+                        help=(
+                            "Use per-layer vote-based pool narrowing in each iterative round instead of "
+                            "global amax consensus. Each layer independently selects top-k; final pool is "
+                            "determined by vote count with max-score tiebreak. Requires n_iterative_rounds > 1."
+                        ))
     parser.add_argument("--look_dataset_name", type=str, default="DocVQA")
     parser.add_argument("--look_model_name", type=str, default="zap_docvqa")
     parser.add_argument("--look_result_root", type=str, default=HD_ZAP_ARTIFACT_ROOT)
@@ -390,6 +548,29 @@ def main() -> None:
         type=str,
         default=None,
         help="Directory for visualization data files. Defaults to {output_dir}/viz_data/.",
+    )
+    parser.add_argument(
+        "--collect_phase2_metrics",
+        action="store_true",
+        default=False,
+        help=(
+            "Compute Phase 2 auxiliary metrics (oracle overlap ratio, spatial entropy) "
+            "for probe mode. Requires --teacher_dir and --save_viz_for_first_n > 0 "
+            "(or enables VizCapture automatically for the full run). "
+            "Results are written to {output_dir}/phase2_metrics.json."
+        ),
+    )
+    parser.add_argument(
+        "--phase2_grid_side",
+        type=int,
+        default=24,
+        help="Grid side length for spatial entropy (default 24 = LLaVA-1.5 336px / patch-14).",
+    )
+    parser.add_argument(
+        "--phase2_n_image_per_image",
+        type=int,
+        default=576,
+        help="Image tokens per single image for spatial entropy grid (default 576).",
     )
     args = parser.parse_args()
 
@@ -490,6 +671,33 @@ def main() -> None:
 
     viz_sample_idx = 0
 
+    # ── Phase 2 metric collection setup ──────────────────────────────────────
+    collect_phase2 = (
+        getattr(args, "collect_phase2_metrics", False)
+        and args.mode == "probe"
+        and teacher_root is not None
+    )
+    if collect_phase2 and viz_capture is None:
+        # Phase 2 needs VizCapture even if --save_viz_for_first_n was not set.
+        from kvpress.presses.image_token_press import VizCapture as _VizCapture
+        viz_capture = _VizCapture()
+        if hasattr(press, "attach_viz_capture"):
+            press.attach_viz_capture(viz_capture)
+        else:
+            print(
+                f"Warning: press {type(press).__name__} does not support VizCapture. "
+                "Phase 2 metric collection will be skipped."
+            )
+            collect_phase2 = False
+    # Pre-load probe model so _iterative_probe_preselect() can access it before the first
+    # press(model) context (which normally triggers post_init_from_model).
+    if args.mode == "probe" and getattr(args, "n_iterative_rounds", 1) > 1:
+        if hasattr(press, "post_init_from_model"):
+            press.post_init_from_model(model)
+
+    phase2_records: list[dict] = []
+    active_press = press  # updated per-sample in iterative mode
+
     for sample in tqdm(samples, desc=f"Evaluating {args.mode} image pruning"):
         try:
             raw_record = sample.get("raw") if isinstance(sample.get("raw"), dict) else None
@@ -554,12 +762,42 @@ def main() -> None:
                 if num_images == 0:
                     press.set_image_positions(empty_image_positions)
                 else:
-                    image_positions, _ = infer_llava_image_positions_no_forward(
+                    image_positions, prompt_len_mm = infer_llava_image_positions_no_forward(
                         prompt_inputs=prompt_inputs,
                         model_config=model.config,
                         num_images=num_images,
                     )
-                    press.set_image_positions(image_positions)
+                    use_iterative = (
+                        args.mode == "probe"
+                        and getattr(args, "n_iterative_rounds", 1) > 1
+                        and isinstance(press, ProbeImageTeacherPress)
+                        and press.probe_model is not None
+                    )
+                    if use_iterative:
+                        n_image = image_positions.numel()
+                        n_text = prompt_len_mm - n_image
+                        n_image_keep_target = _compute_n_image_keep(
+                            n_image, n_text, press.image_keep_ratio, press.total_keep_ratio
+                        )
+                        final_image_positions = _iterative_probe_preselect(
+                            model=model,
+                            prompt_inputs=prompt_inputs,
+                            image_positions=image_positions,
+                            probe_press=press,
+                            n_rounds=args.n_iterative_rounds,
+                            n_image_keep=n_image_keep_target,
+                            device=device,
+                            float_dtype=float_dtype,
+                            layerwise=getattr(args, "layerwise_iterative", False),
+                        )
+                        active_press = PreselectedImagePress()
+                        active_press.set_selection(
+                            all_image_positions=image_positions,
+                            keep_positions=final_image_positions,
+                        )
+                    else:
+                        press.set_image_positions(image_positions)
+                        active_press = press
 
             generate_kwargs: dict = dict(
                 do_sample=False,
@@ -569,7 +807,7 @@ def main() -> None:
             if needs_output_attentions:
                 generate_kwargs["output_attentions"] = True
 
-            with press(model):
+            with active_press(model):
                 with torch.no_grad():
                     generated_ids = model.generate(**prompt_inputs, **generate_kwargs)
             prediction = decode_answer(processor, generated_ids[0], prompt_len_text)
@@ -598,6 +836,36 @@ def main() -> None:
                         image_paths=image_paths,
                     )
                 )
+
+            # ── Phase 2 metrics (probe vs oracle overlap + spatial entropy) ────
+            if collect_phase2 and viz_capture is not None and num_images > 0:
+                try:
+                    p2_teacher_record = load_pt_record(teacher_root / f"{sample['sample_id']}.pt")
+                    p2_teacher_scores = p2_teacher_record[args.teacher_score_name].float()  # (L, H, I)
+                    probe_masks = np.stack(
+                        [m.numpy() for m in viz_capture.keep_masks]
+                    ) if viz_capture.keep_masks else None
+                    if probe_masks is not None and p2_teacher_scores.shape[0] == len(viz_capture.n_image_keep):
+                        oracle_masks = compute_oracle_keep_masks(
+                            p2_teacher_scores,
+                            viz_capture.n_image_keep,
+                            head_reduce=args.head_reduce,
+                        )
+                        p2 = summarize_phase2_sample(
+                            probe_masks,
+                            oracle_masks,
+                            head_reduce=args.head_reduce,
+                            n_image_per_image=args.phase2_n_image_per_image,
+                            grid_side=args.phase2_grid_side,
+                        )
+                        p2["sample_id"] = sample["sample_id"]
+                        phase2_records.append(p2)
+                except Exception as _p2_exc:  # noqa: BLE001
+                    pass  # non-fatal: skip phase2 for this sample
+                finally:
+                    # Reset here only when the viz-save block below will NOT reset it.
+                    if viz_sample_idx >= args.save_viz_for_first_n:
+                        viz_capture.reset()
 
             # ── Save VizCapture data ─────────────────────────────────────────
             if viz_capture is not None and viz_sample_idx < args.save_viz_for_first_n:
@@ -637,11 +905,26 @@ def main() -> None:
                 raise
         finally:
             press.clear_sample_context()
+            if active_press is not press:
+                active_press.clear_sample_context()
+            active_press = press  # reset for next iteration
+
+    # ── Phase 2 aggregate save ────────────────────────────────────────────────
+    if phase2_records:
+        agg = aggregate_phase2_records(phase2_records)
+        phase2_output = {"aggregate": agg, "per_sample": phase2_records}
+        write_json(output_dir / "phase2_metrics.json", phase2_output)
+        print(f"Phase 2 metrics ({len(phase2_records)} samples): overlap={agg.get('overlap_mean', float('nan')):.3f} ± {agg.get('overlap_std', float('nan')):.3f}, entropy={agg.get('entropy_mean', float('nan')):.3f} ± {agg.get('entropy_std', float('nan')):.3f}")
 
     predictions_df = pd.DataFrame(rows)
     failures_df = pd.DataFrame(failures)
     predictions_df.to_json(output_dir / "predictions.jsonl", orient="records", lines=True, force_ascii=False)
-    failures_df.to_csv(output_dir / "failures.csv", index=False)
+    failures_path = output_dir / "failures.csv"
+    if failures_df.empty:
+        if failures_path.exists():
+            failures_path.unlink()
+    else:
+        failures_df.to_csv(failures_path, index=False)
 
     look_dataset_dir: Optional[Path] = None
     if args.save_look_files and args.look_result_root:

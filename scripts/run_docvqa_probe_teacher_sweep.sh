@@ -31,6 +31,9 @@ KEEP_RATIOS="${KEEP_RATIOS:-0.02 0.05 0.10 0.20}"
 TEACHERS="${TEACHERS:-att_only_postvision splus_postvision}"
 METHODS="${METHODS:-linear mlp}"
 USE_TOTAL_KEEP_RATIO="${USE_TOTAL_KEEP_RATIO:-0}"
+N_ITERATIVE_ROUNDS="${N_ITERATIVE_ROUNDS:-1}"
+LAYERWISE_ITERATIVE="${LAYERWISE_ITERATIVE:-0}"
+METRICS_PYTHON_BIN="${METRICS_PYTHON_BIN:-python3}"
 
 ATT_ONLY_PROBE_ROOT="${ATT_ONLY_PROBE_ROOT:-/workspace/zap/ckpts/image_probe_combined_v1}"
 SPLUS_PROBE_ROOT="${SPLUS_PROBE_ROOT:-/workspace/hd/artifacts/sq_teacher/image_probe_scienceqa_splus_postvision_small}"
@@ -54,6 +57,14 @@ resolve_probe_root() {
 resolve_method_dir_name() {
   local teacher="$1"
   local method="$2"
+  if [[ "${N_ITERATIVE_ROUNDS}" -gt 1 ]]; then
+    if [[ "${LAYERWISE_ITERATIVE}" == "1" ]]; then
+      echo "iterative_ver2_${N_ITERATIVE_ROUNDS}"
+    else
+      echo "iterative_${N_ITERATIVE_ROUNDS}"
+    fi
+    return
+  fi
   if [[ "${teacher}" == "att_only_postvision" ]]; then
     echo "probe_${method}"
   elif [[ "${teacher}" == "splus_postvision" ]]; then
@@ -61,6 +72,33 @@ resolve_method_dir_name() {
   else
     echo "${teacher}_${method}"
   fi
+}
+
+metrics_is_success() {
+  local metrics_path="$1"
+  [[ -f "${metrics_path}" ]] || return 1
+  "${METRICS_PYTHON_BIN}" - "${metrics_path}" <<'PY'
+import json
+import sys
+
+path = sys.argv[1]
+try:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+except Exception:
+    sys.exit(1)
+
+n_failures = data.get("n_failures")
+if n_failures is None:
+    sys.exit(0)
+
+try:
+    n_failures = int(n_failures)
+except Exception:
+    sys.exit(1)
+
+sys.exit(0 if n_failures == 0 else 1)
+PY
 }
 
 export CUDA_VISIBLE_DEVICES="${GPU_INDEX}"
@@ -84,9 +122,13 @@ for teacher in ${TEACHERS}; do
       look_model_name="${LOOK_MODEL_PREFIX}_${teacher}_${method}_k${ratio_tag}"
       mkdir -p "${out_dir}"
 
-      if [[ "${SKIP_EXISTING}" == "1" && -f "${out_dir}/metrics.json" ]]; then
-        echo "[probe-sweep] skip existing teacher=${teacher} method=${method} keep=${ratio} -> ${out_dir}"
-        continue
+      metrics_path="${out_dir}/metrics.json"
+      if [[ "${SKIP_EXISTING}" == "1" && -f "${metrics_path}" ]]; then
+        if metrics_is_success "${metrics_path}"; then
+          echo "[probe-sweep] skip existing teacher=${teacher} method=${method} keep=${ratio} -> ${out_dir}"
+          continue
+        fi
+        echo "[probe-sweep] re-run failed/incomplete output teacher=${teacher} method=${method} keep=${ratio} -> ${out_dir}"
       fi
 
       echo "[probe-sweep] teacher=${teacher} method=${method} keep=${ratio} -> ${out_dir}"
@@ -129,6 +171,12 @@ for teacher in ${TEACHERS}; do
       fi
       if [[ -n "${COMBINE_IMAGE}" ]]; then
         cmd+=(--combine_image "${COMBINE_IMAGE}")
+      fi
+      if [[ "${N_ITERATIVE_ROUNDS}" -gt 1 ]]; then
+        cmd+=(--n_iterative_rounds "${N_ITERATIVE_ROUNDS}")
+        if [[ "${LAYERWISE_ITERATIVE}" == "1" ]]; then
+          cmd+=(--layerwise_iterative)
+        fi
       fi
 
       "${cmd[@]}"

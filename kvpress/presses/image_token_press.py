@@ -153,6 +153,60 @@ def _compute_n_image_keep(
     return min(n_image, max(0, n_image_keep))
 
 
+def _iterative_topk(
+    scores: torch.Tensor,
+    final_k: int,
+    n_rounds: int = 4,
+) -> torch.Tensor:
+    """Iterative top-k selection: narrow the candidate pool over n_rounds before final per-head top-k.
+
+    Rounds 1 .. (n_rounds-1) use amax-across-heads to decide which tokens survive to the next
+    pool. The final round uses per-head top-k so the returned indices are head-specific.
+
+    The keep schedule is linear from n_free down to final_k:
+        round_i keeps ceil(n_free - (n_free - final_k) * i / n_rounds) tokens.
+
+    Falls back to one-shot top-k when n_rounds <= 1 or final_k >= n_free.
+
+    Args:
+        scores:  (num_kv_heads, n_free) float — scores for the free (non-forced) image tokens.
+        final_k: Number of tokens to keep after the last round.
+        n_rounds: Total pruning rounds (default 4).
+
+    Returns:
+        (num_kv_heads, final_k) long — indices into the original n_free axis of scores.
+    """
+    n_free = scores.shape[-1]
+    k_clamped = min(final_k, n_free)
+
+    if n_rounds <= 1 or k_clamped >= n_free:
+        return torch.topk(scores, k=k_clamped, dim=-1).indices
+
+    # Build linear schedule: [k after round 1, ..., k after round n_rounds]
+    schedule = [
+        max(k_clamped, int(math.ceil(n_free - (n_free - k_clamped) * (i + 1) / n_rounds)))
+        for i in range(n_rounds)
+    ]
+    schedule[-1] = k_clamped  # guarantee exact final budget
+
+    pool = torch.arange(n_free, device=scores.device, dtype=torch.long)
+
+    for i, round_k in enumerate(schedule):
+        pool_scores = scores[:, pool]  # (H, |pool|)
+        k = min(round_k, pool.numel())
+        if i == len(schedule) - 1:
+            # Final round: per-head selection
+            final_local = torch.topk(pool_scores, k=k, dim=-1).indices  # (H, k)
+            return pool[final_local]  # (H, k) — original indices
+        # Intermediate rounds: amax-head pool narrowing
+        agg = pool_scores.amax(dim=0)  # (|pool|,)
+        local_idx = torch.topk(agg, k=k).indices  # (k,)
+        pool = pool[local_idx]
+
+    # Unreachable, but keeps type checker happy
+    return pool.unsqueeze(0).expand(scores.shape[0], -1)
+
+
 def _find_image_blocks(image_positions: torch.Tensor) -> List[torch.Tensor]:
     """Split image token positions into per-image contiguous blocks.
 
@@ -196,6 +250,9 @@ class ImageTokenTopKPress(BasePress):
     image_keep_ratio: Optional[float] = None
     total_keep_ratio: Optional[float] = None
     head_reduce: HeadReduce = "amax"
+    # Iterative pruning: n_rounds > 1 enables multi-round pool narrowing before final top-k.
+    # 1 = one-shot (default). 4 = 4-round schedule matching EXP-20260417-001 plan.
+    n_iterative_rounds: int = 1
     # Positional forced-keep parameters
     n_initial_keep: int = 0
     n_recent_keep: int = 0
@@ -372,7 +429,7 @@ class ImageTokenTopKPress(BasePress):
             free_indices = (~forced_mask).nonzero(as_tuple=True)[0]  # indices into image_positions
             free_scores = score_tensor[0][:, free_indices]  # (num_kv_heads, n_free)
             k = min(remaining_budget, free_indices.numel())
-            topk_within_free = torch.topk(free_scores, k=k, dim=-1).indices  # (num_kv_heads, k)
+            topk_within_free = _iterative_topk(free_scores, k, n_rounds=self.n_iterative_rounds)  # (num_kv_heads, k)
             scored_image_positions = image_positions[free_indices[topk_within_free]]  # (num_kv_heads, k)
         elif remaining_budget > 0:
             scored_image_positions = torch.empty((keys.shape[1], 0), dtype=torch.long, device=keys.device)
@@ -608,3 +665,73 @@ class ProbeImageTeacherPress(ImageTokenTopKPress):
         scores = probe_layer(image_hidden_states).transpose(1, 2)
         self.probe_score_total_ms += (time.perf_counter() - _t0) * 1000.0
         return scores
+
+
+@dataclass
+class PreselectedImagePress(BasePress):
+    """Evicts all image tokens except a pre-specified keep set.
+
+    Used after iterative probe pre-selection (A-option iterative pruning).
+    The keep set is global — same positions are kept for every KV head and layer.
+
+    Usage:
+        press = PreselectedImagePress()
+        press.set_selection(all_image_positions, keep_positions)
+        with press(model):
+            model.generate(...)
+        press.clear_sample_context()
+    """
+
+    _all_image_positions: Optional[torch.Tensor] = field(default=None, init=False, repr=False)
+    _keep_positions: Optional[torch.Tensor] = field(default=None, init=False, repr=False)
+
+    def set_selection(
+        self,
+        all_image_positions: torch.Tensor,
+        keep_positions: torch.Tensor,
+    ) -> None:
+        self._all_image_positions = all_image_positions.detach().cpu().long().flatten()
+        self._keep_positions = keep_positions.detach().cpu().long().flatten()
+
+    def clear_sample_context(self) -> None:
+        self._all_image_positions = None
+        self._keep_positions = None
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self._all_image_positions is None or self._keep_positions is None:
+            return keys, values
+
+        seq_len = keys.shape[2]
+        device = keys.device
+        num_kv_heads = keys.shape[1]
+
+        all_img = self._all_image_positions.to(device)
+        keep = self._keep_positions.to(device)
+        all_img = all_img[(all_img >= 0) & (all_img < seq_len)]
+        keep = keep[(keep >= 0) & (keep < seq_len)]
+
+        if all_img.numel() == 0:
+            return keys, values
+
+        # Evict image tokens that are not in the keep set
+        evict_mask = torch.zeros(seq_len, dtype=torch.bool, device=device)
+        evict_mask[all_img] = True
+        evict_mask[keep] = False  # un-evict survivors
+
+        keep_positions_1d = torch.arange(seq_len, device=device)[~evict_mask]
+        keep_pos = keep_positions_1d.unsqueeze(0).expand(num_kv_heads, -1)
+
+        gather_idx = keep_pos.unsqueeze(0).unsqueeze(-1).expand(
+            1, num_kv_heads, keep_positions_1d.shape[0], module.head_dim
+        )
+        keys = keys.gather(2, gather_idx).contiguous()
+        values = values.gather(2, gather_idx).contiguous()
+        return keys, values
