@@ -28,7 +28,9 @@ if str(LOOKM_ROOT) not in sys.path:
 from utils import MileBenchDataset
 
 from kvpress.presses.image_token_press import (
+    FutureSupervisedImagePress,
     H2OImageOnlyPress,
+    HybridImageTeacherPress,
     OracleAllTokenPress,
     OracleImageTeacherPress,
     PreselectedImagePress,
@@ -309,6 +311,30 @@ def build_press(args: argparse.Namespace):
             head_reduce=args.head_reduce,
             **forced_kwargs,
         )
+    if args.mode == "future":
+        selected = tuple(getattr(args, "selected_layer_indices", []))
+        return FutureSupervisedImagePress(
+            total_keep_ratio=total_keep_ratio,
+            image_keep_ratio=image_keep_ratio,
+            head_reduce=args.head_reduce,
+            probe_model_name=args.future_probe_name,
+            selected_layer_indices=selected,
+            **forced_kwargs,
+        )
+    if args.mode == "hybrid":
+        selected = tuple(getattr(args, "selected_layer_indices", []))
+        blend = tuple(getattr(args, "future_blend_layers", []) or [])
+        return HybridImageTeacherPress(
+            total_keep_ratio=total_keep_ratio,
+            image_keep_ratio=image_keep_ratio,
+            head_reduce=args.head_reduce,
+            postvision_probe_name=args.probe_model_name,
+            future_probe_name=args.future_probe_name,
+            alpha=getattr(args, "alpha", 0.5),
+            selected_layer_indices=selected,
+            future_blend_layers=blend,
+            **forced_kwargs,
+        )
     return ProbeImageTeacherPress(
         total_keep_ratio=total_keep_ratio,
         image_keep_ratio=image_keep_ratio,
@@ -479,7 +505,7 @@ def build_look_prediction_record(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=["oracle", "oracle_onthefly", "probe", "h2o_image_only", "oracle_all_token"], required=True)
+    parser.add_argument("--mode", choices=["oracle", "oracle_onthefly", "probe", "h2o_image_only", "oracle_all_token", "future", "hybrid"], required=True)
     parser.add_argument("--dataset_path", type=str, default=HD_DOCVQA_DATASET_PATH)
     parser.add_argument("--output_dir", type=str, default=f"{HD_ZAP_ARTIFACT_ROOT}/docvqa_image_pruning")
     parser.add_argument("--implementation_model_name", type=str, default="/workspace/zap/ckpts/llava-1.5-7b-hf")
@@ -489,6 +515,16 @@ def main() -> None:
     parser.add_argument("--teacher_dir", type=str, default=None)
     parser.add_argument("--teacher_score_name", type=str, default="splus_postvision")
     parser.add_argument("--probe_model_name", type=str, default=None)
+    parser.add_argument("--future_probe_name", type=str, default=None,
+                        help="Path to future-supervised KVzapModel checkpoint (for future/hybrid modes)")
+    parser.add_argument("--alpha", type=float, default=0.5,
+                        help="Hybrid weight: alpha * PostVision + (1-alpha) * Future (for hybrid mode)")
+    parser.add_argument("--future_blend_layers", type=int, nargs="+", default=[],
+                        help="Per-layer alpha (hybrid mode only): Future signal is blended (using --alpha) "
+                             "ONLY at these model-layer indices; all other layers fall back to PV-only. "
+                             "Empty list = blend at every layer (legacy).")
+    parser.add_argument("--selected_layer_indices", type=int, nargs="+", default=[],
+                        help="Model layer indices where probes are trained (e.g. 28 29 30 31). Untrained layers are skipped.")
     parser.add_argument("--prompt_template", type=str, default="USER: <image>\n{question}\nASSISTANT:")
     parser.add_argument("--prompt_style", choices=["default", "look_milebench"], default="look_milebench")
     parser.add_argument("--max_new_tokens", type=int, default=32)
@@ -580,6 +616,10 @@ def main() -> None:
         raise ValueError("teacher_dir is required for oracle and oracle_all_token modes")
     if args.mode == "probe" and not args.probe_model_name:
         raise ValueError("probe_model_name is required for probe mode")
+    if args.mode == "future" and not args.future_probe_name:
+        raise ValueError("future_probe_name is required for future mode")
+    if args.mode == "hybrid" and (not args.probe_model_name or not args.future_probe_name):
+        raise ValueError("probe_model_name and future_probe_name are both required for hybrid mode")
     if args.mode in ("oracle", "oracle_all_token") and args.truncate_like_lookm:
         raise ValueError("LOOK-M style truncation is currently supported only for probe mode")
     # h2o_image_only and oracle_all_token require output_attentions=True (eager attention)
@@ -975,7 +1015,11 @@ def main() -> None:
         "image_keep_ratio": getattr(args, "image_keep_ratio", None),
         "total_keep_ratio": getattr(args, "total_keep_ratio", None),
         "teacher_score_name": args.teacher_score_name if args.mode in ("oracle", "oracle_onthefly") else None,
-        "probe_model_name": args.probe_model_name if args.mode == "probe" else None,
+        "probe_model_name": args.probe_model_name if args.mode in ("probe", "hybrid") else None,
+        "future_probe_name": args.future_probe_name if args.mode in ("future", "hybrid") else None,
+        "alpha": args.alpha if args.mode == "hybrid" else None,
+        "selected_layer_indices": args.selected_layer_indices if args.mode in ("future", "hybrid") else None,
+        "future_blend_layers": list(getattr(args, "future_blend_layers", []) or []) if args.mode == "hybrid" else None,
         "prompt_style": args.prompt_style,
         "look_model_name": args.look_model_name if args.save_look_files else None,
         "look_dataset_name": args.look_dataset_name if args.save_look_files else None,

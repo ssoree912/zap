@@ -668,6 +668,140 @@ class ProbeImageTeacherPress(ImageTokenTopKPress):
 
 
 @dataclass
+class HybridImageTeacherPress(ImageTokenTopKPress):
+    """Combine PostVision probe and Future-supervised probe scores at inference time.
+
+    Final score per image token:
+        s_hybrid = alpha * softmax(s_postvision) + (1 - alpha) * softmax(s_future)
+
+    Both probes use the same KVzapModel format and are loaded from HuggingFace-style
+    checkpoint directories.
+
+    Args:
+        postvision_probe_name: path to existing PostVision KVzapModel checkpoint
+        future_probe_name:     path to future-supervised KVzapModel checkpoint
+        alpha:                 weight for PostVision score (0 = future-only, 1 = post-vision-only)
+    """
+
+    postvision_probe_name: str = ""
+    future_probe_name: str = ""
+    alpha: float = 0.5
+    # model-layer indices where future probe was trained; pruning is skipped at all others.
+    # Empty tuple means all layers prune (only safe when checkpoint covers all layers).
+    selected_layer_indices: tuple[int, ...] = field(default_factory=tuple)
+    # Per-layer alpha: Future signal is blended (using `alpha`) only at these layer indices.
+    # At all other layers the score falls back to PV-only (equivalent to alpha=1.0).
+    # Empty tuple (default) = blend Future at every layer (legacy behavior).
+    future_blend_layers: tuple[int, ...] = field(default_factory=tuple)
+    _postvision_probe: Optional[KVzapModel] = field(default=None, init=False, repr=False)
+    _future_probe: Optional[KVzapModel] = field(default=None, init=False, repr=False)
+    _loaded_pv_name: Optional[str] = field(default=None, init=False, repr=False)
+    _loaded_fu_name: Optional[str] = field(default=None, init=False, repr=False)
+
+    def post_init_from_model(self, model) -> None:
+        if not self.postvision_probe_name:
+            raise ValueError("postvision_probe_name must be set for HybridImageTeacherPress")
+        if not self.future_probe_name:
+            raise ValueError("future_probe_name must be set for HybridImageTeacherPress")
+        if not 0.0 <= self.alpha <= 1.0:
+            raise ValueError(f"alpha must be in [0, 1], got {self.alpha}")
+        if self.postvision_probe_name != self._loaded_pv_name:
+            self._postvision_probe = KVzapModel.from_pretrained(self.postvision_probe_name)
+            self._loaded_pv_name = self.postvision_probe_name
+        if self.future_probe_name != self._loaded_fu_name:
+            self._future_probe = KVzapModel.from_pretrained(self.future_probe_name)
+            self._loaded_fu_name = self.future_probe_name
+
+    def score_image_tokens(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+        image_positions: torch.Tensor,
+    ) -> torch.Tensor:
+        if self._postvision_probe is None or self._future_probe is None:
+            raise RuntimeError("Probe models not loaded. Call post_init_from_model first.")
+
+        dev = hidden_states.device
+        dtype = hidden_states.dtype
+        image_hidden = hidden_states[:, image_positions, :]  # [1, N_image, D]
+
+        pv_layer = self._postvision_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
+        fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
+
+        with torch.no_grad():
+            # Each probe: [1, 1, N_image] after transpose (KVzapModel output is [B, L, N])
+            s_pv = pv_layer(image_hidden).transpose(1, 2)  # [1, 1, N_image]
+            s_fu = fu_layer(image_hidden).transpose(1, 2)  # [1, 1, N_image]
+
+        # Softmax over image token dimension to align scales
+        s_pv_norm = torch.softmax(s_pv.float(), dim=-1).to(dtype)
+        s_fu_norm = torch.softmax(s_fu.float(), dim=-1).to(dtype)
+
+        # Per-layer alpha gating: if `future_blend_layers` is set, only those layers blend
+        # in the Future signal; all other layers fall back to PV-only (alpha=1.0).
+        if self.future_blend_layers and module.layer_idx not in self.future_blend_layers:
+            effective_alpha = 1.0
+        else:
+            effective_alpha = self.alpha
+
+        s_hybrid = effective_alpha * s_pv_norm + (1.0 - effective_alpha) * s_fu_norm  # [1, 1, N_image]
+        return s_hybrid
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.selected_layer_indices and module.layer_idx not in self.selected_layer_indices:
+            return keys, values  # no-op: untrained layer — preserve full KV cache
+        return super().compress(module, hidden_states, keys, values, attentions, kwargs)
+
+
+@dataclass
+class FutureSupervisedImagePress(ProbeImageTeacherPress):
+    """Future-supervised MLP probe for image KV pruning.
+
+    Semantically distinct from ProbeImageTeacherPress: the underlying KVzapModel was
+    trained with future decode attention as the supervision signal rather than prefill
+    post-vision attention.
+
+    Because only a subset of layers (selected_layer_indices) are trained, pruning is
+    skipped at all other layers — they return the full KV cache unchanged.  This
+    prevents random-weight scores from corrupting the KV selection at untrained layers.
+
+    Args:
+        probe_model_name:       path to future-supervised KVzapModel checkpoint
+        selected_layer_indices: model-layer indices that were trained and should prune.
+                                Derived from collect_future_supervised_labels.py
+                                ``selected_layers`` mapped to absolute indices.
+                                If empty, all layers prune (use only if full-model trained).
+    """
+
+    selected_layer_indices: tuple[int, ...] = field(default_factory=tuple)
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.selected_layer_indices and module.layer_idx not in self.selected_layer_indices:
+            return keys, values  # no-op: untrained layer — preserve full KV cache
+        return super().compress(module, hidden_states, keys, values, attentions, kwargs)
+
+
+@dataclass
 class PreselectedImagePress(BasePress):
     """Evicts all image tokens except a pre-specified keep set.
 

@@ -2,7 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from kvpress.presses.base_press import SUPPORTED_MODELS, BasePress
-from kvpress.presses.image_token_press import ImageTokenTopKPress, OracleImageTeacherPress, ProbeImageTeacherPress
+from kvpress.presses.image_token_press import (
+    FutureSupervisedImagePress,
+    HybridImageTeacherPress,
+    ImageTokenTopKPress,
+    OracleImageTeacherPress,
+    ProbeImageTeacherPress,
+)
 from kvpress.presses.kvzap_press import KVzapConfig, KVzapModel
 
 __all__ = [
@@ -13,4 +19,6 @@ __all__ = [
     "ImageTokenTopKPress",
     "OracleImageTeacherPress",
     "ProbeImageTeacherPress",
+    "FutureSupervisedImagePress",
+    "HybridImageTeacherPress",
 ]
