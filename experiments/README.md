@@ -17,6 +17,7 @@
 | [EXP-20260415-001](EXP-20260415-001/) | 2026-04-15 | 시각화 파이프라인 + 효율성 최종 정리 | VizCapture 구현, 전체 결과 통합 | ✅ Done |
 | [EXP-20260415-002](EXP-20260415-002/) | 2026-04-15 | 학습 데이터 다양화 (+ TextVQA + NLVR2) | 진행 중 | 🔄 Running |
 | [EXP-20260417-001](EXP-20260417-001/) | 2026-04-17 | Inference-time iterative pruning (one-shot → N-round) | 계획 중 | 📋 Planned |
+| [EXP-20260420-003](EXP-20260420-003/) | 2026-04-20 | PPL on PrefixKV protocol (detail_1k + mm-vet, future vs h2o vs full) | 계획 중 | 📋 Planned |
 
 ---
 

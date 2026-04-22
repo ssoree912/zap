@@ -524,6 +524,238 @@ class H2OImageOnlyPress(ImageTokenTopKPress):
 
 
 @dataclass
+class H2OAllTokenPress(BasePress):
+    """Canonical H2O-style all-token eviction (Zhang et al. 2023, image+text).
+
+    Scores every KV token by summing attention weights received from all prefill
+    queries (``attentions.sum(dim=Q)``).  Top-K tokens (by ``total_keep_ratio``)
+    are kept; the rest evicted.  No image/text distinction.
+
+    Requires ``output_attentions=True`` (eager attention).  In practice the
+    kvpress forward_hook reads ``output[1]`` directly, so we simply require
+    eager attention implementation — no need to set that flag globally.
+    """
+
+    total_keep_ratio: float = 1.0
+    head_reduce: HeadReduce = "amax"
+
+    # No-op sample context API (for compatibility with evaluate driver that
+    # calls these on ImageTokenTopKPress-based modes). All-token presses do
+    # not need image positions — eviction is over all KV positions.
+    def set_image_positions(self, image_positions: torch.Tensor) -> None:
+        return
+
+    def clear_sample_context(self) -> None:
+        return
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.total_keep_ratio >= 1.0:
+            return keys, values
+        if attentions is None:
+            raise RuntimeError(
+                "H2OAllTokenPress requires attention weights (use attn_implementation='eager')."
+            )
+        if keys.shape[0] != 1:
+            raise ValueError("H2OAllTokenPress currently only supports batch size 1")
+
+        seq_len = keys.shape[2]
+        num_kv_heads = keys.shape[1]
+
+        # (num_heads, kv_len) — sum over prefill queries
+        h2o = attentions[0].sum(dim=1).float().unsqueeze(0)  # (1, num_heads, kv_len)
+        h2o = _aggregate_scores_to_kv_heads(h2o, module, reduce=self.head_reduce)[0]  # (num_kv_heads, kv_len)
+
+        total_keep = int(math.ceil(self.total_keep_ratio * seq_len))
+        total_keep = min(seq_len, max(1, total_keep))
+
+        topk = torch.topk(h2o, k=total_keep, dim=-1).indices  # (num_kv_heads, total_keep)
+        keep_positions, _ = topk.sort(dim=-1)
+
+        gather_idx = keep_positions.unsqueeze(0).unsqueeze(-1).expand(
+            1, num_kv_heads, total_keep, module.head_dim
+        )
+        keys = keys.gather(2, gather_idx).contiguous()
+        values = values.gather(2, gather_idx).contiguous()
+        return keys, values
+
+
+@dataclass
+class FutureAllTokenPress(BasePress):
+    """Future-supervised MLP on ALL prompt tokens (requires all-token Future probe).
+
+    Assumes the Future probe was trained with targets at every token position
+    (not just image).  Applies MLP per-layer to every hidden state and keeps the
+    top ``total_keep_ratio`` fraction of tokens.  No H2O mixing — pure Future.
+
+    Does NOT require output_attentions.
+    """
+
+    future_probe_name: str = ""
+    total_keep_ratio: float = 1.0
+    head_reduce: HeadReduce = "amax"
+    _future_probe: Optional[KVzapModel] = field(default=None, init=False, repr=False)
+    _loaded_fu_name: Optional[str] = field(default=None, init=False, repr=False)
+
+    def post_init_from_model(self, model) -> None:
+        if not self.future_probe_name:
+            raise ValueError("future_probe_name is required for FutureAllTokenPress")
+        if self.future_probe_name != self._loaded_fu_name:
+            self._future_probe = KVzapModel.from_pretrained(self.future_probe_name)
+            self._loaded_fu_name = self.future_probe_name
+
+    def set_image_positions(self, image_positions: torch.Tensor) -> None:
+        return
+
+    def clear_sample_context(self) -> None:
+        return
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.total_keep_ratio >= 1.0:
+            return keys, values
+        if self._future_probe is None:
+            raise RuntimeError("Future probe not loaded")
+        if keys.shape[0] != 1:
+            raise ValueError("FutureAllTokenPress currently only supports batch size 1")
+
+        seq_len = keys.shape[2]
+        num_kv_heads = keys.shape[1]
+        dev = hidden_states.device
+        dtype = hidden_states.dtype
+
+        fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
+        with torch.no_grad():
+            s_fu = fu_layer(hidden_states).transpose(1, 2)  # (1, 1, seq_len)
+
+        # Align to kv heads via broadcast
+        s_fu = _aggregate_scores_to_kv_heads(s_fu, module, reduce=self.head_reduce)[0]  # (num_kv_heads, seq_len)
+
+        total_keep = int(math.ceil(self.total_keep_ratio * seq_len))
+        total_keep = min(seq_len, max(1, total_keep))
+
+        topk = torch.topk(s_fu, k=total_keep, dim=-1).indices  # (num_kv_heads, total_keep)
+        keep_positions, _ = topk.sort(dim=-1)
+
+        gather_idx = keep_positions.unsqueeze(0).unsqueeze(-1).expand(
+            1, num_kv_heads, total_keep, module.head_dim
+        )
+        keys = keys.gather(2, gather_idx).contiguous()
+        values = values.gather(2, gather_idx).contiguous()
+        return keys, values
+
+
+@dataclass
+class HybridH2OFutureAllTokenPress(BasePress):
+    """Blend H2O and Future (all-token trained probe) across every KV token.
+
+    score(i) = alpha * softmax(s_H2O)(i) + (1-alpha) * softmax(s_Future)(i)
+
+    Operates per-layer on all tokens (no image-only scope).  Requires all-token
+    Future probe and eager attention.
+
+    Per-layer gating:
+      If ``future_blend_layers`` is non-empty, Future is blended (using ``alpha``)
+      ONLY at those model layers; at all other layers the score falls back to
+      H2O-only (effective_alpha=1.0).  Empty tuple = blend at every layer.
+    """
+
+    future_probe_name: str = ""
+    alpha: float = 0.5
+    total_keep_ratio: float = 1.0
+    head_reduce: HeadReduce = "amax"
+    future_blend_layers: tuple[int, ...] = field(default_factory=tuple)
+    _future_probe: Optional[KVzapModel] = field(default=None, init=False, repr=False)
+    _loaded_fu_name: Optional[str] = field(default=None, init=False, repr=False)
+
+    def post_init_from_model(self, model) -> None:
+        if not self.future_probe_name:
+            raise ValueError("future_probe_name is required for HybridH2OFutureAllTokenPress")
+        if not 0.0 <= self.alpha <= 1.0:
+            raise ValueError(f"alpha must be in [0, 1], got {self.alpha}")
+        if self.future_probe_name != self._loaded_fu_name:
+            self._future_probe = KVzapModel.from_pretrained(self.future_probe_name)
+            self._loaded_fu_name = self.future_probe_name
+
+    def set_image_positions(self, image_positions: torch.Tensor) -> None:
+        return
+
+    def clear_sample_context(self) -> None:
+        return
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.total_keep_ratio >= 1.0:
+            return keys, values
+        if attentions is None:
+            raise RuntimeError("HybridH2OFutureAllTokenPress requires eager attention.")
+        if self._future_probe is None:
+            raise RuntimeError("Future probe not loaded")
+        if keys.shape[0] != 1:
+            raise ValueError("HybridH2OFutureAllTokenPress currently only supports batch size 1")
+
+        seq_len = keys.shape[2]
+        num_kv_heads = keys.shape[1]
+        dev = hidden_states.device
+        dtype = hidden_states.dtype
+
+        # H2O: (1, 1, seq_len)
+        h2o_per_tok = attentions[0].sum(dim=1).float().mean(dim=0)  # (seq_len,)
+        s_h2o = h2o_per_tok.view(1, 1, -1)
+
+        # Future: (1, 1, seq_len)
+        fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
+        with torch.no_grad():
+            s_fu = fu_layer(hidden_states).transpose(1, 2)
+
+        s_h2o_norm = torch.softmax(s_h2o.float(), dim=-1)
+        s_fu_norm = torch.softmax(s_fu.float(), dim=-1)
+
+        if self.future_blend_layers and module.layer_idx not in self.future_blend_layers:
+            effective_alpha = 1.0  # H2O-only at this layer
+        else:
+            effective_alpha = self.alpha
+
+        s_blend = effective_alpha * s_h2o_norm + (1.0 - effective_alpha) * s_fu_norm  # (1, 1, seq_len)
+
+        s_blend = _aggregate_scores_to_kv_heads(s_blend, module, reduce=self.head_reduce)[0]  # (num_kv_heads, seq_len)
+
+        total_keep = int(math.ceil(self.total_keep_ratio * seq_len))
+        total_keep = min(seq_len, max(1, total_keep))
+
+        topk = torch.topk(s_blend, k=total_keep, dim=-1).indices
+        keep_positions, _ = topk.sort(dim=-1)
+
+        gather_idx = keep_positions.unsqueeze(0).unsqueeze(-1).expand(
+            1, num_kv_heads, total_keep, module.head_dim
+        )
+        keys = keys.gather(2, gather_idx).contiguous()
+        values = values.gather(2, gather_idx).contiguous()
+        return keys, values
+
+
+@dataclass
 class OracleAllTokenPress(BasePress):
     """att_only_postvision oracle score + all-token eviction (Ablation B).
 
@@ -763,6 +995,88 @@ class HybridImageTeacherPress(ImageTokenTopKPress):
         if self.selected_layer_indices and module.layer_idx not in self.selected_layer_indices:
             return keys, values  # no-op: untrained layer — preserve full KV cache
         return super().compress(module, hidden_states, keys, values, attentions, kwargs)
+
+
+@dataclass
+class HybridH2OFuturePress(ImageTokenTopKPress):
+    """Blend H2O-prefill accumulated attention with Future-supervised probe.
+
+    Final score per image token:
+        s_hybrid = alpha * softmax(s_h2o) + (1 - alpha) * softmax(s_future)
+
+    where
+        s_h2o(i)   = mean_h sum_q A^(h)[q, i]      (prefill accumulated attention)
+        s_future   = Future MLP probe on hidden state at image position
+
+    Requires ``output_attentions=True`` (eager attention) because H2O reads the
+    real prefill attention tensor.
+
+    Args:
+        future_probe_name: path to future-supervised KVzapModel checkpoint
+        alpha:             weight for H2O score (0 = future-only, 1 = H2O-only)
+        future_blend_layers: if non-empty, Future is blended only at these layers;
+                             all other layers fall back to H2O-only.
+    """
+
+    future_probe_name: str = ""
+    alpha: float = 0.5
+    future_blend_layers: tuple[int, ...] = field(default_factory=tuple)
+    _future_probe: Optional[KVzapModel] = field(default=None, init=False, repr=False)
+    _loaded_fu_name: Optional[str] = field(default=None, init=False, repr=False)
+
+    def post_init_from_model(self, model) -> None:
+        if not self.future_probe_name:
+            raise ValueError("future_probe_name must be set for HybridH2OFuturePress")
+        if not 0.0 <= self.alpha <= 1.0:
+            raise ValueError(f"alpha must be in [0, 1], got {self.alpha}")
+        if self.future_probe_name != self._loaded_fu_name:
+            self._future_probe = KVzapModel.from_pretrained(self.future_probe_name)
+            self._loaded_fu_name = self.future_probe_name
+
+    def score_image_tokens(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+        image_positions: torch.Tensor,
+    ) -> torch.Tensor:
+        if attentions is None:
+            raise RuntimeError(
+                "HybridH2OFuturePress requires attention weights. "
+                "Pass output_attentions=True (eager attention)."
+            )
+        if self._future_probe is None:
+            raise RuntimeError("Future probe not loaded. Call post_init_from_model first.")
+
+        dev = hidden_states.device
+        dtype = hidden_states.dtype
+
+        # H2O prefill score: sum over all query positions, mean over heads → (1, 1, n_image)
+        importance = attentions[0].sum(dim=1).float()  # (num_heads, kv_len)
+        h2o_per_token = importance.mean(dim=0)  # (kv_len,)
+        s_h2o = h2o_per_token[image_positions].view(1, 1, -1)  # (1, 1, n_image)
+
+        # Future probe score → (1, 1, n_image)
+        image_hidden = hidden_states[:, image_positions, :]  # (1, N_image, D)
+        fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
+        with torch.no_grad():
+            s_fu = fu_layer(image_hidden).transpose(1, 2)  # (1, 1, n_image)
+
+        # Normalize to comparable scale via softmax over image tokens
+        s_h2o_norm = torch.softmax(s_h2o.float(), dim=-1).to(dtype)
+        s_fu_norm = torch.softmax(s_fu.float(), dim=-1).to(dtype)
+
+        # Per-layer gating (optional): Future blended only at specified layers.
+        if self.future_blend_layers and module.layer_idx not in self.future_blend_layers:
+            effective_alpha = 1.0  # H2O-only at this layer
+        else:
+            effective_alpha = self.alpha
+
+        s_hybrid = effective_alpha * s_h2o_norm + (1.0 - effective_alpha) * s_fu_norm  # (1, 1, n_image)
+        return s_hybrid
 
 
 @dataclass

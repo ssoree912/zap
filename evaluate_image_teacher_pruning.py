@@ -28,8 +28,12 @@ if str(LOOKM_ROOT) not in sys.path:
 from utils import MileBenchDataset
 
 from kvpress.presses.image_token_press import (
+    FutureAllTokenPress,
     FutureSupervisedImagePress,
+    H2OAllTokenPress,
     H2OImageOnlyPress,
+    HybridH2OFutureAllTokenPress,
+    HybridH2OFuturePress,
     HybridImageTeacherPress,
     OracleAllTokenPress,
     OracleImageTeacherPress,
@@ -335,6 +339,43 @@ def build_press(args: argparse.Namespace):
             future_blend_layers=blend,
             **forced_kwargs,
         )
+    if args.mode == "hybrid_h2o_future":
+        blend = tuple(getattr(args, "future_blend_layers", []) or [])
+        return HybridH2OFuturePress(
+            total_keep_ratio=total_keep_ratio,
+            image_keep_ratio=image_keep_ratio,
+            head_reduce=args.head_reduce,
+            future_probe_name=args.future_probe_name,
+            alpha=getattr(args, "alpha", 0.5),
+            future_blend_layers=blend,
+            **forced_kwargs,
+        )
+    if args.mode == "h2o_all_token":
+        if total_keep_ratio is None:
+            raise ValueError("--total_keep_ratio is required for h2o_all_token mode")
+        return H2OAllTokenPress(
+            total_keep_ratio=total_keep_ratio,
+            head_reduce=args.head_reduce,
+        )
+    if args.mode == "future_all_token":
+        if total_keep_ratio is None:
+            raise ValueError("--total_keep_ratio is required for future_all_token mode")
+        return FutureAllTokenPress(
+            total_keep_ratio=total_keep_ratio,
+            head_reduce=args.head_reduce,
+            future_probe_name=args.future_probe_name,
+        )
+    if args.mode == "hybrid_h2o_future_all_token":
+        if total_keep_ratio is None:
+            raise ValueError("--total_keep_ratio is required for hybrid_h2o_future_all_token mode")
+        blend = tuple(getattr(args, "future_blend_layers", []) or [])
+        return HybridH2OFutureAllTokenPress(
+            total_keep_ratio=total_keep_ratio,
+            head_reduce=args.head_reduce,
+            future_probe_name=args.future_probe_name,
+            alpha=getattr(args, "alpha", 0.5),
+            future_blend_layers=blend,
+        )
     return ProbeImageTeacherPress(
         total_keep_ratio=total_keep_ratio,
         image_keep_ratio=image_keep_ratio,
@@ -505,7 +546,7 @@ def build_look_prediction_record(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=["oracle", "oracle_onthefly", "probe", "h2o_image_only", "oracle_all_token", "future", "hybrid"], required=True)
+    parser.add_argument("--mode", choices=["oracle", "oracle_onthefly", "probe", "h2o_image_only", "oracle_all_token", "future", "hybrid", "hybrid_h2o_future", "h2o_all_token", "future_all_token", "hybrid_h2o_future_all_token"], required=True)
     parser.add_argument("--dataset_path", type=str, default=HD_DOCVQA_DATASET_PATH)
     parser.add_argument("--output_dir", type=str, default=f"{HD_ZAP_ARTIFACT_ROOT}/docvqa_image_pruning")
     parser.add_argument("--implementation_model_name", type=str, default="/workspace/zap/ckpts/llava-1.5-7b-hf")
@@ -620,10 +661,21 @@ def main() -> None:
         raise ValueError("future_probe_name is required for future mode")
     if args.mode == "hybrid" and (not args.probe_model_name or not args.future_probe_name):
         raise ValueError("probe_model_name and future_probe_name are both required for hybrid mode")
+    if args.mode == "hybrid_h2o_future" and not args.future_probe_name:
+        raise ValueError("future_probe_name is required for hybrid_h2o_future mode")
+    if args.mode in ("future_all_token", "hybrid_h2o_future_all_token") and not args.future_probe_name:
+        raise ValueError(f"future_probe_name is required for {args.mode} mode")
     if args.mode in ("oracle", "oracle_all_token") and args.truncate_like_lookm:
         raise ValueError("LOOK-M style truncation is currently supported only for probe mode")
-    # h2o_image_only and oracle_all_token require output_attentions=True (eager attention)
-    needs_output_attentions = args.mode in ("h2o_image_only", "oracle_all_token")
+    # h2o_image_only, oracle_all_token, hybrid_h2o_future,
+    # h2o_all_token, hybrid_h2o_future_all_token need per-layer attn_weights.
+    # With eager attention, LlamaAttention always returns attn_weights as output[1]
+    # — the kvpress forward_hook reads them directly. We do NOT set output_attentions=True
+    # at the generate level: HF's @capture_outputs accumulates all layers' attn tensors
+    # when that flag is on, causing OOM on long sequences (alfred, mmcoqa). Leaving the
+    # flag off still gives each layer's attn_weights to the hook but lets them be freed
+    # layer-by-layer. See /tmp/verify_output_attentions.py for measurement (-54% peak).
+    needs_output_attentions = False
 
     output_dir = Path(args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1016,10 +1068,10 @@ def main() -> None:
         "total_keep_ratio": getattr(args, "total_keep_ratio", None),
         "teacher_score_name": args.teacher_score_name if args.mode in ("oracle", "oracle_onthefly") else None,
         "probe_model_name": args.probe_model_name if args.mode in ("probe", "hybrid") else None,
-        "future_probe_name": args.future_probe_name if args.mode in ("future", "hybrid") else None,
-        "alpha": args.alpha if args.mode == "hybrid" else None,
+        "future_probe_name": args.future_probe_name if args.mode in ("future", "hybrid", "hybrid_h2o_future") else None,
+        "alpha": args.alpha if args.mode in ("hybrid", "hybrid_h2o_future") else None,
         "selected_layer_indices": args.selected_layer_indices if args.mode in ("future", "hybrid") else None,
-        "future_blend_layers": list(getattr(args, "future_blend_layers", []) or []) if args.mode == "hybrid" else None,
+        "future_blend_layers": list(getattr(args, "future_blend_layers", []) or []) if args.mode in ("hybrid", "hybrid_h2o_future", "hybrid_h2o_future_all_token") else None,
         "prompt_style": args.prompt_style,
         "look_model_name": args.look_model_name if args.save_look_files else None,
         "look_dataset_name": args.look_dataset_name if args.save_look_files else None,

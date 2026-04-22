@@ -189,7 +189,19 @@ class UnifiedCollector(LlavaAnalysisDataCollector):
         prompt_template: str,
         max_new_tokens: int = 64,
         storage_dtype: torch.dtype = torch.float16,
+        all_token_targets: bool = False,
     ) -> dict[str, torch.Tensor]:
+        """Extract per-layer labels for PV + Future probes.
+
+        If ``all_token_targets=False`` (default): outputs are limited to image
+        positions (legacy schema): hidden [L, N_image, D], y_pv [L, N_image],
+        y_future [L, N_image].
+
+        If ``all_token_targets=True``: outputs cover ALL prompt token positions
+        (image + text): hidden [L, N_all, D], y_future [L, N_all].  ``y_pv`` is
+        filled with zeros at non-image positions (the PV probe only trains on
+        image tokens by definition; this keeps the shard schema consistent).
+        """
         from kvzap.llava_extractor import (
             _build_prompt, _open_images, _move_batch_to_device, _trim_after_eos,
             _get_visual_inputs, _resolve_prompt_image_mask,
@@ -259,18 +271,25 @@ class UnifiedCollector(LlavaAnalysisDataCollector):
             attn = full_out.attentions[l][0]       # [H, full_len, full_len]
             h_l = full_out.hidden_states[l + hidden_offset][0, :prompt_len_mm, :]  # [prompt_len, D]
 
-            # hidden at image positions
-            h_img = h_l.index_select(0, image_idx).to(storage_dtype)
+            if all_token_targets:
+                # hidden at ALL prompt positions
+                h_out = h_l.to(storage_dtype)  # [prompt_len, D]
+                # y_pv: zeros at all positions (PV is image-only by definition; keep shape)
+                y_pv = torch.zeros(prompt_len_mm, dtype=storage_dtype, device=h_l.device)
+                # Future: decode→all_prompt_positions, mean over H and T
+                fu_block = attn[:, decode_start:decode_end, :prompt_len_mm]  # [H, T, prompt_len]
+                y_fu = fu_block.mean(dim=0).mean(dim=0).to(storage_dtype)     # [prompt_len]
+            else:
+                # hidden at image positions (legacy)
+                h_out = h_l.index_select(0, image_idx).to(storage_dtype)
+                # PV: prefill-attn[post_vision_text → image], max over Q then mean over H
+                pv_block = attn[:, pv_text_idx, :].index_select(2, image_idx)  # [H, Q, N_image]
+                y_pv = pv_block.max(dim=1).values.mean(dim=0).to(storage_dtype)
+                # Future: decode-attn[T → image], mean over H and T
+                fu_block = attn[:, decode_start:decode_end, :].index_select(2, image_idx)
+                y_fu = fu_block.mean(dim=0).mean(dim=0).to(storage_dtype)
 
-            # PV: prefill-attn[post_vision_text → image], max over Q then mean over H
-            pv_block = attn[:, pv_text_idx, :].index_select(2, image_idx)  # [H, Q, N_image]
-            y_pv = pv_block.max(dim=1).values.mean(dim=0).to(storage_dtype)
-
-            # Future: decode-attn[T → image], mean over H and T
-            fu_block = attn[:, decode_start:decode_end, :].index_select(2, image_idx)  # [H, T, N_image]
-            y_fu = fu_block.mean(dim=0).mean(dim=0).to(storage_dtype)
-
-            hid_layers.append(h_img.cpu())
+            hid_layers.append(h_out.cpu())
             ypv_layers.append(y_pv.cpu())
             yfu_layers.append(y_fu.cpu())
 
@@ -348,6 +367,11 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--shard_size", type=int, default=50000)
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument(
+        "--all_token_targets", action="store_true",
+        help="Collect labels at ALL prompt positions (image+text) for Future all-token "
+             "probe training. Default (False) = image positions only (legacy schema).",
+    )
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir).resolve()
@@ -384,6 +408,7 @@ def main() -> None:
         try:
             record = collector.collect_sample_unified(
                 sample=sample, prompt_template=prompt_template, max_new_tokens=args.max_new_tokens,
+                all_token_targets=args.all_token_targets,
             )
             writer.add_sample(record["hidden_image"], record["y_pv"], record["y_future"], sample_int_id)
             stats["saved"] += 1
