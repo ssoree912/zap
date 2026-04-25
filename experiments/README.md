@@ -18,6 +18,7 @@
 | [EXP-20260415-002](EXP-20260415-002/) | 2026-04-15 | 학습 데이터 다양화 (+ TextVQA + NLVR2) | 진행 중 | 🔄 Running |
 | [EXP-20260417-001](EXP-20260417-001/) | 2026-04-17 | Inference-time iterative pruning (one-shot → N-round) | 계획 중 | 📋 Planned |
 | [EXP-20260420-003](EXP-20260420-003/) | 2026-04-20 | PPL on PrefixKV protocol (detail_1k + mm-vet, future vs h2o vs full) | 계획 중 | 📋 Planned |
+| [EXP-20260425-001](EXP-20260425-001/) | 2026-04-25 | Quadrant eviction ablation — HH/HL/LH/LL 사분면별 eviction이 hybrid 정당화하는가 | 계획 중 | 📋 Planned |
 
 ---
 

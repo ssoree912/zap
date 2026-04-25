@@ -756,6 +756,127 @@ class HybridH2OFutureAllTokenPress(BasePress):
 
 
 @dataclass
+class QuadrantEvictionPress(BasePress):
+    """Evict tokens from a specific (future_score, h2o_score) quadrant.
+
+    Quadrant key: "HH" | "HL" | "LH" | "LL"
+      H = top-50% of the respective score distribution (all tokens)
+      L = bottom-50%
+
+    Evicts exactly K = floor(seq_len * evict_ratio) tokens from the target quadrant.
+    If the quadrant contains fewer than K tokens, evicts the entire quadrant.
+    Requires eager attention for H2O score computation.
+    """
+
+    future_probe_name: str = ""
+    quadrant: str = "LL"       # "HH" | "HL" | "LH" | "LL"
+    evict_ratio: float = 0.25
+    head_reduce: HeadReduce = "amax"
+    _future_probe: Optional[KVzapModel] = field(default=None, init=False, repr=False)
+    _loaded_fu_name: Optional[str] = field(default=None, init=False, repr=False)
+
+    def post_init_from_model(self, model) -> None:
+        if not self.future_probe_name:
+            raise ValueError("future_probe_name is required for QuadrantEvictionPress")
+        if self.quadrant not in ("HH", "HL", "LH", "LL"):
+            raise ValueError(f"quadrant must be one of HH/HL/LH/LL, got {self.quadrant!r}")
+        if self.future_probe_name != self._loaded_fu_name:
+            self._future_probe = KVzapModel.from_pretrained(self.future_probe_name)
+            self._loaded_fu_name = self.future_probe_name
+
+    def set_image_positions(self, image_positions: torch.Tensor) -> None:
+        return
+
+    def clear_sample_context(self) -> None:
+        return
+
+    def compress(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        if self.evict_ratio <= 0.0:
+            return keys, values
+        if attentions is None:
+            raise RuntimeError("QuadrantEvictionPress requires eager attention.")
+        if self._future_probe is None:
+            raise RuntimeError("Future probe not loaded")
+        if keys.shape[0] != 1:
+            raise ValueError("QuadrantEvictionPress currently only supports batch size 1")
+
+        seq_len = keys.shape[2]
+        num_kv_heads = keys.shape[1]
+        dev = hidden_states.device
+        dtype = hidden_states.dtype
+
+        # H2O score: sum attention over all prefill queries, mean over heads → (seq_len,)
+        s_h2o = attentions[0].sum(dim=1).float().mean(dim=0)  # (seq_len,)
+
+        # Future score: probe output → (seq_len,)
+        fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
+        with torch.no_grad():
+            s_fu = fu_layer(hidden_states).transpose(1, 2)[0, 0, :]  # (seq_len,)
+
+        # Binarize at median: strictly-above-median = High
+        h2o_med = s_h2o.median()
+        fu_med = s_fu.median()
+        is_high_h2o = s_h2o > h2o_med  # (seq_len,)
+        is_high_fu = s_fu > fu_med      # (seq_len,)
+
+        quad_masks = {
+            "HH": is_high_fu & is_high_h2o,
+            "HL": is_high_fu & ~is_high_h2o,
+            "LH": ~is_high_fu & is_high_h2o,
+            "LL": ~is_high_fu & ~is_high_h2o,
+        }
+        q_mask = quad_masks[self.quadrant]  # (seq_len,)
+
+        K = max(1, int(math.floor(seq_len * self.evict_ratio)))
+
+        # Combined score for ranking within/across quadrant
+        combined = torch.softmax(s_h2o, dim=-1) + torch.softmax(s_fu, dim=-1)
+
+        # Primary: score in-quadrant tokens highest so they get evicted first;
+        # secondary: fill remaining K slots from out-of-quadrant (lowest combined score).
+        # This ensures every layer evicts exactly K tokens → consistent cache size across layers.
+        INF = float("inf")
+        primary_score = combined.clone()
+        primary_score[~q_mask] = -INF          # non-quadrant tokens selected only as fallback
+        secondary_score = -combined.clone()    # for fallback: evict lowest-combined out-of-quadrant
+        secondary_score[q_mask] = -INF         # in-quadrant already handled by primary
+
+        # Merge: first fill K from primary (quadrant), remainder from secondary (non-quadrant)
+        n_in_quad = int(q_mask.sum().item())
+        n_from_quad = min(K, n_in_quad)
+        n_from_rest = K - n_from_quad
+
+        evict_idx_parts = []
+        if n_from_quad > 0:
+            evict_idx_parts.append(torch.topk(primary_score, k=n_from_quad).indices)
+        if n_from_rest > 0:
+            evict_idx_parts.append(torch.topk(secondary_score, k=n_from_rest).indices)
+        evict_idx = torch.cat(evict_idx_parts) if evict_idx_parts else torch.empty(0, dtype=torch.long, device=dev)
+
+        # Build keep mask and gather
+        keep_mask = torch.ones(seq_len, dtype=torch.bool, device=dev)
+        keep_mask[evict_idx] = False
+        keep_positions = keep_mask.nonzero(as_tuple=False).squeeze(-1)  # (keep,)
+        n_keep = keep_positions.shape[0]
+
+        # Expand to (1, num_kv_heads, n_keep, head_dim)
+        gather_idx = keep_positions.view(1, 1, n_keep, 1).expand(
+            1, num_kv_heads, n_keep, module.head_dim
+        )
+        keys = keys.gather(2, gather_idx).contiguous()
+        values = values.gather(2, gather_idx).contiguous()
+        return keys, values
+
+
+@dataclass
 class OracleAllTokenPress(BasePress):
     """att_only_postvision oracle score + all-token eviction (Ablation B).
 

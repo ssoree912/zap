@@ -8,6 +8,7 @@ from kvpress.presses.image_token_press import (
     ImageTokenTopKPress,
     OracleImageTeacherPress,
     ProbeImageTeacherPress,
+    QuadrantEvictionPress,
 )
 from kvpress.presses.kvzap_press import KVzapConfig, KVzapModel
 
@@ -21,4 +22,5 @@ __all__ = [
     "ProbeImageTeacherPress",
     "FutureSupervisedImagePress",
     "HybridImageTeacherPress",
+    "QuadrantEvictionPress",
 ]

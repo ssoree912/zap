@@ -35,14 +35,16 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from kvpress.presses.image_token_press import (
+    FutureAllTokenPress,
     FutureSupervisedImagePress,
     H2OAllTokenPress,
     H2OImageOnlyPress,
     HybridH2OFutureAllTokenPress,
+    QuadrantEvictionPress,
 )
 
-METHODS_NEED_ATTN = {"h2o_image_only", "h2o_all_token", "hybrid_h2o_future_all_token"}
-METHODS_ALL_TOKEN = {"h2o_all_token", "hybrid_h2o_future_all_token"}
+METHODS_NEED_ATTN = {"h2o_image_only", "h2o_all_token", "hybrid_h2o_future_all_token", "quadrant_eviction"}
+METHODS_ALL_TOKEN = {"h2o_all_token", "future_all_token", "hybrid_h2o_future_all_token"}
 from kvzap.image_teacher_utils import DEFAULT_PROMPT_TEMPLATE, build_prompt
 from kvzap.llava_extractor import (
     _get_model_device,
@@ -54,23 +56,39 @@ from kvzap.llava_extractor import (
 
 
 def load_samples(data_path: str, image_path: str, eval_samples: int) -> list[dict[str, Any]]:
-    """Load mm-vet- or detail_1k-style JSON and normalize to {id, image_file, question, answer}."""
+    """Load mm-vet- or detail_1k-style JSON and normalize to {id, image_file, question, answer}.
+
+    Supported layouts:
+      * detail_1k (list): [{id, image, conversations:[{value}, {value}]}, ...]
+      * mm-vet v1 (dict): {sample_id: {imagename, question, answer, ...}}
+      * mm-vet flat (list): [{id, image, question, answer}, ...]
+    """
     with open(data_path) as f:
         raw = json.load(f)
     is_mmvet = "mm-vet" in data_path
+
+    if isinstance(raw, dict):
+        items = [{"id": k, **v} for k, v in raw.items()]
+    else:
+        items = list(raw)
+
     samples = []
-    for item in raw:
+    for item in items:
         if is_mmvet:
             question = item["question"]
             answer = item["answer"]
+            image_rel = item.get("image") or item.get("imagename")
+            if image_rel and not image_rel.startswith("images/"):
+                image_rel = os.path.join("images", image_rel)
         else:
             convs = item["conversations"]
             assert len(convs) >= 2, f"Expected ≥2 conv turns, got {len(convs)}"
             question = convs[0]["value"]
             answer = convs[1]["value"]
+            image_rel = item["image"]
         # Strip any <image> markers from the question — the prompt template adds exactly one.
         question = question.replace("<image>", "").replace("\n\n", "\n").strip()
-        image_file = os.path.join(image_path, item["image"])
+        image_file = os.path.join(image_path, image_rel)
         samples.append({
             "id": item.get("id", item.get("sample_id")),
             "image_file": image_file,
@@ -81,9 +99,13 @@ def load_samples(data_path: str, image_path: str, eval_samples: int) -> list[dic
 
 
 def _resolve_ratio_kwargs(args: argparse.Namespace) -> dict:
-    if (args.image_keep_ratio is None) == (args.total_keep_ratio is None):
+    if args.image_keep_ratio is None and args.total_keep_ratio is None:
         raise ValueError(
             "Exactly one of --image-keep-ratio or --total-keep-ratio must be set"
+        )
+    if args.image_keep_ratio is not None and args.total_keep_ratio is not None:
+        raise ValueError(
+            "Exactly one of --image-keep-ratio or --total-keep-ratio must be set, not both"
         )
     if args.image_keep_ratio is not None:
         return {"image_keep_ratio": args.image_keep_ratio}
@@ -93,6 +115,19 @@ def _resolve_ratio_kwargs(args: argparse.Namespace) -> dict:
 def build_press(args: argparse.Namespace):
     if args.method == "full":
         return None
+    if args.method == "quadrant_eviction":
+        if not args.future_probe_name:
+            raise ValueError("--future-probe-name is required for quadrant_eviction")
+        quadrant = getattr(args, "quadrant", None)
+        if not quadrant:
+            raise ValueError("--quadrant is required for quadrant_eviction")
+        evict_ratio = getattr(args, "evict_ratio", 0.25) or 0.25
+        return QuadrantEvictionPress(
+            future_probe_name=args.future_probe_name,
+            quadrant=quadrant,
+            evict_ratio=evict_ratio,
+            head_reduce=args.head_reduce,
+        )
     ratio_kwargs = _resolve_ratio_kwargs(args)
     if args.method == "future":
         if not args.future_probe_name:
@@ -120,6 +155,16 @@ def build_press(args: argparse.Namespace):
         return H2OAllTokenPress(
             total_keep_ratio=ratio_kwargs["total_keep_ratio"],
             head_reduce=args.head_reduce,
+        )
+    if args.method == "future_all_token":
+        if "total_keep_ratio" not in ratio_kwargs:
+            raise ValueError("--total-keep-ratio is required for future_all_token")
+        if not args.future_probe_name:
+            raise ValueError("--future-probe-name is required for future_all_token")
+        return FutureAllTokenPress(
+            total_keep_ratio=ratio_kwargs["total_keep_ratio"],
+            head_reduce=args.head_reduce,
+            future_probe_name=args.future_probe_name,
         )
     if args.method == "hybrid_h2o_future_all_token":
         if "total_keep_ratio" not in ratio_kwargs:
@@ -226,8 +271,15 @@ def main() -> None:
     # Method / press
     parser.add_argument("--method",
                         choices=["full", "future", "h2o_image_only",
-                                 "h2o_all_token", "hybrid_h2o_future_all_token"],
+                                 "h2o_all_token", "future_all_token",
+                                 "hybrid_h2o_future_all_token",
+                                 "quadrant_eviction"],
                         required=True)
+    parser.add_argument("--quadrant", type=str, default=None,
+                        choices=["HH", "HL", "LH", "LL"],
+                        help="Quadrant to evict. Only used by quadrant_eviction.")
+    parser.add_argument("--evict-ratio", type=float, default=0.25,
+                        help="Fraction of ALL tokens to evict per layer. Only used by quadrant_eviction.")
     parser.add_argument("--alpha", type=float, default=0.5,
                         help="Hybrid blend weight for H2O (1-alpha for Future). "
                              "Only used by hybrid_h2o_future_all_token.")
