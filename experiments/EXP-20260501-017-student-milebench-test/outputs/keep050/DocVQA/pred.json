@@ -1,0 +1,57 @@
+[
+  {
+    "sample_id": 0,
+    "image": [
+      "/workspace/zap/data/MileBench/DocVQA/images/0.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/1.jpg"
+    ],
+    "question": "I will give you some pictures, and each group of pictures will correspond to a question. Please answer it briefly. You must choose your answer from the Choice List. \n<ImageHere><ImageHere>Question: what is the title for the name robert kauk ?\nChoice list: \nA. VICE PRESIDENT, BRUSH BEET GROWERS ASS'N\nB. TREASURER, BRUSH BEET GROWERS ASS'N\nC. PRESIDENT, BRUSH BEET GROWERS ASS'N\nD. SECRETARY, BRUSH BEET GROWERS ASS'N\nYour answer is:",
+    "gt_response": "PRESIDENT, BRUSH BEET GROWERS ASS'N",
+    "gen_model_id": "zap_docvqa",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 1,
+    "image": [
+      "/workspace/zap/data/MileBench/DocVQA/images/2.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/3.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/4.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/5.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/6.jpg"
+    ],
+    "question": "I will give you some pictures, and each group of pictures will correspond to a question. Please answer it briefly. You must choose your answer from the Choice List. \n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Question: How much Total Income ?\nChoice list: \nA. $12,000 to $15,000\nB. $11,000 to $14,000\nC. $10,000 to $13,000\nD. $13,000 to $16,000\nYour answer is:",
+    "gt_response": "$12,000 to $15,000",
+    "gen_model_id": "zap_docvqa",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 2,
+    "image": [
+      "/workspace/zap/data/MileBench/DocVQA/images/7.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/8.jpg",
+      "/workspace/zap/data/MileBench/DocVQA/images/9.jpg"
+    ],
+    "question": "Please answer briefly the question that corresponds to each group of pictures. You must choose your answer from the Choice List. \n<ImageHere><ImageHere><ImageHere>Question: what is the title of Irene Karl?\nChoice list: \nA. Res. Asst.\nB. Res. Associate\nC. Research Associate\nD. Assistant Researcher\nYour answer is:",
+    "gt_response": "Res. Asst.",
+    "gen_model_id": "zap_docvqa",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  }
+]

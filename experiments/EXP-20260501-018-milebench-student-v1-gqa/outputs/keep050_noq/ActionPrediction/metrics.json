@@ -1,0 +1,34 @@
+{
+  "n_samples": 200,
+  "n_predictions": 200,
+  "n_failures": 0,
+  "total_keep_ratio": 0.5,
+  "student_model_name": "/workspace/zap/ckpts/v1/student_v2_A_gqa_lr1e4",
+  "prompt_style": "look_milebench",
+  "look_model_name": "student_v1_gqa_keep050_noq",
+  "look_dataset_name": "ActionPrediction",
+  "look_result_dir": "/workspace/zap/artifacts/combine_prob/student_v1_gqa_keep050_noq/ActionPrediction",
+  "exact_match_accuracy": 0.0,
+  "look_eval": {
+    "Accuracy": 0.375,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.375,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        75.0,
+        200
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -869,3 +869,72 @@ class PreselectedImagePress(BasePress):
         keys = keys.gather(2, gather_idx).contiguous()
         values = values.gather(2, gather_idx).contiguous()
         return keys, values
+
+
+@dataclass
+class VisualUtilityStudentPress(ImageTokenTopKPress):
+    """ImageTokenTopKPress that scores using VisualUtilityStudentLlava15.
+
+    Call set_question_positions(q_positions) before each generate() so that
+    question token indices are exact (supports interleaved image/text layouts
+    such as LLaVA-OneVision AnyRes).
+    """
+
+    student_model_name: str = ""
+    _loaded_student_name: Optional[str] = field(default=None, init=False, repr=False)
+    _student: Optional[object] = field(default=None, init=False, repr=False)
+    _question_positions: Optional[torch.Tensor] = field(default=None, init=False, repr=False)
+
+    def set_question_positions(self, q_positions: torch.Tensor) -> None:
+        self._question_positions = q_positions.detach().cpu().long().flatten()
+
+    def clear_sample_context(self) -> None:
+        super().clear_sample_context()
+        self._question_positions = None
+
+    def post_init_from_model(self, model):
+        if not self.student_model_name:
+            raise ValueError("student_model_name must be set for VisualUtilityStudentPress")
+        if self.student_model_name != self._loaded_student_name:
+            from kvpress.presses.visual_utility_student import VisualUtilityStudentLlava15
+            student = VisualUtilityStudentLlava15.from_pretrained(self.student_model_name)
+            self._student = student.to(dtype=torch.float16).eval()
+            self._loaded_student_name = self.student_model_name
+
+    def score_image_tokens(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+        image_positions: torch.Tensor,
+    ) -> torch.Tensor:
+        if self._student is None:
+            raise RuntimeError("Student model not loaded — call post_init_from_model first")
+
+        li = module.layer_idx
+        key = str(li)
+        if key not in self._student.layers:
+            n_img = image_positions.numel()
+            return torch.zeros(1, 1, n_img, device=hidden_states.device, dtype=hidden_states.dtype)
+        layer_module = self._student.layers[key]
+
+        device = hidden_states.device
+        if self._question_positions is not None:
+            q_idx = self._question_positions.to(device=device, dtype=torch.long)
+        else:
+            # fallback: tokens after last image token (works when images precede text)
+            T = hidden_states.shape[1]
+            last_img = int(image_positions.max().item())
+            q_idx = (
+                torch.arange(last_img + 1, T, dtype=torch.long, device=device)
+                if last_img + 1 < T
+                else torch.empty(0, dtype=torch.long, device=device)
+            )
+
+        layer_module = layer_module.to(device, dtype=hidden_states.dtype).eval()
+        with torch.no_grad():
+            scores = layer_module(hidden_states, image_positions, q_idx)  # [1, N_I]
+        return scores.unsqueeze(1)  # [1, 1, N_I]

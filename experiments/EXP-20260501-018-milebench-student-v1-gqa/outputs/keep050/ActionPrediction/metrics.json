@@ -1,0 +1,41 @@
+{
+  "mode": "student",
+  "n_samples": 200,
+  "n_predictions": 200,
+  "n_failures": 0,
+  "image_keep_ratio": null,
+  "total_keep_ratio": 0.5,
+  "teacher_score_name": null,
+  "probe_model_name": null,
+  "future_probe_name": null,
+  "alpha": null,
+  "selected_layer_indices": null,
+  "future_blend_layers": null,
+  "prompt_style": "look_milebench",
+  "look_model_name": "student_v1_gqa_keep050",
+  "look_dataset_name": "ActionPrediction",
+  "look_result_dir": "/workspace/zap/artifacts/combine_prob/student_v1_gqa_keep050/ActionPrediction",
+  "exact_match_accuracy": 0.0,
+  "look_eval": {
+    "Accuracy": 0.375,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.375,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        75.0,
+        200
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  }
+}

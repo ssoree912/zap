@@ -1,0 +1,22 @@
+{
+  "ROUGE-L": 0.0,
+  "image_quantity_level-ROUGE-L": {
+    "Few": 0.0,
+    "Medium": 0.0,
+    "Many": 0.0
+  },
+  "image_quantity_level-Result": {
+    "Few": [
+      0.0,
+      320
+    ],
+    "Medium": [
+      0,
+      0
+    ],
+    "Many": [
+      0,
+      0
+    ]
+  }
+}

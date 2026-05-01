@@ -1,0 +1,22 @@
+{
+  "ROUGE-L": 0.14563621326595755,
+  "image_quantity_level-ROUGE-L": {
+    "Few": 0.14563621326595755,
+    "Medium": 0.0,
+    "Many": 0.0
+  },
+  "image_quantity_level-Result": {
+    "Few": [
+      29.12724265319151,
+      200
+    ],
+    "Medium": [
+      0,
+      0
+    ],
+    "Many": [
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "n_samples": 600,
+  "n_predictions": 600,
+  "n_failures": 0,
+  "total_keep_ratio": 0.5,
+  "student_model_name": "/workspace/zap/ckpts/v1/student_v2_A_gqa_lr1e4",
+  "prompt_style": "look_milebench",
+  "look_model_name": "student_v1_gqa_keep050",
+  "look_dataset_name": "GPR1200",
+  "look_result_dir": "/workspace/zap/artifacts/combine_prob/student_v1_gqa_keep050/GPR1200",
+  "exact_match_accuracy": 0.105,
+  "look_eval": {
+    "Accuracy": 0.105,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.105,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        63.0,
+        600
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  }
+}

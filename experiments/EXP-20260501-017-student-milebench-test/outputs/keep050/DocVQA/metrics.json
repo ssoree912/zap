@@ -1,0 +1,19 @@
+{
+  "mode": "student",
+  "n_samples": 3,
+  "n_predictions": 3,
+  "n_failures": 0,
+  "image_keep_ratio": null,
+  "total_keep_ratio": 0.5,
+  "teacher_score_name": null,
+  "probe_model_name": null,
+  "future_probe_name": null,
+  "alpha": null,
+  "selected_layer_indices": null,
+  "future_blend_layers": null,
+  "prompt_style": "look_milebench",
+  "look_model_name": "zap_docvqa",
+  "look_dataset_name": "DocVQA",
+  "look_result_dir": "/workspace/zap/artifacts/combine_prob/zap_docvqa/DocVQA",
+  "exact_match_accuracy": 0.0
+}
