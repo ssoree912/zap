@@ -1,0 +1,1002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "In the current image, you are standing in front of the knife's on the counter. To reach your goal of putting a warm slice of bread on",
+    "gt_response": "Pick up the knife closest to the fork on the right, located on the counter. "
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "In the current environment, there is a sink with a chilled, cut slice of lettuce on the counter. To achieve the main goal, you need to",
+    "gt_response": "cut the head of lettuce on the table"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "In the image, I can see that I am currently in the bathroom, standing next to the sink. To reach the toilet's water tank",
+    "gt_response": "Turn around and face the toilet behind you."
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "In the current image, there is a cupboard with a cold mug placed inside. To reach this goal, I would first turn left and walk to the",
+    "gt_response": "Pick up the mug that's in front of you at the coffee maker."
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "In the current image, there are two boxes of tissue on the counter in front of the toilet. To move these boxes to the back of the",
+    "gt_response": "Place tissue box on back of toilet, in front of candle stick."
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "In the image, there is a mug placed on a shelf in the middle row of books. To achieve the goal of taking the mug from the",
+    "gt_response": "Pick up the white mug from the top shelf"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "In the current image, there is a sink with a cup and a fork on the counter. To complete the task, you need to move to the sink to",
+    "gt_response": "Pick up the cup from the counter."
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "To reach the main goal, I need to first go to the long black table in the corner. In the image, there is a phone on the table,",
+    "gt_response": "Turn around, bring the phone to the lamp in the corner."
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "In the current environment, I am in a kitchen with a round table in the corner. There is a chilled pot on the stove, and I need",
+    "gt_response": "Turn and go to the refrigerator."
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "In the current environment, there is a yellow ladle on the counter, and a blue handled ladle is also present. The main goal is to place the",
+    "gt_response": "Turn right and move to the sink to the left of the coffee maker and in front of the window ."
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "In the current image, I am standing in front of the stove. To proceed with the task, I need to pick up the pan from the bottom left",
+    "gt_response": "Go left and then left to face the fridge."
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "In the current environment, you are standing in a kitchen with a refrigerator, a table, and a toaster. Your main goal is to place",
+    "gt_response": "Turn right, walk to the sink. "
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "In the current environment, you are in a room with a bed, a nightstand, and a book. Your main goal is to examine the book by the",
+    "gt_response": "Turn left and walk to the nightstand with the small lamp against the wall."
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "In the current image, I am standing in front of the microwave. To reach the main goal of throwing away the heated potato, I need",
+    "gt_response": "Heat the potato in the microwave and take it out."
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "In the current image, there is a sink on the left and a microwave on the right. To reach the microwave, you need to go",
+    "gt_response": "Put the apple in the sink and turn on the water. Turn off the water and take the apple out of the sink"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "In the current image, there is a mug on the desk with a pen in it. To reach the main goal, I need to pick up the",
+    "gt_response": "Turn left, move forward, and turn right to face the desk again."
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "In the current environment, there is a sink in front of you, and you are standing next to a toilet. To complete your main goal, you",
+    "gt_response": "pick up the brown paper roll"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "In the image, there is a white coffee maker on the counter. To put a cold mug at the coffee maker, follow these steps:",
+    "gt_response": "Pick up the mug on the counter, to the right of the coffee maker."
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "In the current image, there is a red handkerchief on the floor near the sink. To reach the final goal, your next move should be to",
+    "gt_response": "wash the handkerchief in the sink, pick up handkerchief from sink"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "In the current image, there is a mug on the dresser with a pencil in it. To reach the main goal, you should take a",
+    "gt_response": "Pick up the mug with the pencil in it."
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "In the current environment, you are standing in a room with a bed, a desk, and a hutch. Your main goal is to put two p",
+    "gt_response": "Pick up the pencil sitting on the desk to the right of the chair."
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "In the current image, you are in the kitchen with a microwave and a counter. To proceed with your main goal of putting bread in the microw",
+    "gt_response": "Turn around, go straight and stop at the oven, turn right to face the oven."
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "In the current environment, there is a chair and a coffee table in the room. The newspapers are placed on the coffee table, and the chairs are",
+    "gt_response": "Turn around with the newspaper and look at the seat of the chair on the right."
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "In the current environment, you are standing in the kitchen near the sink. The main goal is to move a plate and knife to the sink. To achieve",
+    "gt_response": "Place the knife in the plate on the left side of the counter."
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "In the current environment, you are in a kitchen with a microwave and a counter. The main goal is to cook the apple in the microwave",
+    "gt_response": "Open the microwave, place the apple in the microwave, close the door, cook the apple, and the take it out and close the door."
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "To achieve the main goal, you need to follow the step-by-step instructions provided. In the current step, you are at the sink, and the",
+    "gt_response": "Put the apple in the microwave, shut the door, open the door and take the apple out and shut the door."
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "In the current image, you are in the living room with a couch, an end table, and a fireplace. You have already picked up a v",
+    "gt_response": "Turn left and go to the fireplace "
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "In the current image, you are standing in front of a sink with a knife in your hand. To heat up the slice of tomato, you should",
+    "gt_response": "Slice the tomato in the sink."
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "In the current image, there is a green chair with two key chains on it. To move the key chains to the coffee table, you should first",
+    "gt_response": "Put the key chain on the coffee table, to the left of the tissue box which is in front of the newspaper."
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "In the current environment, you are at the kitchen counter with a knife and a tomato. Your main goal is to move the tomato slice to the",
+    "gt_response": "Put the knife on the counter"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "In the current environment, there is a knife on the counter, and a tomato slice is placed on the floor. To achieve the main goal, you",
+    "gt_response": "Pick up the butter knife, close to the edge of the counter, and to the left of the fork, on the counter. "
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "In the current image, you are in the middle of the room, standing in front of a nightstand. To proceed with your main goal, you should first",
+    "gt_response": "Pick up the black cup with the pencil in it."
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "In the current image, I am in a room with a couch, a chair, a TV, a desk, and a piano. I am holding",
+    "gt_response": "grab the keys out from the pull out drawers of the desk there"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "To reach the main goal, I need to follow the steps outlined in the image. In the current step, I am at the side of the desk",
+    "gt_response": "Put the bowl on the desk to the right of the book."
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "In the current image, you are standing in front of a microwave. To continue with your main goal of placing a bowl into a cabinet, you",
+    "gt_response": "Open the microwave and place the bowl inside the microwave then turn on the microwave"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "In the current image, you are in a living room with a couch, a coffee table, and a floor lamp. Your main goal is to grab the",
+    "gt_response": "Turn right, walk around the coffee table, go behind the sofa chair, walk to the corner"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "In the current environment, there is an apple on the counter, and a knife is also present. To heat the apple, you can use the knife",
+    "gt_response": "Pick up the apple at the back of the counter."
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "In the image, there is a bed with two cushions on it, and a chair nearby. To achieve the goal of moving the two cushions",
+    "gt_response": "Pick up a cushion on the bed. "
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "In the current image, I am standing in the kitchen with a wine bottle and a knife on the counter. My main goal is to move the coffee",
+    "gt_response": "Pick up the butter knife on the table. "
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "In the current image, I am at the table with a plate and a knife. I need to move forward to the table and pick up the knife",
+    "gt_response": "pick up the plate from the table"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "Step#3: Walk to the kitchen counter with the refrigerator in the background.",
+    "gt_response": "Walk to the kitchen counter"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "Step#3: Walk to the sink area and place the soap in the drawer below the sink.",
+    "gt_response": "Turn and walk in front of the sink."
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "Step#3: Move to the shelving unit. <Image 4> Step#4: Place the tissue box on the shelving unit",
+    "gt_response": "Turn around.  Move across to toilet, then turn to the left.  Walk across to the silver shelves."
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "In the current environment, there are two spray bottles on the toilet, and the goal is to move them to a rack. To achieve",
+    "gt_response": "Place the spray bottle down on the rack"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "In the image, there is a toilet on the left side and a metal shelf on the right side. To place the two white bottles on",
+    "gt_response": "pick up white bottle with orange top from toilet tank"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "In the current image, there is a pan on the stove and a tomato on the kitchen counter. To reach the final goal of placing a tomato",
+    "gt_response": "Place the pan on the counter between the fridge and stove."
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "In the current image, there is a purple sprayer on the floor near the sink. To complete the task, you should pick up the purple",
+    "gt_response": "Turn  around, step forward, then turn left to face the trash can."
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "In the current image, you are standing in a kitchen with a microwave and a sink. Your main goal is to put the cabbage from the fr",
+    "gt_response": "Pick up the cabbage on the counter beside the microwave"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "In the current environment, you are in a room with a black desk, a chair, and a bookshelf. There is a phone on the des",
+    "gt_response": "Put the phone on the shelf below the disc."
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "In the current image, you are standing in a kitchen with various appliances and items around you. Your main goal is to put a piece of cold apple",
+    "gt_response": "Turn right to face the oven."
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "In the image, I can see a wine bottle placed on a counter next to a toaster. To achieve my goal of chilling the wine, I",
+    "gt_response": "Go to the fridge behind you."
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "In the current image, you are in the kitchen with a frying pan in your hand. Your main goal is to chill the frying pan",
+    "gt_response": "Turn completely around, walk to the wall, turn to the right so you are facing the white table. "
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "To complete the task of putting two candles in the cabinet, follow these steps:\n\n1. In the current image, you are in the right corner",
+    "gt_response": "Place the candle in the cabinet on the right front side of the soap bottle. "
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "To reach the main goal, I need to turn to the table to the left, pick up the third book from the left, and then go around the des",
+    "gt_response": "Turn on the light"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "In the current image, I am at the end of the kitchen table on the right side, facing the end. I have the knife in hand, which",
+    "gt_response": "Turn to the left and walk forward to face the counter to the right of the sink."
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "In the current environment, there is a TV, a chair, a couch, a piano, and a lamp. The remote is placed under the lamp.",
+    "gt_response": "turn on the lamp"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "In the current environment, there is a table with a bowl on it. To complete the task, you need to pick up the champagne glass under the",
+    "gt_response": "Turn around and take a step then turn right to face the table."
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "In the current environment, there is a red rug on the floor and a dining table nearby. A dog is also present in the scene. Based on the",
+    "gt_response": "Pick up the keys on the center table "
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "In the current image, you are facing the square bowl on the counter. To proceed with your main goal, you should first pick up the knife from",
+    "gt_response": "Place the knife in the square bowl in front of you."
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "In the image, there is a laptop on a bed, and two cellphones are placed on the beds. To reach the main goal, you need",
+    "gt_response": "Pick up the cellphone on the bed."
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "In the image, there is a bathroom with a sink and a bathtub. The main goal is to wet a sponge to put in the",
+    "gt_response": "Pick up the sponge that is to the right of the sink."
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "To reach the main goal, I need to follow the steps outlined in the image. First, I should turn around and walk to the other side of the",
+    "gt_response": "place the keys in the safe there"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "In the current image, you are standing in front of the sink. To reach your main goal, you need to follow the steps outlined in the previous response",
+    "gt_response": "Take a step backwards so you can use the cupboard under the sink."
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "Based on the image, I am currently in the middle of the process. I have already turned left and gone forward, and I am now in the position to",
+    "gt_response": "Turn around, go to the counter"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "Step#1: turn left and go towards the sink and counter.",
+    "gt_response": "take the hand towel"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "Step#1: Turn to your left and face the mirrors.",
+    "gt_response": "Grab the towel that is hanging from the wall in front of you"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "In the current image, you are standing in front of the sink with the egg in your hand. Your next move should be to walk forward past the trash",
+    "gt_response": "Turn left twice and move forward to the trash can."
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "Step#1: Move to the counter to the right of the sink.",
+    "gt_response": "move to the fridge to the right of you"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "In the current image, the brass candle holder is placed on the coffee table. To move it to the end table, I would first turn the opposite",
+    "gt_response": "Turn away from the coffee table and move toward the wall."
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "In the current environment, I am in a bathroom with a toilet and a sink. The toilet paper is placed on the toilet",
+    "gt_response": "Turn around and walk towards the vanity."
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "In the image, there is a box on a shelf and a light switch nearby. To reach the main goal, I need to turn left and go forward",
+    "gt_response": "Pick up the box from the floor. "
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "In the current image, you are standing in the middle of the kitchen island on the left. Your next move should be to pick up the green sponge",
+    "gt_response": "Pick up the white plate with the green sponge on it."
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "In the current image, you are standing in a kitchen with a knife and a plate in front of you. To proceed with your main goal of washing",
+    "gt_response": "Pick up a dirty bowl with a knife in it from the counter top. "
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "In the image, there is a bowl on the dresser and a lamp on the table. To achieve your main goal, you should first walk straight to",
+    "gt_response": "Grab the bowl in the back"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "In the current environment, you are in a kitchen with a table, a counter, and a refrigerator. There are two loaves of bread on",
+    "gt_response": "Open the fridge, put the loaf on the center shelf, close the doors"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "In the current image, you are standing in front of a table with a box of tissues on it. To reach your next step, you need to pick",
+    "gt_response": "Put the tissues on the coffee table close to the laptop to it's left."
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "In the image, there is a sink located near the table. To place the cold lettuce in the sink, you should first move to the sink by following",
+    "gt_response": "Pick up the head of lettuce from the table."
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "Step#1: Turn around and walk to the white table on your left.",
+    "gt_response": "Pick up the egg from the table."
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "In the current environment, there is a sink with a cup on the countertop. The fork is located near the sink. To complete the task, I need",
+    "gt_response": "grab the fork from the sink"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "In the current image, you are in the kitchen with a sink and a refrigerator. You need to pick up the fork from inside the sink and",
+    "gt_response": "Take the cup and fork out of the fridge and shut the door."
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "In the image, there is a sink with a gold plate and a gold scoop on it. The knife is also present in the scene. To achieve",
+    "gt_response": "Pick up the plate along with the knife and scoop."
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "In the current environment, you are in a living room with a couch, a chair, and a laptop. There is a tall lamp in the room as",
+    "gt_response": "Turn around, walk all the way across the room to the farthest wall to the tall lamp in the corner."
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "In the current image, there is a small table with two yellow spray bottles on it. To move these bottles into a small bin, I would",
+    "gt_response": "Pick up the closest yellow spray bottle off of the box."
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "To achieve your main goal, you need to follow the step-by-step instructions provided in the images. In the current step, you are at the sink",
+    "gt_response": "Move to the left and stand facing the right side of the toilet."
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "In the current image, there is a loaf of bread on the counter, and a microwave is also present in the scene. To heat the lo",
+    "gt_response": "Heat the bread in the microwave. "
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "In the current image, you are standing in a kitchen with a loaf of bread on the table. Your objective is to place the chilled loaf of",
+    "gt_response": "Turn to the left, move past the blue coffee maker, then turn right and face the table to the left of the dishwasher."
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "In the current environment, you are standing in front of a toilet with two spray bottles on top of it. Your main goal is to move",
+    "gt_response": "Place the spray bottle on the toilet in front of you."
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "In the current environment, you are standing in a kitchen with a sink and a cupboard. There is a coffee maker nearby, and a glass is placed",
+    "gt_response": "Warm the cup in the microwave then get it back out and close the door."
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "To reach the main goal, I need to pick up the two sauce pans off the stove and place them on the counter to the left. In",
+    "gt_response": "turn left to face the kitchen counter"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "In the current image, there is a lettuce head on the counter. To reach the final goal, you should take the lettuce from the counter. To",
+    "gt_response": "Turn right, go forward to the wall, turn left to the fridge."
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "In the current image, there is a fork on the countertop, which is not the most suitable utensil for cutting a slice of bread. To reach",
+    "gt_response": "pick up the knife from the sink"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "In the current image, I am looking up at the lamp. My next action will be to close the laptop and pick it up from the table. After that",
+    "gt_response": "Turn on the lamp."
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "In the current image, I am in the process of picking up the mug from the counter. To achieve my main goal of putting the warm mug",
+    "gt_response": "Warm the mug in the microwave then take it back out and close the door."
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "In the image, there are three instances of a CD on a dresser in front of a mirror. As a smart agent, I have successfully placed CDs",
+    "gt_response": "Move across the room to the brown desk. Open the top right drawer."
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "In the current image, there is a table with a knife and a potato on it. To reach the main goal, you need to pick up the",
+    "gt_response": "Cut the potato on the table."
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "In the current image, you are standing in front of a refrigerator. To move the wine glass from the counter to the microwave, you",
+    "gt_response": "Go forward to the counter and pick up the wine glass."
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "In the current image, there is a person standing in the room, and a book is placed on the desk. To reach the final goal of reading a",
+    "gt_response": "Turn on the lamp."
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "In the current image, there is a microwave on the kitchen counter, and a large metal knife with a golden handle is placed nearby. To complete",
+    "gt_response": "Turn right and walk over to the fridge."
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "In the current image, there is a spoon on the countertop. To reach the main goal, you should pick up the spoon from the countertop",
+    "gt_response": "turn to the right"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "In the image, there is a wooden desk with a chair and a basketball on the floor. To move the basketball to the bed, I would first walk",
+    "gt_response": "Pick up the basketball that is on the ground to the right of the wooden desk."
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "In the current image, there is a chair, a bed, and a small black table. To move the two discs to the small black table, you",
+    "gt_response": "Put the disc on the small black table to the left of the lamp."
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "In the current image, I am in a room with a nightstand and a window. I need to find the two credit cards and place them on the table",
+    "gt_response": "Turn around, go forward and right to the gray and white table. "
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "In the image, there is a shelf with a bowl on it. To chill the bowl in the fridge, you need to move to",
+    "gt_response": "Take the bowl from the middle shelf, behind the salt."
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "In the current environment, you are standing in front of the wooden shelves with a dirty plate. Your main goal is to wash the plate in the",
+    "gt_response": "put the plate in the sink basin, wash it with water, take out the now clean grey plate"
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "In the image, there is a brown leather couch and a coffee table. On the coffee table, there are two newspapers. To move the newsp",
+    "gt_response": "Pick up a newspaper on the table."
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "Your current surroundings include a sink, a small black table, and a white table. There is an apple on the table, and you need",
+    "gt_response": "Go to the white table on your left."
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "In the current environment, there is a table with a laptop on it, and a credit card is placed next to the laptop. Based on the main goal,",
+    "gt_response": "Turn around and face the white table with the plate on it. "
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "In the current environment, you are in a kitchen with a stove and an oven. There is a clean pan on the stove, and you are",
+    "gt_response": "Grab the pan on the stove."
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "In the current image, you are standing in a room with a dining table, chairs, and a lit tall lamp. Your main goal is to look",
+    "gt_response": "Turn to make a right towards the tall lamp next to the couch."
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "In the current environment, there is a sink on the counter to the right of the stove. To complete the task of putting the chilled cabbage in",
+    "gt_response": "Pick up the cabbage from the counter"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "In the current image, there is a kitchen table with two full tomatoes on it. To achieve the main goal, I need to place a clean tomato",
+    "gt_response": "slice up the tomato there on the table into slices"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "To reach the main goal, I need to move to the sink and turn right. In the image, there is a tomato on the countertop, which",
+    "gt_response": "Pick up the tomato in the left sink"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "To achieve the main goal of picking up the remote and placing it on the table, I can use the information from the image to plan my steps. In",
+    "gt_response": "place remote on the table"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "In the current environment, there are two cooking instruments on the kitchen table. The main goal is to pick up these two items and place them on the table",
+    "gt_response": "Open the rightmost kitchen cabinet then pick up a measuring cup from in the cabinet"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "In the current image, you are standing in a kitchen with a microwave and a sink. There is a knife on the counter in front of you",
+    "gt_response": "Turn right and head towards the counter by the trash can."
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "In the current image, there is a pen on the dresser, and a bowl is placed in a cabinet. To move the pen to the bowl",
+    "gt_response": "Place the pen in a clear bowl in the cabinet."
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "Step#1: Walk ahead to the TV stand.",
+    "gt_response": "Pick up the remote on the left of the other remote."
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "In the current image, there is a microwaved piece of apple on the counter. To reach the final goal, your next move should be to place the",
+    "gt_response": "Cut the apple inside the trashcan"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "In the image, there is a knife on the counter, which is the object I need to pick up to complete the current step. To achieve this,",
+    "gt_response": "turn around to other counter"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "In the current image, you are in the kitchen with a knife and a tomato. Your main goal is to put the cooked tomato in the",
+    "gt_response": "Raise the knife up higher in the air. "
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "Step#1: move around to the table",
+    "gt_response": "place the tomato to cool and take it out"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "In the current environment, there is a statue on the end table. The main goal is to place the statue on the end table. To achieve this, you",
+    "gt_response": "pick up the dark statue of the person from the table"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "In the current environment, there is a red tomato on the floor near a yellow chair. To complete the task, you need to pick up the tomato",
+    "gt_response": "Chill the tomato in the fridge for 7 seconds. "
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "In the current image, you are standing next to the sink and the microwave. To proceed with your main goal of slicing a potato,",
+    "gt_response": "Cut up the potato on the table."
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "In the image, there is a toilet with a sink next to it. The sink is empty, and there is no soap visible on the back end",
+    "gt_response": "Pick up the soap from the sink counter. "
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "In the current environment, you are in a bathroom with a metal shelf. Your main goal is to place a washed bar of soap on the sh",
+    "gt_response": "Walk over to the sink."
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "In the current image, there is a potato on the table, and a sink is nearby. To proceed with the task, I would first pick up the",
+    "gt_response": "Put the potato in the sink and rinse it "
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "In the current image, there is a microwave with a potato inside. To reach the main goal of placing the skillet in the freezer,",
+    "gt_response": "Turn to your left, then walk to the counter to your left"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "In the current image, there is a bar of soap sitting on the edge of a bathtub. To complete the task, I need to pick up the",
+    "gt_response": "turn around and head to the sink"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "Step#1: Move over to the toilet.",
+    "gt_response": "Pick up empty toilet paper roll on the floor. "
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "To reach the main goal, you need to follow the steps outlined in the image. First, you should go across the room to the coffee maker,",
+    "gt_response": "Back up from the fridge."
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "Step#4: Chill the potato in the fridge.",
+    "gt_response": "Grab the potato and head to the trash can"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "Your Main Goal:   put the piece of lettuce in between the bottle and the potatoes that are on the table  Step Details:",
+    "gt_response": " turn to the table "
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "Step#1: Turn to your right, and go to the cardboard box, on the floor, to the left of the dresser across from you.",
+    "gt_response": "Pick up the cardboard box on the floor. "
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "In the current image, you are standing next to a sink in a kitchen. To reach your main goal of putting a cold table on a black stand, you",
+    "gt_response": "Get the potato that's in the sink."
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "In the current image, you are in front of the refrigerator, and there is a potato inside. To reach your main goal, you need",
+    "gt_response": "Turn left, move to the counter right of the dishwasher."
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "In the current environment, the white spray bottle is located on the countertop next to the toilet tank lid. To complete the task, you",
+    "gt_response": "Turn right and hang another right to reach the toilet."
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "In the current image, you are in the kitchen with a microwave in front of you. To reach your main goal of putting a warm apple in the",
+    "gt_response": "Open the microwave, put the apple inside and heat it up, then take it out."
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "In the image, there is a bed with a teddy bear on it, a laptop on a table, and a book on the table. To achieve the",
+    "gt_response": "Pick up the book on the table."
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "In the current environment, I am in a room with a red table and a floor lamp. There is an empty box on the table, and I need to",
+    "gt_response": "Turn on the lamp"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "In the image, there is a cup placed on the kitchen counter. To reach the cup, you need to turn left and walk over to the kitchen sink,",
+    "gt_response": "grab a cup out of the kitchen sink"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "In the current image, you are standing in the kitchen with a sink and a microwave nearby. Your main goal is to microwave the glass and",
+    "gt_response": "Turn left and walk towards the microwave, then turn right."
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "As a smart agent, I have successfully navigated through various environments and achieved my goals. In the image, I am currently at a small table with a pen",
+    "gt_response": "pick up the pen that is on the table"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "In the current image, there is a loaf of bread on the table, and a knife is also present. To reach the main goal of putting a",
+    "gt_response": "Look down at the table"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "In the image, there is a sink with a towel hanging on the left side of the mirror. To reach the main goal, I need to go",
+    "gt_response": "Take the towel to the left of the mirror down from the towel ring."
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "In the current environment, I am in the kitchen, and there is a sink with a glass cup on the counter. My main goal is to place the cold",
+    "gt_response": "turn around towards the door and then left towards the refrigerator"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "Step#3: Hold the tennis racket in your hand and examine it by the light of the desk lamp.",
+    "gt_response": "Turn around and walk to the lamp on the desk."
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "In the current image, there is a piece of cooked potato on the counter. To reach the final goal, your next move should be to pick up",
+    "gt_response": "Slice the potato that is in the sink."
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "Step#1: Walk from the living room to the dining table on the laptop's side.",
+    "gt_response": "Turn on the lamp on the left of the seat."
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "In the current environment, you are in a kitchen with a sink and a knife. The main goal is to place a cooked tomato in the fr",
+    "gt_response": "drop the knife in the sink"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "In the current image, there is a cell phone on the counter. To reach the final goal of putting a heated egg on the counter, I would first",
+    "gt_response": "Turn to the right and stand in front of the microwave."
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "In the current image, there is a knife on the counter, and a plate is placed nearby. To reach the final goal, your next move should be",
+    "gt_response": "place the knife on a plate inside the fridge"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "In the current image, there is a head of lettuce on the table. To reach the table, you need to turn left and take a step, then",
+    "gt_response": "Turn left and walk to the fridge that's in the corner to your right and stand in front of it facing it."
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "In the current image, there is a pan on the other end of the table. To reach the pan, I would first walk to the other end of the",
+    "gt_response": "Turn and walk to the left end of the long white table where there is a cabbage."
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "In the current image, I am in the kitchen, and there is a black pot on the counter. My next action will be to pick up the black pot",
+    "gt_response": "Turn to the right, and move to the counter on  the right side of the stove. "
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "In the current environment, you are in a kitchen with a microwave and a fridge. Your main goal is to put a heated green cup in",
+    "gt_response": "Turn right and walk forward, then hang a right and walk over to the counter."
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "In the current image, there is a toilet paper roll on the back of the toilet. To achieve the main goal of putting empty and full",
+    "gt_response": "turn around, walk forward, turn right, walk to wall"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "In the current image, there is a knife on the table, and a chilled slice of potato is also present. To reach the final goal of",
+    "gt_response": "cut the lettuce with the knife"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "In the current image, there is a spatula and a yellow knife on the counter. To reach the next step, I would pick up the yellow",
+    "gt_response": "Turn around and walk to the potato on the counter in the opposite corner of the room."
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "In the current image, there is a white sink and a red bin nearby. The green bottles are placed on the white dresser. To reach the main",
+    "gt_response": "turn around, go to white dresser with green bottle and candle"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "In the current image, there is a green spray bottle on the countertop. To reach the main goal of placing the two spray bottles into",
+    "gt_response": "Turn around, walk towards the shower, then turn right, walk towards the sink."
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "Step#1: Turn left to go to the arm brown leather arm chair.",
+    "gt_response": "Pick up the CD on the left front corner."
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "In the image, there is a chair placed in front of a desk. The desk has a CD on it, and the chair is positioned to",
+    "gt_response": "Pick up the compact disk on the edge of the yellow desk."
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "In the current image, you are standing in front of a bathroom sink. To continue with your main goal of transferring the towels on the to",
+    "gt_response": "Turn around and walk towards the towel holder on the wall next to the sink."
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "To reach the main goal of warming the bread up in the microwave, I need to follow the step-by-step instructions provided. In the",
+    "gt_response": "Open the microwave.  Put the bread in the microwave.  Turn the microwave on.  When finished take the bread out of the microwave."
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "In the current image, I am standing in the kitchen with the glass bowl and spoon in hand. My next step is to put the glass bowl",
+    "gt_response": "Place the spoon in the glass bowl."
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "In the image, there is a toilet with a roll of toilet paper on it. To reach the main goal of putting the toilet",
+    "gt_response": "put the toilet paper on to the toilet paper holder"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "In the current image, you are standing in a kitchen with a microwave and a refrigerator nearby. To reach the microwave, you",
+    "gt_response": "Pick up the knife by the lettuce from the counter. "
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "To reach the goal of putting a chilled egg in the left side of the sink, I would first go across the room to the sink. In the image",
+    "gt_response": "Pick up the egg on the back of the sink."
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "Step#3: Walk to the garbage can located in the right corner of the image.",
+    "gt_response": "Turn around and walk to the garbage can on the floor."
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "To achieve the main goal of putting the cleaned soap bar in the bathtub, I need to follow the step-by-step instructions provided in the",
+    "gt_response": "Turn right and walk over to the bathtub"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "In the current image, there is a chair in front of a desk, a bookcase, and a bed. To reach the goal of placing a smart",
+    "gt_response": "turn around to the opposite direction  and step forward and turn to the left and go forward to the bed"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "To chill a slice of lettuce in the refrigerator, I need to follow these steps:\n\n1. Turn and go to the counter",
+    "gt_response": "Slice a head of lettuce on the table."
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "In the current image, I am in a living room with a couch, a coffee table with a laptop on it, and two red credit cards. My",
+    "gt_response": "go to left side of black couch with blue pillow"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "In the image, I can see that I am currently in the kitchen, standing near the counter. The head of lettuce is placed on the counter, which",
+    "gt_response": "Turn right and walk to the fridge then turn right and walk to the sink."
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "To reach the main goal, you need to move two cardboard boxes to a coffee table. In the current image, you are standing in front of a coffee",
+    "gt_response": "Turn right and begin walking across the room, then hang a right and walk up to the pink chair."
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "In the current image, there is a sink with a soap bar on it. To reach the main goal, you should first pick up the soap bar from the",
+    "gt_response": "turn and face the waste basket  walk to the waste basket"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "In the current image, the heated glass is placed on the counter. To complete the main goal, you should pick up the glass and place it in the",
+    "gt_response": "Open then microwave heat the glass then take it out and close the microwave"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "In the current environment, there is a black pot with a cut up tomato and a knife in it, placed on a counter. The pot is next",
+    "gt_response": "Turn around and walk to the stove."
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "In the current image, you are standing in front of a purple chair and ottoman. To reach your main goal of moving the keys from the coffee table",
+    "gt_response": "put the keys on the purple ottoman"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "In the image, there is a wooden coffee table with a laptop and a cup on it. The laptop is placed on the right side of the table, while",
+    "gt_response": "Pick up the keys on the coffee table."
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "In the current image, I am in the living room area. There is a desk with a lamp and a potted plant on it. I need to",
+    "gt_response": "Turn around, go straight to the wall, then turn left to face the night stand."
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "In the current environment, you are in a kitchen with a refrigerator, a dishwasher, and a counter. There is a brown",
+    "gt_response": "Place the bowl in the refrigerator, on the right shelf, above the potato, wait a moment for the bowl to chill, then remove the bowl from the refrigerator. "
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "In the current image, you are standing in a kitchen with a sink, a microwave, and a round brown table. There are also apples and",
+    "gt_response": "Cut the apple on the table into thirds."
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "In the current image, you are in the kitchen with a stove and a refrigerator. The skillet is on the stove, and you",
+    "gt_response": "Take the skillet back out of the fridge, turn right and carry it to the stove."
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "In the current image, there is a laptop on a wooden table, a couch, and a coffee table. The keys are located under the light. Based",
+    "gt_response": "Turn right to go to the front of the lamp."
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "In the current environment, you are in a kitchen with a toaster and a loaf of bread. Your main goal is to place the chilled loaf",
+    "gt_response": "Take the bread from the small gray counter."
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "Step#3: Place the disk on the shelf.",
+    "gt_response": "turn left towards the shelf"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "In the current image, you are standing in the kitchen with a microwave and a refrigerator nearby. Your main goal is to put a ch",
+    "gt_response": "Chill the egg in the fridge. "
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "In the image, there is a round black table with a red credit card on it. To achieve the goal of moving the credit cards to the chair, I",
+    "gt_response": "Turn around and face the coffee table so that the remote control is in front of the golden statue when you look at it."
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "In the current image, you are standing in a living room with a chair, a table, and a lamp. You are holding a remote control in your hand",
+    "gt_response": "Turn on the lamp. "
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "In the image, there is a racquet lying on the floor near the wall. To reach the main goal, I need to pick up the racquet and",
+    "gt_response": "Pick up the racquet from the floor in the corner."
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "In the current image, there is a head of lettuce on the counter. To proceed with your goal, you should first pick up the lettuce from the",
+    "gt_response": "Turn right and walk to the sink on the left."
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "In the current environment, you are in a room with a red couch and a box on it. There is also a yellow pillow on the right end",
+    "gt_response": "pick up box with credit card"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "In the current image, I am standing in the kitchen near the sink. To fill the pan with water, I should first turn right and move towards the window",
+    "gt_response": "place the pan in the kitchen sink, then turn the sink on and fill the pan with water. Pick it up out of the sink"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "In the current image, there is a tomato on the floor near the trash bin. To reach the main goal of putting the chilled tomato in",
+    "gt_response": "Open the fridge chill the tomato take it out then close the fridge"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "In the image, there is a table with a knife and a head of lettuce on it. To achieve the goal of cutting the lettuce head,",
+    "gt_response": "Cut the head of lettuce into pieces."
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "Step#1: Turn around and walk up to the wall, the turn right and walk across the room to the kitchen counter.",
+    "gt_response": "Open the leftmost cabinet door under the counter in front of you and remove the golden spoon with a blue handle, then close the door."
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "In the current image, there is a toilet with a red trash can next to it. To reach the main goal, you need to place a",
+    "gt_response": "Place the candle to the left of the blue spray bottle on top of the toilet cistern."
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "In the image, there is a couch with an empty box on it. To achieve the goal of picking up the empty box and placing it on the",
+    "gt_response": "Turn around and walk towards the black armchair, standing in front of it."
+  }
+]

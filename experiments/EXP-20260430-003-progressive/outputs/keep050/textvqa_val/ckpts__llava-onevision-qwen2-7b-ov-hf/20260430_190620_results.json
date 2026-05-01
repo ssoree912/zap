@@ -1,0 +1,114 @@
+{
+  "results": {
+    "textvqa_val": {
+      "alias": "textvqa_val",
+      "exact_match,none": 0.7633800000000036,
+      "exact_match_stderr,none": 0.005656730048266946,
+      "submission,none": null,
+      "submission_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {
+    "textvqa_val": []
+  },
+  "configs": {
+    "textvqa_val": {
+      "task": "textvqa_val",
+      "dataset_path": "/workspace/zap/data/eval/TextVQA",
+      "test_split": "validation",
+      "full_docs": false,
+      "process_results_use_image": false,
+      "doc_to_visual": "<function textvqa_doc_to_visual at 0x753320d5d240>",
+      "doc_to_text": "<function textvqa_doc_to_text at 0x753320d5e170>",
+      "doc_to_target": "answer",
+      "process_results": "<function textvqa_process_results at 0x753320d5e440>",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": true
+        },
+        {
+          "metric": "submission",
+          "aggregation": "<function textvqa_aggregate_submissions at 0x753320d5d360>",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "ASSISTANT:"
+        ]
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "lmms_eval_specific_kwargs": {
+        "default": {
+          "pre_prompt": "",
+          "post_prompt": "\nAnswer the question using a single word or phrase.",
+          "ocr": false
+        },
+        "qwen_vl": {
+          "pre_prompt": "",
+          "post_prompt": " Answer:"
+        },
+        "pre_prompt": "",
+        "post_prompt": "\nAnswer the question using a single word or phrase.",
+        "ocr": false
+      }
+    }
+  },
+  "versions": {
+    "textvqa_val": "Yaml"
+  },
+  "n-shot": {
+    "textvqa_val": 0
+  },
+  "higher_is_better": {
+    "textvqa_val": {
+      "exact_match": true,
+      "submission": true
+    }
+  },
+  "n-samples": {
+    "textvqa_val": {
+      "original": 5000,
+      "effective": 5000
+    }
+  },
+  "config": {
+    "model": "llava_onevision_student",
+    "model_args": "pretrained=/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf,student_path=/workspace/zap/ckpts/student_onevision_A_ep20,keep_ratio=0.50,device=cuda:0,stats_output_dir=/workspace/zap/experiments/EXP-20260430-003-progressive/outputs/keep050",
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": "",
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": "20260430_190620",
+  "task_hashes": {},
+  "model_source": "llava_onevision_student",
+  "model_name": "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf",
+  "model_name_sanitized": "ckpts__llava-onevision-qwen2-7b-ov-hf",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 1138337.572276867,
+  "end_time": 1142558.421169215,
+  "total_evaluation_time_seconds": "4220.84889234812"
+}

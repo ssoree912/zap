@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260428-053346",
+  "created_at": "2026-04-28T05:33:46.554226+00:00",
+  "datasets": {},
+  "model_name": "ov7b_student20",
+  "commit": "e7d64cfa",
+  "argv": [
+    "/workspace/VLMEvalKit/run.py",
+    "--config",
+    "eval_configs/onevision_student20_chartqa.json",
+    "--work-dir",
+    "experiments/EXP-20260428-003-layerwise-analysis/outputs/entropy_eval/uniform20"
+  ],
+  "api_mode": false,
+  "world_size": 1,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-04-28T05:33:46.554603+00:00"
+}

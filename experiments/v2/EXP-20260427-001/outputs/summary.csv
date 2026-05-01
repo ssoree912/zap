@@ -1,0 +1,7 @@
+seed,overall,test_human,test_augmented,csv,work_dir,log
+0,79.96,67.36,92.56,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_0/ov7b_baseline_local/ov7b_baseline_local_ChartQA_TEST_acc.csv,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_0,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/logs/seed_0.log
+1,79.96,67.36,92.56,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_1/ov7b_baseline_local/ov7b_baseline_local_ChartQA_TEST_acc.csv,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_1,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/logs/seed_1.log
+2,79.96,67.36,92.56,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_2/ov7b_baseline_local/ov7b_baseline_local_ChartQA_TEST_acc.csv,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_2,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/logs/seed_2.log
+3,79.96,67.36,92.56,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_3/ov7b_baseline_local/ov7b_baseline_local_ChartQA_TEST_acc.csv,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_3,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/logs/seed_3.log
+4,,,,,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_4,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/logs/seed_4.log
+5,,,,,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/seed_5,/workspace/zap/eval_results/baseline_chartqa_seed_sweep/logs/seed_5.log

@@ -1,0 +1,3743 @@
+[
+    {
+        "sample_id": 0,
+        "pred_response": "b",
+        "gt_response": "medical books",
+        "choice_list": [
+            "humor & entertainment",
+            "medical books",
+            "not the same",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "0.jpg",
+            "1.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 1,
+        "pred_response": "b",
+        "gt_response": "children's books",
+        "choice_list": [
+            "health fitness & dieting",
+            "not the same",
+            "children's books",
+            "computers & technology"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "2.jpg",
+            "3.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 2,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "4.jpg",
+            "5.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 3,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "2015",
+            "2016",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "6.jpg",
+            "7.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 4,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "not the same",
+            "2017",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "8.jpg",
+            "9.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 5,
+        "pred_response": "a",
+        "gt_response": "steven l emanuel",
+        "choice_list": [
+            "not the same",
+            "steven l emanuel",
+            "clive cussler",
+            "parragon books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "10.jpg",
+            "11.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 6,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "12.jpg",
+            "13.jpg",
+            "14.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 7,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "15.jpg",
+            "16.jpg",
+            "17.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 8,
+        "pred_response": "b",
+        "gt_response": "102",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "18.jpg",
+            "19.jpg",
+            "20.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 9,
+        "pred_response": "b",
+        "gt_response": "william shakespeare",
+        "choice_list": [
+            "william shakespeare",
+            "not the same",
+            "michelin travel & lifestyle",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "21.jpg",
+            "22.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 10,
+        "pred_response": "a",
+        "gt_response": "health fitness & dieting",
+        "choice_list": [
+            "not the same",
+            "health fitness & dieting",
+            "christian books & bibles",
+            "children's books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "23.jpg",
+            "24.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 11,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "25.jpg",
+            "26.jpg",
+            "27.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 12,
+        "pred_response": "b",
+        "gt_response": "102",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "28.jpg",
+            "29.jpg",
+            "30.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 13,
+        "pred_response": "b",
+        "gt_response": "michael connelly",
+        "choice_list": [
+            "jane o'connor",
+            "not the same",
+            "michael connelly",
+            "jack canfield"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "31.jpg",
+            "32.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 14,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "not the same",
+            "2015",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "33.jpg",
+            "34.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 15,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "35.jpg",
+            "36.jpg",
+            "37.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 16,
+        "pred_response": "b",
+        "gt_response": "102",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "38.jpg",
+            "39.jpg",
+            "40.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 17,
+        "pred_response": "d",
+        "gt_response": "travel",
+        "choice_list": [
+            "humor & entertainment",
+            "travel",
+            "health fitness & dieting",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "41.jpg",
+            "42.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 18,
+        "pred_response": "d",
+        "gt_response": "medical books",
+        "choice_list": [
+            "medical books",
+            "business & money",
+            "sports & outdoors",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "43.jpg",
+            "44.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 19,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "45.jpg",
+            "46.jpg",
+            "47.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 20,
+        "pred_response": "b",
+        "gt_response": "humor & entertainment",
+        "choice_list": [
+            "humor & entertainment",
+            "not the same",
+            "crafts hobbies & home",
+            "cookbooks food & wine"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "48.jpg",
+            "49.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 21,
+        "pred_response": "b",
+        "gt_response": "102",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "50.jpg",
+            "51.jpg",
+            "52.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 22,
+        "pred_response": "c",
+        "gt_response": "business & money",
+        "choice_list": [
+            "business & money",
+            "literature & fiction",
+            "not the same",
+            "children's books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "53.jpg",
+            "54.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 23,
+        "pred_response": "d not the same",
+        "gt_response": "chilton",
+        "choice_list": [
+            "william shakespeare",
+            "inc barcharts",
+            "chilton",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "55.jpg",
+            "56.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 24,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "57.jpg",
+            "58.jpg",
+            "59.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 25,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "60.jpg",
+            "61.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 26,
+        "pred_response": "a",
+        "gt_response": "medical books",
+        "choice_list": [
+            "not the same",
+            "children's books",
+            "health fitness & dieting",
+            "medical books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "62.jpg",
+            "63.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 27,
+        "pred_response": "a",
+        "gt_response": "streetwise maps",
+        "choice_list": [
+            "not the same",
+            "streetwise maps",
+            "rand mcnally",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "64.jpg",
+            "65.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 28,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "2017",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "66.jpg",
+            "67.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 29,
+        "pred_response": "b",
+        "gt_response": "james lee anderson",
+        "choice_list": [
+            "giovanni maciocia cac nanjing",
+            "not the same",
+            "james lee anderson",
+            "jeff savage"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "68.jpg",
+            "69.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 30,
+        "pred_response": "a",
+        "gt_response": "julia alvarez",
+        "choice_list": [
+            "not the same",
+            "catalyst game labs",
+            "william shakespeare",
+            "julia alvarez"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "70.jpg",
+            "71.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 31,
+        "pred_response": "d",
+        "gt_response": "inc barcharts",
+        "choice_list": [
+            "dk publishing",
+            "inc barcharts",
+            "national geographic",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "72.jpg",
+            "73.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 32,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "74.jpg",
+            "75.jpg",
+            "76.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 33,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "77.jpg",
+            "78.jpg",
+            "79.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 34,
+        "pred_response": "c",
+        "gt_response": "medical books",
+        "choice_list": [
+            "travel",
+            "reference",
+            "not the same",
+            "medical books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "80.jpg",
+            "81.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 35,
+        "pred_response": "a",
+        "gt_response": "children's books",
+        "choice_list": [
+            "not the same",
+            "children's books",
+            "science & math",
+            "law"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "82.jpg",
+            "83.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 36,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "84.jpg",
+            "85.jpg",
+            "86.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 37,
+        "pred_response": "c",
+        "gt_response": "noam chomsky",
+        "choice_list": [
+            "knopf guides",
+            "mary oliver",
+            "not the same",
+            "noam chomsky"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "87.jpg",
+            "88.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 38,
+        "pred_response": "d",
+        "gt_response": "michelin travel & lifestyle",
+        "choice_list": [
+            "philip m parker",
+            "michelin travel & lifestyle",
+            "lonely planet",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "89.jpg",
+            "90.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 39,
+        "pred_response": "d not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "2017",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "91.jpg",
+            "92.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 40,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "not the same",
+            "2015",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "93.jpg",
+            "94.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 41,
+        "pred_response": "c",
+        "gt_response": "hcpro",
+        "choice_list": [
+            "hcpro",
+            "james kavanagh",
+            "not the same",
+            "clive cussler"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "95.jpg",
+            "96.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 42,
+        "pred_response": "b",
+        "gt_response": "teen & young adult",
+        "choice_list": [
+            "children's books",
+            "not the same",
+            "teen & young adult",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "97.jpg",
+            "98.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 43,
+        "pred_response": "d",
+        "gt_response": "medical books",
+        "choice_list": [
+            "christian books & bibles",
+            "medical books",
+            "children's books",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "99.jpg",
+            "100.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 44,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "2015",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "101.jpg",
+            "102.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 45,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "103.jpg",
+            "104.jpg",
+            "105.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 46,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2017",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "106.jpg",
+            "107.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 47,
+        "pred_response": "b",
+        "gt_response": "us government",
+        "choice_list": [
+            "philipp winterberg",
+            "not the same",
+            "us government",
+            "browntrout publishers"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "108.jpg",
+            "109.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 48,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "110.jpg",
+            "111.jpg",
+            "112.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 49,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "2015",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "113.jpg",
+            "114.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 50,
+        "pred_response": "b",
+        "gt_response": "fodor's",
+        "choice_list": [
+            "fodor's",
+            "not the same",
+            "takehiko inoue",
+            "michael h hoffheimer"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "115.jpg",
+            "116.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 51,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2017",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "117.jpg",
+            "118.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 52,
+        "pred_response": "a",
+        "gt_response": "various",
+        "choice_list": [
+            "not the same",
+            "younghusband world travel journals",
+            "various",
+            "fodor's"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "119.jpg",
+            "120.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 53,
+        "pred_response": "b",
+        "gt_response": "fodor's",
+        "choice_list": [
+            "lonely planet",
+            "not the same",
+            "fodor's",
+            "michelin travel & lifestyle"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "121.jpg",
+            "122.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 54,
+        "pred_response": "b",
+        "gt_response": "travel",
+        "choice_list": [
+            "science & math",
+            "not the same",
+            "calendars",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "123.jpg",
+            "124.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 55,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2015",
+            "2017",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "125.jpg",
+            "126.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 56,
+        "pred_response": "b",
+        "gt_response": "2015",
+        "choice_list": [
+            "2016",
+            "not the same",
+            "2015",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "127.jpg",
+            "128.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 57,
+        "pred_response": "c",
+        "gt_response": "dk",
+        "choice_list": [
+            "fodor's",
+            "lonely planet",
+            "not the same",
+            "dk"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "129.jpg",
+            "130.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 58,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "131.jpg",
+            "132.jpg",
+            "133.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 59,
+        "pred_response": "c",
+        "gt_response": "travel",
+        "choice_list": [
+            "children's books",
+            "comics & graphic novels",
+            "not the same",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "134.jpg",
+            "135.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 60,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "136.jpg",
+            "137.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 61,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "138.jpg",
+            "139.jpg",
+            "140.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 62,
+        "pred_response": "a",
+        "gt_response": "cookbooks food & wine",
+        "choice_list": [
+            "not the same",
+            "cookbooks food & wine",
+            "crafts hobbies & home",
+            "business & money"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "141.jpg",
+            "142.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 63,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2016",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "143.jpg",
+            "144.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 64,
+        "pred_response": "a",
+        "gt_response": "jack smith",
+        "choice_list": [
+            "not the same",
+            "rand mcnally",
+            "jack smith",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "145.jpg",
+            "146.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 65,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "147.jpg",
+            "148.jpg",
+            "149.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 66,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "150.jpg",
+            "151.jpg",
+            "152.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 67,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "153.jpg",
+            "154.jpg",
+            "155.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 68,
+        "pred_response": "d",
+        "gt_response": "inc barcharts",
+        "choice_list": [
+            "inc barcharts",
+            "william shakespeare",
+            "chilton",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "156.jpg",
+            "157.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 69,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "158.jpg",
+            "159.jpg",
+            "160.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 70,
+        "pred_response": "b",
+        "gt_response": "medical books",
+        "choice_list": [
+            "romance",
+            "medical books",
+            "sports & outdoors",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "161.jpg",
+            "162.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 71,
+        "pred_response": "b not the same",
+        "gt_response": "travel",
+        "choice_list": [
+            "law",
+            "not the same",
+            "travel",
+            "history"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "163.jpg",
+            "164.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 72,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2017",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "165.jpg",
+            "166.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 73,
+        "pred_response": "c",
+        "gt_response": "nelles verlag",
+        "choice_list": [
+            "fodor's",
+            "nelles verlag",
+            "not the same",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "167.jpg",
+            "168.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 74,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2017",
+            "2016",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "169.jpg",
+            "170.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 75,
+        "pred_response": "b",
+        "gt_response": "dk publishing",
+        "choice_list": [
+            "mark g papich dvm  ms  dacvcp",
+            "not the same",
+            "dk publishing",
+            "william shakespeare"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "171.jpg",
+            "172.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 76,
+        "pred_response": "d",
+        "gt_response": "travel",
+        "choice_list": [
+            "children's books",
+            "travel",
+            "christian books & bibles",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "173.jpg",
+            "174.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 77,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2016",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "175.jpg",
+            "176.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 78,
+        "pred_response": "b",
+        "gt_response": "102",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "177.jpg",
+            "178.jpg",
+            "179.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 79,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "2015",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "180.jpg",
+            "181.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 80,
+        "pred_response": "d",
+        "gt_response": "william shakespeare",
+        "choice_list": [
+            "sara king",
+            "dk publishing",
+            "william shakespeare",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "182.jpg",
+            "183.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 81,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "travel",
+            "science & math",
+            "humor & entertainment"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "184.jpg",
+            "185.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 82,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "186.jpg",
+            "187.jpg",
+            "188.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 83,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "not the same",
+            "2016",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "189.jpg",
+            "190.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 84,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "191.jpg",
+            "192.jpg",
+            "193.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 85,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "194.jpg",
+            "195.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 86,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "196.jpg",
+            "197.jpg",
+            "198.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 87,
+        "pred_response": "b",
+        "gt_response": "travel",
+        "choice_list": [
+            "law",
+            "not the same",
+            "history",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "199.jpg",
+            "200.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 88,
+        "pred_response": "b",
+        "gt_response": "crafts hobbies & home",
+        "choice_list": [
+            "comics & graphic novels",
+            "not the same",
+            "crafts hobbies & home",
+            "children's books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "201.jpg",
+            "202.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 89,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "203.jpg",
+            "204.jpg",
+            "205.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 90,
+        "pred_response": "d",
+        "gt_response": "biographies & memoirs",
+        "choice_list": [
+            "business & money",
+            "christian books & bibles",
+            "biographies & memoirs",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "206.jpg",
+            "207.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 91,
+        "pred_response": "d",
+        "gt_response": "education & teaching",
+        "choice_list": [
+            "comics & graphic novels",
+            "education & teaching",
+            "children's books",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "208.jpg",
+            "209.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 92,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "2015",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "210.jpg",
+            "211.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 93,
+        "pred_response": "d",
+        "gt_response": "religion & spirituality",
+        "choice_list": [
+            "medical books",
+            "religion & spirituality",
+            "science & math",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "212.jpg",
+            "213.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 94,
+        "pred_response": "a",
+        "gt_response": "lonely planet",
+        "choice_list": [
+            "not the same",
+            "william shakespeare",
+            "fodor's",
+            "lonely planet"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "214.jpg",
+            "215.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 95,
+        "pred_response": "d",
+        "gt_response": "national geographic maps  adventure",
+        "choice_list": [
+            "sandra hill",
+            "national geographic maps  adventure",
+            "megacalendars",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "216.jpg",
+            "217.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 96,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "218.jpg",
+            "219.jpg",
+            "220.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 97,
+        "pred_response": "d",
+        "gt_response": "science & math",
+        "choice_list": [
+            "science & math",
+            "travel",
+            "children's books",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "221.jpg",
+            "222.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 98,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "law",
+            "travel",
+            "teen & young adult"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "223.jpg",
+            "224.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 99,
+        "pred_response": "d",
+        "gt_response": "2015",
+        "choice_list": [
+            "2016",
+            "2017",
+            "2015",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "225.jpg",
+            "226.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 100,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "227.jpg",
+            "228.jpg",
+            "229.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 101,
+        "pred_response": "a",
+        "gt_response": "2015",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2015",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "230.jpg",
+            "231.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 102,
+        "pred_response": "d",
+        "gt_response": "health fitness & dieting",
+        "choice_list": [
+            "teen & young adult",
+            "health fitness & dieting",
+            "children's books",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "232.jpg",
+            "233.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 103,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "234.jpg",
+            "235.jpg",
+            "236.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 104,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "237.jpg",
+            "238.jpg",
+            "239.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 105,
+        "pred_response": "d",
+        "gt_response": "crafts hobbies & home",
+        "choice_list": [
+            "mystery thriller & suspense",
+            "children's books",
+            "crafts hobbies & home",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "240.jpg",
+            "241.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 106,
+        "pred_response": "d",
+        "gt_response": "sara king",
+        "choice_list": [
+            "lonely planet",
+            "paul theroux",
+            "sara king",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "242.jpg",
+            "243.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 107,
+        "pred_response": "c",
+        "gt_response": "health fitness & dieting",
+        "choice_list": [
+            "health fitness & dieting",
+            "medical books",
+            "not the same",
+            "history"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "244.jpg",
+            "245.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 108,
+        "pred_response": "d not the same",
+        "gt_response": "crafts hobbies & home",
+        "choice_list": [
+            "crafts hobbies & home",
+            "arts & photography",
+            "children's books",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "246.jpg",
+            "247.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 109,
+        "pred_response": "d",
+        "gt_response": "inc barcharts",
+        "choice_list": [
+            "inc barcharts",
+            "princeton review",
+            "national geographic maps  adventure",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "248.jpg",
+            "249.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 110,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2015",
+            "2016",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "250.jpg",
+            "251.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 111,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "252.jpg",
+            "253.jpg",
+            "254.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 112,
+        "pred_response": "d",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "255.jpg",
+            "256.jpg",
+            "257.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 113,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "2017",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "258.jpg",
+            "259.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 114,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "computers & technology",
+            "travel",
+            "medical books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "260.jpg",
+            "261.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 115,
+        "pred_response": "a",
+        "gt_response": "browntrout publishers",
+        "choice_list": [
+            "not the same",
+            "dk publishing",
+            "browntrout publishers",
+            "lonely planet"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "262.jpg",
+            "263.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 116,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2015",
+            "2017",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "264.jpg",
+            "265.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 117,
+        "pred_response": "d",
+        "gt_response": "browntrout publishers",
+        "choice_list": [
+            "wendell berry",
+            "lonely planet",
+            "browntrout publishers",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "266.jpg",
+            "267.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 118,
+        "pred_response": "a",
+        "gt_response": "teen & young adult",
+        "choice_list": [
+            "not the same",
+            "travel",
+            "children's books",
+            "teen & young adult"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "268.jpg",
+            "269.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 119,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "270.jpg",
+            "271.jpg",
+            "272.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 120,
+        "pred_response": "b",
+        "gt_response": "tricia brown",
+        "choice_list": [
+            "nella larsen",
+            "not the same",
+            "inc barcharts",
+            "tricia brown"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "273.jpg",
+            "274.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 121,
+        "pred_response": "a",
+        "gt_response": "kaplan",
+        "choice_list": [
+            "not the same",
+            "james lee anderson",
+            "kaplan",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "275.jpg",
+            "276.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 122,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "travel",
+            "cookbooks food & wine",
+            "humor & entertainment"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "277.jpg",
+            "278.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 123,
+        "pred_response": "a",
+        "gt_response": "trends international",
+        "choice_list": [
+            "not the same",
+            "disney book group",
+            "dk publishing",
+            "trends international"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "279.jpg",
+            "280.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 124,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2016",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "281.jpg",
+            "282.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 125,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "283.jpg",
+            "284.jpg",
+            "285.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 126,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2016",
+            "2017",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "286.jpg",
+            "287.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 127,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "teen & young adult",
+            "travel",
+            "medical books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "288.jpg",
+            "289.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 128,
+        "pred_response": "b",
+        "gt_response": "knopf guides",
+        "choice_list": [
+            "lonely planet",
+            "not the same",
+            "fodor's",
+            "knopf guides"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "290.jpg",
+            "291.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 129,
+        "pred_response": "d",
+        "gt_response": "fodor's",
+        "choice_list": [
+            "fodor's",
+            "rand mcnally",
+            "kenneth e hagin",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "292.jpg",
+            "293.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 130,
+        "pred_response": "d not the same",
+        "gt_response": "2014",
+        "choice_list": [
+            "2014",
+            "2015",
+            "2016",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "294.jpg",
+            "295.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 131,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2017",
+            "2015",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "296.jpg",
+            "297.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 132,
+        "pred_response": "b",
+        "gt_response": "business & money",
+        "choice_list": [
+            "health fitness & dieting",
+            "not the same",
+            "business & money",
+            "children's books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "298.jpg",
+            "299.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 133,
+        "pred_response": "d",
+        "gt_response": "2015",
+        "choice_list": [
+            "2016",
+            "2017",
+            "2015",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "300.jpg",
+            "301.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 134,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "302.jpg",
+            "303.jpg",
+            "304.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 135,
+        "pred_response": "d",
+        "gt_response": "tyler omoth",
+        "choice_list": [
+            "tyler omoth",
+            "streetwise maps",
+            "megacalendars",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "305.jpg",
+            "306.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 136,
+        "pred_response": "b",
+        "gt_response": "rand mcnally",
+        "choice_list": [
+            "autumn libal",
+            "not the same",
+            "rand mcnally",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "307.jpg",
+            "308.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 137,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "309.jpg",
+            "310.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 138,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "311.jpg",
+            "312.jpg",
+            "313.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 139,
+        "pred_response": "c not the same",
+        "gt_response": "teen & young adult",
+        "choice_list": [
+            "teen & young adult",
+            "christian books & bibles",
+            "not the same",
+            "biographies & memoirs"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "314.jpg",
+            "315.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 140,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "not the same",
+            "2015",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "316.jpg",
+            "317.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 141,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "318.jpg",
+            "319.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 142,
+        "pred_response": "a",
+        "gt_response": "david f marx",
+        "choice_list": [
+            "not the same",
+            "jeffrey brown",
+            "david f marx",
+            "william shakespeare"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "320.jpg",
+            "321.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 143,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "not the same",
+            "2017",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "322.jpg",
+            "323.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 144,
+        "pred_response": "b",
+        "gt_response": "2013",
+        "choice_list": [
+            "2013",
+            "not the same",
+            "2016",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "324.jpg",
+            "325.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 145,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2015",
+            "2017",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "326.jpg",
+            "327.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 146,
+        "pred_response": "d",
+        "gt_response": "travel",
+        "choice_list": [
+            "humor & entertainment",
+            "children's books",
+            "travel",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "328.jpg",
+            "329.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 147,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "330.jpg",
+            "331.jpg",
+            "332.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 148,
+        "pred_response": "b",
+        "gt_response": "102",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "333.jpg",
+            "334.jpg",
+            "335.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 149,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "336.jpg",
+            "337.jpg",
+            "338.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 150,
+        "pred_response": "d",
+        "gt_response": "science & math",
+        "choice_list": [
+            "medical books",
+            "science & math",
+            "travel",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "339.jpg",
+            "340.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 151,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "crafts hobbies & home",
+            "children's books",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "341.jpg",
+            "342.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 152,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2017",
+            "not the same",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "343.jpg",
+            "344.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 153,
+        "pred_response": "d not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2017",
+            "2015",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "345.jpg",
+            "346.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 154,
+        "pred_response": "c not the same",
+        "gt_response": "rob price",
+        "choice_list": [
+            "rob price",
+            "megacalendars",
+            "not the same",
+            "browntrout publishers"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "347.jpg",
+            "348.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 155,
+        "pred_response": "b",
+        "gt_response": "history",
+        "choice_list": [
+            "crafts hobbies & home",
+            "not the same",
+            "history",
+            "children's books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "349.jpg",
+            "350.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 156,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "351.jpg",
+            "352.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 157,
+        "pred_response": "a",
+        "gt_response": "esther hicks",
+        "choice_list": [
+            "not the same",
+            "day dream",
+            "esther hicks",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "353.jpg",
+            "354.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 158,
+        "pred_response": "d",
+        "gt_response": "humor & entertainment",
+        "choice_list": [
+            "business & money",
+            "cookbooks food & wine",
+            "humor & entertainment",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "355.jpg",
+            "356.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 159,
+        "pred_response": "d",
+        "gt_response": "christian books & bibles",
+        "choice_list": [
+            "christian books & bibles",
+            "travel",
+            "teen & young adult",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "357.jpg",
+            "358.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 160,
+        "pred_response": "b",
+        "gt_response": "computers & technology",
+        "choice_list": [
+            "children's books",
+            "not the same",
+            "computers & technology",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "359.jpg",
+            "360.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 161,
+        "pred_response": "c not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2017",
+            "not the same",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "361.jpg",
+            "362.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 162,
+        "pred_response": "b",
+        "gt_response": "210",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "363.jpg",
+            "364.jpg",
+            "365.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 163,
+        "pred_response": "c",
+        "gt_response": "scholastic",
+        "choice_list": [
+            "willow creek press",
+            "noah berlatsky",
+            "not the same",
+            "scholastic"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "366.jpg",
+            "367.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 164,
+        "pred_response": "d",
+        "gt_response": "michael h hoffheimer",
+        "choice_list": [
+            "michael h hoffheimer",
+            "jane o'connor",
+            "lonely planet",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "368.jpg",
+            "369.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 165,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "370.jpg",
+            "371.jpg",
+            "372.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 166,
+        "pred_response": "c",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "not the same",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "373.jpg",
+            "374.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 167,
+        "pred_response": "b",
+        "gt_response": "day dream",
+        "choice_list": [
+            "day dream",
+            "not the same",
+            "rand mcnally",
+            "fodor's"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "375.jpg",
+            "376.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 168,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "travel",
+            "crafts hobbies & home",
+            "business & money"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "377.jpg",
+            "378.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 169,
+        "pred_response": "a",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "379.jpg",
+            "380.jpg",
+            "381.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 170,
+        "pred_response": "b",
+        "gt_response": "021",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "382.jpg",
+            "383.jpg",
+            "384.jpg"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 171,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "385.jpg",
+            "386.jpg",
+            "387.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 172,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2015",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "388.jpg",
+            "389.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 173,
+        "pred_response": "a",
+        "gt_response": "calendars",
+        "choice_list": [
+            "not the same",
+            "calendars",
+            "christian books & bibles",
+            "cookbooks food & wine"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "390.jpg",
+            "391.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 174,
+        "pred_response": "b",
+        "gt_response": "travel",
+        "choice_list": [
+            "travel",
+            "not the same",
+            "arts & photography",
+            "children's books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "392.jpg",
+            "393.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 175,
+        "pred_response": "b",
+        "gt_response": "charles snee",
+        "choice_list": [
+            "charles snee",
+            "not the same",
+            "various",
+            "l ron hubbard"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "394.jpg",
+            "395.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 176,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2017",
+            "2015",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "396.jpg",
+            "397.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 177,
+        "pred_response": "c not the same",
+        "gt_response": "alexander elder",
+        "choice_list": [
+            "roger price",
+            "alexander elder",
+            "not the same",
+            "dk publishing"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "398.jpg",
+            "399.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 178,
+        "pred_response": "d not the same",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "2017",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "400.jpg",
+            "401.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 179,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "not the same",
+            "2015",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "402.jpg",
+            "403.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 180,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "not the same",
+            "2017",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "404.jpg",
+            "405.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 181,
+        "pred_response": "d",
+        "gt_response": "fodor's",
+        "choice_list": [
+            "william shakespeare",
+            "fodor's",
+            "elliot aronson",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "406.jpg",
+            "407.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 182,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2017",
+            "2015",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "408.jpg",
+            "409.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 183,
+        "pred_response": "a",
+        "gt_response": "gooseberry patch",
+        "choice_list": [
+            "not the same",
+            "eknath easwaran",
+            "l ron hubbard",
+            "gooseberry patch"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "410.jpg",
+            "411.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 184,
+        "pred_response": "a",
+        "gt_response": "travel",
+        "choice_list": [
+            "not the same",
+            "christian books & bibles",
+            "travel",
+            "arts & photography"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "412.jpg",
+            "413.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 185,
+        "pred_response": "b",
+        "gt_response": "201",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "414.jpg",
+            "415.jpg",
+            "416.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 186,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2016",
+            "2015"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "417.jpg",
+            "418.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 187,
+        "pred_response": "c not the same",
+        "gt_response": "medical books",
+        "choice_list": [
+            "reference",
+            "humor & entertainment",
+            "not the same",
+            "medical books"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "419.jpg",
+            "420.jpg"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 188,
+        "pred_response": "d not the same",
+        "gt_response": "rand mcnally",
+        "choice_list": [
+            "rand mcnally",
+            "luis m martinez",
+            "national geographic maps  trails illustrated",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "421.jpg",
+            "422.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 189,
+        "pred_response": "b",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "not the same",
+            "2015",
+            "2017"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "423.jpg",
+            "424.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 190,
+        "pred_response": "a",
+        "gt_response": "clive cussler",
+        "choice_list": [
+            "not the same",
+            "clive cussler",
+            "lonely planet",
+            "euripides"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "425.jpg",
+            "426.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 191,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "427.jpg",
+            "428.jpg",
+            "429.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 192,
+        "pred_response": "d not the same",
+        "gt_response": "sarah fabiny",
+        "choice_list": [
+            "sarah fabiny",
+            "wendell berry",
+            "various",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "430.jpg",
+            "431.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 193,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2016",
+            "2017",
+            "2015",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "432.jpg",
+            "433.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 194,
+        "pred_response": "b",
+        "gt_response": "120",
+        "choice_list": [
+            "012",
+            "021",
+            "102",
+            "120",
+            "201",
+            "210"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "434.jpg",
+            "435.jpg",
+            "436.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 195,
+        "pred_response": "b",
+        "gt_response": "dr seuss",
+        "choice_list": [
+            "inc barcharts",
+            "not the same",
+            "zondervan",
+            "dr seuss"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "437.jpg",
+            "438.jpg"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 196,
+        "pred_response": "c",
+        "gt_response": "medical books",
+        "choice_list": [
+            "not the same",
+            "literature & fiction",
+            "medical books",
+            "travel"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "439.jpg",
+            "440.jpg"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 197,
+        "pred_response": "d not the same",
+        "gt_response": "health fitness & dieting",
+        "choice_list": [
+            "computers & technology",
+            "health fitness & dieting",
+            "travel",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "441.jpg",
+            "442.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 198,
+        "pred_response": "d",
+        "gt_response": "2016",
+        "choice_list": [
+            "2015",
+            "2016",
+            "2017",
+            "not the same"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "443.jpg",
+            "444.jpg"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 199,
+        "pred_response": "a",
+        "gt_response": "2016",
+        "choice_list": [
+            "not the same",
+            "2017",
+            "2015",
+            "2016"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "445.jpg",
+            "446.jpg"
+        ],
+        "extracted": "A",
+        "result": 0
+    }
+]

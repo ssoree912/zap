@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260428-054925",
+  "created_at": "2026-04-28T05:49:25.034023+00:00",
+  "datasets": {
+    "ChartQA_TEST": {
+      "status": "done",
+      "prediction_file": "experiments/EXP-20260428-003-layerwise-analysis/outputs/entropy_eval/uniform10/ov7b_student10/T20260428-054925/ov7b_student10_ChartQA_TEST.xlsx",
+      "updated_at": "2026-04-28T06:23:45.971584+00:00",
+      "judge_model": "",
+      "reuse_aux": "all",
+      "primary_metric": "Overall",
+      "metrics": {
+        "test_human": 65.84,
+        "test_augmented": 92.08,
+        "Overall": 78.96
+      }
+    }
+  },
+  "model_name": "ov7b_student10",
+  "commit": "e7d64cfa",
+  "argv": [
+    "/workspace/VLMEvalKit/run.py",
+    "--config",
+    "eval_configs/onevision_student10_chartqa.json",
+    "--work-dir",
+    "experiments/EXP-20260428-003-layerwise-analysis/outputs/entropy_eval/uniform10"
+  ],
+  "api_mode": false,
+  "world_size": 1,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-04-28T06:23:45.971200+00:00"
+}

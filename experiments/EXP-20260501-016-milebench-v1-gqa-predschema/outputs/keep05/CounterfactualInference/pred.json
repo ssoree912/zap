@@ -1,0 +1,3202 @@
+[
+  {
+    "sample_id": 0,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/0-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The cyan rubber object and the blue cube collide\nB. The brown cube collides with the metal cube\nC. The cyan rubber object and the metal cube collide\nD. The cyan rubber cube collides with the sphere\nYour answer is:",
+    "gt_response": "The cyan rubber cube collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 1,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/1-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the sphere is removed?\nChoice list: \nA. The yellow object and the brown cylinder collide\nB. The brown cylinder and the cube collide\nC. The yellow cylinder collides with the cube\nYour answer is:",
+    "gt_response": "The yellow object and the brown cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 2,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/2-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the gray object is removed, which event will happen?\nChoice list: \nA. The rubber cube collides with the sphere\nB. The sphere collides with the blue cube\nC. The rubber cube and the blue object collide\nYour answer is:",
+    "gt_response": "The rubber cube collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 3,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/3-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cube?\nChoice list: \nA. The red object and the brown cylinder collide\nB. The brown cylinder collides with the green sphere\nC. The gray cylinder and the green object collide\nD. The red object and the gray object collide\nYour answer is:",
+    "gt_response": "The red object and the gray object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 4,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/4-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the brown object?\nChoice list: \nA. The purple rubber cylinder and the sphere collide\nB. The cube and the gray object collide\nC. The purple rubber cylinder collides with the gray cylinder\nD. The purple metal object and the purple rubber cylinder collide\nYour answer is:",
+    "gt_response": "The purple metal object and the purple rubber cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 5,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/5-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the yellow object, which event will happen?\nChoice list: \nA. The sphere collides with the cylinder\nB. The sphere collides with the metal cube\nC. The cylinder collides with the cyan object\nD. The sphere collides with the cyan cube\nYour answer is:",
+    "gt_response": "The sphere collides with the metal cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 6,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/6-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, what will happen?\nChoice list: \nA. The red object collides with the sphere\nB. The brown object and the red object collide\nYour answer is:",
+    "gt_response": "The brown object and the red object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 7,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/7-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the blue object is removed?\nChoice list: \nA. The gray object and the cube collide\nB. The cyan sphere and the gray object collide\nYour answer is:",
+    "gt_response": "The cyan sphere and the gray object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 8,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/8-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which event will happen?\nChoice list: \nA. The metal sphere and the rubber sphere collide\nB. The metal sphere and the cylinder collide\nC. The cylinder and the rubber sphere collide\nYour answer is:",
+    "gt_response": "The metal sphere and the cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 9,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/9-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the brown object is removed, what will happen?\nChoice list: \nA. The cube collides with the sphere\nB. The metal cylinder and the sphere collide\nC. The cube and the metal cylinder collide\nYour answer is:",
+    "gt_response": "The metal cylinder and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 10,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/10-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the red object?\nChoice list: \nA. The cylinder and the cube collide\nB. The purple sphere collides with the yellow sphere\nC. The yellow object and the cube collide\nYour answer is:",
+    "gt_response": "The cylinder and the cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 11,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/11-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the red object is removed, which event will happen?\nChoice list: \nA. The yellow object collides with the rubber cube\nB. The metal sphere collides with the yellow object\nC. The cyan sphere collides with the green sphere\nD. The green object and the blue cube collide\nYour answer is:",
+    "gt_response": "The metal sphere collides with the yellow object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 12,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/12-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, what will happen?\nChoice list: \nA. The green cylinder and the red cylinder collide\nB. The green object and the cube collide\nYour answer is:",
+    "gt_response": "The green cylinder and the red cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 13,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/13-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the sphere?\nChoice list: \nA. The gray metal object collides with the rubber cylinder\nB. The gray metal cylinder and the cyan object collide\nC. The rubber cylinder and the cyan cylinder collide\nYour answer is:",
+    "gt_response": "The rubber cylinder and the cyan cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 14,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/14-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the blue object?\nChoice list: \nA. The yellow cylinder collides with the green cylinder\nB. The cube collides with the rubber cylinder\nC. The cube collides with the green sphere\nD. The green sphere and the metal cylinder collide\nYour answer is:",
+    "gt_response": "The cube collides with the rubber cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 15,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/15-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the cylinder is removed?\nChoice list: \nA. The red object collides with the rubber cube\nB. The yellow sphere and the green metal object collide\nC. The yellow sphere and the rubber sphere collide\nD. The metal cube collides with the yellow sphere\nYour answer is:",
+    "gt_response": "The metal cube collides with the yellow sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 16,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/16-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cube?\nChoice list: \nA. The metal cylinder collides with the rubber cylinder\nB. The metal cylinder and the sphere collide\nYour answer is:",
+    "gt_response": "The metal cylinder collides with the rubber cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 17,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/17-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the green object is removed?\nChoice list: \nA. The sphere collides with the yellow cylinder\nB. The sphere and the brown cube collide\nC. The brown object collides with the yellow cylinder\nD. The yellow cube collides with the yellow cylinder\nYour answer is:",
+    "gt_response": "The sphere collides with the yellow cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 18,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/18-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the red object is removed?\nChoice list: \nA. The gray object collides with the cyan object\nB. The blue object collides with the cyan sphere\nYour answer is:",
+    "gt_response": "The gray object collides with the cyan object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 19,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/19-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the sphere?\nChoice list: \nA. The gray cylinder and the yellow cylinder collide\nB. The cyan cylinder and the yellow cylinder collide\nYour answer is:",
+    "gt_response": "The cyan cylinder and the yellow cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 20,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/20-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the sphere is removed?\nChoice list: \nA. The blue object and the brown cube collide\nB. The yellow object and the red object collide\nC. The blue cube and the red cube collide\nD. The yellow cube and the blue cube collide\nYour answer is:",
+    "gt_response": "The blue object and the brown cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 21,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/21-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the gray object, which of the following will happen?\nChoice list: \nA. The yellow cylinder collides with the blue object\nB. The sphere collides with the blue object\nC. The sphere and the rubber object collide\nYour answer is:",
+    "gt_response": "The sphere collides with the blue object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 22,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/22-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the yellow object is removed?\nChoice list: \nA. The sphere collides with the brown object\nB. The gray object and the brown cylinder collide\nC. The gray cube collides with the sphere\nD. The purple cube and the brown cylinder collide\nYour answer is:",
+    "gt_response": "The gray cube collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 23,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/23-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the cylinder is removed?\nChoice list: \nA. The blue object and the yellow sphere collide\nB. The blue object and the cube collide\nYour answer is:",
+    "gt_response": "The blue object and the cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 24,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/24-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the cube is removed?\nChoice list: \nA. The brown cylinder and the sphere collide\nB. The sphere and the gray cylinder collide\nYour answer is:",
+    "gt_response": "The brown cylinder and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 25,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/25-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the metal object, what will happen?\nChoice list: \nA. The yellow sphere and the red object collide\nB. The rubber cylinder and the red sphere collide\nYour answer is:",
+    "gt_response": "The yellow sphere and the red object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 26,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/26-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, what will happen?\nChoice list: \nA. The rubber sphere and the green sphere collide\nB. The rubber sphere and the cube collide\nYour answer is:",
+    "gt_response": "The rubber sphere and the green sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 27,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/27-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the yellow object is removed, which event will happen?\nChoice list: \nA. The cylinder and the metal sphere collide\nB. The cylinder collides with the blue sphere\nC. The metal sphere and the blue sphere collide\nYour answer is:",
+    "gt_response": "The cylinder and the metal sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 28,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/28-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the purple object is removed, which event will happen?\nChoice list: \nA. The green object collides with the yellow sphere\nB. The green cylinder and the cube collide\nC. The gray object collides with the cube\nD. The yellow sphere and the cube collide\nYour answer is:",
+    "gt_response": "The green object collides with the yellow sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 29,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/29-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which event will happen?\nChoice list: \nA. The brown object collides with the gray object\nB. The rubber sphere collides with the gray sphere\nC. The brown cylinder and the cyan sphere collide\nD. The gray sphere collides with the rubber cylinder\nYour answer is:",
+    "gt_response": "The brown cylinder and the cyan sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 30,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/30-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cylinder?\nChoice list: \nA. The cyan sphere and the metal cube collide\nB. The gray object collides with the green sphere\nC. The cyan object and the yellow object collide\nD. The gray cube and the red cube collide\nYour answer is:",
+    "gt_response": "The gray cube and the red cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 31,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/31-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which of the following will happen?\nChoice list: \nA. The rubber cylinder collides with the green cylinder\nB. The metal sphere collides with the green cylinder\nC. The metal sphere and the cyan cylinder collide\nD. The metal sphere collides with the rubber cylinder\nYour answer is:",
+    "gt_response": "The rubber cylinder collides with the green cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 32,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/32-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the gray object is removed?\nChoice list: \nA. The sphere collides with the blue cylinder\nB. The sphere collides with the yellow cube\nC. The cyan cylinder and the yellow cube collide\nD. The cyan cylinder collides with the blue object\nYour answer is:",
+    "gt_response": "The sphere collides with the blue cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 33,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/33-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the yellow object, which of the following will happen?\nChoice list: \nA. The brown object collides with the green sphere\nB. The red sphere collides with the cylinder\nC. The brown object collides with the red sphere\nD. The red sphere collides with the green sphere\nYour answer is:",
+    "gt_response": "The brown object collides with the red sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 34,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/34-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the purple object is removed, which of the following will happen?\nChoice list: \nA. The red cylinder collides with the cyan sphere\nB. The cyan object and the red sphere collide\nC. The metal cylinder collides with the cyan object\nD. The rubber cylinder and the red sphere collide\nYour answer is:",
+    "gt_response": "The metal cylinder collides with the cyan object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 35,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/35-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the purple object is removed?\nChoice list: \nA. The brown sphere and the cylinder collide\nB. The blue object collides with the brown sphere\nYour answer is:",
+    "gt_response": "The blue object collides with the brown sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 36,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/36-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, which of the following will happen?\nChoice list: \nA. The brown object collides with the blue object\nB. The cyan object collides with the blue cube\nC. The red cube collides with the blue cube\nD. The cyan object and the brown sphere collide\nYour answer is:",
+    "gt_response": "The cyan object and the brown sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 37,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/37-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cylinder?\nChoice list: \nA. The rubber sphere and the blue sphere collide\nB. The rubber sphere collides with the gray metal sphere\nC. The gray metal sphere and the blue sphere collide\nYour answer is:",
+    "gt_response": "The rubber sphere collides with the gray metal sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 38,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/38-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the cyan object is removed?\nChoice list: \nA. The sphere and the brown object collide\nB. The brown cube collides with the red cylinder\nC. The blue object and the yellow cylinder collide\nD. The yellow cylinder collides with the red object\nYour answer is:",
+    "gt_response": "The sphere and the brown object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 39,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/39-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the red object, which event will happen?\nChoice list: \nA. The blue metal sphere and the gray sphere collide\nB. The blue rubber object and the gray object collide\nC. The blue metal sphere and the blue rubber object collide\nD. The cylinder and the cyan sphere collide\nYour answer is:",
+    "gt_response": "The blue metal sphere and the gray sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 40,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/40-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, which event will happen?\nChoice list: \nA. The cylinder collides with the purple cube\nB. The yellow object and the cylinder collide\nYour answer is:",
+    "gt_response": "The yellow object and the cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 41,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/41-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the red object, which event will happen?\nChoice list: \nA. The brown object and the purple cylinder collide\nB. The yellow sphere collides with the cyan sphere\nC. The cube collides with the purple cylinder\nD. The cube and the cyan sphere collide\nYour answer is:",
+    "gt_response": "The cube collides with the purple cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 42,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/42-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cube?\nChoice list: \nA. The brown cylinder collides with the cyan cylinder\nB. The gray sphere collides with the cyan cylinder\nC. The cyan cylinder collides with the cyan sphere\nD. The brown cylinder collides with the cyan sphere\nYour answer is:",
+    "gt_response": "The gray sphere collides with the cyan cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 43,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/43-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the blue object is removed, which of the following will happen?\nChoice list: \nA. The cyan cube collides with the yellow object\nB. The cylinder and the yellow object collide\nC. The cylinder collides with the cyan cube\nYour answer is:",
+    "gt_response": "The cyan cube collides with the yellow object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 44,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/44-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the sphere is removed?\nChoice list: \nA. The blue cylinder collides with the cyan cylinder\nB. The blue cylinder collides with the yellow cylinder\nC. The green object collides with the yellow object\nD. The blue cylinder collides with the green object\nYour answer is:",
+    "gt_response": "The blue cylinder collides with the cyan cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 45,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/45-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which of the following will happen?\nChoice list: \nA. The brown sphere collides with the rubber sphere\nB. The cylinder collides with the yellow sphere\nYour answer is:",
+    "gt_response": "The cylinder collides with the yellow sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 46,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/46-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the green object is removed?\nChoice list: \nA. The brown cylinder and the purple cylinder collide\nB. The brown object collides with the blue object\nC. The brown cylinder collides with the yellow object\nD. The yellow object collides with the rubber sphere\nYour answer is:",
+    "gt_response": "The brown cylinder collides with the yellow object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 47,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/47-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cyan object is removed, which event will happen?\nChoice list: \nA. The metal cylinder collides with the rubber sphere\nB. The metal cylinder collides with the red object\nC. The blue cylinder collides with the metal sphere\nD. The blue cylinder and the blue sphere collide\nYour answer is:",
+    "gt_response": "The blue cylinder and the blue sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 48,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/48-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The metal cube and the sphere collide\nB. The rubber cube collides with the sphere\nYour answer is:",
+    "gt_response": "The rubber cube collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 49,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/49-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, which of the following will happen?\nChoice list: \nA. The gray cylinder and the blue cylinder collide\nB. The gray cylinder and the cyan object collide\nC. The cyan cylinder collides with the blue cylinder\nYour answer is:",
+    "gt_response": "The gray cylinder and the cyan object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 50,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/50-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the red object?\nChoice list: \nA. The rubber sphere and the metal cube collide\nB. The gray sphere and the purple object collide\nC. The metal sphere collides with the metal cube\nD. The purple object collides with the cylinder\nYour answer is:",
+    "gt_response": "The gray sphere and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 51,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/51-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, what will happen?\nChoice list: \nA. The yellow object and the gray sphere collide\nB. The gray cube collides with the yellow sphere\nC. The gray cube collides with the gray sphere\nD. The red object collides with the gray cube\nYour answer is:",
+    "gt_response": "The red object collides with the gray cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 52,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/52-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, which event will happen?\nChoice list: \nA. The gray cube and the blue object collide\nB. The rubber cube and the cyan object collide\nC. The sphere and the blue cube collide\nD. The sphere and the cyan object collide\nYour answer is:",
+    "gt_response": "The gray cube and the blue object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 53,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/53-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the red object is removed?\nChoice list: \nA. The purple cylinder and the gray object collide\nB. The yellow object collides with the gray cylinder\nC. The yellow cylinder and the purple metal cube collide\nD. The purple metal cube and the gray object collide\nYour answer is:",
+    "gt_response": "The yellow cylinder and the purple metal cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 54,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/54-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cube?\nChoice list: \nA. The green object and the gray object collide\nB. The metal cylinder and the green object collide\nC. The cyan cylinder collides with the gray sphere\nD. The purple sphere collides with the green object\nYour answer is:",
+    "gt_response": "The purple sphere collides with the green object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 55,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/55-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the red object?\nChoice list: \nA. The green object and the blue cylinder collide\nB. The blue cylinder and the gray cylinder collide\nC. The blue cylinder collides with the cube\nD. The blue cylinder collides with the purple cylinder\nYour answer is:",
+    "gt_response": "The green object and the blue cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 56,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/56-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cube?\nChoice list: \nA. The green cylinder and the gray sphere collide\nB. The green object collides with the metal cylinder\nC. The gray sphere and the metal cylinder collide\nD. The purple sphere collides with the gray sphere\nYour answer is:",
+    "gt_response": "The green cylinder and the gray sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 57,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/57-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, which of the following will happen?\nChoice list: \nA. The sphere collides with the cyan object\nB. The yellow object and the sphere collide\nYour answer is:",
+    "gt_response": "The yellow object and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 58,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/58-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the purple object is removed?\nChoice list: \nA. The red sphere and the gray sphere collide\nB. The gray object and the cube collide\nC. The red sphere and the cube collide\nYour answer is:",
+    "gt_response": "The gray object and the cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 59,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/59-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the sphere is removed?\nChoice list: \nA. The blue cylinder collides with the gray object\nB. The yellow object and the gray cylinder collide\nC. The yellow object and the blue cylinder collide\nYour answer is:",
+    "gt_response": "The yellow object and the blue cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 60,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/60-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The brown cube and the purple object collide\nB. The brown cube and the sphere collide\nYour answer is:",
+    "gt_response": "The brown cube and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 61,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/61-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the blue object is removed, which of the following will happen?\nChoice list: \nA. The cylinder and the purple cube collide\nB. The sphere and the purple cube collide\nC. The sphere collides with the cylinder\nD. The yellow cube and the purple cube collide\nYour answer is:",
+    "gt_response": "The sphere collides with the cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 62,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/62-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the rubber object is removed, what will happen?\nChoice list: \nA. The cyan object and the blue cylinder collide\nB. The gray sphere collides with the blue cylinder\nYour answer is:",
+    "gt_response": "The gray sphere collides with the blue cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 63,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/63-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cube is removed?\nChoice list: \nA. The cylinder and the brown sphere collide\nB. The brown sphere and the gray sphere collide\nC. The cylinder and the gray sphere collide\nYour answer is:",
+    "gt_response": "The brown sphere and the gray sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 64,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/64-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, what will happen?\nChoice list: \nA. The green sphere and the cylinder collide\nB. The green sphere collides with the red rubber object\nC. The yellow sphere collides with the green sphere\nD. The red metal object collides with the red rubber sphere\nYour answer is:",
+    "gt_response": "The yellow sphere collides with the green sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 65,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/65-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the gray object?\nChoice list: \nA. The yellow object and the purple object collide\nB. The purple cube collides with the cyan cube\nC. The yellow cylinder collides with the cyan cube\nD. The cyan cylinder collides with the cyan cube\nYour answer is:",
+    "gt_response": "The yellow object and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 66,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/66-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the brown object?\nChoice list: \nA. The cylinder and the purple sphere collide\nB. The cyan object and the blue sphere collide\nC. The cylinder and the green sphere collide\nD. The cyan object and the cylinder collide\nYour answer is:",
+    "gt_response": "The cyan object and the cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 67,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/67-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the sphere?\nChoice list: \nA. The purple cylinder collides with the cube\nB. The cube and the green object collide\nYour answer is:",
+    "gt_response": "The purple cylinder collides with the cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 68,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/68-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the sphere, which event will happen?\nChoice list: \nA. The cyan cube collides with the brown cylinder\nB. The cyan cylinder and the brown cube collide\nC. The brown cylinder collides with the cyan cylinder\nD. The brown cylinder and the brown cube collide\nYour answer is:",
+    "gt_response": "The cyan cube collides with the brown cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 69,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/69-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the blue object, what will happen?\nChoice list: \nA. The green rubber object collides with the gray sphere\nB. The metal cube collides with the green rubber object\nC. The cyan object collides with the metal sphere\nD. The metal cube collides with the cylinder\nYour answer is:",
+    "gt_response": "The metal cube collides with the cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 70,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/70-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the red object is removed?\nChoice list: \nA. The cylinder collides with the rubber sphere\nB. The cylinder collides with the gray cube\nC. The green object and the rubber sphere collide\nD. The metal sphere collides with the gray object\nYour answer is:",
+    "gt_response": "The green object and the rubber sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 71,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/71-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, what will happen?\nChoice list: \nA. The cube collides with the cyan object\nB. The yellow sphere and the green sphere collide\nC. The cube and the yellow sphere collide\nD. The green sphere collides with the cyan sphere\nYour answer is:",
+    "gt_response": "The cube and the yellow sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 72,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/72-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the purple object, which of the following will happen?\nChoice list: \nA. The metal cylinder collides with the metal sphere\nB. The rubber cylinder collides with the brown object\nYour answer is:",
+    "gt_response": "The metal cylinder collides with the metal sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 73,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/73-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the green object?\nChoice list: \nA. The cyan object and the cylinder collide\nB. The yellow object and the cylinder collide\nYour answer is:",
+    "gt_response": "The cyan object and the cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 74,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/74-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the gray object?\nChoice list: \nA. The rubber sphere and the cube collide\nB. The brown sphere and the cube collide\nC. The blue sphere collides with the cyan sphere\nD. The cyan sphere and the yellow cylinder collide\nYour answer is:",
+    "gt_response": "The cyan sphere and the yellow cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 75,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/75-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, what will happen?\nChoice list: \nA. The rubber object and the sphere collide\nB. The red object collides with the sphere\nC. The red cube and the yellow object collide\nYour answer is:",
+    "gt_response": "The red cube and the yellow object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 76,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/76-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the sphere?\nChoice list: \nA. The cube and the brown cylinder collide\nB. The green cylinder and the brown object collide\nC. The metal object collides with the green cylinder\nD. The metal cylinder and the cube collide\nYour answer is:",
+    "gt_response": "The metal object collides with the green cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 77,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/77-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, which of the following will happen?\nChoice list: \nA. The cube and the red object collide\nB. The gray sphere and the red object collide\nC. The green sphere and the gray object collide\nD. The cube and the green sphere collide\nYour answer is:",
+    "gt_response": "The green sphere and the gray object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 78,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/78-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the sphere is removed?\nChoice list: \nA. The cube and the red object collide\nB. The gray object and the yellow object collide\nC. The cube and the yellow object collide\nD. The cube collides with the gray cylinder\nYour answer is:",
+    "gt_response": "The cube and the yellow object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 79,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/79-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cylinder?\nChoice list: \nA. The blue sphere and the cyan cube collide\nB. The cyan sphere and the purple object collide\nC. The cyan sphere and the cyan cube collide\nD. The cyan sphere and the blue sphere collide\nYour answer is:",
+    "gt_response": "The cyan sphere and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 80,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/80-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the gray object is removed, which event will happen?\nChoice list: \nA. The blue object collides with the red cylinder\nB. The blue object collides with the yellow object\nC. The blue object collides with the green sphere\nD. The yellow object and the metal sphere collide\nYour answer is:",
+    "gt_response": "The blue object collides with the red cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 81,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/81-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the purple object, which event will happen?\nChoice list: \nA. The cube collides with the gray cylinder\nYour answer is:",
+    "gt_response": "The cube collides with the gray cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 82,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/82-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the cube is removed?\nChoice list: \nA. The rubber cylinder and the brown cylinder collide\nB. The brown sphere and the blue cylinder collide\nC. The gray sphere and the rubber cylinder collide\nD. The rubber sphere collides with the brown cylinder\nYour answer is:",
+    "gt_response": "The brown sphere and the blue cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 83,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/83-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the brown object is removed?\nChoice list: \nA. The gray cube and the sphere collide\nB. The green object collides with the gray cube\nC. The gray cube and the red cube collide\nD. The sphere and the red cube collide\nYour answer is:",
+    "gt_response": "The green object collides with the gray cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 84,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/84-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cube, which of the following will happen?\nChoice list: \nA. The sphere and the yellow cylinder collide\nB. The gray object and the yellow object collide\nYour answer is:",
+    "gt_response": "The sphere and the yellow cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 85,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/85-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cube is removed?\nChoice list: \nA. The cyan cylinder collides with the brown cylinder\nB. The cyan cylinder collides with the purple cylinder\nYour answer is:",
+    "gt_response": "The cyan cylinder collides with the brown cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 86,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/86-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cyan object is removed?\nChoice list: \nA. The blue cube and the purple object collide\nB. The red sphere and the purple object collide\nC. The blue cube collides with the cylinder\nD. The cylinder collides with the purple cube\nYour answer is:",
+    "gt_response": "The blue cube and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 87,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/87-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the green object, which of the following will happen?\nChoice list: \nA. The yellow object collides with the red sphere\nB. The red object collides with the purple object\nC. The yellow object and the purple object collide\nYour answer is:",
+    "gt_response": "The yellow object and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 88,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/88-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cube?\nChoice list: \nA. The purple sphere and the cylinder collide\nB. The yellow object collides with the purple sphere\nC. The yellow sphere and the cylinder collide\nD. The purple object collides with the blue sphere\nYour answer is:",
+    "gt_response": "The yellow object collides with the purple sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 89,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/89-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the green object is removed?\nChoice list: \nA. The cube and the gray sphere collide\nB. The cube collides with the yellow sphere\nYour answer is:",
+    "gt_response": "The cube and the gray sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 90,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/90-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cyan object?\nChoice list: \nA. The yellow object and the rubber cube collide\nB. The metal cube collides with the gray object\nC. The yellow cylinder collides with the gray cylinder\nYour answer is:",
+    "gt_response": "The metal cube collides with the gray object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 91,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/91-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the blue object is removed, what will happen?\nChoice list: \nA. The red cube and the metal object collide\nB. The rubber cylinder collides with the red cube\nC. The rubber cylinder and the sphere collide\nD. The red cube and the sphere collide\nYour answer is:",
+    "gt_response": "The rubber cylinder collides with the red cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 92,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/92-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the sphere?\nChoice list: \nA. The cyan object and the green object collide\nB. The rubber cube and the green cube collide\nYour answer is:",
+    "gt_response": "The cyan object and the green object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 93,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/93-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, which event will happen?\nChoice list: \nA. The sphere and the red object collide\nB. The cyan object collides with the sphere\nYour answer is:",
+    "gt_response": "The cyan object collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 94,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/94-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The purple cube and the blue cube collide\nB. The gray sphere collides with the red sphere\nC. The blue cube collides with the red object\nD. The cyan sphere collides with the gray sphere\nYour answer is:",
+    "gt_response": "The cyan sphere collides with the gray sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 95,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/95-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the cylinder is removed?\nChoice list: \nA. The cube and the red sphere collide\nB. The yellow object collides with the red sphere\nC. The cube collides with the yellow object\nD. The purple object and the cube collide\nYour answer is:",
+    "gt_response": "The purple object and the cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 96,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/96-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the cylinder is removed?\nChoice list: \nA. The purple sphere collides with the green object\nB. The purple sphere collides with the blue object\nYour answer is:",
+    "gt_response": "The purple sphere collides with the blue object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 97,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/97-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which of the following will happen?\nChoice list: \nA. The yellow object and the green cylinder collide\nB. The yellow cylinder and the sphere collide\nYour answer is:",
+    "gt_response": "The yellow object and the green cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 98,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/98-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the sphere?\nChoice list: \nA. The rubber cylinder collides with the cube\nYour answer is:",
+    "gt_response": "The rubber cylinder collides with the cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 99,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/99-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the blue object?\nChoice list: \nA. The red object and the brown cylinder collide\nB. The brown object and the cyan cube collide\nC. The sphere collides with the cyan cube\nD. The sphere and the brown cylinder collide\nYour answer is:",
+    "gt_response": "The red object and the brown cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 100,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/100-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the brown object is removed?\nChoice list: \nA. The yellow object collides with the sphere\nB. The red cylinder and the sphere collide\nYour answer is:",
+    "gt_response": "The red cylinder and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 101,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/101-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the purple object is removed, what will happen?\nChoice list: \nA. The green sphere collides with the cyan object\nB. The green cylinder collides with the green sphere\nC. The yellow sphere and the cyan object collide\nD. The brown object and the yellow sphere collide\nYour answer is:",
+    "gt_response": "The brown object and the yellow sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 102,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/102-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cyan object?\nChoice list: \nA. The brown object collides with the sphere\nB. The brown object collides with the metal object\nC. The red cylinder collides with the metal object\nD. The brown object collides with the red cylinder\nYour answer is:",
+    "gt_response": "The brown object collides with the red cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 103,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/103-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the sphere, what will happen?\nChoice list: \nA. The blue cube and the cylinder collide\nB. The blue cube and the cyan object collide\nYour answer is:",
+    "gt_response": "The blue cube and the cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 104,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/104-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the red object?\nChoice list: \nA. The purple sphere and the blue sphere collide\nB. The yellow sphere collides with the green object\nC. The yellow object and the purple sphere collide\nD. The green object and the blue sphere collide\nYour answer is:",
+    "gt_response": "The yellow sphere collides with the green object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 105,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/105-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the yellow object is removed?\nChoice list: \nA. The green cube and the purple object collide\nB. The blue object collides with the brown sphere\nC. The rubber cylinder and the brown object collide\nD. The green object and the blue sphere collide\nYour answer is:",
+    "gt_response": "The green object and the blue sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 106,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/106-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, which event will happen?\nChoice list: \nA. The metal sphere collides with the rubber sphere\nB. The purple object and the cube collide\nC. The red object collides with the cube\nYour answer is:",
+    "gt_response": "The metal sphere collides with the rubber sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 107,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/107-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the green object?\nChoice list: \nA. The brown cube collides with the brown sphere\nB. The brown cylinder and the purple sphere collide\nC. The brown cube and the purple object collide\nD. The red cylinder and the purple object collide\nYour answer is:",
+    "gt_response": "The brown cube and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 108,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/108-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cylinder?\nChoice list: \nA. The yellow cube collides with the yellow sphere\nB. The yellow cube and the cyan cube collide\nC. The cyan object collides with the rubber sphere\nD. The metal sphere collides with the gray object\nYour answer is:",
+    "gt_response": "The yellow cube collides with the yellow sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 109,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/109-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cylinder?\nChoice list: \nA. The rubber cube collides with the metal cube\nB. The blue sphere and the blue cube collide\nC. The cyan cube collides with the rubber sphere\nD. The blue sphere and the rubber sphere collide\nYour answer is:",
+    "gt_response": "The rubber cube collides with the metal cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 110,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/110-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the gray object is removed?\nChoice list: \nA. The cube collides with the cyan sphere\nB. The cylinder and the cyan sphere collide\nYour answer is:",
+    "gt_response": "The cylinder and the cyan sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 111,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/111-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, which of the following will happen?\nChoice list: \nA. The brown cube and the sphere collide\nYour answer is:",
+    "gt_response": "The brown cube and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 112,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/112-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the yellow object is removed?\nChoice list: \nA. The rubber object collides with the green cube\nB. The blue object and the sphere collide\nC. The green cube and the sphere collide\nD. The cylinder collides with the sphere\nYour answer is:",
+    "gt_response": "The rubber object collides with the green cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 113,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/113-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the cube is removed?\nChoice list: \nA. The rubber sphere and the gray cylinder collide\nB. The blue cylinder and the rubber sphere collide\nC. The metal sphere collides with the blue cylinder\nD. The rubber cylinder collides with the gray object\nYour answer is:",
+    "gt_response": "The metal sphere collides with the blue cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 114,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/114-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the green object is removed?\nChoice list: \nA. The yellow object and the red rubber object collide\nB. The rubber cylinder and the yellow object collide\nC. The rubber cylinder and the metal cube collide\nD. The metal cube collides with the red rubber object\nYour answer is:",
+    "gt_response": "The rubber cylinder and the metal cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 115,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/115-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the yellow object is removed, which of the following will happen?\nChoice list: \nA. The brown sphere collides with the gray object\nB. The rubber sphere collides with the blue object\nYour answer is:",
+    "gt_response": "The rubber sphere collides with the blue object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 116,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/116-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the gray object, which of the following will happen?\nChoice list: \nA. The brown sphere and the purple sphere collide\nB. The blue sphere and the brown sphere collide\nC. The brown cylinder and the purple object collide\nD. The blue sphere and the brown cylinder collide\nYour answer is:",
+    "gt_response": "The blue sphere and the brown sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "Without the gray object, the blue sphere and the brown cylinder will collide.",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 117,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/117-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, which event will happen?\nChoice list: \nA. The cube collides with the rubber cylinder\nB. The yellow cylinder collides with the green object\nYour answer is:",
+    "gt_response": "The cube collides with the rubber cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 118,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/118-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, what will happen?\nChoice list: \nA. The yellow cylinder and the brown object collide\nB. The cyan object collides with the brown cylinder\nC. The metal object collides with the cyan cylinder\nD. The yellow cylinder and the sphere collide\nYour answer is:",
+    "gt_response": "The metal object collides with the cyan cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 119,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/119-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, what will happen?\nChoice list: \nA. The cyan object collides with the red object\nB. The cyan cube and the blue metal sphere collide\nC. The metal cube collides with the blue cube\nD. The blue metal object collides with the red object\nYour answer is:",
+    "gt_response": "The blue metal object collides with the red object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 120,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/120-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the yellow object is removed?\nChoice list: \nA. The brown sphere and the rubber object collide\nB. The brown sphere and the brown cylinder collide\nYour answer is:",
+    "gt_response": "The brown sphere and the brown cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 121,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/121-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cylinder?\nChoice list: \nA. The rubber sphere collides with the metal sphere\nB. The cube collides with the rubber sphere\nC. The cube collides with the metal sphere\nYour answer is:",
+    "gt_response": "The cube collides with the rubber sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 122,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/122-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cube is removed?\nChoice list: \nA. The cylinder collides with the metal sphere\nB. The purple object and the metal sphere collide\nYour answer is:",
+    "gt_response": "The cylinder collides with the metal sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 123,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/123-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the green object, which of the following will happen?\nChoice list: \nA. The brown sphere collides with the cyan sphere\nB. The cyan cylinder collides with the cyan sphere\nC. The cyan cylinder collides with the cube\nD. The cube collides with the cyan sphere\nYour answer is:",
+    "gt_response": "The cyan cylinder collides with the cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 124,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/124-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cyan object is removed, what will happen?\nChoice list: \nA. The gray object collides with the blue cube\nB. The gray sphere and the brown cube collide\nYour answer is:",
+    "gt_response": "The gray sphere and the brown cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 125,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/125-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cyan object, which of the following will happen?\nChoice list: \nA. The sphere and the yellow object collide\nB. The green cylinder collides with the cube\nC. The yellow cylinder collides with the cube\nD. The yellow cylinder and the green cylinder collide\nYour answer is:",
+    "gt_response": "The sphere and the yellow object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 126,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/126-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The rubber object collides with the gray cube\nB. The gray cube and the blue object collide\nC. The cyan cube collides with the blue object\nYour answer is:",
+    "gt_response": "The rubber object collides with the gray cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 127,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/127-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the purple object, which event will happen?\nChoice list: \nA. The yellow sphere and the cyan sphere collide\nB. The cylinder and the cyan object collide\nYour answer is:",
+    "gt_response": "The cylinder and the cyan object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 128,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/128-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cube, what will happen?\nChoice list: \nA. The sphere and the gray cylinder collide\nB. The sphere and the purple cylinder collide\nYour answer is:",
+    "gt_response": "The sphere and the purple cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A. The sphere and the gray cylinder collide",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 129,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/129-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cube?\nChoice list: \nA. The sphere and the green cylinder collide\nB. The yellow object collides with the green cylinder\nC. The brown cylinder and the green cylinder collide\nD. The sphere and the brown cylinder collide\nYour answer is:",
+    "gt_response": "The sphere and the brown cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 130,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/130-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the gray object?\nChoice list: \nA. The green sphere collides with the brown sphere\nB. The purple sphere collides with the brown sphere\nYour answer is:",
+    "gt_response": "The green sphere collides with the brown sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 131,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/131-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the brown object is removed, which of the following will happen?\nChoice list: \nA. The sphere collides with the gray object\nB. The metal cylinder and the gray cylinder collide\nYour answer is:",
+    "gt_response": "The metal cylinder and the gray cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 132,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/132-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the purple object is removed, what will happen?\nChoice list: \nA. The gray cylinder and the red sphere collide\nB. The red cylinder collides with the red sphere\nC. The cube and the gray object collide\nD. The cube collides with the red sphere\nYour answer is:",
+    "gt_response": "The cube collides with the red sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 133,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/133-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cube?\nChoice list: \nA. The sphere and the rubber cylinder collide\nB. The sphere collides with the purple object\nC. The rubber cylinder collides with the metal cylinder\nYour answer is:",
+    "gt_response": "The rubber cylinder collides with the metal cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 134,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/134-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the metal object is removed?\nChoice list: \nA. The cube collides with the blue object\nB. The blue object and the cylinder collide\nYour answer is:",
+    "gt_response": "The cube collides with the blue object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 135,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/135-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cube?\nChoice list: \nA. The gray cylinder and the yellow object collide\nB. The red sphere collides with the cyan sphere\nC. The gray cylinder collides with the rubber cylinder\nD. The yellow sphere and the cyan cylinder collide\nYour answer is:",
+    "gt_response": "The gray cylinder and the yellow object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 136,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/136-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the brown object, which event will happen?\nChoice list: \nA. The purple cylinder collides with the blue object\nB. The cube collides with the blue object\nYour answer is:",
+    "gt_response": "The purple cylinder collides with the blue object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 137,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/137-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cylinder?\nChoice list: \nA. The cyan object and the brown cube collide\nYour answer is:",
+    "gt_response": "The cyan object and the brown cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 138,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/138-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the yellow object?\nChoice list: \nA. The metal sphere and the rubber cube collide\nB. The gray object collides with the metal cube\nC. The rubber cylinder collides with the brown sphere\nD. The red cube collides with the rubber cube\nYour answer is:",
+    "gt_response": "The gray object collides with the metal cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 139,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/139-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cube, what will happen?\nChoice list: \nA. The red object collides with the yellow cylinder\nB. The red object and the blue sphere collide\nC. The brown object and the yellow sphere collide\nD. The brown object collides with the yellow cylinder\nYour answer is:",
+    "gt_response": "The brown object and the yellow sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 140,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/140-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cube, which event will happen?\nChoice list: \nA. The cyan object and the sphere collide\nB. The cyan object and the brown object collide\nC. The brown object collides with the sphere\nYour answer is:",
+    "gt_response": "The cyan object and the brown object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A. The cyan object and the sphere collide",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 141,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/141-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the sphere?\nChoice list: \nA. The metal cylinder and the cube collide\nB. The metal cylinder and the rubber cylinder collide\nYour answer is:",
+    "gt_response": "The metal cylinder and the rubber cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 142,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/142-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the metal object is removed, what will happen?\nChoice list: \nA. The purple sphere collides with the cyan sphere\nB. The purple sphere and the red object collide\nC. The cyan object collides with the red cylinder\nD. The blue object collides with the cyan sphere\nYour answer is:",
+    "gt_response": "The purple sphere collides with the cyan sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 143,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/143-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cube?\nChoice list: \nA. The cyan object collides with the brown object\nB. The gray sphere and the brown sphere collide\nYour answer is:",
+    "gt_response": "The gray sphere and the brown sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 144,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/144-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cube?\nChoice list: \nA. The blue object collides with the cyan object\nB. The metal sphere collides with the gray object\nC. The rubber sphere and the gray object collide\nD. The cyan object collides with the gray cylinder\nYour answer is:",
+    "gt_response": "The rubber sphere and the gray object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 145,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/145-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The brown cube collides with the rubber sphere\nB. The red object collides with the cyan sphere\nC. The purple object collides with the cyan object\nD. The purple cube and the red object collide\nYour answer is:",
+    "gt_response": "The purple cube and the red object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 146,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/146-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cube?\nChoice list: \nA. The metal cylinder collides with the sphere\nB. The sphere and the rubber cylinder collide\nC. The metal cylinder collides with the rubber cylinder\nYour answer is:",
+    "gt_response": "The sphere and the rubber cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 147,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/147-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which event will happen?\nChoice list: \nA. The rubber sphere collides with the purple sphere\nB. The rubber sphere collides with the cylinder\nC. The purple sphere and the blue object collide\nD. The cylinder collides with the blue object\nYour answer is:",
+    "gt_response": "The rubber sphere collides with the purple sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 148,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/148-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cylinder?\nChoice list: \nA. The green cube collides with the gray object\nB. The green cube and the cyan cube collide\nC. The cyan object collides with the gray object\nD. The yellow object and the cyan object collide\nYour answer is:",
+    "gt_response": "The yellow object and the cyan object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 149,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/149-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the purple object is removed?\nChoice list: \nA. The metal sphere and the yellow sphere collide\nB. The cylinder collides with the yellow object\nC. The cylinder and the metal object collide\nYour answer is:",
+    "gt_response": "The metal sphere and the yellow sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 150,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/150-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the sphere, which of the following will happen?\nChoice list: \nA. The cyan object collides with the purple object\nB. The cube collides with the brown cylinder\nC. The cube and the purple cylinder collide\nD. The cube collides with the cyan cylinder\nYour answer is:",
+    "gt_response": "The cube collides with the brown cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 151,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/151-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the green object, which of the following will happen?\nChoice list: \nA. The rubber cylinder collides with the sphere\nB. The rubber cylinder collides with the cube\nC. The sphere collides with the yellow metal object\nD. The cube collides with the yellow metal object\nYour answer is:",
+    "gt_response": "The rubber cylinder collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 152,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/152-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cylinder?\nChoice list: \nA. The purple object collides with the gray sphere\nB. The red object collides with the gray object\nYour answer is:",
+    "gt_response": "The purple object collides with the gray sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 153,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/153-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which event will happen?\nChoice list: \nA. The gray cylinder collides with the sphere\nB. The gray cylinder collides with the green object\nYour answer is:",
+    "gt_response": "The gray cylinder collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 154,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/154-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the blue object, which of the following will happen?\nChoice list: \nA. The rubber cylinder collides with the yellow object\nB. The brown cylinder collides with the brown cube\nC. The gray cylinder and the brown cube collide\nD. The yellow cube collides with the brown cube\nYour answer is:",
+    "gt_response": "The rubber cylinder collides with the yellow object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 155,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/155-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cube is removed, which of the following will happen?\nChoice list: \nA. The sphere collides with the yellow cylinder\nB. The purple cylinder and the sphere collide\nYour answer is:",
+    "gt_response": "The purple cylinder and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 156,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/156-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the cube?\nChoice list: \nA. The red cylinder and the sphere collide\nB. The red cylinder collides with the blue cylinder\nYour answer is:",
+    "gt_response": "The red cylinder collides with the blue cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 157,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/157-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the brown object?\nChoice list: \nA. The red object collides with the sphere\nB. The red cube collides with the cylinder\nC. The sphere and the cylinder collide\nYour answer is:",
+    "gt_response": "The red object collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 158,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/158-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the green object?\nChoice list: \nA. The brown object collides with the yellow sphere\nB. The red object and the yellow sphere collide\nC. The red cylinder and the cyan cylinder collide\nD. The yellow sphere and the cyan cylinder collide\nYour answer is:",
+    "gt_response": "The red object and the yellow sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 159,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/159-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the yellow object is removed?\nChoice list: \nA. The cylinder collides with the cube\nB. The cylinder and the gray sphere collide\nC. The gray sphere collides with the red sphere\nD. The gray object collides with the cube\nYour answer is:",
+    "gt_response": "The cylinder and the gray sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 160,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/160-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the sphere?\nChoice list: \nA. The blue object collides with the purple cylinder\nB. The blue object and the green object collide\nYour answer is:",
+    "gt_response": "The blue object collides with the purple cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 161,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/161-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the yellow object is removed?\nChoice list: \nA. The rubber cube collides with the gray object\nB. The sphere and the red cylinder collide\nC. The brown cube collides with the red cylinder\nD. The metal cube and the red object collide\nYour answer is:",
+    "gt_response": "The rubber cube collides with the gray object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 162,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/162-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, which of the following will happen?\nChoice list: \nA. The cyan cylinder collides with the yellow cylinder\nYour answer is:",
+    "gt_response": "The cyan cylinder collides with the yellow cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 163,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/163-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the red object?\nChoice list: \nA. The cube and the gray object collide\nB. The cylinder collides with the gray object\nC. The cylinder collides with the purple sphere\nD. The cube and the purple sphere collide\nYour answer is:",
+    "gt_response": "The cylinder collides with the gray object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 164,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/164-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cube?\nChoice list: \nA. The green object and the metal cylinder collide\nB. The red cylinder collides with the metal cylinder\nC. The green sphere and the cyan sphere collide\nD. The cyan sphere collides with the cyan rubber cylinder\nYour answer is:",
+    "gt_response": "The green object and the metal cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 165,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/165-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, which event will happen?\nChoice list: \nA. The cube collides with the yellow metal cylinder\nB. The yellow metal object collides with the cyan cylinder\nC. The cube collides with the green cylinder\nD. The cube and the yellow rubber cylinder collide\nYour answer is:",
+    "gt_response": "The cube collides with the green cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 166,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/166-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the purple object is removed?\nChoice list: \nA. The cyan object and the gray cylinder collide\nB. The rubber sphere and the cyan object collide\nC. The cyan object collides with the brown metal sphere\nD. The gray cylinder collides with the brown cylinder\nYour answer is:",
+    "gt_response": "The rubber sphere and the cyan object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 167,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/167-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen without the cube?\nChoice list: \nA. The gray cylinder and the brown object collide\nB. The metal cylinder collides with the yellow object\nC. The gray cylinder collides with the yellow cylinder\nYour answer is:",
+    "gt_response": "The gray cylinder collides with the yellow cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 168,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/168-0.jpg"
+    ],
+    "question": "Review the photos and answer the associated inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen if the cyan object is removed?\nChoice list: \nA. The gray sphere and the blue cylinder collide\nB. The gray sphere collides with the gray cylinder\nC. The rubber cylinder collides with the metal cylinder\nD. The cube and the metal cylinder collide\nYour answer is:",
+    "gt_response": "The gray sphere collides with the gray cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 169,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/169-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the yellow object is removed?\nChoice list: \nA. The sphere and the gray cube collide\nB. The sphere collides with the blue object\nC. The gray cube and the metal object collide\nYour answer is:",
+    "gt_response": "The sphere and the gray cube collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 170,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/170-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the cube is removed?\nChoice list: \nA. The cyan object and the red cylinder collide\nB. The red object and the brown cylinder collide\nC. The red cylinder collides with the brown sphere\nD. The gray sphere and the brown cylinder collide\nYour answer is:",
+    "gt_response": "The cyan object and the red cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 171,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/171-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the sphere is removed?\nChoice list: \nA. The blue cylinder collides with the rubber cube\nB. The gray cube collides with the metal cube\nC. The blue cylinder and the metal object collide\nD. The gray cube collides with the purple cylinder\nYour answer is:",
+    "gt_response": "The blue cylinder collides with the rubber cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 172,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/172-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, what will happen?\nChoice list: \nA. The cube and the gray cylinder collide\nB. The blue metal object and the gray object collide\nC. The gray cylinder collides with the brown cylinder\nD. The gray cylinder and the blue rubber cylinder collide\nYour answer is:",
+    "gt_response": "The cube and the gray cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 173,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/173-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cyan object is removed, which event will happen?\nChoice list: \nA. The brown sphere and the brown cylinder collide\nB. The gray cylinder collides with the brown cylinder\nC. The blue object collides with the gray cylinder\nD. The brown sphere and the gray cylinder collide\nYour answer is:",
+    "gt_response": "The brown sphere and the gray cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 174,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/174-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the red object is removed, what will happen?\nChoice list: \nA. The brown cylinder and the metal cube collide\nB. The purple object and the yellow cylinder collide\nC. The yellow cube and the yellow cylinder collide\nD. The blue cube and the brown object collide\nYour answer is:",
+    "gt_response": "The blue cube and the brown object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "If the red object is removed, the yellow cylinder and the brown cylinder will collide.",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 175,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/175-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cube, which of the following will happen?\nChoice list: \nA. The gray object collides with the metal sphere\nB. The gray object collides with the cylinder\nC. The red sphere collides with the cylinder\nYour answer is:",
+    "gt_response": "The gray object collides with the metal sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A. The gray object collides with the metal sphere",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 176,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/176-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cyan object?\nChoice list: \nA. The metal cylinder collides with the purple sphere\nB. The blue object and the purple object collide\nC. The rubber cylinder collides with the green object\nYour answer is:",
+    "gt_response": "The metal cylinder collides with the purple sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 177,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/177-0.jpg"
+    ],
+    "question": "Investigate the images and reply to the corresponding inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the brown object is removed, which of the following will happen?\nChoice list: \nA. The red object and the cyan sphere collide\nB. The red object collides with the cylinder\nYour answer is:",
+    "gt_response": "The red object and the cyan sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 178,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/178-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cylinder is removed?\nChoice list: \nA. The blue cube collides with the red rubber object\nB. The metal cube and the red rubber cube collide\nC. The sphere collides with the blue cube\nD. The sphere collides with the metal cube\nYour answer is:",
+    "gt_response": "The sphere collides with the metal cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 179,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/179-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the sphere, what will happen?\nChoice list: \nA. The metal object collides with the rubber cube\nB. The cylinder and the metal object collide\nC. The cylinder and the rubber cube collide\nYour answer is:",
+    "gt_response": "The cylinder and the metal object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 180,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/180-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the sphere, which event will happen?\nChoice list: \nA. The metal object collides with the gray object\nB. The rubber cube collides with the cylinder\nYour answer is:",
+    "gt_response": "The metal object collides with the gray object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A. The metal object collides with the gray object",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 181,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/181-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the sphere is removed, what will happen?\nChoice list: \nA. The purple cube collides with the gray cylinder\nB. The yellow object collides with the red cube\nC. The yellow cylinder collides with the gray object\nD. The purple cube and the red object collide\nYour answer is:",
+    "gt_response": "The yellow cylinder collides with the gray object",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 182,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/182-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the yellow object?\nChoice list: \nA. The red sphere collides with the brown cylinder\nB. The cyan sphere collides with the brown object\nC. The red object collides with the blue cylinder\nD. The brown cylinder and the cube collide\nYour answer is:",
+    "gt_response": "The red sphere collides with the brown cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 183,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/183-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the purple object, which of the following will happen?\nChoice list: \nA. The metal cube and the metal sphere collide\nB. The metal sphere and the green cube collide\nC. The blue sphere collides with the metal cube\nD. The blue sphere collides with the metal sphere\nYour answer is:",
+    "gt_response": "The blue sphere collides with the metal cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 184,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/184-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the brown object is removed?\nChoice list: \nA. The yellow sphere and the green sphere collide\nB. The red sphere collides with the green sphere\nC. The red object collides with the cyan sphere\nD. The yellow sphere and the cyan sphere collide\nYour answer is:",
+    "gt_response": "The yellow sphere and the green sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 185,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/185-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cyan object, what will happen?\nChoice list: \nA. The sphere and the cylinder collide\nB. The yellow cube collides with the cylinder\nYour answer is:",
+    "gt_response": "The yellow cube collides with the cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A. The sphere and the cylinder collide",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 186,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/186-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the red object, what will happen?\nChoice list: \nA. The yellow cylinder collides with the yellow cube\nB. The blue cylinder collides with the sphere\nC. The metal cylinder and the blue object collide\nD. The metal cylinder collides with the sphere\nYour answer is:",
+    "gt_response": "The yellow cylinder collides with the yellow cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 187,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/187-0.jpg"
+    ],
+    "question": "Scrutinize the visuals and respond to the related question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the metal object is removed, which of the following will happen?\nChoice list: \nA. The gray cube and the sphere collide\nB. The gray object collides with the cyan cube\nC. The sphere collides with the cyan object\nD. The gray cube and the red cylinder collide\nYour answer is:",
+    "gt_response": "The gray cube and the sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 188,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/188-0.jpg"
+    ],
+    "question": "Analyze the given pictures and answer the related inquiry about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the purple object, which event will happen?\nChoice list: \nA. The cube and the brown cylinder collide\nB. The rubber cylinder collides with the metal cylinder\nC. The brown cylinder and the yellow object collide\nD. The green cylinder collides with the yellow sphere\nYour answer is:",
+    "gt_response": "The cube and the brown cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A. The cube and the brown cylinder collide",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 189,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/189-0.jpg"
+    ],
+    "question": "Based on the provided images, answer the question related to the counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the rubber object?\nChoice list: \nA. The cube and the cylinder collide\nB. The brown object collides with the cube\nC. The brown sphere collides with the cylinder\nYour answer is:",
+    "gt_response": "The brown object collides with the cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 190,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/190-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which event will happen if the cube is removed?\nChoice list: \nA. The cyan cylinder and the green cylinder collide\nB. The green cylinder collides with the sphere\nC. The cyan cylinder collides with the sphere\nYour answer is:",
+    "gt_response": "The cyan cylinder and the green cylinder collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 191,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/191-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the green object, which event will happen?\nChoice list: \nA. The yellow sphere collides with the gray cylinder\nB. The cube and the red metal sphere collide\nC. The yellow object and the cube collide\nD. The gray cylinder collides with the cube\nYour answer is:",
+    "gt_response": "The yellow sphere collides with the gray cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 192,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/192-0.jpg"
+    ],
+    "question": "Assess the pictures and answer the connected query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the yellow object, what will happen?\nChoice list: \nA. The green object collides with the cylinder\nB. The cyan sphere collides with the cylinder\nC. The gray sphere and the cylinder collide\nD. The cyan sphere and the rubber sphere collide\nYour answer is:",
+    "gt_response": "The cyan sphere and the rubber sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 193,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/193-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, which of the following will happen?\nChoice list: \nA. The cube collides with the metal sphere\nB. The rubber object collides with the cube\nYour answer is:",
+    "gt_response": "The rubber object collides with the cube",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 194,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/194-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>If the cylinder is removed, which event will happen?\nChoice list: \nA. The blue object collides with the cyan object\nB. The cube and the blue object collide\nC. The yellow sphere collides with the cyan sphere\nD. The yellow object collides with the blue object\nYour answer is:",
+    "gt_response": "The cube and the blue object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "B",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 195,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/195-0.jpg"
+    ],
+    "question": "Observe the images and reply to the pertinent question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the brown object?\nChoice list: \nA. The metal cylinder collides with the cube\nB. The blue object collides with the cube\nC. The red sphere and the cube collide\nD. The green sphere collides with the red sphere\nYour answer is:",
+    "gt_response": "The green sphere collides with the red sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 196,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/196-0.jpg"
+    ],
+    "question": "Examine the images and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen if the cube is removed?\nChoice list: \nA. The brown cylinder and the rubber sphere collide\nB. The brown sphere collides with the purple cylinder\nC. The brown cylinder collides with the rubber cylinder\nD. The metal sphere and the brown sphere collide\nYour answer is:",
+    "gt_response": "The metal sphere and the brown sphere collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "C",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 197,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/197-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Which of the following will happen without the sphere?\nChoice list: \nA. The yellow cube collides with the cylinder\nB. The cylinder collides with the cyan object\nC. The metal cube collides with the cyan cube\nD. The blue object collides with the yellow object\nYour answer is:",
+    "gt_response": "The yellow cube collides with the cylinder",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "D",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 198,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/198-0.jpg"
+    ],
+    "question": "Evaluate the images presented and provide an answer to the associated question about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>Without the cylinder, which of the following will happen?\nChoice list: \nA. The brown object and the purple cube collide\nB. The rubber cube and the purple object collide\nYour answer is:",
+    "gt_response": "The rubber cube and the purple object collide",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  },
+  {
+    "sample_id": 199,
+    "image": [
+      "/workspace/zap/data/MileBench/CounterfactualInference/combined_1_images/199-0.jpg"
+    ],
+    "question": "Inspect the given graphics and answer the relevant query about counterfactual inference. You must choose your answer from the Choice List.\n<ImageHere><ImageHere><ImageHere><ImageHere><ImageHere>What will happen without the cube?\nChoice list: \nA. The sphere collides with the metal cylinder\nB. The brown object collides with the metal cylinder\nC. The gray object collides with the sphere\nD. The gray cylinder collides with the brown object\nYour answer is:",
+    "gt_response": "The gray object collides with the sphere",
+    "gen_model_id": "foresight_hf_llava15_student_v1_gqa_predschema_keep0.5",
+    "pred_response": "A",
+    "gen_kwargs": {
+      "max_new_tokens": 32,
+      "min_new_tokens": 1,
+      "do_sample": false,
+      "temperature": 0.0
+    }
+  }
+]

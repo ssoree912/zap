@@ -1,0 +1,1343 @@
+{
+  "rouge_l_f_mean": 0.8125831301771194,
+  "n_samples": 218,
+  "n_failures": 0,
+  "elapsed_seconds": 336.3074815273285,
+  "sec_per_sample": 1.542694869391415,
+  "args": {
+    "model_path": "/workspace/zap/ckpts/llava-1.5-7b-hf",
+    "data_path": "/workspace/zap/data/rouge_ref/our_full_mm-vet.json",
+    "image_path": "/workspace/data/mm-vet",
+    "eval_samples": 218,
+    "prompt_template": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\n{question} ASSISTANT:",
+    "max_new_tokens": 512,
+    "output_dir": "/workspace/zap/experiments/EXP-20260501-017-prefixkv-mmvet-detail-v1-gqa/outputs/keep05/mm-vet/rouge_vsourfull",
+    "method": "visual_utility_student",
+    "student_model_name": "/workspace/zap/ckpts/v1/student_v2_A_gqa_lr1e4",
+    "quadrant": null,
+    "evict_ratio": 0.25,
+    "alpha": 0.5,
+    "future_blend_layers": [],
+    "image_keep_ratio": null,
+    "total_keep_ratio": 0.5,
+    "future_probe_name": null,
+    "selected_layer_indices": null,
+    "strict_selected": true,
+    "head_reduce": "amax",
+    "torch_dtype": "bfloat16",
+    "device": "cuda:0",
+    "attn_implementation": "sdpa",
+    "seed": null
+  },
+  "per_sample": [
+    {
+      "id": null,
+      "pred": "In the equation, x is the variable that represents an unknown value. It is typically used to represent the unknown quantity in a mathematical expression or equation.",
+      "answer": "In the equation, x is the variable that represents an unknown value. It is typically used to represent the unknown quantity in a mathematical expression or equation.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In the last equation, d represents the difference between the two quantities being compared.",
+      "answer": "In the last equation, d represents the difference between the two quantities being compared.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In the equation, x is the variable that represents the unknown value. It is being used to solve for the value of the variable in the equation.",
+      "answer": "In the equation, x is the variable that represents the unknown value.",
+      "rouge_l_f": 0.6896551678953627
+    },
+    {
+      "id": null,
+      "pred": "The answer to the bottom left equation is 9.",
+      "answer": "The answer to the bottom left equation is 9.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The answer to the second equation on the right is 12.",
+      "answer": "The answer to the second equation on the right is 12.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The answer to the second last equation on the right is 36.",
+      "answer": "The answer to the second last equation on the right is 36.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In the last equation, y is equal to 39.",
+      "answer": "In the last equation, y is equal to 39.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In the image, the \"X\" operator is redefined as the result of multiplying a number by 3 and then adding 5. To solve the equation, you need to apply this pattern to the given equation.\n\nGiven equation: 2x + 3x + 5 = 11\n\nApplying the pattern: 2x + 3x + 5 = 11\n\n= 5x + 8 = 11\n\n= 5x = 3\n\n= x = 3/5\n\nSo, the answer to the equation is x = 3/5.",
+      "answer": "In the image, the \"X\" operator is redefined as the result of multiplying a number by 3 and then adding 5. To solve the equation, you need to apply this pattern to the given equation.\n\nGiven equation: 2x + 3x + 5 = 11\n\nTo solve this equation using the pattern, you would first multiply 2 by 3 and add 5, which gives you 6. Then, you would multiply 3 by 3 and add 5, which gives you 9. Finally, you would multiply 5 by 3 and add 5, which gives you 15.\n\nSo, the solution to the equation is 6 + 9 + 15 = 30.",
+      "rouge_l_f": 0.7599999950499999
+    },
+    {
+      "id": null,
+      "pred": "The girl on the right will write the number 12 on the board.",
+      "answer": "The girl on the right will write the number 12 on the board.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "With $50, you can buy approximately 10 gallons of supreme gasoline at the gas station. The price per gallon is $5.00, and you have $50 to spend.",
+      "answer": "With $50, you can buy approximately 10 gallons of supreme gasoline, as the price per gallon is $5.00.",
+      "rouge_l_f": 0.6956521690642723
+    },
+    {
+      "id": null,
+      "pred": "The price difference between diesel and regular gasoline is $0.36 per gallon.",
+      "answer": "The price difference between diesel and regular gasoline is $0.36 per gallon.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The total price for a bottle of Merlot and a bottle of Cabernet in the image is $14.99.",
+      "answer": "The total price for a bottle of Merlot and a bottle of Cabernet in the image is $14.99.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The cost of three bottles of Moet champagne is $149.99.",
+      "answer": "The cost of three bottles of Moet champagne is $149.99.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "To determine the total cost of your order, you need to add the prices of the two pizzas to the cost of the drink. The pizzas are priced at 7.50 euros each, and the drink is 2.50 euros. Therefore, the total cost of your order would be:\n\n2 x 7.50 euros + 2.50 euros = 12.00 euros\n\nSo, you should pay 12.00 euros in total for your order.",
+      "answer": "To determine the total cost of your order, you need to add the prices of the two pizzas to the cost of the drink. The pizzas are priced at 7.50 euros each, and the drink is 2.50 euros. Therefore, the total cost of your order would be:\n\n2 pizzas x 7.50 euros = 15 euros\n1 drink x 2.50 euros = 2.50 euros\n\nTotal cost: 15 euros + 2.50 euros = 17.50 euros",
+      "rouge_l_f": 0.8499999950031252
+    },
+    {
+      "id": null,
+      "pred": "To determine the total cost of your order, you need to consider the prices of the two margherita pizzas and the calzone. The prices of the pizzas are listed on the menu, and the calzone is also available for purchase. You can add the prices of the pizzas and the calzone to get the total cost. For example, if the two margherita pizzas cost $10 each and the calzone costs $8, the total cost would be $10 + $8 = $18.",
+      "answer": "To determine the total cost of your order, you need to consider the prices of the two margherita pizzas and the calzone. The prices of the pizzas are listed on the chalkboard menu, but I cannot see the exact prices. However, you can assume that the cost of each pizza is around 5 euros, as suggested by the image. The calzone is also priced at 5 euros.\n\nTo calculate the total cost, you would need to multiply the number of pizzas and the calzone by their respective prices. For example, if you are getting two margherita pizzas and one calzone, the total cost would be:\n\n2 pizzas x 5 euros = 10 euros\n1 calzone x 5 euros = 5 euros\n\nSo, the total cost of your order would be 15 euros.",
+      "rouge_l_f": 0.5565217343667297
+    },
+    {
+      "id": null,
+      "pred": "The original price for pork belly before the discount is 9.80.",
+      "answer": "The original price for pork belly before the discount is 9.80.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The gasoline price is $6.45 per gallon.",
+      "answer": "The gasoline price is $6.45 per gallon.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The person in the front left is wearing a blue hat.",
+      "answer": "The person in the front left is wearing a blue hat.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "To the right of the shampoo, there is a bottle of conditioner.",
+      "answer": "A bottle of conditioner is located to the right of the shampoo.",
+      "rouge_l_f": 0.2999999950000001
+    },
+    {
+      "id": null,
+      "pred": "The right most bottle contains a tinted moisturizer.",
+      "answer": "The right most bottle contains a tinted moisturizer.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The frisbee is in the air, and the man is reaching out to catch it.",
+      "answer": "The frisbee is in the air, and the man is reaching out to catch it.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The blue car is parked on the parking spot 33.",
+      "answer": "The blue car is parked on the parking spot 33.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The red car is parking on the number 2 spot in the parking lot.",
+      "answer": "The red car is parking on the spot that is marked with the number 28.",
+      "rouge_l_f": 0.6399999950080001
+    },
+    {
+      "id": null,
+      "pred": "The price for tomatoes is 90 cents per pound.",
+      "answer": "The price for tomatoes is 90 cents per pound.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The right of plums is oranges.",
+      "answer": "The right of plums is oranges.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The image shows a table with a chart displaying the international awareness of Tina Fey. The chart is divided into several sections, including countries such as Australia, France, Germany, Italy, Japan, Korea, Russia, Spain, and the United Kingdom. The chart shows that the total international awareness of Tina Fey is 60%. This means that a significant portion of the countries listed are aware of her, but there are still some countries where her awareness is lower.",
+      "answer": "The image shows a table with a chart displaying the international awareness of Tina Fey. The chart is divided into several sections, including countries such as Australia, France, Germany, Italy, Japan, Korea, Russia, Spain, and the United Kingdom. The chart shows that the international awareness of Tina Fey is quite high, with a majority of the countries having a positive awareness of her. However, the exact percentage of awareness cannot be determined from the image alone.",
+      "rouge_l_f": 0.7128712821331242
+    },
+    {
+      "id": null,
+      "pred": "In the image, Tina Fey has the highest level of total awareness in the United States.",
+      "answer": "In the image, Tina Fey has the highest level of total awareness in the United States.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Number 2 on the diagram indicates the outer core of the Earth. The outer core is the innermost layer of the Earth's interior, located between the mantle and the core. It is composed of liquid iron and nickel, and it is responsible for generating the Earth's magnetic field. The outer core is also the hottest part of the Earth, with temperatures reaching up to thousands of degrees Celsius.",
+      "answer": "Number 2 on the diagram indicates the outer core of the Earth. The outer core is the layer of the Earth's interior that lies between the mantle and the core. It is composed of liquid iron and nickel and is responsible for generating the Earth's magnetic field. The outer core is located beneath the mantle and is separated from the core by the mantle's solid inner layer.",
+      "rouge_l_f": 0.6666666616857188
+    },
+    {
+      "id": null,
+      "pred": "The number displayed on the motorcycle ridden by the motorcyclist wearing a yellow suit is 11.",
+      "answer": "The number displayed on the motorcycle ridden by the motorcyclist wearing a yellow suit is 11.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The number displayed on the motorcycle on the right is 21.",
+      "answer": "The number displayed on the motorcycle on the right is 21.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The jet on the right is larger in size compared to the jet on the left.",
+      "answer": "The jet on the left is larger in size compared to the jet on the right.",
+      "rouge_l_f": 0.8333333283333335
+    },
+    {
+      "id": null,
+      "pred": "Yes, the person is bigger than the car.",
+      "answer": "Yes, the person is bigger than the car.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "After kneading the dough, you should let it rest for a few minutes before dividing it into pieces. This allows the gluten in the dough to relax and develop, resulting in a more even and airy texture in the final bread. Resting the dough also helps to prevent the formation of a dense, chewy crust. Once the dough has rested, you can proceed to divide it into pieces and shape them according to your desired bread type, such as baguettes, rolls, or buns.",
+      "answer": "After kneading the dough, you should let it rest for a few minutes before dividing it into pieces. This allows the gluten in the dough to relax and develop, resulting in a more even and airy texture in the final bread. The resting period also helps the dough to rise slightly, which is essential for achieving the desired texture and flavor in the bread.",
+      "rouge_l_f": 0.622641504521182
+    },
+    {
+      "id": null,
+      "pred": "Yes, it is recommended to add sugar when mixing egg and milk. In the image, there is a recipe for chocolate cake that includes mixing egg and milk. Adding sugar to the mixture helps to create a more balanced flavor and enhances the taste of the chocolate cake. The sugar also helps to create a smoother and more stable batter, which is essential for achieving a successful cake.",
+      "answer": "Yes, it is recommended to add sugar when mixing egg and milk. In the image, there is a recipe for chocolate cake that includes mixing egg and milk. Adding sugar to the mixture helps to create a more balanced flavor and enhances the taste of the cake. The sugar also helps to create a more moist and tender texture in the cake.",
+      "rouge_l_f": 0.8641975258710562
+    },
+    {
+      "id": null,
+      "pred": "Before cutting herbs, sausage, and mushrooms, you should first wash them thoroughly to remove any dirt or debris. This is important for maintaining food safety and ensuring that the ingredients are clean and ready for cooking. Additionally, you may want to trim any excess fat or tough parts from the sausage and mushrooms to improve their texture and flavor during cooking. Once the ingredients are cleaned and prepared, you can proceed with cutting them into the desired sizes and shapes for your recipe.",
+      "answer": "Before cutting herbs, sausage, and mushrooms, you should first wash them thoroughly to remove any dirt or debris. This is important for maintaining food safety and ensuring that the ingredients are clean and ready for cooking. Additionally, you may want to trim any excess fat or tough parts from the sausage and mushrooms to enhance their flavor and texture during cooking. Once the ingredients are cleaned and prepared, you can proceed with cutting them into the desired sizes and shapes for your recipe.",
+      "rouge_l_f": 0.9672131097540985
+    },
+    {
+      "id": null,
+      "pred": "The index of the step when we need to add all purpose flour is step 3.",
+      "answer": "The index of the step when we need to add all purpose flour is step 3.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In the third step of the pancake recipe, we should add the eggs. The image shows a cartoon illustration of a pancake with a spoon and a bowl, which likely contains the eggs. To complete the pancake recipe, we need to mix the eggs with the other ingredients, such as flour, milk, and any additional flavorings or sweeteners. Once the batter is well-mixed, we can pour it into the pan and cook the pancake according to the recipe instructions.",
+      "answer": "In the third step of the pancake recipe, we should add the eggs. The image shows a bowl of eggs, which is an essential ingredient for making pancakes. After mixing the batter, we should add the eggs to the pancake mixture to create a smooth and even consistency before cooking the pancakes.",
+      "rouge_l_f": 0.4222222173802469
+    },
+    {
+      "id": null,
+      "pred": "After snapping their fingers, kids should follow the visual support provided in the image, which is a step-by-step direction for multi-step directions. This visual support helps them understand the sequence of actions required to complete the task, such as tapping their toes, hopping on one foot, and touching their toes. By following the visual support, kids can successfully complete the multi-step directions and improve their coordination and motor skills.",
+      "answer": "After snapping their fingers, kids should follow the visual support provided in the image, which is a step-by-step direction for multi-step directions. This visual support helps them understand the sequence of actions required to complete the task. In this case, the visual support shows the kids to \"touch your toes\" after snapping their fingers. This helps them follow the instructions and complete the task correctly.",
+      "rouge_l_f": 0.6458333283680556
+    },
+    {
+      "id": null,
+      "pred": "In the fourth step, you should draw a nose after you have drawn the eyes. This is an essential part of the face and is often the focal point of a portrait or drawing. The nose should be drawn with a combination of accuracy and proportion, taking into account the shape, size, and placement of the nostrils, as well as the surrounding facial features.",
+      "answer": "In the fourth step, the child should draw a nose after drawing the eyes. This is an essential part of the face and helps complete the facial features. The image shows a boy drawing a nose after drawing eyes, which is a crucial step in drawing a face.",
+      "rouge_l_f": 0.5641025592209074
+    },
+    {
+      "id": null,
+      "pred": "After using the probe to spread the tire puncture, the next step is to remove the probe and then use a tire repair kit to repair the puncture. The tire repair kit typically includes tools such as a patch, a tire plug, and a patch applicator. The person in the image is following the instructions to use the tire repair kit to fix the puncture on the tire.",
+      "answer": "After using the probe to spread the tire puncture, the next step is to remove the probe and then use a tire repair kit to repair the puncture. The tire repair kit typically includes tools such as a patch, a tire plug, and a patching compound. The person in the image is following the instructions to use the tire repair kit to fix the puncture on the tire.",
+      "rouge_l_f": 0.9444444394444445
+    },
+    {
+      "id": null,
+      "pred": "The second step suggested in the image is to create a list of processes. This involves identifying the processes that are involved in the SOP (Standard Operating Procedure) and documenting them in a clear and organized manner. This step is crucial for ensuring that the SOP is comprehensive and effective in guiding the process.",
+      "answer": "The second step suggested in the image is to create a list of processes. This involves identifying the processes that are involved in the SOP (Standard Operating Procedure) and documenting them in a clear and organized manner. This step is crucial for ensuring that the SOP is comprehensive and effective in guiding the process.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The last strategy given in the image is \"Make a song.\"",
+      "answer": "The last strategy given in the image is \"Make a song.\"",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The average total fueling cost excluding the Ford F150 is $75.",
+      "answer": "The average total fueling cost excluding the Ford F150 is $75.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The highest fueling cost is $75.",
+      "answer": "The highest fueling cost is $75.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The category that did the worst job in plastic recycling is the one that threw out the most plastic waste. In the image, the bar graph shows that the category that threw out the most plastic waste also produced the most plastic. This indicates that the recycling rate for this category is low, and a significant amount of plastic waste is being generated and not being properly managed. This highlights the need for better waste management practices and increased recycling efforts to reduce plastic waste and its negative impact on the environment.",
+      "answer": "The category that did the worst job in plastic recycling is the \"Plastic Thrown Out\" category. In the image, it is shown that almost all of the plastic waste generated is not recycled, with only a small portion of it being recycled. This indicates that there is a significant gap between the amount of plastic waste generated and the amount of plastic waste that is recycled, which highlights the need for better waste management and recycling practices to minimize plastic waste and its negative impact on the environment.",
+      "rouge_l_f": 0.6355140136920256
+    },
+    {
+      "id": null,
+      "pred": "The difference in metric tonnes between the amount of plastic produced and the amount discarded is approximately 40 million tonnes. This indicates that the amount of plastic produced is significantly higher than the amount being discarded, which is a cause for concern as it highlights the issue of plastic waste and its impact on the environment.",
+      "answer": "The difference in metric tonnes between the amount of plastic produced and the amount discarded is 13,000,000. This indicates that the amount of plastic produced is significantly higher than the amount discarded, which is a cause for concern as it highlights the issue of plastic waste and its impact on the environment.",
+      "rouge_l_f": 0.9333333283413333
+    },
+    {
+      "id": null,
+      "pred": "The estimated average standing charge for the year 2023 is 3.5 pence per unit.",
+      "answer": "The estimated average standing charge for the year 2023 is 3.50 pence per unit.",
+      "rouge_l_f": 0.9333333283333335
+    },
+    {
+      "id": null,
+      "pred": "The estimated total cost for the year 2023 is approximately 1.3 billion pounds.",
+      "answer": "The estimated total cost for the year 2023 is approximately 1.3 billion pounds.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The living room window faces the dining area.",
+      "answer": "The living room window faces the dining area.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The kitchen in this floorplan has a sink and a toilet.",
+      "answer": "The kitchen in this floorplan has a sink and a toilet.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The double garage is bigger than the living room in the floor plan.",
+      "answer": "The double garage is bigger than the living room in the floor plan.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The master bedroom is bigger than the patio.",
+      "answer": "The master bedroom is bigger than the patio.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "If the lamp is plugged in and the bulb has burned out, the solution is to replace the burned-out bulb with a new one. In the image, there is a diagram showing a lamp plugged in and a bulb that has burned out. To fix the issue, one should carefully remove the old bulb, clean the socket if necessary, and then insert a new bulb with the correct size and wattage. This will ensure that the lamp functions properly and provides adequate lighting.",
+      "answer": "If the lamp is plugged in and the bulb has burned out, the solution is to replace the burned-out bulb with a new one. In the image, there is a diagram showing a lamp plugged in and a bulb that has burned out. To fix the issue, one should carefully remove the old bulb, clean the socket if necessary, and then insert a new bulb with the correct size and wattage. This will ensure that the lamp functions properly and provides adequate lighting.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The step in the flowchart that is drawn with a diamond shape is the \"Wait\" step.",
+      "answer": "The step in the flowchart that is drawn with a diamond shape is the \"Wait\" step.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The average wait time to climb out of bed is three minutes.",
+      "answer": "The average wait time to climb out of bed is three minutes.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The year with the highest growth rate of median house price is 1970.",
+      "answer": "The year with the highest growth rate of median house price is 1970.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Japan's GDP in 2012 was approximately 4.5 trillion US dollars.",
+      "answer": "Japan's GDP in 2012 was approximately 4.8 trillion US dollars.",
+      "rouge_l_f": 0.9090909040909091
+    },
+    {
+      "id": null,
+      "pred": "In the years 1992 and 1996, rowing and athletics had the same number of gold medals, with both sports winning four gold medals at the Summer Olympics.",
+      "answer": "In the years 1992 and 1996, rowing and athletics had the same number of gold medals, with both sports winning four gold medals.",
+      "rouge_l_f": 0.9302325531638724
+    },
+    {
+      "id": null,
+      "pred": "The person with the highest salary is from the Finance department.",
+      "answer": "The person with the highest salary is from the Finance department.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Wilkins is earning $2,000 per month as a salary.",
+      "answer": "According to the table, Wilkins is earning $2,000 per month.",
+      "rouge_l_f": 0.6315789423822715
+    },
+    {
+      "id": null,
+      "pred": "The country with a below-average profit margin is the United States. In the image, the table shows that the United States has a profit margin of $16.72, which is lower than the average profit margin of $20.00. This indicates that the profitability of businesses in the United States is lower compared to other countries.",
+      "answer": "The country with a below-average profit margin is the United States. In the image, the table shows that the United States has a profit margin of $16.72, which is lower than the average profit margin of $20.00. This indicates that the profitability of businesses in the United States is relatively lower compared to other countries.",
+      "rouge_l_f": 0.9859154879587383
+    },
+    {
+      "id": null,
+      "pred": "The country with the highest profit margin is the United States, as indicated by the table.",
+      "answer": "The country with the highest profit margin is the United States, as indicated by the table.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The highest income generated is in the month of March, as indicated by the table.",
+      "answer": "The highest income generated is in the month of March, as indicated by the table.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In the image, the salary is $5,000, which is 10% of the total income. The total income is $50,000, and the salary is $5,000.",
+      "answer": "In the image, the salary is $5,000, which is a small portion of the total income. The total income is $1,000,000, and the salary is only 0.5% of that amount.",
+      "rouge_l_f": 0.6666666618055556
+    },
+    {
+      "id": null,
+      "pred": "The person on the left is actress Reese Witherspoon.",
+      "answer": "The person on the left is actress Reese Witherspoon.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The person in the image is a woman, who is a Chinese actress.",
+      "answer": "The person in the image is a woman, who is a Chinese actress.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The person in the bottom right is Rihanna.",
+      "answer": "The person in the bottom right is Rihanna.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The unsweetened milk is the one on the left, while the other two are sweetened.",
+      "answer": "The unsweetened milk is the one on the left, while the other two are sweetened.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the apple in the image is organic.",
+      "answer": "Yes, the apple in the image is organic.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The calories for the entire bag of vegetables are 220 calories.",
+      "answer": "The calories for the entire bag of vegetables are 220 calories.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The dish in the image is a bowl of beef and vegetable soup.",
+      "answer": "The dish in the image is a bowl of beef and vegetable soup.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The name of this dish is \"Bruschetta.\"",
+      "answer": "The dish is called Caprese salad, which is a popular Italian dish made with fresh tomatoes, mozzarella cheese, and basil leaves.",
+      "rouge_l_f": 0.22222221805212622
+    },
+    {
+      "id": null,
+      "pred": "The dish in the image is called Pad Thai.",
+      "answer": "The dish in the image is called Pad Thai.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The make of the car on the left is Volkswagen.",
+      "answer": "The make of the car on the left is Volkswagen.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The factory in the image is a Leica factory, which is a company known for manufacturing high-quality cameras and optics. The building has a large red sign on its side, which is likely the Leica logo. The presence of the Leica factory suggests that the building is involved in the production of cameras, lenses, and other photography-related equipment.",
+      "answer": "The factory in the image is a Leica factory, which is a company known for manufacturing high-quality cameras and optics. The building has a large red sign on its side, indicating the brand and the type of products it produces. The presence of a large sphere in front of the building suggests that the factory might also be involved in other manufacturing processes or serve as a showcase for the company's products.",
+      "rouge_l_f": 0.7045454496100209
+    },
+    {
+      "id": null,
+      "pred": "The green logo on the car is the Monster Energy logo.",
+      "answer": "The green logo on the car is the Monster Energy logo.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The name of this landmark is the Trevi Fountain, which is located in Rome, Italy.",
+      "answer": "The name of this landmark is the Trevi Fountain.",
+      "rouge_l_f": 0.6956521691493385
+    },
+    {
+      "id": null,
+      "pred": "The name of this landmark is the Al-Aqsa Mosque.",
+      "answer": "The name of this landmark is the Al-Aqsa Mosque.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The name of this landmark is the Washington Monument.",
+      "answer": "The name of this landmark is the Washington Monument.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The face value of this banknote is $1.",
+      "answer": "The face value of this banknote is $1.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "This banknote is a ten-pound sterling note from the United Kingdom.",
+      "answer": "This banknote is a ten-pound sterling note from the United Kingdom.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The banknote in the image represents the Euro, as it is a 10 Euro bill.",
+      "answer": "The banknote in the image represents the Euro, as it is a 10-Euro bill.",
+      "rouge_l_f": 0.8888888838957477
+    },
+    {
+      "id": null,
+      "pred": "The chest xray shows a mass in the chest area, which could be indicative of various diseases such as a tumor, infiltration, or inflammation. However, without more specific information, it is not possible to determine the exact disease present in the image.",
+      "answer": "The chest xray shows a mass in the chest area, which could be indicative of various diseases such as a tumor, infiltration, or inflammation. However, without more specific information, it is not possible to determine the exact disease present in the image.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The chest xray shows a mass in the chest area, which could be indicative of various diseases such as a tumor, infection, or inflammation. However, without more information or a detailed analysis of the xray, it is not possible to definitively identify the specific disease present.",
+      "answer": "The chest xray shows a mass in the chest area, which could be indicative of various diseases such as a tumor, infection, or inflammation. However, without more specific information, it is not possible to determine the exact disease present in the image.",
+      "rouge_l_f": 0.8421052581613574
+    },
+    {
+      "id": null,
+      "pred": "The chest xray shows a mass in the lungs, which is a sign of lung cancer.",
+      "answer": "The chest xray shows a mass in the lungs, which is a sign of lung cancer.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "There are six birds in the image.",
+      "answer": "There are six birds in the image.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "There are two tomatoes in the image.",
+      "answer": "There are three tomatoes in the image.",
+      "rouge_l_f": 0.8571428521428571
+    },
+    {
+      "id": null,
+      "pred": "There are many books on the shelf, but I cannot provide an exact number without more specific information.",
+      "answer": "There are many books in the image, but I cannot provide an exact number without more specific information.",
+      "rouge_l_f": 0.888888883888889
+    },
+    {
+      "id": null,
+      "pred": "The scene text in the image is \"S S 33002\".",
+      "answer": "The scene text in the image is \"S S 33002\".",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The scene text in the image is \"LUXMI JEWELLERS.\"",
+      "answer": "The scene text in the image is \"LUXMI JEWELLERS.\"",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The scene text in the image reads \"Have Yourself a Merry Little Christmas.\"",
+      "answer": "The scene text in the image reads \"Have Yourself a Merry Little Christmas.\"",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The scene text in the image is \"Mario Kart Deluxe\" and \"Fortnite.\"",
+      "answer": "The scene text in the image is \"Mario Kart Deluxe.\"",
+      "rouge_l_f": 0.8333333283680556
+    },
+    {
+      "id": null,
+      "pred": "The scene text in the image is \"Shakespeare's Comedies, Tragedies, Histories, &c.\"",
+      "answer": "The scene text in the image is \"Shakespeare's Comedies, Tragedies, Histories, &c.\"",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The scene text in the image reads: \"CONNECTICUT LAW OF 1642. If any man or woman be a witch, that, being convicted by their own confession, or by the testimony of two witnesses, shall be put to death.\"",
+      "answer": "The scene text in the image is \"CONNECTICUT LAW OF 1642.\"",
+      "rouge_l_f": 0.4680851025803531
+    },
+    {
+      "id": null,
+      "pred": "The brand of the device is Motorola.",
+      "answer": "The brand of the device is Motorola.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The license plate number is A41-8322.",
+      "answer": "The license plate number is A41-8322.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The French scene text in the image is \"Histoire de France\" (History of France).",
+      "answer": "The French scene text in the image is \"Histoire de France\" (History of France).",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The Chinese scene text in the image reads \"Chinese cityscape.\"",
+      "answer": "The Chinese scene text in the image reads \"Chinese cityscape.\"",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The continent highlighted in the image is Asia.",
+      "answer": "The continent highlighted in the image is Asia.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "In this food web, the producers are the blue whale, the leopard seal, and the penguin. These animals are at the top of the food chain and are responsible for producing their own food through photosynthesis or hunting. The blue whale, for example, is a herbivore that feeds on plankton, while the leopard seal and penguin are carnivores that hunt for fish and other marine animals. The other animals in the food web, such as the squid, octopus, and crab, are consumers that obtain their energy by feeding on the producers or other consumers.",
+      "answer": "In the food web, the producers are the blue whale and the penguin. The blue whale is a herbivore that feeds on plankton, while the penguin is a carnivore that feeds on fish. Both of these animals play a crucial role in the food web by providing food for other species, such as the leopard seal, which is a carnivore that feeds on the penguin. The leopard seal, in turn, is preyed upon by the killer whale, which is a top predator in the food web.",
+      "rouge_l_f": 0.5490196028738947
+    },
+    {
+      "id": null,
+      "pred": "To compare the average kinetic energies of the particles in each sample, we need to know the mass of each sample and the average kinetic energy of the particles. The mass of each sample is different, so we cannot directly compare their average kinetic energies. However, we can compare the average kinetic energy per particle.\n\nSample A has 44 particles with an average kinetic energy of 38000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "answer": "The average kinetic energy of the particles in sample A is higher than that of sample B. This is because the temperature of sample A is higher than that of sample B. The higher temperature in sample A results in a higher average kinetic energy for the particles in that sample.",
+      "rouge_l_f": 0.3793103402080857
+    },
+    {
+      "id": null,
+      "pred": "The farthest north highlighted city is Minneapolis, Minnesota.",
+      "answer": "The farthest north highlighted city is Minneapolis, Minnesota.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "This photo is taken in a city, specifically in a collapsed building area.",
+      "answer": "This photo is taken in a city, specifically in a collapsed building or a demolished area.",
+      "rouge_l_f": 0.9166666617013889
+    },
+    {
+      "id": null,
+      "pred": "This photo is taken at an awards ceremony, where a woman is holding an Oscar statue.",
+      "answer": "This photo is taken at an awards ceremony, where a woman is holding an Oscar statue.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "This photo is taken at a sports event, where a group of men is celebrating their victory.",
+      "answer": "This photo is taken at a sports event, where a group of men is celebrating their victory.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "This photo was taken in Australia.",
+      "answer": "This photo was taken in Australia.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the trees in the image are taller than the giraffes, as they are reaching up to eat leaves from the tree branches.",
+      "answer": "Yes, the trees in the image are taller than the giraffes, as they are reaching up to eat leaves from the tree.",
+      "rouge_l_f": 0.9729729679766254
+    },
+    {
+      "id": null,
+      "pred": "The airplane is taking off from the runway.",
+      "answer": "The airplane is taking off from the runway.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "There are two people sitting down in the image.",
+      "answer": "There are two people sitting down in the image.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The trash is empty.",
+      "answer": "The trash is empty.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "No, the giraffe does not appear dangerous in the image. It is standing next to a person, and the person is petting the giraffe's neck. The giraffe is also leaning its head over the person, which suggests a friendly and non-threatening interaction between the two.",
+      "answer": "No, the giraffe does not appear dangerous in the image. It is standing next to a person, and the person is petting the giraffe's neck. The giraffe is also wearing a blanket, which suggests that it is being cared for or protected. The scene appears to be a peaceful interaction between the person and the giraffe, rather than a dangerous encounter.",
+      "rouge_l_f": 0.6923076873898751
+    },
+    {
+      "id": null,
+      "pred": "Yes, there is a reflection of the zebra in the water.",
+      "answer": "Yes, there is a reflection of the zebra in the water.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the man is happy as he is smiling while being carried by the woman on the beach.",
+      "answer": "Yes, the man is happy as he is smiling while being carried by the woman on the beach.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "No, the cats are not the same color. They are a mix of different colors, including white, gray, and orange.",
+      "answer": "No, the cats are not the same color. They are a mix of different colors, including white, gray, and orange.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "No, there is no wine in the background. The image features a pizza box, a laptop, and two Coca-Cola cans on a desk.",
+      "answer": "No, there is no wine in the background. The image features a pizza box, a laptop, and two pizza boxes on a table.",
+      "rouge_l_f": 0.8780487754907793
+    },
+    {
+      "id": null,
+      "pred": "No, the man is not going to fall down. He is running on a road, and his posture and balance suggest that he is maintaining his footing and moving forward.",
+      "answer": "No, the man is not going to fall down. He is running on a road, and his posture and balance suggest that he is maintaining his footing and moving forward.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The image shows a beach.",
+      "answer": "The image shows a beach with a large elephant walking in the water.",
+      "rouge_l_f": 0.588235289965398
+    },
+    {
+      "id": null,
+      "pred": "No, it is not outdoors. The image shows a room with a lot of potted plants, which suggests that it is an indoor space, possibly a living room or a greenhouse.",
+      "answer": "No, it is not outdoors. The image shows a room with a lot of potted plants, which are indoor plants.",
+      "rouge_l_f": 0.772727267820248
+    },
+    {
+      "id": null,
+      "pred": "The weather appears to be sunny and clear, with a blue sky overhead.",
+      "answer": "The weather in the image is sunny and clear, making it a perfect day for outdoor activities and sightseeing.",
+      "rouge_l_f": 0.38709676932362125
+    },
+    {
+      "id": null,
+      "pred": "The fence made of metal is green.",
+      "answer": "The fence made of metal is green.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the person to the left of the man appears to be sitting.",
+      "answer": "Yes, the person to the left of the man appears to be sitting.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the plate on the table is dirty and silver.",
+      "answer": "Yes, the plate on the table is dirty and silver.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The curtain is on the left side of the picture.",
+      "answer": "The curtain is on the left side of the picture.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "No, there is no computer in this photo. The image features a cat sitting on a bed next to a book and a cup of coffee.",
+      "answer": "No, there is no computer in this photo. The image features a cat sitting on a bed next to a book and a cup of coffee.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, there are napkins under the utensil to the left of the rice.",
+      "answer": "Yes, there are napkins under the utensil to the left of the rice.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "No, there are no nuts or vegetables in the image. The image features a plate of meat covered in a brown sauce, and a can of soda is placed next to it.",
+      "answer": "No, there are no nuts or vegetables in the image. The image features a plate of meat covered in a brown sauce, and a can of soda is placed next to it.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, there are both plates and forks in the image.",
+      "answer": "Yes, there are both plates and forks in the image.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The bird in the image is a parrot.",
+      "answer": "The bird in the image is a parrot.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The cat is larger than the dog in the picture.",
+      "answer": "The cat is larger than the dog in the picture.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "To the left of the laptop, there is a stack of books on the desk.",
+      "answer": "To the left of the laptop, there is a stack of books on the desk.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "No, the man does not ride a horse. He is riding on the back of an elephant.",
+      "answer": "No, the man does not ride a horse. He is riding on the back of an elephant.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The surfer is to the right of the surfboard.",
+      "answer": "The surfer is to the right of the surfboard.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The lamp is on a side table.",
+      "answer": "The lamp is on a side table.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Both the stump and the fence have a wooden appearance. The wooden stump is a large, thick tree trunk that has been cut off at the base, while the wooden fence is a structure made of wooden planks or posts. Both objects are made of wood and are found in the same environment, which is a grassy area.",
+      "answer": "Both the stump and the fence share the common characteristic of being wooden. The wooden stump is a large, thick tree trunk that has been cut off at the base, while the wooden fence is a structure made of wooden planks or posts. Both objects are typically found in outdoor settings, such as gardens or yards, and serve different purposes. The stump may be used as a support for plants or as a decorative element, while the fence serves as a boundary or enclosure for a specific area.",
+      "rouge_l_f": 0.6597938096248274
+    },
+    {
+      "id": null,
+      "pred": "Yes, the spoon and the chopsticks are made of the same material, which is stainless steel.",
+      "answer": "Yes, the spoon and the chopsticks are made of the same material, which is stainless steel.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the shirt the girl is wearing is white, while the kite she is flying is blue.",
+      "answer": "Yes, the shirt the girl is wearing is white, while the kite is blue.",
+      "rouge_l_f": 0.9090909041322315
+    },
+    {
+      "id": null,
+      "pred": "No, not all the people in the image have the same gender. There are both men and women in the group.",
+      "answer": "No, not all the people in the image have the same gender. There are both men and women in the group.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "Yes, the two animals in the image are different species. One is a deer, and the other is a tiger.",
+      "answer": "Yes, the two animals in the image are different species. One is a deer, and the other is a tiger.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The persons are in a bar.",
+      "answer": "The persons are in a bar.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The persons in the image are wearing black clothes, which is a common attire for funeral processions. They are walking down the sidewalk, carrying a casket, and some of them are wearing ties. This suggests that they are attending a funeral or a memorial service for someone who has passed away. The black clothing is a sign of respect and mourning for the deceased and their family.",
+      "answer": "The persons in the image are wearing black clothes, which is a common attire for mourners or people attending a funeral. The group of people is walking down a sidewalk, and some of them are carrying flowers, which further suggests that they are attending a funeral or a memorial service. Wearing black clothes is a sign of respect and solidarity with the bereaved family and friends, as it symbolizes the seriousness of the occasion and the shared grief.",
+      "rouge_l_f": 0.6399999950080001
+    },
+    {
+      "id": null,
+      "pred": "The woman is likely wearing a robe because she is in a bedroom or a living space where she feels comfortable and relaxed. The robe provides a sense of warmth and coziness, which is ideal for resting or lounging in a private setting. Additionally, the robe may be a part of her personal style or a way to express her personality. It is also possible that she is wearing the robe to keep warm or to maintain a certain level of modesty while in the room.",
+      "answer": "The woman is likely wearing a robe because she is in a bedroom or a living space where she feels comfortable and relaxed. The robe provides a sense of warmth and coziness, which is often associated with resting or sleeping. It is also possible that she is in the process of getting ready for bed or has just woken up and is still in her robe. The presence of a bed in the image further supports the idea that she is in a bedroom or a similar environment where people typically wear robes.",
+      "rouge_l_f": 0.5714285664301659
+    },
+    {
+      "id": null,
+      "pred": "This is happening in a room, possibly a hotel room, as the man is dressed in a tuxedo and a woman is looking at him. The presence of a mirror in the room further supports the idea that it is a hotel room. The man is wearing a white bow tie, which is a common accessory for formal events or special occasions. The woman's attire and the man's formal outfit suggest that they might be attending a special event or a formal gathering.",
+      "answer": "This is happening in a room, possibly a hotel room, as the man is wearing a tuxedo and a white bow tie. The presence of a mirror in the room further supports the idea that it is a hotel room. The man is looking at his reflection in the mirror, possibly preparing for an event or a formal occasion.",
+      "rouge_l_f": 0.6373626324646783
+    },
+    {
+      "id": null,
+      "pred": "No, it is not summertime in the scene. The image shows a man and a woman kissing in front of a pile of pumpkins, which suggests that the season is likely autumn or fall. During this time, pumpkins are harvested and displayed, making it a common sight in fall settings.",
+      "answer": "No, it is not summertime in the scene. The image shows a man and a woman standing in front of a pile of pumpkins, which are typically associated with autumn and harvest season. The presence of pumpkins suggests that the scene takes place during the fall or winter months, when pumpkins are harvested and displayed.",
+      "rouge_l_f": 0.6666666616735254
+    },
+    {
+      "id": null,
+      "pred": "It is not possible to determine from the image whether the woman in red is going to be mad at the man for looking at the woman in a dress. The image only shows the man and the woman in red standing in front of a display case, and there is no indication of any interaction or conflict between them. The man's actions could be interpreted as admiring the display or simply being curious about the woman in the dress, but without more context or information, it is impossible to accurately predict the woman's reaction.",
+      "answer": "It is not possible to determine from the image whether the woman in red is going to be mad at the man for looking at the woman in a dress. The image only shows the man and the woman in red standing in front of a display case, and there is no indication of any interaction or conflict between them. The man's actions could be interpreted as admiring the display or simply being curious about the woman in the dress, but without more context or information, it is impossible to accurately predict the woman's reaction.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The woman has both of her hands in the air because she is celebrating a successful shot or a point scored during the basketball game. This is a common gesture among players and spectators to express excitement, joy, or triumph in the sport. The woman's raised hands indicate that she is proud of her performance or the team's achievement, and it is a way to show her enthusiasm and support for the game.",
+      "answer": "The woman has both of her hands in the air because she is celebrating a successful shot or a point scored during the basketball game. This is a common gesture among players to express excitement, joy, or triumph after a good play or achievement. The fact that she is wearing a red dress and standing in front of a basketball hoop suggests that she is actively participating in the game and is likely a player or a team member. Her raised hands indicate her enthusiasm and involvement in the game, showcasing her passion for the sport.",
+      "rouge_l_f": 0.6902654817918397
+    },
+    {
+      "id": null,
+      "pred": "The boy likely goes to a private school, as he is wearing a suit and tie, which is a common attire for students in private schools. The presence of a woman in the image, possibly his mother, further supports the idea that he attends a private school, as private schools often have a more structured and formal dress code for students.",
+      "answer": "The boy likely goes to a private school, as he is wearing a suit and tie, which is a common attire for students in private schools. The presence of a tie suggests that the school has a formal dress code, and private schools often have more stringent dress codes compared to public schools. Additionally, the boy's attire and the fact that he is standing in a hallway with a woman, possibly his mother, further indicate that he is attending a private school.",
+      "rouge_l_f": 0.7157894687512465
+    },
+    {
+      "id": null,
+      "pred": "Yes, the persons in the image are likely living in the house, as they are walking through the hallway and interacting with each other. The presence of a suitcase suggests that they might be in the process of moving in or out, or perhaps they are travelers visiting the house. The fact that they are dressed in period clothing also indicates that they might be living in a historical or themed house, where the residents dress up in costumes to recreate the atmosphere of a specific time period.",
+      "answer": "Yes, the persons in the image are likely to be living in the house, as they are walking through the hallway and interacting with each other. The presence of a dining table, chairs, and a clock in the room suggests that it is a living space where people gather and spend time together. The fact that they are dressed in period clothing also indicates that they might be living in a historical or themed house, where the residents are encouraged to dress in costumes or period attire.",
+      "rouge_l_f": 0.7454545404561984
+    },
+    {
+      "id": null,
+      "pred": "The man and woman in white are likely close to each other because they are a bride and groom celebrating their wedding. In the image, the man is holding a wine glass, and the woman is drinking from another glass. This suggests that they are sharing a toast or enjoying a special moment during their wedding reception. The white attire is a common choice for weddings, symbolizing purity and elegance, and it is often worn by the bride and groom to represent their unity and commitment to each other.",
+      "answer": "The man and woman in white are likely close to each other because they are a bride and groom celebrating their wedding. In the image, the man is holding a wine glass, and the woman is drinking from another wine glass. This suggests that they are sharing a toast or enjoying a special moment during their wedding reception. The white attire of both the man and woman is a common choice for wedding attire, symbolizing purity and elegance. Their close proximity to each other indicates the intimate and joyful nature of their celebration.",
+      "rouge_l_f": 0.8275862018980382
+    },
+    {
+      "id": null,
+      "pred": "The meme features a green frog figurine lying on a bed, with a caption that reads, \"Me looks like I gotta do it at 8:05 time.\" The frog is positioned in a relaxed manner, as if it's resting on the bed. The image is a playful and humorous representation of the idea of having to wake up early, as the frog figurine is a popular symbol of laziness and slacking off.",
+      "answer": "The meme features a green frog figurine lying on a bed, with a caption that reads, \"Me looks like I gotta do it at 8:05 time.\" The frog is positioned on the bed, appearing to be relaxed and comfortable. The image is a playful and humorous representation of the idea of a frog being able to sleep in and not have to wake up early.",
+      "rouge_l_f": 0.7450980342233757
+    },
+    {
+      "id": null,
+      "pred": "The meme is a series of four images, each depicting a different scenario of a man studying online. In the first image, the man is shown with his arms up, possibly celebrating or expressing excitement about his online learning experience. The second image shows the man sitting in front of a computer, with a stack of money nearby, suggesting that he is financially successful or enjoying the benefits of online learning.\n\nThe third image features the man in a relaxed position, possibly taking a break from his online studies. The fourth image shows the man with a clown face, which adds a humorous touch to the meme. The overall theme of the meme is that studying online can be enjoyable and rewarding, as seen through the different scenarios and the man's various expressions.",
+      "answer": "The image is a meme that features four different pictures of people in various positions, each with a caption underneath them. The captions are related to studying online, with the first picture showing a man celebrating, the second picture showing a man relaxing, the third picture showing a man working, and the fourth picture showing a man with a clown face. The meme is likely meant to convey the different stages or emotions a person might experience while studying online.",
+      "rouge_l_f": 0.36923076446272196
+    },
+    {
+      "id": null,
+      "pred": "The image features a snowy mountain landscape with a person standing on top of a snow-covered hill. The person is wearing a backpack, and the scene is set against a backdrop of a beautiful, cloudy sky. The image is captioned \"Iceland,\" suggesting that the person is in Iceland, enjoying the breathtaking winter scenery. The combination of the snowy mountain, the person, and the cloudy sky creates a serene and picturesque atmosphere.",
+      "answer": "The image features a snowy mountain landscape with a person standing on top of a snow-covered hill. The person is wearing a backpack, and the scene is set against a backdrop of a beautiful, snow-covered mountain range. The image is captioned \"Iceland,\" which suggests that the person is in Iceland, enjoying the breathtaking winter scenery. The presence of the backpack indicates that the person might be on a hiking or skiing adventure in the area.",
+      "rouge_l_f": 0.7472527422581814
+    },
+    {
+      "id": null,
+      "pred": "The image features a handwritten note on a piece of paper, with the text \"First Two Pages\" written at the top. The note is divided into three sections, each containing different writing. The first section is titled \"Middle Pages,\" the second section is titled \"Last Two Pages,\" and the third section is titled \"Global Warming.\" The note appears to be discussing the issue of global warming and its impact on the world.",
+      "answer": "The image features a handwritten note on a piece of paper, with the text divided into three sections: \"First Two Pages,\" \"Middle Pages,\" and \"Last Two Pages.\" The note appears to be a mix of writing and possibly a medical context, as it is written on a piece of graph paper. The text is written in cursive, and the handwriting style suggests a personal touch. The note could be a reminder, a study guide, or a personal reflection.",
+      "rouge_l_f": 0.5490196028450597
+    },
+    {
+      "id": null,
+      "pred": "The meme features a cartoon of two characters, one of which is a sponge, and the other is a penguin. They are both looking at a piece of paper, possibly a note or a piece of homework. The sponge is holding a magnifying glass, and the penguin is holding a book. The scene appears to be a humorous take on a school setting, with the characters possibly discussing their homework or studying together.",
+      "answer": "The meme features two cartoon characters, one of which is a spongebob-like character, standing in front of a campfire. The other character is a professor, who is holding a clipboard and appears to be giving instructions to the spongebob-like character. The scene is set in a camping environment, with a tent visible in the background.\n\nThe meme is captioned with a humorous message, suggesting that the spongebob-like character should write that down, write that down, and write that down. The message is written in a bold and exclamatory manner, emphasizing the importance of the instructions being given.",
+      "rouge_l_f": 0.3495145581449713
+    },
+    {
+      "id": null,
+      "pred": "The funny aspect of this image is that it features a rhino painting a picture of a mountain on a canvas, which is an unusual and amusing sight. Rhinos are not typically associated with artistic activities, and the image of a rhino holding a paintbrush and painting a picture is quite humorous and unexpected. This scene creates a playful and lighthearted atmosphere, as it is not something one would typically see in real life.",
+      "answer": "The funny aspect of this image is that it features a cartoon rhino painting a picture of a rhino on a canvas. The rhino is holding a paintbrush in its mouth, which is an unusual and amusing sight. The image is a playful and creative representation of an animal engaging in an activity typically associated with humans, such as painting. This whimsical scene can evoke a sense of humor and amusement for viewers.",
+      "rouge_l_f": 0.5940594009410843
+    },
+    {
+      "id": null,
+      "pred": "The funny aspect of this image is the unexpected and amusing interaction between the two women and the cat. In one part of the image, a woman is pointing at the cat, while in the other part, the cat is pointing at the woman. This creates a humorous and playful scene, as it appears as if the cat is engaging in a conversation or reacting to the woman's actions. The image captures a light-hearted moment between the two women and the cat, which adds a touch of humor to the scene.",
+      "answer": "The funny aspect of this image is the unexpected and amusing interaction between the two women and the cat. One woman is pointing at the cat, while the other woman is pointing at her. The cat appears to be reacting to the pointing, possibly with surprise or confusion. This scene creates a humorous and lighthearted moment, as the cat's reaction to the women's pointing adds an element of unpredictability and amusement to the image.",
+      "rouge_l_f": 0.6019417425770572
+    },
+    {
+      "id": null,
+      "pred": "This meme, featuring a cartoon character with a sad or angry expression, can be used in various occasions where humor or light-heartedness is needed. It can be used to express sympathy, empathy, or understanding towards someone who is going through a difficult situation or experiencing emotional distress. Additionally, it can be used to create a humorous or relatable moment in a social gathering, such as a party or a casual get-together, to bring people together and share a laugh. The meme's versatility and relatability make it a popular choice for different occasions where people want to convey a message of support, empathy, or humor.",
+      "answer": "This meme, featuring a cartoon character with a sad or angry expression, can be used in various occasions where humor or light-heartedness is needed. It can be used to express sympathy, empathy, or to make a joke in a situation where someone is feeling down or upset. The meme can also be used to create a humorous or relatable moment, especially when sharing it with friends or on social media platforms. It can be a fun way to connect with others and bring a smile to their faces.",
+      "rouge_l_f": 0.5538461488887576
+    },
+    {
+      "id": null,
+      "pred": "This meme, featuring a white face with a wide-open mouth and eyes, is often used to express surprise, shock, or excitement. People might use this meme in various occasions, such as reacting to a surprising news, sharing a humorous or unexpected story, or expressing their enthusiasm for a particular event or situation. The meme's wide-eyed and open-mouthed expression can convey a range of emotions and be easily understood by others, making it a popular choice for conveying reactions in different contexts.",
+      "answer": "This meme, featuring a white face with a wide-open mouth and eyes, is often used to express surprise, shock, or excitement. People might use this meme to convey their reactions to unexpected or surprising events, such as receiving good news, witnessing an amusing or unexpected situation, or reacting to a humorous or surprising statement. The meme's wide-open mouth and eyes make it a versatile and easily recognizable representation of various emotions, making it a popular choice for sharing on social media platforms or in casual conversations.",
+      "rouge_l_f": 0.6119402935074627
+    },
+    {
+      "id": null,
+      "pred": "This meme, featuring a cat with its mouth wide open and eyes tearing up, is often used to express emotions such as sadness, frustration, or even surprise. People might use this meme to convey their feelings during various occasions, such as when they are disappointed, overwhelmed, or even when they are trying to be humorous. The meme's popularity and relatability make it a versatile tool for conveying emotions in different contexts.",
+      "answer": "This meme featuring a cat with its mouth wide open and eyes tearing up, along with a foreign language written on its mouth, can be used on various occasions. It can be used to express emotions such as surprise, shock, or even humor. People might use this meme to convey their reactions to unexpected or surprising news, to share a humorous or light-hearted moment, or to make a statement about a particular topic. The meme's versatility allows it to be used in different contexts, making it a popular choice for sharing on social media platforms or in casual conversations.",
+      "rouge_l_f": 0.5454545405107899
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. In a large bowl, combine the mushrooms, onions, and broth.\n3. Add the chopped vegetables, such as carrots and celery, to the bowl and mix well.\n4. Season the mixture with salt, pepper, and any desired herbs or spices.\n5. Pour the mixture into a baking dish or casserole dish.\n6. Bake the dish in the preheated oven for about 30-40 minutes, or until the vegetables are tender and the liquid has thickened.\n7. Serve the dish hot, garnished with additional herbs or spices if desired.\n\nThis dish can be a delicious and comforting meal, perfect for colder weather or as a hearty side dish.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. In a large bowl, combine the mushrooms, onions, and broth.\n3. Add the minced garlic and stir well.\n4. Season the mixture with salt, pepper, and any additional herbs or spices of your choice.\n5. Place the bowl in the preheated oven and bake for 20-25 minutes, or until the mushrooms are tender and the sauce has thickened.\n6. Remove the bowl from the oven and let it cool for a few minutes.\n7. Serve the cooked mushroom mixture in a bowl, garnished with chopped parsley or other desired herbs.\n\nThis dish can be served as a side dish or a main course, depending on the portion size and the accompanying meal.",
+      "rouge_l_f": 0.6927374251752443
+    },
+    {
+      "id": null,
+      "pred": "To make this refreshing drink, you will need a glass filled with a mixture of orange juice, lemon juice, and a splash of vodka. You can garnish the drink with a slice of lemon and a few orange wedges. To prepare the drink, start by slicing the lemon and oranges into wedges. Then, pour the orange juice and lemon juice into the glass, and add a splash of vodka. Finally, garnish the drink with a slice of lemon and a few orange wedges, and serve it chilled. This drink is perfect for a warm day or a celebration, and it can be enjoyed by people of all ages.",
+      "answer": "To make this refreshing drink, you will need a glass filled with a mixture of orange juice, lemon juice, and a splash of vodka. You can garnish the drink with a slice of lemon and a few orange wedges. To prepare the drink, start by slicing the lemon and oranges into wedges. Then, pour the orange juice and lemon juice into the glass, and add a splash of vodka. Gently stir the mixture to combine the flavors. Finally, garnish the drink with a slice of lemon and a few orange wedges, and serve it chilled. This refreshing drink is perfect for a warm day or a gathering with friends.",
+      "rouge_l_f": 0.8869565167395085
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to a high temperature, typically around 400\u00b0F (200\u00b0C).\n2. In a large skillet or wok, heat some oil over medium-high heat. Add the sliced onions and cook until they become soft and translucent.\n3. Add the sliced carrots to the skillet and cook for a few minutes until they become tender.\n4. Next, add the sliced chicken to the skillet and cook until it is browned and cooked through.\n5. Remove the cooked chicken from the skillet and set it aside.\n6. In the same skillet, add some more oil if needed and stir in the rice. Cook the rice for a few minutes until it becomes slightly crispy and heated through.\n7. Return the cooked chicken to the skillet and mix it with the rice.\n8. Add the sauce of your choice (such as soy sauce, teriyaki sauce, or a sweet and sour sauce) and mix well to coat the chicken and rice.\n9. Serve the cooked chicken and rice in a bowl, and garnish with additional sauce, if desired.\n\nThis dish can be served with a side of vegetables, such as broccoli or steamed peas, and a dipping sauce for added flavor.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to a high temperature, typically around 400\u00b0F (200\u00b0C).\n2. In a large skillet or wok, heat some oil over medium-high heat. Add the sliced onions and cook until they become soft and translucent.\n3. Add the sliced carrots to the skillet and cook for a few minutes until they become tender.\n4. Next, add the sliced chicken to the skillet and cook until it is browned and cooked through.\n5. Remove the cooked chicken from the skillet and set it aside.\n6. In the same skillet, add some more oil if needed, and stir-fry the rice until it is heated through and slightly crispy.\n7. Return the cooked chicken to the skillet and mix it with the rice.\n8. Add the sauce of your choice (such as soy sauce, teriyaki sauce, or a sweet and sour sauce) and mix well to coat the chicken and rice.\n9. Serve the cooked chicken and rice in a bowl, and garnish with additional toppings like chopped green onions, sesame seeds, or a sprinkle of sesame oil.\n\nThis dish can be served with a side of steamed vegetables or a salad for a balanced and nutritious meal.",
+      "rouge_l_f": 0.8646288159615569
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. Grease a pie pan with butter or oil to prevent sticking.\n3. Place the pie crust in the pie pan, ensuring it fits snugly.\n4. Fill the pie crust with the strawberry filling, making sure to evenly distribute the fruit.\n5. Drizzle the pie with the glaze, ensuring it covers the fruit evenly.\n6. Place the pie in the preheated oven and bake for 35-40 minutes or until the crust is golden brown and the filling is bubbling.\n7. Remove the pie from the oven and let it cool for a few minutes before serving.\n\nThis dessert is ready to be enjoyed with a scoop of ice cream or a dollop of whipped cream on top.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. Place the pie on a baking sheet or a pizza stone, ensuring it is evenly distributed on the surface.\n3. If you have a pie crust, make sure it is properly sealed and trimmed to fit the pie.\n4. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n5. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n6. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n7. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n8. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n9. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n10. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n11. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n12. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n13. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n14. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n15. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n16. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n17. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n18. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n19. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n20. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n21. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n22. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n23. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n24. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n25. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n26. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n27. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n28. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n29. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n30. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n31. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n32. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n33. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n34. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n35. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n36. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n37. If you have a pie crust, you can either bake it separately or use it to cover the pie.\n38. If you have a pie crust, you can either bake it separately or use it",
+      "rouge_l_f": 0.4166666616666667
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to a high temperature, typically around 375\u00b0F (190\u00b0C) to 400\u00b0F (205\u00b0C).\n2. Place the stack of spring rolls or egg rolls on a baking sheet or a piece of parchment paper.\n3. Bake the spring rolls or egg rolls in the preheated oven for about 10-15 minutes, or until they are golden brown and crispy on the outside.\n4. Once cooked, remove the spring rolls or egg rolls from the oven and let them cool for a few minutes.\n5. Serve the cooked spring rolls or egg rolls on a plate, and enjoy them with your favorite dipping sauce or side dish.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to a high temperature, typically around 375\u00b0F (190\u00b0C) to 400\u00b0F (205\u00b0C).\n2. Place the stack of dough on a baking sheet or a piece of parchment paper.\n3. Bake the dough for about 15-20 minutes, or until it turns golden brown and becomes crispy.\n4. Once the dough is cooked, remove it from the oven and let it cool for a few minutes.\n5. Use a knife or a spatula to cut the dough into individual pieces or strips, depending on your desired serving size.\n6. Serve the cooked dough as a snack or appetizer, or use it as a topping for other dishes like sandwiches or salads.\n\nRemember to use oven mitts or a thick towel to handle the hot baking sheet or parchment paper to avoid burns.",
+      "rouge_l_f": 0.6745562080809496
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to a moderate temperature, typically around 350\u00b0F (175\u00b0C) for a conventional oven or 325\u00b0F (160\u00b0C) for a convection oven.\n\n2. Line a baking sheet or a tray with parchment paper or a silicone baking mat to prevent the cookies from sticking.\n\n3. Prepare the cookies by rolling out the dough and cutting out desired shapes using a cookie cutter. You can use a combination of different shapes, such as stars, circles, and other festive shapes, to create a visually appealing and diverse assortment of cookies.\n\n4. Place the cut-out cookies on the prepared baking sheet or tray, ensuring there is enough space between them for even baking.\n\n5. Bake the cookies in the preheated oven for about 10-12 minutes, or until they are golden brown and firm to the touch. Keep an eye on them to prevent overcooking or burning.\n\n6. Remove the cookies from the oven and let them cool on a wire rack for a few minutes before transferring them to a cooling rack to cool completely.\n\n7. Once the cookies have cooled, you can decorate them with the desired toppings, such as chocolate chips, sprinkles, or other festive decorations.\n\n8. Serve the finished cookies as a delicious treat or dessert, either individually or in a festive display.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to a moderate temperature, typically around 350\u00b0F (175\u00b0C).\n2. Line a baking sheet or a tray with parchment paper or a silicone baking mat to prevent the cookies from sticking.\n3. Place the chocolate and green frosted cookies on the prepared baking sheet or tray.\n4. Bake the cookies in the preheated oven for about 10-15 minutes, or until they are set and slightly browned around the edges. Keep an eye on them to ensure they don't overcook.\n5. Once the cookies are cooked, remove them from the oven and let them cool on a wire rack for a few minutes.\n6. Serve the cookies as desired, either individually or in a group, as seen in the image.",
+      "rouge_l_f": 0.6216216168752536
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 375\u00b0F (190\u00b0C).\n2. In a large skillet or pan, heat some oil over medium heat. Add the chopped carrots and cook until they are tender and slightly browned.\n3. Add the broccoli florets to the skillet and cook for a few more minutes until they are also tender.\n4. In a separate bowl, mix together the sauce ingredients (such as mayonnaise, lemon juice, and seasonings).\n5. Pour the sauce over the cooked carrots and broccoli, ensuring that they are evenly coated.\n6. Transfer the skillet to the preheated oven and bake for 10-15 minutes, or until the sauce is heated through and the vegetables are cooked to your desired level.\n7. Once cooked, remove the skillet from the oven and let it cool for a few minutes.\n8. Serve the cooked carrots and broccoli on a plate, garnished with additional sauce or seasonings if desired.\n\nThis dish can be served as a side dish or a main course, depending on the portion size and personal preference.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. In a large skillet or oven-safe pan, heat some oil over medium heat.\n3. Add the chopped carrots and cook until they are tender and slightly browned.\n4. Add the broccoli florets to the skillet and cook for a few minutes until they are slightly wilted.\n5. In a separate bowl, mix together the sauce ingredients (such as mayonnaise, lemon juice, and herbs) to create a dressing.\n6. Pour the dressing over the cooked carrots and broccoli in the skillet, ensuring that the vegetables are evenly coated.\n7. Transfer the skillet to the preheated oven and bake for 15-20 minutes, or until the vegetables are cooked through and the sauce has thickened.\n8. Once cooked, remove the skillet from the oven and let it cool for a few minutes.\n9. Serve the cooked vegetables on a plate, garnished with additional herbs or seasonings if desired.\n\nThis dish can be served as a side dish or a main course, depending on the portion size and personal preference.",
+      "rouge_l_f": 0.8918918868935153
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. Place the blue plate with the sushi rolls on a baking sheet or a heat-resistant surface.\n3. Bake the sushi rolls for 10-15 minutes, or until the rice is heated through and the rolls are slightly crispy on the outside.\n4. Remove the sushi rolls from the oven and let them cool for a few minutes.\n5. Serve the sushi rolls on a plate, and enjoy your homemade sushi rolls.\n\nNote: If you prefer to cook the sushi rolls in a microwave, you can place the plate in a microwave-safe container and heat it for 2-3 minutes, stirring occasionally.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Preheat your oven to 350\u00b0F (175\u00b0C).\n2. Place the blue plate with the sushi rolls on a baking sheet or a heat-resistant surface.\n3. Bake the sushi rolls for 10-15 minutes, or until the rice is heated through and the rolls are slightly crispy.\n4. Remove the sushi rolls from the oven and let them cool for a few minutes.\n5. Serve the sushi rolls on a plate, and enjoy your homemade sushi rolls.\n\nNote: If you prefer to cook the sushi rolls in a microwave, you can heat them for 30-45 seconds, or until the rice is heated through and the rolls are slightly crispy.",
+      "rouge_l_f": 0.9130434732703214
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can follow these steps:\n\n1. Prepare the ingredients: Gather all the ingredients, including rice, beans, and vegetables. Wash and chop the vegetables, and cook the rice according to the package instructions.\n\n2. Cook the beans: In a large pot, heat some oil and saut\u00e9 the chopped onions until they become translucent. Add the cooked beans and stir well.\n\n3. Add the vegetables: Add the chopped vegetables to the pot and stir them into the beans.\n\n4. Add the sauce: Pour the sauce over the beans and vegetables, and stir well to ensure that everything is evenly coated.\n\n5. Cook the dish: Bring the dish to a boil, then reduce the heat to a simmer. Cook for about 20-30 minutes, or until the beans are tender and the sauce has thickened.\n\n6. Serve: Transfer the cooked dish to a serving bowl, and garnish it with a spoonful of rice. Serve the dish with a side of rice, as seen in the image.\n\nThis dish can be enjoyed with a variety of side dishes, such as a salad or a bowl of rice.",
+      "answer": "To cook this dish, you can follow these steps:\n\n1. Prepare the ingredients: Gather all the ingredients, including rice, vegetables, and spices. Wash and chop the vegetables, and prepare the rice according to the package instructions.\n\n2. Cook the rice: In a separate pot, bring water to a boil and add the rice. Cook according to the package instructions until the rice is fully cooked and fluffy.\n\n3. Prepare the sauce: In a small saucepan, heat some oil over medium heat. Add onions, garlic, and any other desired vegetables, and cook until they are soft and fragrant.\n\n4. Add the spices: Add the spices, such as curry powder, turmeric, and cumin, to the saucepan and stir well. Cook for a few more minutes until the spices are fragrant.\n\n5. Combine the ingredients: Add the cooked rice to the saucepan and mix well. Add the cooked vegetables and stir to combine.\n\n6. Serve: Transfer the cooked rice and vegetable mixture to a large bowl, and serve with a spoon. You can also garnish the dish with additional ingredients, such as chopped cilantro or a dollop of yogurt.\n\n7. Enjoy: Serve the dish hot and enjoy the flavorful and comforting meal.",
+      "rouge_l_f": 0.558558553562211
+    },
+    {
+      "id": null,
+      "pred": "To cook this dish, you can start by preparing the ingredients. In the image, there are two tortillas, a salad, and some meat on a plate. To cook the meat, you can use a grill, oven, or stovetop. If using a grill, preheat the grill to medium-high heat and cook the meat until it is cooked through and slightly charred on the outside. If using an oven, preheat the oven to 350\u00b0F (175\u00b0C) and place the meat on a baking sheet. Cook the meat for about 20-25 minutes or until it is cooked through. If using a stovetop, heat some oil in a pan and cook the meat until it is cooked through.\n\nFor the salad, you can wash and chop the vegetables, such as carrots and lettuce, and mix them together in a bowl. You can also add any desired dressing to the salad.\n\nFinally, place the cooked meat and salad on the tortillas, and enjoy your delicious meal.",
+      "answer": "To cook this dish, you can start by preparing the ingredients. In the image, there are two tortillas, a salad, and some meat on a plate. To cook the meat, you can use a grill, oven, or stovetop, depending on your preference and the type of meat you are using. For example, if you are using chicken, you can marinate it and then grill or bake it until it is cooked through.\n\nFor the salad, you can wash and chop the vegetables, such as carrots and lettuce, and mix them together. You can also add any desired dressing or seasonings to enhance the flavor.\n\nOnce the meat and salad are prepared, you can assemble the dish by placing the cooked meat on one of the tortillas and topping it with the salad. You can then use the other tortilla to cover the dish, creating a wrap-like meal. Alternatively, you can serve the meat and salad on separate plates and enjoy them together.",
+      "rouge_l_f": 0.6628571378612246
+    },
+    {
+      "id": null,
+      "pred": "The image features a man sitting on a ledge or a wall, possibly in a dirty or industrial setting. He appears to be wearing a white shirt and is looking downward. The man's posture and surroundings suggest that he might be contemplating or reflecting on something. The scene could be from a movie or a still from a film, capturing a moment of introspection or solitude.",
+      "answer": "The image features a man sitting on a ledge or a wall, possibly in a dirty or industrial setting. He appears to be wearing a white shirt and is looking downward. The man's posture suggests that he might be contemplating or observing something below him. The scene could be from a movie or a still from a film, capturing a moment of introspection or curiosity.",
+      "rouge_l_f": 0.9052631528952909
+    },
+    {
+      "id": null,
+      "pred": "The image features a black and white scene with two men standing next to each other. One of the men is wearing a suit and tie, while the other is dressed in military fatigues. They appear to be posing for a picture, possibly in a vintage setting. The contrast between their attire and the fact that they are both wearing ties suggests that they might be from different backgrounds or professions, possibly representing a blend of civilian and military life.",
+      "answer": "The image features a black and white scene with two men dressed in suits and ties, standing next to each other. One of the men is wearing a tie and a hat, while the other is wearing a military uniform. They appear to be posing for a picture, possibly in a vintage setting. The contrast between the formal attire of the men and the military uniform suggests that they might be from different backgrounds or professions.",
+      "rouge_l_f": 0.8181818131966943
+    },
+    {
+      "id": null,
+      "pred": "The movie \"The Dark Knight\" is a superhero film featuring the iconic character Batman, played by Heath Ledger. The movie is set in the fictional city of Gotham and follows the story of Batman as he tries to stop the Joker, a crazed criminal mastermind, from wreaking havoc on the city. The Joker, played by Heath Ledger, is known for his unpredictable and chaotic behavior, making him one of the most memorable villains in the Batman series. The movie also stars Michael Caine, Maggie Gyllenhaal, and Christian Bale, among others.",
+      "answer": "The image features a man dressed as the iconic character, the Joker, from the movie \"The Dark Knight.\" He is holding a playing card in his hand, possibly as a prop or a reference to the famous scene in the movie. The man's makeup and costume are well-executed, capturing the essence of the Joker's character.",
+      "rouge_l_f": 0.29629629150377235
+    },
+    {
+      "id": null,
+      "pred": "The image is a black and white photograph of a man wearing a suit and tie, sitting in a chair and looking at the camera. He appears to be a businessman or a professional, possibly in a courtroom setting. The man's attire and the presence of a tie suggest that he is dressed for a formal occasion or a professional environment.",
+      "answer": "The image features a man wearing a suit and tie, sitting in a chair and looking at the camera. He appears to be a businessman or a professional, possibly in a formal setting. The man's attire and posture suggest that he is dressed for a professional or formal event, such as a meeting or a conference.",
+      "rouge_l_f": 0.7857142807171202
+    },
+    {
+      "id": null,
+      "pred": "The image depicts a scene from a black and white movie, where a man in a suit is holding a cell phone and talking to someone. There are several other people in the scene, some of whom are also holding cell phones. The overall atmosphere suggests a social gathering or event where people are engaged in conversations and using their devices. The black and white nature of the image adds a classic and timeless feel to the scene.",
+      "answer": "The image depicts a scene from a black and white movie, where a man in a suit is standing in front of a group of people. He is holding a cell phone, possibly showing something to the group or engaging in a conversation. The people around him are attentive and appear to be listening or watching the man with the cell phone. The overall atmosphere suggests a moment of interest or importance in the movie.",
+      "rouge_l_f": 0.5454545404550557
+    },
+    {
+      "id": null,
+      "pred": "The image depicts a scene from a fantasy movie, where a group of people, including a wizard and a knight, are walking down a path. They are accompanied by a horse and a dog, and some of them are carrying weapons such as swords and bows. The group appears to be traveling together, possibly on a mission or a journey. The setting suggests a medieval or fantasy-inspired world, with the presence of the wizard and the knight indicating a blend of magic and swordplay.",
+      "answer": "The image depicts a scene from a fantasy movie, where a group of people, including a wizard, are walking down a path. They are carrying various weapons, such as swords and bows, and some of them are wearing medieval-style clothing. The wizard appears to be leading the group, possibly on a mission or a journey. The setting suggests a medieval or fantasy-inspired world, with the group possibly being warriors or adventurers.",
+      "rouge_l_f": 0.6788990775725949
+    },
+    {
+      "id": null,
+      "pred": "The image features a woman with long black hair, wearing a white shirt and holding a glass of milk. She is sitting at a table, possibly in a restaurant, and appears to be enjoying her drink. The woman is also holding a cigarette in her hand, adding a touch of sophistication to the scene. The overall atmosphere suggests a relaxed and casual setting, where the woman is taking a moment to enjoy her beverage and smoke.",
+      "answer": "The image features a woman with long black hair, wearing a white shirt and holding a glass of milk. She is sitting at a table, possibly in a restaurant, and appears to be enjoying her drink. The woman is also holding a cigarette in her hand, which suggests that she might be smoking while sipping her milk. The scene captures a casual and relaxed atmosphere, with the woman seemingly taking a break or enjoying her time.",
+      "rouge_l_f": 0.7115384565403107
+    },
+    {
+      "id": null,
+      "pred": "The image features a young man with curly hair, wearing a ring on his finger, and holding up the ring in front of his face. He appears to be in a dramatic or intense moment, possibly from a movie or a theatrical performance. The scene captures the viewer's attention and invites them to imagine the story behind the ring and the character's emotions.",
+      "answer": "The image features a young man with curly hair, wearing a ring on his finger, and holding the ring up to the camera. He appears to be in a dramatic or intense moment, possibly from a movie or a theatrical performance. The scene captures the man's attention and focus on the ring, creating a sense of anticipation or importance.",
+      "rouge_l_f": 0.7999999950024692
+    },
+    {
+      "id": null,
+      "pred": "The image features a black and white scene of two men standing close to each other, with one man placing his hand on the other's shoulder. They appear to be engaged in a conversation or a moment of connection. The setting seems to be a social gathering or a party, as there are several other people in the background, some of whom are also wearing ties. The overall atmosphere of the image suggests a sense of camaraderie and interaction among the people present.",
+      "answer": "The image features a black and white scene of two men standing close to each other, with one man placing his hand on the other's shoulder. They appear to be engaged in a conversation or a moment of connection. The setting is a room with several other people present, some of whom are standing in the background. The overall atmosphere suggests a social gathering or a formal event where people are interacting with one another.",
+      "rouge_l_f": 0.8103448225921522
+    },
+    {
+      "id": null,
+      "pred": "The image depicts a scene from a Chinese opera, where a man dressed as a dragon is talking to a woman in a yellow costume. The woman is wearing a flower headdress, and the man is wearing a black beard. They are both standing on a stage, surrounded by other performers in various costumes. The scene captures the essence of traditional Chinese opera, with its elaborate costumes and dramatic performances.",
+      "answer": "The image depicts a scene from a Chinese opera, where a man dressed as a dragon is talking to a woman in a yellow and blue costume. The woman is wearing a flower in her hair, and the man is wearing a black beard. The setting appears to be a stage or a theatrical performance, with the performers engaging in a conversation. The costumes and makeup suggest that this is a traditional Chinese opera, where the performers are dressed in elaborate and colorful outfits to represent the characters and storylines.",
+      "rouge_l_f": 0.574257420754828
+    },
+    {
+      "id": null,
+      "pred": "The image features a famous painting of a woman, possibly a portrait of Mona Lisa, who is sitting in a chair and looking at the viewer. The woman is wearing a long dress and has a gentle smile on her face. The painting is a close-up of the woman's face, emphasizing her features and expression. The background of the painting is blurred, focusing the viewer's attention on the subject.",
+      "answer": "The image features a painting of a woman, possibly a portrait of a famous artist, such as Leonardo da Vinci's Mona Lisa. The woman is wearing a long black veil and is posing for the painting. The painting is displayed in a frame, which adds to the artistic presentation. The woman's facial expression and the overall composition of the painting create a captivating and intriguing visual experience.",
+      "rouge_l_f": 0.3820224669157935
+    },
+    {
+      "id": null,
+      "pred": "The image features a woman wearing a blue headband and a yellow scarf, looking directly at the viewer. She is the main subject of the painting, and her expression appears to be somewhat serious. The woman is wearing a necklace, which adds to her overall appearance. The painting is a close-up of the woman's face, emphasizing her features and capturing her gaze.",
+      "answer": "The image features a woman wearing a blue headband and a yellow scarf, looking directly at the viewer. She is wearing a brown shirt and has a pearl necklace around her neck. The woman appears to be the main subject of the painting, and her gaze is directed towards the viewer, creating a sense of connection and engagement. The painting is a close-up of the woman, emphasizing her features and expression.",
+      "rouge_l_f": 0.643678155936055
+    },
+    {
+      "id": null,
+      "pred": "The image is a painting of a night scene featuring a small town with a church steeple and a mountain in the background. The sky is filled with stars, creating a beautiful and serene atmosphere. The painting captures the essence of a peaceful night in a quaint town, with the church steeple and the mountain serving as the focal points of the scene.",
+      "answer": "The image is a painting of a night scene featuring a cityscape with a church and a mountain in the background. The sky is filled with stars, creating a beautiful and serene atmosphere. The painting captures the essence of a peaceful night in a small town, with the church and the mountain serving as prominent landmarks. The combination of the cityscape, the church, and the mountain creates a harmonious and visually appealing composition.",
+      "rouge_l_f": 0.7894736792416899
+    },
+    {
+      "id": null,
+      "pred": "The image is a famous painting by Gustav Klimt, featuring a couple embracing each other. The painting is known for its intricate gold leaf decoration and the couple's close physical contact. The couple is depicted in a passionate and intimate manner, with their bodies intertwined and their faces pressed together. The painting is a prime example of Klimt's artistic style, which often incorporated symbolism and a focus on the human form.",
+      "answer": "The image is a painting of a man and a woman, possibly a couple, embracing each other. They are surrounded by a beautiful and intricate design, which adds a sense of depth and artistry to the scene. The painting is set against a gold background, further enhancing the visual appeal of the artwork. The couple's embrace and the intricate design elements create a captivating and visually striking scene.",
+      "rouge_l_f": 0.26262625765126013
+    },
+    {
+      "id": null,
+      "pred": "The image is a painting featuring a naked woman sitting on a large, ornate shell. She is surrounded by other women, some of whom are also naked, and they appear to be in a serene and peaceful setting. The painting is set in a garden, with a pond nearby, and the overall atmosphere is one of tranquility and beauty.",
+      "answer": "The image features a painting of a woman sitting on a large, ornate shell, which is placed on a body of water. The woman appears to be naked, and she is surrounded by a serene and picturesque environment. There are several other people in the painting, some of whom are also naked, and they are positioned around the woman on the shell. The scene is reminiscent of a painting by Botticelli, which is known for its intricate details and artistic style.",
+      "rouge_l_f": 0.5154639125688172
+    },
+    {
+      "id": null,
+      "pred": "The image is a black and white painting of a woman sitting in a chair, possibly in a living room or a bedroom. She is wearing a long dress and a bonnet, giving her a classic and elegant appearance. The woman is positioned in the center of the scene, and the chair she is sitting on is located towards the right side of the image. The room appears to be dimly lit, adding to the overall atmosphere of the painting.",
+      "answer": "The image is a black and white painting of a woman sitting in a chair, possibly in a living room or a bedroom. She is wearing a long black dress and a white lace collar, giving her a formal appearance. The woman is looking to her left, possibly observing something or someone in that direction. The room features a couch and a dining table, suggesting a comfortable and well-furnished space. The overall atmosphere of the painting is calm and serene, with the woman sitting alone and focused on her surroundings.",
+      "rouge_l_f": 0.5940594009646114
+    },
+    {
+      "id": null,
+      "pred": "The painting depicts a man and a woman standing next to each other, with the woman holding the man's hand. They are both dressed in old-fashioned clothing, and the woman is wearing a green dress. The scene takes place in a room with a couch in the background. The man is wearing a hat, and there is a dog nearby, adding a touch of warmth and companionship to the scene. The painting captures a moment of connection and intimacy between the two individuals.",
+      "answer": "The painting depicts a man and a woman standing next to each other, with the woman holding the man's hand. They are both dressed in old-fashioned clothing, with the woman wearing a green dress and the man dressed in a suit. The scene takes place in a room with a couch in the background and a dog nearby. The painting captures a moment of connection and intimacy between the two individuals.",
+      "rouge_l_f": 0.8936170162969671
+    },
+    {
+      "id": null,
+      "pred": "The image is a detailed, intricate painting of a bustling city scene with a large crowd of people walking across a bridge. The painting captures the essence of a busy urban environment, with people of various sizes and positions, some carrying umbrellas. The bridge is a central element in the scene, connecting different parts of the city. The artwork is likely inspired by traditional Chinese painting techniques, as it showcases the vibrant energy and movement of the city's inhabitants.",
+      "answer": "The image is a detailed, intricate painting of a bustling city scene with a large crowd of people walking across a bridge. The painting captures the essence of a busy urban environment, with people of various sizes and positions, some carrying umbrellas. The bridge is a central element in the scene, connecting different parts of the city. The artwork is likely inspired by Asian culture, as it features elements such as a pagoda and a boat. The painting showcases the artist's skill in depicting a lively and dynamic cityscape.",
+      "rouge_l_f": 0.8108108058209561
+    },
+    {
+      "id": null,
+      "pred": "The image is a black and white painting of a mountainous landscape with a large rocky cliff. The scene features a group of people standing on the edge of the cliff, possibly admiring the view or preparing to climb the mountain. The people are scattered across the scene, with some closer to the foreground and others further back. The painting captures the beauty and grandeur of the mountainous terrain, as well as the adventurous spirit of the individuals present.",
+      "answer": "The image is a black and white painting of a mountainous landscape with a large rocky cliff. The scene features a group of trees scattered throughout the area, with some located near the cliff and others further away. The painting captures the beauty of the natural environment, showcasing the rugged terrain and the presence of trees. The artist's skillful use of black and white colors adds depth and contrast to the scene, making it an impressive piece of art.",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": null,
+      "pred": "The image is a painting of a group of people, possibly a family or a religious procession, walking together. They are holding a large banner or a parasol, which is a significant element in the scene. The people are arranged in a line, with some individuals closer to the foreground and others further back. The painting captures the essence of a shared journey or event, with the individuals working together to carry the banner or parasol.",
+      "answer": "The image is a painting featuring a group of people, including a man in a red robe, standing in front of a large green and gold umbrella. The man in the red robe appears to be holding a staff, and there are several other people in the scene, some of whom are also holding staffs. The painting has a vibrant and colorful appearance, with the umbrella and the people's clothing adding to the visual appeal. The scene seems to depict a gathering or a celebration, with the man in the red robe possibly leading the way.",
+      "rouge_l_f": 0.34285713789387756
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the apple tree in the image is likely a fungal infection, as indicated by the presence of orange spots on the leaves. This infection can be treated by applying a fungicide to the tree, which can help prevent the spread of the disease and protect the tree from further damage. It is essential to identify the specific type of fungus causing the infection and choose an appropriate fungicide to ensure effective treatment. Additionally, proper pruning and regular maintenance of the tree can help prevent the spread of the disease and promote healthy growth.",
+      "answer": "The disease affecting the leaves in the image is likely a fungal infection, as indicated by the presence of spots and the overall discoloration of the leaves. Fungal infections can be treated by applying fungicides to the affected plants, which can help prevent the spread of the disease and protect the plant from further damage. It is essential to identify the specific type of fungus causing the infection and use the appropriate fungicide to ensure effective treatment. Additionally, proper plant care, such as regular pruning, maintaining good soil quality, and ensuring adequate sunlight and water, can help prevent the development of fungal infections in the future.",
+      "rouge_l_f": 0.717557246931997
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the leaf in the image is a fungal infection, specifically a downy mildew. Downy mildew is a common disease in various plants, including leafy greens like lettuce, and it is caused by the fungus Peronospora parasitica. The disease causes the leaves to develop brown spots, holes, and a general yellowing or browning of the plant.\n\nTo treat downy mildew, it is essential to practice good garden hygiene and crop rotation. Remove infected plants and dispose of them properly to prevent the spread of the disease. In addition, maintaining a healthy plant by providing adequate water, sunlight, and nutrients can help prevent the development of the disease. If the infection is severe, fungicides can be used to control the disease, but it is crucial to follow the recommended application guidelines and precautions to avoid any harm to the environment or the plant.",
+      "answer": "The disease affecting the leaf in the image is a fungal infection, specifically a leaf blight caused by the fungus Cercospora. This disease can cause the leaves to become discolored, spotted, and eventually die. To treat this issue, it is essential to remove the affected leaves and dispose of them properly to prevent the spread of the disease. Additionally, it is crucial to practice good garden hygiene, such as regular pruning, removing dead plant debris, and ensuring proper drainage to minimize the risk of fungal infections in the future. If the infection is severe or widespread, it may be necessary to consult a professional for further guidance and treatment options.",
+      "rouge_l_f": 0.4352941126809689
+    },
+    {
+      "id": null,
+      "pred": "The disease in the image is a fungal infection, specifically a type of tree rot caused by the fungus Ganoderma applanatum. This infection can cause the tree to lose its bark, branches, and eventually die. The tree in the image is covered in a yellow substance, which is the fungus growing on the tree.\n\nTo treat this disease, it is essential to remove the affected branches and bark, as well as any infected wood. The tree should be inspected for any signs of further infection, and if necessary, the tree should be treated with fungicides to prevent the spread of the disease. It is also important to practice proper tree care, such as regular pruning and maintaining a healthy tree environment, to prevent the development of fungal infections in the future.",
+      "answer": "The disease in the image is a type of fungal infection called \"tree gummosis\" or \"tree bark disease.\" It is characterized by the formation of yellow, waxy, and sometimes sticky substances on the tree bark. This can be caused by various factors, such as insects, fungi, or bacteria.\n\nTo treat tree gummosis, it is essential to identify the underlying cause and take appropriate measures to address it. If the disease is caused by insects, insecticides can be applied to the tree to control the pest population. If it is caused by fungi, fungicides can be used to prevent the growth of the fungus. In some cases, pruning the affected branches and applying a protective coating to the tree bark can help prevent the disease from spreading. It is crucial to consult a professional arborist or tree care specialist for proper diagnosis and treatment of tree gummosis to ensure the health and longevity of the tree.",
+      "rouge_l_f": 0.4023668589265082
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the tomato in the image is called \"bacterial soft rot\" or \"bacterial canker.\" It is caused by the bacterium Erwinia tracheiphila, which enters the plant through wounds or natural openings and causes the fruit to become soft, mushy, and rotten. The disease can lead to significant yield loss and affect the overall quality of the tomato crop.\n\nTo treat bacterial soft rot, it is essential to practice good crop management practices, such as:\n\n1. Proper irrigation: Ensure that the plants receive adequate water, but avoid overwatering, which can lead to root rot and increase the risk of bacterial infections.\n2. Crop rotation: Rotate tomato crops with other plants to reduce the chances of bacterial infections spreading from one plant to another.\n3. Pest control: Regularly inspect the plants for pests and diseases, and use appropriate pest control measures to prevent the spread of bacterial infections.\n4. Fungicide application: If the bacterial infection is severe, a fungicide application may be necessary to control the disease. However, it is crucial to follow the recommended dosage and application guidelines to avoid any adverse effects on the environment and the plants.\n\nIn the image, the tomato is still green, which indicates that it has not yet been affected by the bacterial soft rot. However, it is essential to monitor the plant's health and take appropriate measures to prevent the disease from spreading and causing further damage.",
+      "answer": "The disease affecting the tomato in the image is called \"bacterial soft rot\" or \"bacterial canker.\" It is caused by the bacterium Erwinia tracheiphila, which enters the plant through wounds or natural openings and causes the fruit to become soft, mushy, and eventually rot. The disease can lead to significant yield loss and affect the overall quality of the tomato crop.\n\nTo treat bacterial soft rot, it is essential to practice good crop management practices, such as:\n\n1. Regularly inspecting the plants for any signs of disease or injury.\n2. Removing any infected or damaged fruits and leaves promptly.\n3. Ensuring proper irrigation and drainage to prevent waterlogging, which can lead to the growth of bacteria.\n4. Applying a preventive fungicide treatment to the plants, especially during the early stages of the disease.\n5. Practicing crop rotation to minimize the risk of disease transmission.\n\nIn addition to these practices, it is also important to maintain a healthy plant environment by providing adequate nutrients, pest control, and proper spacing to reduce the risk of disease development.",
+      "rouge_l_f": 0.563706558760901
+    },
+    {
+      "id": null,
+      "pred": "The disease in the image is a fungal infection, specifically a type of fungus that infects the tree and causes it to produce abnormal growths, such as the red, rotten-looking fruit hanging from the tree. This infection can lead to the tree's decline and eventual death if left untreated.\n\nTo treat this disease, it is essential to remove the infected branches and fruit from the tree, as well as any other affected parts. This helps to prevent the spread of the fungus and reduces the risk of the tree becoming infected further. Additionally, it is important to practice proper tree care, such as regular pruning, maintaining a healthy tree structure, and ensuring proper drainage and air circulation, to minimize the risk of fungal infections in the future.",
+      "answer": "The disease in the image is a fungal infection, which is affecting the tree and causing it to produce a red, rotten fruit. This infection is commonly known as apple scab or brown rot. It is caused by the fungus Venturia inaequalis, which infects the tree through the leaves and fruit.\n\nTo treat this disease, it is essential to practice proper tree care and maintenance. This includes regular pruning of dead or infected branches, removing fallen leaves and fruits, and ensuring proper drainage around the tree. Additionally, using organic or fungicidal sprays can help prevent the spread of the disease and protect the tree from further damage. It is also important to monitor the tree's health and take appropriate action if the infection worsens or spreads to other parts of the tree.",
+      "rouge_l_f": 0.5301204769393236
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the cabbage plants in the image is a bacterial infection, specifically caused by the bacterium Xanthomonas campestris pv. campestris. This bacterium can cause black rot, which is characterized by the wilting and blackening of leaves and stems.\n\nTo treat black rot in cabbage plants, it is essential to practice proper crop rotation and sanitation. Remove infected plants and dispose of them properly to prevent the spread of the disease. Additionally, maintaining a clean and well-drained soil can help reduce the risk of the disease. In some cases, fungicides may be used to control the spread of the disease, but it is crucial to follow the recommended guidelines and use them responsibly to avoid any adverse effects on the environment and health.",
+      "answer": "The disease affecting the cabbage plants in the image is likely a fungal infection, as indicated by the brown leaves and the presence of mold. Fungal infections can be treated by removing infected leaves and stems, ensuring proper drainage and air circulation, and applying a fungicide to the soil to prevent the spread of the disease. It is essential to practice good gardening practices, such as regular soil amendment, pest control, and crop rotation, to minimize the risk of fungal infections and other diseases in the future.",
+      "rouge_l_f": 0.3687943213741764
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the corn plant in the image is called \"Corn Smut\" or \"Gibberella Ear Rot.\" It is a fungal infection that causes the ears of corn to turn brown, black, or mushy, and the kernels to rot. The disease can lead to significant yield losses and affect the quality of the corn.\n\nTo treat Corn Smut, farmers can practice good agricultural practices, such as:\n\n1. Crop rotation: Rotating corn with other crops can help reduce the risk of the disease spreading.\n2. Proper irrigation: Ensuring adequate water supply can help prevent the disease from spreading.\n3. Pest management: Regularly inspecting the corn plants for pests and using appropriate pest control measures can help prevent the disease from spreading.\n4. Fungicide application: Applying fungicides to the corn plants can help control the disease and prevent further damage.\n5. Harvesting at the right time: Harvesting the corn at the right stage of maturity can help prevent the disease from spreading to the ears and kernels.\n\nIt is essential to identify the disease early and take appropriate measures to minimize its impact on the crop and yield.",
+      "answer": "The disease in the image is a fungal infection, specifically a corn smut or corn rust. It affects the corn plant and causes the growth of abnormal structures, such as the white, mushroom-like growths seen in the image. To treat this disease, it is essential to practice proper crop management, including regular monitoring of the plant's health, timely application of fungicides, and maintaining a balanced soil pH. Additionally, rotating crops and using resistant varieties can help prevent the spread of the disease and reduce its impact on the plant.",
+      "rouge_l_f": 0.33526011088776775
+    },
+    {
+      "id": null,
+      "pred": "The disease in the image is a fungal infection, specifically a black rot or black mold, which affects the berries and fruits of the plant. This disease is caused by various fungi, such as Colletotrichum, which can infect the plant through wounds, insects, or natural openings. The infection can lead to the decay and rotting of the berries and fruits, resulting in a loss of yield and quality.\n\nTo treat black rot or black mold, it is essential to practice good plant hygiene and crop management. This includes removing infected plants, cleaning and sanitizing the affected area, and using resistant varieties of the plant to minimize the risk of infection. Additionally, using fungicides can help control the spread of the disease and protect the healthy plants. It is crucial to monitor the plant's health and take appropriate measures to prevent the disease from spreading and causing further damage.",
+      "answer": "The disease in the image is a fungal infection, specifically a black rot or black mold, which affects the fruit of the tree. This disease is caused by various fungi, such as Colletotrichum gloeosporioides, which can infect various fruits, including berries and apples. The infection can lead to the fruit becoming discolored, rotten, and eventually falling off the tree.\n\nTo treat black rot, it is essential to practice good fruit tree care, including regular pruning, removing infected fruits, and maintaining proper tree health. Additionally, using organic or fungicidal treatments can help prevent the spread of the disease and protect the tree from further damage. It is crucial to identify the specific type of fungus causing the infection and use the appropriate treatment method to manage the disease effectively.",
+      "rouge_l_f": 0.5977011444312327
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the strawberries in the image is called \"Strawberry Disease.\" It is characterized by the presence of brown spots on the fruit, which can lead to a decline in the quality and yield of the strawberries. The disease can be caused by various factors, such as fungal infections, bacterial infections, or viral infections.\n\nTo treat Strawberry Disease, it is essential to identify the specific cause of the disease and take appropriate measures to prevent its spread. This may include using organic or chemical fungicides, applying preventive treatments, and practicing good garden hygiene. Additionally, it is crucial to monitor the health of the plants and remove any infected or affected plants to prevent the disease from spreading further.",
+      "answer": "The disease affecting the strawberries in the image is called \"Strawberry Disease,\" which can be caused by various factors such as fungal infections, bacterial infections, or viral infections. The affected strawberries have brown spots, which are a sign of the disease.\n\nTo treat Strawberry Disease, it is essential to identify the specific cause of the disease and take appropriate measures. For fungal infections, applying fungicides to the affected plants and the soil around them can help prevent the spread of the disease. For bacterial infections, using antibiotics or copper-based fungicides can be effective. For viral infections, removing infected plants and practicing crop rotation can help prevent the spread of the disease. It is also important to maintain proper hygiene and sanitation in the growing area to minimize the risk of disease transmission.",
+      "rouge_l_f": 0.5802469085832953
+    },
+    {
+      "id": null,
+      "pred": "The disease affecting the leaf in the image is a fungal infection, specifically a powdery mildew. Powdery mildew is a common plant disease caused by various fungal species, which can affect a wide range of plants, including vegetables, fruits, and ornamental plants. It is characterized by the growth of white, powdery spores on the leaves, stems, and other plant parts.\n\nTo treat powdery mildew, it is essential to practice good garden hygiene and preventive measures. Some of these measures include:\n\n1. Regularly cleaning and removing infected plant parts to prevent the spread of the disease.\n2. Ensuring proper air circulation around the plants to reduce humidity and promote drying.\n3. Watering the plants at the base, rather than the leaves, to minimize the chances of fungal growth.\n4. Avoiding overcrowding plants, as it can lead to increased humidity and make it easier for the fungus to spread.\n5. Using organic or chemical fungicides, depending on the severity of the infection and the type of plant.\n\nIt is important to identify the specific type of fungus causing the powdery mildew and consult a local nursery or gardening expert for the most effective treatment method.",
+      "answer": "The disease affecting the leaf in the image is a fungal infection, specifically a powdery mildew. Powdery mildew is a common plant disease caused by various fungal species, which can affect a wide range of plants, including vegetables, fruits, and ornamental plants. The disease is characterized by the formation of white, powdery spores on the leaves, stems, and other plant parts.\n\nTo treat powdery mildew, it is essential to practice good garden hygiene and preventive measures. Some of these measures include:\n\n1. Regularly cleaning and removing infected plant parts to prevent the spread of the disease.\n2. Ensuring proper air circulation around the plants to reduce humidity and promote drying.\n3. Watering the plants at the base, rather than the leaves, to minimize the chances of the disease spreading through the leaves.\n4. Avoiding overcrowding plants, as it can lead to increased humidity and make it easier for the fungus to thrive.\n5. Using organic or chemical fungicides, depending on the severity of the infection and the type of plant.\n\nIt is important to identify the specific type of fungus causing the powdery mildew and consult a local nursery or gardening expert for the most effective treatment method.",
+      "rouge_l_f": 0.9747899109677991
+    },
+    {
+      "id": null,
+      "pred": "The image features a man with long hair and a wig, wearing a white shirt and a black coat. He is posing for a portrait, possibly a painting or a drawing. The man's appearance suggests that he might be a historical figure or a character from a period drama. The portrait captures the man's unique and distinctive look, making him stand out as a subject.",
+      "answer": "The image features a man with long, curly hair and a beard, wearing a white shirt and a black coat. He is wearing a wig and has a distinctive appearance, possibly resembling a famous person or a character from a historical period. The man is posing for a portrait, which suggests that he might be a public figure or someone of importance.",
+      "rouge_l_f": 0.6382978673494795
+    },
+    {
+      "id": null,
+      "pred": "The image features a statue of a man with a long beard, wearing a robe and a hat. He appears to be an old man with a wise and serene expression. The statue is positioned in front of a building, possibly a temple or a historical site. The man's attire and the setting suggest that he might be a religious figure or a significant historical figure.",
+      "answer": "The image features a statue of a man with a long beard, wearing a robe and a hat. He appears to be an old man with a wise and serene expression. The statue is positioned in front of a building, possibly a temple or a historical site. The man's attire and the setting suggest that he might be a religious figure or a significant historical figure.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The image features a man with a beard and mustache, wearing a crown and sitting on a chair. He appears to be a king or a ruler, possibly from an Asian culture. The man is surrounded by other people, some of whom are also wearing crowns, suggesting that they might be members of his court or high-ranking officials. The scene is depicted in a black and white style, which adds a sense of historical or artistic significance to the image.",
+      "answer": "The image features a man with a beard and mustache, wearing a robe and a crown, sitting at a table. He appears to be a king or a ruler, possibly from an Asian culture. The man is surrounded by other people, some of whom are also wearing robes, suggesting a formal or ceremonial setting. The scene is depicted in black and white, giving it a classic or historical feel.",
+      "rouge_l_f": 0.7027026977225875
+    },
+    {
+      "id": null,
+      "pred": "The image features a man wearing a black hat and a black coat, possibly a conquistador's outfit. He is standing in front of a painting, possibly a portrait of himself. The man appears to be staring at the viewer, giving a sense of presence and importance to the scene. The painting itself is likely a representation of the man's historical significance or a tribute to his achievements.",
+      "answer": "The image features a man wearing a black hat and a black coat, possibly a conquistador or a Spanish soldier. He is standing in front of a painting, possibly a portrait, and appears to be looking at the viewer. The man's attire and the context of the painting suggest that he might be a historical figure or a character from a historical event or story.",
+      "rouge_l_f": 0.5842696579219795
+    },
+    {
+      "id": null,
+      "pred": "The image features a man with curly hair and a beard, who is smiling and looking at the camera. He is wearing a suit and tie, and his hair is styled in a way that resembles the famous physicist Albert Einstein. This man appears to be a fan of Einstein or possibly a professional dressed up as the famous scientist for a special event or occasion.",
+      "answer": "The image features a man with curly hair and a beard, who is wearing a suit and tie. He is smiling and appears to be a well-dressed individual. The man is also wearing glasses, which adds to his distinguished appearance. It is not possible to determine the exact identity of the person from the image alone, but he could be a businessman, a public figure, or someone in a professional setting.",
+      "rouge_l_f": 0.46464645965105605
+    },
+    {
+      "id": null,
+      "pred": "The image features a man with a beard and mustache, wearing a bow tie and a suit. He appears to be a well-dressed gentleman, possibly a businessman or a professional. The man is staring directly into the camera, giving the impression of a confident and focused individual.",
+      "answer": "The image features a man with a beard and mustache, wearing a suit and tie. He is looking directly at the camera, giving a serious and focused expression. The man appears to be well-dressed and poised, possibly a professional or a businessman. The black and white nature of the photo adds a timeless and classic feel to the image.",
+      "rouge_l_f": 0.6315789423995847
+    },
+    {
+      "id": null,
+      "pred": "The image features a man with a long beard and a white collar, possibly a scientist or a scholar. He is looking directly at the camera, giving a sense of focus and intelligence. The man's appearance suggests that he might be a prominent figure in his field or a well-known individual in the history of science or academia.",
+      "answer": "The image features a man with a long beard and a white collar, possibly a scientist or a scholar. He is looking directly at the camera, giving a sense of focus and intelligence. The man's appearance suggests that he is an older individual, possibly a historical figure or a prominent figure in his field of expertise.",
+      "rouge_l_f": 0.860465111281774
+    },
+    {
+      "id": null,
+      "pred": "The image features a man with a beard and mustache, wearing a military uniform and a hat. He appears to be a soldier or a military officer, possibly from the Civil War era. The man is staring directly at the camera, giving a sense of authority and confidence. The black and white nature of the photo adds to the historical and vintage feel of the image.",
+      "answer": "The image features a man with a beard and mustache, wearing a military uniform and a hat. He appears to be a soldier or a military officer, possibly from the Civil War era. The man is staring directly at the camera, giving a sense of authority and confidence. The black and white nature of the photo adds to the historical and vintage feel of the image.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": null,
+      "pred": "The image features a soccer player, specifically a man wearing a jersey with the number 10 on it. He is celebrating a goal, with his arms raised in the air. The player is likely a professional soccer player, as he is wearing a uniform and displaying a sense of triumph after scoring a point.",
+      "answer": "The image features a soccer player, specifically a man wearing a jersey with the number 10 on it. He is celebrating a goal, with his mouth open and his arms outstretched. The man appears to be a professional athlete, possibly a member of the Argentine national team, as he is wearing a jersey with the colors of the Argentine flag.",
+      "rouge_l_f": 0.6749999950031251
+    },
+    {
+      "id": null,
+      "pred": "The image features a man wearing a suit and tie, with a collared shirt and a bow tie. He is sitting in a chair and appears to be posing for a portrait. The man has a mustache and is wearing a suit and tie, which suggests that he might be dressed for a formal event or a professional setting.",
+      "answer": "The image features a man wearing a suit and tie, with a collared shirt and a bow tie. He is sitting in a chair and appears to be posing for a portrait. The man has a beard and is wearing a suit and tie, which suggests that he might be dressed for a formal event or a professional setting. The black and white nature of the photo adds a vintage touch to the image.",
+      "rouge_l_f": 0.8705882303501731
+    },
+    {
+      "id": null,
+      "pred": "The graph displays the long-term international migration trends in the UK from 1999 to 2008. The data is presented in a line graph, with the years on the x-axis and the migration figures on the y-axis. The graph shows a significant increase in migration during the period, with a notable peak in 2005.\n\nThe migration figures show a gradual increase from 1999 to 2002, followed by a slight dip in 2003. The trend then continues to rise steadily until it reaches a high point in 2005. After a slight decline in 2006, the migration figures show a gradual increase again, reaching a new high in 2008.\n\nThe data suggests that the UK has experienced a significant increase in international migration over the past decade, with a notable peak in 2005. This trend highlights the country's role as a destination for people seeking better opportunities, education, or a change in lifestyle. The migration figures also indicate that the UK has become more diverse, with an influx of people from various countries and cultures, contributing to the country's economic growth and cultural enrichment.",
+      "answer": "The graph displays the long-term international migration trends in the UK from 1999 to 2008. The data is presented in a line graph, with the x-axis representing the years and the y-axis showing the number of immigrants. The graph shows a significant increase in the number of immigrants over the years, with a notable spike in 2004.\n\nIn 1999, the number of immigrants was relatively low, with around 100,000 people entering the UK. However, by 2008, the number of immigrants had increased to over 500,000. This trend indicates a growing demand for international migration to the UK, possibly due to economic, social, or political factors.\n\nThe increase in the number of immigrants can have various implications for the UK, such as changes in the demographic makeup of the population, increased competition for jobs and housing, and potential cultural shifts. The UK government and society must adapt to these changes and address the challenges and opportunities that come with an increasingly diverse population.",
+      "rouge_l_f": 0.38144329396907223
+    },
+    {
+      "id": null,
+      "pred": "The graph and table provide information on water use by sector and water consumption in Brazil and Congo in 2000. The graph shows that the agriculture sector is the largest user of water in both countries, accounting for 60% of water use in Brazil and 50% in Congo. The industrial sector is the second largest user of water in Brazil, while in Congo, it is the largest user of water. The domestic sector is the smallest user of water in both countries.\n\nThe table shows that Brazil has a higher water consumption per capita than Congo. In Brazil, the average person consumes 1,000 liters of water per day, while in Congo, the average person consumes 50 liters of water per day. This difference in water consumption can be attributed to the differences in the availability of water resources and the level of development in the two countries.\n\nThe table also shows that the water consumption in Brazil is higher than in Congo, with a total of 175 billion liters of water consumed in Brazil and 10 billion liters consumed in Congo. This difference in water consumption can be attributed to the larger population in Brazil and the higher level of economic development, which leads to higher water use for various purposes, including agriculture, industry, and domestic use.",
+      "answer": "The graph and table provide information on water use by sector and water consumption in Brazil and Congo in 2000. The graph shows that the agriculture sector is the largest user of water in both countries, accounting for 60% of water use in Brazil and 50% in Congo. The industrial sector is the second largest user of water in Brazil, while in Congo, it is the largest user of water. The domestic sector is the smallest user of water in both countries.\n\nThe table shows that Brazil has a higher water consumption per capita than Congo. In Brazil, the average person consumes 2,300 liters of water per day, while in Congo, the average person consumes 1,000 liters of water per day. This difference in water consumption can be attributed to various factors such as the availability of water resources, population density, and water infrastructure in the two countries.\n\nThe table also shows that Brazil has a higher population than Congo, with 209 million people compared to Congo's 69 million people. This higher population density in Brazil could contribute to the higher water consumption per capita. Additionally, the table shows that Brazil has a larger land area than Congo, which could also influence the water consumption per capita.\n\nOverall, the graph and table provide valuable insights into water use and consumption in Brazil and Congo, highlighting the importance of efficient water management and conservation efforts in both countries.",
+      "rouge_l_f": 0.707182315467782
+    },
+    {
+      "id": null,
+      "pred": "The two charts provide a detailed analysis of marriage and divorce rates in the USA between 1970 and 2000. The first chart shows a significant increase in the number of marriages and divorces during this period. In 1970, there were approximately 2.1 million marriages and 1.1 million divorces, while in 2000, the numbers had risen to 2.2 million and 1.6 million, respectively. The second chart displays the marital status of adult Americans in two specific years, showing that in 1990, 50% of adults were married, while in 2000, the percentage had decreased to 48%.\n\nComparing the two charts, it is evident that the overall trend is an increase in the number of marriages and divorces over the years. However, the percentage of adults who are married has decreased slightly during this period. This could be attributed to various factors such as changes in societal norms, economic pressures, and shifting demographics. The data highlights the importance of understanding and addressing the factors that contribute to changes in marriage and divorce rates in the USA.",
+      "answer": "The image displays two graphs that provide information about marriage and divorce rates in the USA between 1970 and 2000. The first graph shows the number of marriages and divorces in the USA during this period. The second graph shows the marital status of adult Americans in two specific years.\n\nThe first graph shows a significant increase in the number of marriages and divorces from 1970 to 2000. The number of marriages increased from 2.1 million in 1970 to 2.3 million in 1975, and then gradually decreased to 1.9 million in 1980. The number of divorces also increased from 1.1 million in 1970 to 1.3 million in 1975, and then decreased to 0.9 million in 1980. The graph also shows a slight increase in the number of marriages and divorces in the 1990s, reaching a peak of 2.1 million marriages and 1.1 million divorces in 2000.\n\nThe second graph shows that in 1990, 50% of adult Americans were married, while 30% were single. In 2000, the percentage of married adults decreased to 45%, while the percentage of single adults increased to 45%. This indicates a shift in societal norms and values regarding marriage and relationships.\n\nIn conclusion, the graphs provide valuable insights into the changing trends in marriage and divorce rates in the USA over the past few decades, as well as the marital status of adult Americans in two specific years. The data highlights the significant increase in the number of marriages and divorces, as well as the changing attitudes towards marriage and relationships among adult Americans.",
+      "rouge_l_f": 0.5427135628403323
+    },
+    {
+      "id": null,
+      "pred": "The chart displays the amount spent on six consumer goods in four European countries: France, Germany, Italy, and the United Kingdom. The goods include photographic film, tennis rackets, personal stereos, and perfume. The data is presented in a bar graph format, with each country's spending represented by a bar.\n\nIn the United Kingdom, the most significant amount of money is spent on photographic film, with a total of 10,000 pounds spent. In contrast, the least amount of money is spent on personal stereos, with only 1,000 pounds spent. The other countries show varying spending patterns, with France and Germany having a more balanced distribution of spending across all goods, while Italy has a higher concentration of spending on photographic film and tennis rackets.\n\nOverall, the chart provides a clear picture of the spending habits of consumers in these four European countries, highlighting the differences in preferences and priorities across the region.",
+      "answer": "The chart displays the amount spent on six consumer goods in four European countries, including France, Germany, Italy, and the United Kingdom. The goods are categorized into two groups: personal audio and photographic equipment, and toys. The data is presented in the form of bar graphs, with each country's spending represented by a separate bar.\n\nIn the United Kingdom, the most significant amount of money is spent on personal audio equipment, with a total of 170 pounds spent. In contrast, the least amount of money is spent on toys, with only 10 pounds spent. The other countries show varying spending patterns, with France and Germany having a more balanced distribution between the two categories, while Italy has a higher focus on personal audio equipment.\n\nThe chart provides a clear visual representation of the spending habits of consumers in these four European countries, highlighting the differences in preferences and priorities. This information can be useful for businesses looking to target specific markets or for individuals interested in understanding the trends and patterns in consumer behavior.",
+      "rouge_l_f": 0.69387754607247
+    },
+    {
+      "id": null,
+      "pred": "The table provides information about the underground railway systems in six cities, including the date the system opened, the number of kilometers of route, the number of passengers, and the number of trains. The cities are London, Paris, Berlin, Moscow, Tokyo, and New York.\n\nLondon's underground railway system opened in 1863 and has a total route length of 228 kilometers. It transports over 1.3 billion passengers annually, making it one of the busiest systems in the world.\n\nParis's metro system opened in 1900 and has a total route length of 228 kilometers. It transports over 5.1 billion passengers annually, making it the busiest metro system in Europe.\n\nBerlin's underground railway system opened in 1902 and has a total route length of 158 kilometers. It transports over 1.1 billion passengers annually.\n\nMoscow's metro system opened in 1935 and has a total route length of 338 kilometers. It transports over 2.8 billion passengers annually, making it the busiest metro system in Europe and Asia.\n\nTokyo's metro system opened in 1927 and has a total route length of 238 kilometers. It transports over 3.2 billion passengers annually, making it the busiest metro system in Asia.\n\nNew York's subway system opened in 1904 and has a total route length of 302 kilometers. It transports over 1.7 billion passengers annually, making it the busiest subway system in the world.\n\nIn summary, the table provides valuable information about the underground railway systems in six major cities, highlighting their route lengths, passenger numbers, and the dates they opened. The data shows that London, Paris, and Moscow have the longest systems, while Tokyo has the most extensive passenger numbers. New York has the highest number of trains, and all systems have experienced significant growth in passenger numbers over the years.",
+      "answer": "The table provides information about the underground railway systems in six cities, including the date the system opened, the number of kilometers of route, the number of passengers, and the number of trains. The cities are London, Paris, Berlin, Moscow, Tokyo, and New York.\n\nLondon's underground railway system opened in 1863 and has a total route length of 228 kilometers. It transports approximately 1.3 billion passengers annually. The city has 11 lines, with a total of 270 stations.\n\nParis's underground railway system, known as the M\u00e9tro, opened in 1900 and has a total route length of 228 kilometers. It transports approximately 5.5 million passengers daily. The city has 14 lines, with a total of 303 stations.\n\nBerlin's underground railway system, known as the U-Bahn, opened in 1902 and has a total route length of 148 kilometers. It transports approximately 1.2 million passengers daily. The city has 9 lines, with a total of 170 stations.\n\nMoscow's underground railway system, known as the Moscow Metro, opened in 1935 and has a total route length of 338 kilometers. It transports approximately 9 million passengers daily. The city has 12 lines, with a total of 205 stations.\n\nTokyo's underground railway system, known as the Tokyo Metro, opened in 1927 and has a total route length of 238 kilometers. It transports approximately 9 million passengers daily. The city has 13 lines, with a total of 180 stations.\n\nNew York's underground railway system, known as the New York City Subway, opened in 1904 and has a total route length of 302 kilometers. It transports approximately 5.5 million passengers daily. The city has 24 lines, with a total of 371 stations.\n\nIn summary, the table provides valuable information about the underground railway systems in six major cities, highlighting their route lengths, passenger numbers, and the number of trains. Comparisons can be made between the cities in terms of the age of the systems, the number of lines, and the number of stations.",
+      "rouge_l_f": 0.6820276447705409
+    },
+    {
+      "id": null,
+      "pred": "The table provides information on consumer spending in five different countries, including the United States, Canada, Australia, Germany, and the United Kingdom. The categories include food and drinks, tobacco, clothing, footwear, and tobacco. The data is presented in the form of percentages and ratios.\n\nIn the United States, the highest percentage of consumer spending is on food and drinks, with 28.6% of the total expenditure. The second highest category is clothing, with 18.4% of the total spending. In Canada, the highest percentage of consumer spending is on food and drinks, with 31.1% of the total expenditure. The second highest category is clothing, with 18.3% of the total spending.\n\nIn Australia, the highest percentage of consumer spending is on food and drinks, with 29.1% of the total expenditure. The second highest category is clothing, with 18.3% of the total spending. In Germany, the highest percentage of consumer spending is on food and drinks, with 28.6% of the total expenditure. The second highest category is clothing, with 18.4% of the total spending.\n\nIn the United Kingdom, the highest percentage of consumer spending is on food and drinks, with 31.1% of the total expenditure. The second highest category is clothing, with 18.3% of the total spending. Overall, the data shows that food and drinks are the most significant category of consumer spending in all five countries, with clothing being the second highest category.",
+      "answer": "The table displays the average percentage of consumer spending on various items in five different countries in 2002. The countries included in the table are the United States, Canada, the United Kingdom, Germany, and France. The items listed include food, drinks, tobacco, clothing, footwear, and toys.\n\nIn the United States, the average consumer spent 28.6% of their income on food, 16.4% on drinks, 14.9% on tobacco, 6.1% on clothing, and 5.8% on footwear. In Canada, the corresponding figures were 29.1%, 16.1%, 13.9%, 5.9%, and 5.5%. In the United Kingdom, the figures were 28.9%, 16.1%, 14.8%, 5.8%, and 5.5%. In Germany, the figures were 29.1%, 16.1%, 14.9%, 5.8%, and 5.5%, while in France, the figures were 29.1%, 16.1%, 14.8%, 5.8%, and 5.5%.\n\nComparing the data, it can be observed that the United States and Canada have a higher percentage of spending on food and drinks, while the United Kingdom has a higher percentage of spending on tobacco. Germany and France have a similar percentage of spending on clothing and footwear. Overall, the United States has the highest percentage of spending on food and drinks, while France has the highest percentage of spending on toys.",
+      "rouge_l_f": 0.4999999950964507
+    },
+    {
+      "id": null,
+      "pred": "The pie charts show the units of electricity production by fuel source in Australia and France in 1980 and 2000. In 1980, Australia relied heavily on coal for electricity production, with 60% of the units coming from this source. In contrast, France had a more diverse fuel mix, with 30% of the units coming from coal, 20% from nuclear, and 10% from oil.\n\nIn 2000, the situation had changed significantly. Australia's reliance on coal had decreased to 40%, while nuclear power had increased to 30%. Oil and hydroelectric power had also become more prominent sources of electricity production. On the other hand, France's reliance on nuclear power had increased to 50%, while coal and oil had decreased.\n\nComparing the two periods, it is evident that Australia has been shifting towards a more diverse fuel mix, with a greater emphasis on nuclear power. In contrast, France has maintained a strong reliance on nuclear power, while also increasing its use of hydroelectric power. This shift in fuel sources highlights the different energy policies and priorities of the two countries.",
+      "answer": "The pie charts show the units of electricity production by fuel source in Australia and France in 1980 and 2000. In 1980, Australia relied heavily on coal for electricity production, with 58% of the total production coming from this source. In contrast, France had a more diverse fuel mix, with 39% of production coming from nuclear power, 31% from oil, and 22% from natural gas.\n\nIn 2000, the situation had changed significantly. Australia's reliance on coal had decreased to 42%, while the share of nuclear power had increased to 48%. Oil and natural gas continued to be important sources of electricity production, with 28% and 24% of the total production, respectively. In France, the share of nuclear power remained high at 75%, while the share of oil decreased to 18%, and natural gas increased to 17%.\n\nThe comparison between the two countries in 2000 shows that France has a more diversified fuel mix, with a higher share of nuclear power, while Australia has a more coal-dependent energy mix. This difference in fuel sources could have implications for the environmental impact and energy security of each country.",
+      "rouge_l_f": 0.5937499950021703
+    },
+    {
+      "id": null,
+      "pred": "Chorleywood is a village located near London, which has experienced significant growth since the mid-19th century. The map below illustrates the development of the village, showing the expansion of roads, buildings, and infrastructure over time.\n\nIn the early 1800s, the village was predominantly rural, with a few scattered buildings and roads. However, as the population increased, the village began to expand, with new roads and buildings being constructed. By the mid-19th century, the village had grown significantly, with a more organized layout and a larger number of buildings.\n\nThe 20th century brought further development to the village, with the construction of new roads, buildings, and infrastructure. The village's population continued to increase, and the area became more urbanized. The map shows the progression of the village's development, highlighting the changes in the layout and density of the population over time.\n\nOverall, the map provides a clear visual representation of Chorleywood's development, showcasing the growth and changes that have occurred over the past century and a half. The village's expansion and urbanization have transformed it from a rural, scattered community into a thriving, well-developed suburban area.",
+      "answer": "Chorleywood is a village located near London, which has experienced significant growth since the mid-19th century. The map below illustrates the development of the village, showing the expansion of roads, buildings, and infrastructure over time.\n\nIn the early 1800s, the village was predominantly rural, with a few scattered buildings and roads. However, as the population increased, the village began to develop more infrastructure, including the construction of new roads and buildings. By the early 20th century, the village had grown significantly, with a well-established road network and numerous buildings, including residential homes and commercial establishments.\n\nThe development of the village can be attributed to several factors, including the expansion of London and the growth of the transportation network. The presence of a railway line in the village indicates that it was well-connected to the surrounding areas, making it an attractive place to live and work. Additionally, the availability of land for development and the increasing demand for housing in the region contributed to the growth of Chorleywood.\n\nIn conclusion, the map of Chorleywood's development between 1861 and 1991 provides a clear picture of the village's growth and evolution over time. The expansion of roads, buildings, and infrastructure reflects the increasing population and the village's role as a thriving community near London.",
+      "rouge_l_f": 0.5794392473578479
+    },
+    {
+      "id": null,
+      "pred": "The image depicts a map of the town of Garlsdon, with a focus on the planned location of a new supermarket. The map shows two possible sites for the supermarket, one situated closer to the center of the town and the other towards the right side. The town is located near a railway line, which could provide convenient transportation for the residents.\n\nThe map also displays the town's population, with a total of 6,000 people living in the area. The town is surrounded by a number of roads, including a main road that runs through the center of the town. Additionally, there are several other roads that intersect the town, providing various routes for residents and visitors.\n\nThe map also highlights the town's industrial sector, with a number of factories and businesses operating in the area. This could indicate a thriving local economy and a diverse range of industries. Overall, the map provides a comprehensive overview of the town of Garlsdon, its population, and its infrastructure, which could be useful for planning the new supermarket's location and its impact on the local community.",
+      "answer": "The image depicts a map of the town of Garlsdon, with a new supermarket (S) planned for the area. The map shows two possible sites for the supermarket, one located in the center of the town and the other towards the right side. The town is situated near a railway line, which could be a convenient transportation option for the supermarket.\n\nThe map also displays the town's population, which is approximately 6,000 people. The town is divided into two main areas, with one being more populated than the other. The town is also home to a few other establishments, such as a housing area and an industrial area.\n\nThe map provides a clear visual representation of the town's layout and the proposed location of the new supermarket. The town's population and the presence of other establishments indicate that the town is a viable location for a new supermarket. The proximity to the railway line could also be advantageous for the supermarket, as it would provide easy access for customers and efficient transportation of goods.",
+      "rouge_l_f": 0.5079365029534447
+    },
+    {
+      "id": null,
+      "pred": "The diagram illustrates the intricate process of weather forecasting by the Australian Bureau of Meteorology. The process begins with the collection of data from various sources, including satellites, radar, and weather stations. This information is then analyzed and processed to create a comprehensive understanding of the current weather conditions.\n\nThe diagram shows a laptop computer as a central component of the forecasting process, with various applications and tools running on it. These tools include a satellite image, a radar photo, and a weather map. The laptop also has a mouse and a keyboard, which are used to input data and navigate through the software.\n\nThe forecasting process involves several stages, including preparing the broadcast, forecasting the weather, and monitoring the broadcast. The final stage involves the broadcast of the forecast to the public through various media channels, such as television, radio, and the internet.\n\nOverall, the diagram provides a clear overview of the complex process involved in weather forecasting and the role of technology in facilitating this process.",
+      "answer": "The diagram illustrates the intricate process of weather forecasting by the Australian Bureau of Meteorology. The process begins with the collection of data from various sources, including satellites, radar, and weather stations. The data is then analyzed and processed to create accurate forecasts.\n\nThe diagram shows several key components of the weather forecasting process, such as the use of a laptop for data analysis and forecasting. The laptop is connected to a network of satellites, which provide real-time information on weather conditions. The data collected from these satellites is then combined with other sources, such as radar and weather stations, to create a comprehensive picture of the current and upcoming weather conditions.\n\nThe diagram also shows the use of a television for broadcasting weather updates to the public. This ensures that people can stay informed about the latest weather conditions and take necessary precautions. The television is connected to the network of satellites, which allows for real-time updates on weather conditions.\n\nIn conclusion, the diagram provides a clear overview of the complex process of weather forecasting by the Australian Bureau of Meteorology. The use of various sources of data, including satellites, radar, and weather stations, ensures that accurate and reliable forecasts are produced. The diagram also highlights the importance of broadcasting weather updates to the public through television, which helps people stay informed and prepared for changing weather conditions.",
+      "rouge_l_f": 0.5482233452549667
+    }
+  ],
+  "failures": []
+}

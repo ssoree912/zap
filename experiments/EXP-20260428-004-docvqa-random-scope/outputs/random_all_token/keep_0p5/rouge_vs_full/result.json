@@ -1,0 +1,1234 @@
+{
+  "rouge_l_f_mean": 0.46468213952135223,
+  "n_samples": 200,
+  "n_failures": 0,
+  "elapsed_seconds": 80.30062460899353,
+  "sec_per_sample": 0.40150312304496766,
+  "args": {
+    "model_path": "/workspace/zap/ckpts/llava-1.5-7b-hf",
+    "data_path": "/workspace/zap/experiments/EXP-20260428-004-docvqa-random-scope/inputs/docvqa_200_full_ref.json",
+    "image_path": "/workspace/zap/data/MileBench/DocVQA/combined_1_images",
+    "eval_samples": 200,
+    "prompt_template": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\n{question} ASSISTANT:",
+    "max_new_tokens": 32,
+    "output_dir": "/workspace/zap/experiments/EXP-20260428-004-docvqa-random-scope/outputs/random_all_token/keep_0p5/rouge_vs_full",
+    "method": "random_all_token",
+    "student_model_name": null,
+    "quadrant": null,
+    "evict_ratio": 0.25,
+    "alpha": 0.5,
+    "future_blend_layers": [],
+    "image_keep_ratio": null,
+    "total_keep_ratio": 0.5,
+    "future_probe_name": null,
+    "selected_layer_indices": null,
+    "strict_selected": true,
+    "head_reduce": "amax",
+    "torch_dtype": "bfloat16",
+    "device": "cuda:0",
+    "attn_implementation": "sdpa"
+  },
+  "per_sample": [
+    {
+      "id": "0",
+      "pred": "PRESIDENT, BRUSH BEET GROWERS ASS'N",
+      "answer": "PRESIDENT, BRUSH BEET GROWERS ASS'N",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "1",
+      "pred": "The answer is $11,00 to $14,000.",
+      "answer": "The total income is $13,000 to $16,000.",
+      "rouge_l_f": 0.4615384565680473
+    },
+    {
+      "id": "2",
+      "pred": "I cannot find the title of Irene Karl.",
+      "answer": "Irene Karl is a Research Associate.",
+      "rouge_l_f": 0.2857142808163266
+    },
+    {
+      "id": "3",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The End Date of Returns is 10/10/97.",
+      "rouge_l_f": 0.24999999781250004
+    },
+    {
+      "id": "4",
+      "pred": "I",
+      "answer": "I",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "5",
+      "pred": "The Medical Research Foundation of Oregon.",
+      "answer": "The top of the page mentions the Medical Research Foundation of Oregon and Washington.",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "6",
+      "pred": "Wednesday",
+      "answer": "Wednesday",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "7",
+      "pred": "Jennifer D. Harris",
+      "answer": "Jennifer D. Harris is the Chairman of the Nutrition Program at Penn State.",
+      "rouge_l_f": 0.39999999680000003
+    },
+    {
+      "id": "8",
+      "pred": "The net income of the company for the year 196 is $7,12,11,11,11,11,",
+      "answer": "The Net sales of Campbell Soup Company for the year 1965 is $712,785,000.",
+      "rouge_l_f": 0.4999999950347222
+    },
+    {
+      "id": "9",
+      "pred": "The correct answer is:\n\n1. h.ihar.com",
+      "answer": "The email id of Mr. Hironao Ihara is hironaoihara@takeda.com.",
+      "rouge_l_f": 0.22222221728395072
+    },
+    {
+      "id": "10",
+      "pred": "Dr. F. J. Levin",
+      "answer": "Dr. F. James Levinson is designated as a manager.",
+      "rouge_l_f": 0.3076923034319527
+    },
+    {
+      "id": "11",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The approval is needed by 4/21/95 in order to meet the overall project timing.",
+      "rouge_l_f": 0.1333333320888889
+    },
+    {
+      "id": "12",
+      "pred": "C C",
+      "answer": "Corsberg",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "13",
+      "pred": "The correct answer is 8.50.",
+      "answer": "The weight of Lactalbumin in Milk protein is 7.60 grams.",
+      "rouge_l_f": 0.23529411307958487
+    },
+    {
+      "id": "14",
+      "pred": "Mr. K.S. Houghton",
+      "answer": "Mr. K.S. Houghton",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "15",
+      "pred": "The direct materials cost is $118.50.",
+      "answer": "The Direct materials cost (Items under $50) given in the voucher is $118.14.",
+      "rouge_l_f": 0.47619047174603185
+    },
+    {
+      "id": "16",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The product PO number is #072798.",
+      "rouge_l_f": 0.2857142832653061
+    },
+    {
+      "id": "17",
+      "pred": "All",
+      "answer": "All Boston Region Full-Time Employees",
+      "rouge_l_f": 0.33333333055555564
+    },
+    {
+      "id": "18",
+      "pred": "Exxon",
+      "answer": "Exxon Mobil Corporation",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "19",
+      "pred": "The",
+      "answer": "The proposed grand total amount for the year 1976 is $129,577.",
+      "rouge_l_f": 0.16666666513888892
+    },
+    {
+      "id": "20",
+      "pred": "Winston Salem",
+      "answer": "Winston-Salem",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "21",
+      "pred": "The Profit After Taxation Before Taxation Before Taxation Before Taxation Before Taxation Before Taxation Before Taxation Before Taxation Before Taxation Before Tax",
+      "answer": "The correct answer is 3178.17.",
+      "rouge_l_f": 0.16666666166666683
+    },
+    {
+      "id": "22",
+      "pred": "Project Name: [Profusion] [AI] [AI] [AI] [AI] [AI] [AI] [AI] [AI]",
+      "answer": "Project \"CV\"",
+      "rouge_l_f": 0.33333332888888895
+    },
+    {
+      "id": "23",
+      "pred": "The flight number 408 is shown in the image.",
+      "answer": "The flight number mentioned in the given page is 407.",
+      "rouge_l_f": 0.5263157844875347
+    },
+    {
+      "id": "24",
+      "pred": "The correct choice is 400.\nChoices: 400 | 401 | 402 | 403",
+      "answer": "The correct answer is 403 mg of potassium per 100 grams in Kale (R).",
+      "rouge_l_f": 0.33333332847222225
+    },
+    {
+      "id": "25",
+      "pred": "The correct answer is 10-5-10-30-98.",
+      "answer": "The reporting dates are 10/5-10/30/98.",
+      "rouge_l_f": 0.19999999500000015
+    },
+    {
+      "id": "26",
+      "pred": "K. P. Dubrovin",
+      "answer": "K. P. Dubrovin",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "27",
+      "pred": "The date is not provided.\n\nThe image is a copy of a letter written by a person to another person. The letter is written in a formal manner",
+      "answer": "The date mentioned in the given page is Thursday, November 1, 1974.",
+      "rouge_l_f": 0.1999999952000001
+    },
+    {
+      "id": "28",
+      "pred": "B",
+      "answer": "BVS1 (AMM)",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "29",
+      "pred": "The first day of the week of the day of the day of the day of the day of the day of the day of the day of the day of the",
+      "answer": "The cost of parking at the hotel in daytime is $10.",
+      "rouge_l_f": 0.3529411719031142
+    },
+    {
+      "id": "30",
+      "pred": "The debt equity ratio is 0.02.",
+      "answer": "The debt equity ratio is 0.02.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "31",
+      "pred": "Camel",
+      "answer": "Camel crema delivers a rich and smooth taste that provides a satisfying and enjoyable smoking session.",
+      "rouge_l_f": 0.1333333320888889
+    },
+    {
+      "id": "32",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The correct answer is 7.50.",
+      "rouge_l_f": 0.2857142832653061
+    },
+    {
+      "id": "33",
+      "pred": "The date mentioned in the image is 2 November 1966.",
+      "answer": "The date mentioned in the given page is 2 November 1966.",
+      "rouge_l_f": 0.8571428521541952
+    },
+    {
+      "id": "34",
+      "pred": "Tim",
+      "answer": "Tim",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "35",
+      "pred": "Gilbert B. Manson",
+      "answer": "Gilbert B. Forbes",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "36",
+      "pred": "The American Society of Engineers was established in 1938.",
+      "answer": "The correct answer is September 1, 1949.",
+      "rouge_l_f": 0.12499999507812519
+    },
+    {
+      "id": "37",
+      "pred": "5",
+      "answer": "5",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "38",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The correct answer is 64.",
+      "rouge_l_f": 0.33333333055555564
+    },
+    {
+      "id": "39",
+      "pred": "PLANT WEIGHT(%)",
+      "answer": "PLANT DRY WT(%)",
+      "rouge_l_f": 0.39999999520000007
+    },
+    {
+      "id": "40",
+      "pred": "Dr. Robert E E E E E E E E E E E E E E E E E E E E E E E E E E E E E",
+      "answer": "Dr. Robert E. Shank",
+      "rouge_l_f": 0.8571428522448981
+    },
+    {
+      "id": "41",
+      "pred": "The number is 0611111111111111111111111111",
+      "answer": "The cat.no is 0612-80-505.",
+      "rouge_l_f": 0.4444444395061729
+    },
+    {
+      "id": "42",
+      "pred": "The third day is Wednesday 22nd.",
+      "answer": "The third day is Tuesday 22nd.",
+      "rouge_l_f": 0.8333333283333335
+    },
+    {
+      "id": "43",
+      "pred": "The cement industry has reduced energy use by nearly 30 percent.",
+      "answer": "The cement industry has reduced energy use by approximately 25 percent.",
+      "rouge_l_f": 0.8181818131818183
+    },
+    {
+      "id": "44",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The amount of the total grants in 1962-63 was $586,950.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "45",
+      "pred": "The The is a The is a The is a The is a The is a The is a The is a The is a The is a The is a The",
+      "answer": "The total voucher amount is $1,295.87.",
+      "rouge_l_f": 0.3999999958
+    },
+    {
+      "id": "46",
+      "pred": "Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch Mitch",
+      "answer": "Mitch McConnell",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "47",
+      "pred": "The The",
+      "answer": "The amount of potassium mg./100g. for Gelatin, Plain is 23.",
+      "rouge_l_f": 0.16666666513888892
+    },
+    {
+      "id": "48",
+      "pred": "The file number is 185-58361.",
+      "answer": "The File No. is 185-58362.",
+      "rouge_l_f": 0.3999999950000001
+    },
+    {
+      "id": "49",
+      "pred": "Dr. Dodge",
+      "answer": "Dr. Dodge",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "50",
+      "pred": "The timing for the \"Journal of Managed Care Pharmacy\" is 3Q98.",
+      "answer": "The timing for the journal \"Journal of Managed Care Pharmacy\" is 3Q98.",
+      "rouge_l_f": 0.9565217341398866
+    },
+    {
+      "id": "51",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The time and mileage charge given is 22.8.",
+      "rouge_l_f": 0.1999999982
+    },
+    {
+      "id": "52",
+      "pred": "The correct answer is not provided.",
+      "answer": "The correct answer is 1,088.7.",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "53",
+      "pred": "Reviewer #2",
+      "answer": "Reviewer #2",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "54",
+      "pred": "Thiamine",
+      "answer": "Thiamine is also known as the \"energy vitamin\" due to its role in maintaining proper functioning of the body's metabolism and",
+      "rouge_l_f": 0.09523809433106578
+    },
+    {
+      "id": "55",
+      "pred": "According to the CDF (Cigarette Disposal and Environmental Tobacco Exposure) study, the percentage of loyalty among smok",
+      "answer": "According to CDF measures, the percentage of loyalty is 36%.",
+      "rouge_l_f": 0.5384615337278107
+    },
+    {
+      "id": "56",
+      "pred": "DORAL EDLP RETAIL PRICING AGREEMENT",
+      "answer": "DORAL EDLP RETAIL PRICING AGREEMENT",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "57",
+      "pred": "AVERAGE SALES | SPECIFIC ACTIVITY | TOTAL REVENUE",
+      "answer": "AVERAGE SALES",
+      "rouge_l_f": 0.4444444409876544
+    },
+    {
+      "id": "58",
+      "pred": "Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi",
+      "answer": "Hippocrates",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "59",
+      "pred": "The the the the.\nt\nt\nt\nt\n\nt\n\nt\n\nt\n\nt\n\nt\n\nt",
+      "answer": "The address of the business office of the company is 107 Depot Avenue, N. E., Knoxville, Tennessee.",
+      "rouge_l_f": 0.21052631313019393
+    },
+    {
+      "id": "60",
+      "pred": "4",
+      "answer": "3",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "61",
+      "pred": "Washington University",
+      "answer": "Washington D.C",
+      "rouge_l_f": 0.39999999520000007
+    },
+    {
+      "id": "62",
+      "pred": "Dylan",
+      "answer": "Dylan Huyett",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "63",
+      "pred": "The",
+      "answer": "The topic handled at 1:30 PM is a Panel Discussion/Debate.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "64",
+      "pred": "The total amount of money is 1,516.87.",
+      "answer": "The total voucher amount as mentioned in the given form is 1,516.86.",
+      "rouge_l_f": 0.476190471473923
+    },
+    {
+      "id": "65",
+      "pred": "The",
+      "answer": "The date of departure is July 10th, 1950.",
+      "rouge_l_f": 0.2222222202469136
+    },
+    {
+      "id": "66",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The brand code is CF85.",
+      "rouge_l_f": 0.33333333055555564
+    },
+    {
+      "id": "67",
+      "pred": "The correct answer is: $2.50.",
+      "answer": "The cost of dinner on December 2 is $3.50.",
+      "rouge_l_f": 0.24999999531250006
+    },
+    {
+      "id": "68",
+      "pred": "Dr. M.G. M.G. M.G. M.G. M.G. M.G. M.G. M.",
+      "answer": "Dr. M.G. Wagh",
+      "rouge_l_f": 0.8571428522448981
+    },
+    {
+      "id": "69",
+      "pred": "Calories per meal",
+      "answer": "Calories per day",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "70",
+      "pred": "George Saunders",
+      "answer": "George Saunders",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "71",
+      "pred": "281-2511",
+      "answer": "383-5411",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "72",
+      "pred": "Johns Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop Hop",
+      "answer": "Johns Hopkins",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "73",
+      "pred": "The Price of Iron.",
+      "answer": "The price of iron analysis in atomic absorption methodology is $8.50.",
+      "rouge_l_f": 0.24999999625000005
+    },
+    {
+      "id": "74",
+      "pred": "Harvard",
+      "answer": "Harvard University",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "75",
+      "pred": "The",
+      "answer": "The total amount mentioned in the given form is 574.49.",
+      "rouge_l_f": 0.16666666513888892
+    },
+    {
+      "id": "76",
+      "pred": "The estimated population in poverty in the city of Lewis is 2,299.5.",
+      "answer": "The estimated population in poverty in Lewis is 2,299.50.",
+      "rouge_l_f": 0.7619047570068028
+    },
+    {
+      "id": "77",
+      "pred": "0/00000000000000000000000000000",
+      "answer": "09/30/97",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "78",
+      "pred": "The answer is not provided.",
+      "answer": "The total population under 21 years in 1950 is 139,132.",
+      "rouge_l_f": 0.2666666622222223
+    },
+    {
+      "id": "79",
+      "pred": "WINSTON-SALEM BRAND",
+      "answer": "WINSTON-SALEM",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "80",
+      "pred": "The program number is 601279.",
+      "answer": "The program number is 601270.",
+      "rouge_l_f": 0.7999999950000002
+    },
+    {
+      "id": "81",
+      "pred": "The Estimated Estimated Estimated Estimated Estimated Estimated Estimated Estimated Estimated Estimated Est",
+      "answer": "The estimated budget for pass-through expenses is $3,000.00.",
+      "rouge_l_f": 0.16666666291666676
+    },
+    {
+      "id": "82",
+      "pred": "The correct answer is 1,73.",
+      "answer": "The annual total in the year 1995-96 is $1,713,000.",
+      "rouge_l_f": 0.285714281122449
+    },
+    {
+      "id": "83",
+      "pred": "August",
+      "answer": "August",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "84",
+      "pred": "Market",
+      "answer": "Marketbase",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "85",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The amount of potassium present in lentils, dry (R) as mentioned in the given page is 1150.",
+      "rouge_l_f": 0.11764705771626299
+    },
+    {
+      "id": "86",
+      "pred": "The Pennsylvania State University is located in the state of Pennsylvania.",
+      "answer": "The area code mentioned in the given page is 280.",
+      "rouge_l_f": 0.2999999950000001
+    },
+    {
+      "id": "87",
+      "pred": "Approved invoice sent to Sponsored Members.",
+      "answer": "Approving Sponsors",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "88",
+      "pred": "The Alany Medical College",
+      "answer": "The letter head mentions \"The Albany Medical College of Union University.\"",
+      "rouge_l_f": 0.3749999962500001
+    },
+    {
+      "id": "89",
+      "pred": "Mr. R. Rag.",
+      "answer": "Mr. R Ramamurthy",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "90",
+      "pred": "The timing of the conference is scheduled for 2:30 p.m.",
+      "answer": "The timing of the conference reminder is 11:30 a.m to 2:00 p.m.",
+      "rouge_l_f": 0.666666661701389
+    },
+    {
+      "id": "91",
+      "pred": "The correct answer is 0.08.",
+      "answer": "The mean of 2,4-D is 0.08%.",
+      "rouge_l_f": 0.4615384565680473
+    },
+    {
+      "id": "92",
+      "pred": "The full form of SCM is \"Supply Chain Management\".",
+      "answer": "The fullform of SCM is Supply Chain Management.",
+      "rouge_l_f": 0.5882352891349482
+    },
+    {
+      "id": "93",
+      "pred": "The\n\nQuestion: What is the G/L voucher number?",
+      "answer": "The G/L account code mentioned in the voucher is 04 08 1100 9143 82",
+      "rouge_l_f": 0.2727272680991736
+    },
+    {
+      "id": "94",
+      "pred": "The image of the woman.",
+      "answer": "The sizes of Turquoise or navy are 12-20 and 141/2-241/2.",
+      "rouge_l_f": 0.2666666622222223
+    },
+    {
+      "id": "95",
+      "pred": "Naples Beach Hotel and Spa",
+      "answer": "Naples Beach Hotel & Golf Club",
+      "rouge_l_f": 0.5454545404958678
+    },
+    {
+      "id": "96",
+      "pred": "The estimated number of people in Macon County is 3,362.",
+      "answer": "The estimated population in poverty in Macon county is 3,362.",
+      "rouge_l_f": 0.6315789423822715
+    },
+    {
+      "id": "97",
+      "pred": "The",
+      "answer": "The lounge is booked for the United States Brewers Association Medical Advisory Group.",
+      "rouge_l_f": 0.14285714153061227
+    },
+    {
+      "id": "98",
+      "pred": "Marie C. Newman",
+      "answer": "Marie C. Newton",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "99",
+      "pred": "The Swedish Nutrition Foundation is called the Nutrition Foundation.",
+      "answer": "The name of the foundation is the Swedish Nutrition Foundation.",
+      "rouge_l_f": 0.6249999950781252
+    },
+    {
+      "id": "100",
+      "pred": "The Irony Of The Irony, The Irony, The Irony, The Irony, The Irony, The Irony, The Irony,",
+      "answer": "The answer to the question is 10 mg/day.",
+      "rouge_l_f": 0.16666666222222234
+    },
+    {
+      "id": "101",
+      "pred": "members of the U.S. medical advisory council",
+      "answer": "members of the U.S. medical advisory committee",
+      "rouge_l_f": 0.874999995
+    },
+    {
+      "id": "102",
+      "pred": "The number of the demo is 03670.",
+      "answer": "The demo number mentioned is 03760.",
+      "rouge_l_f": 0.4615384565680473
+    },
+    {
+      "id": "103",
+      "pred": "The correct answer is 1/3 lb.",
+      "answer": "The Daily Quantity for Turnip Greens is 1/3 lb.",
+      "rouge_l_f": 0.5333333285333334
+    },
+    {
+      "id": "104",
+      "pred": "The due date is February 25, 200.",
+      "answer": "The due date for the document is February 25, 2002.",
+      "rouge_l_f": 0.7058823480968859
+    },
+    {
+      "id": "105",
+      "pred": "Material Data Sheet",
+      "answer": "Material Safety Data Sheet",
+      "rouge_l_f": 0.8571428522448981
+    },
+    {
+      "id": "106",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The date on the form is September 27, 1987.",
+      "rouge_l_f": 0.1999999982
+    },
+    {
+      "id": "107",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The emp. no. of Ivano N Rivers is 751034.",
+      "rouge_l_f": 0.1999999982
+    },
+    {
+      "id": "108",
+      "pred": "Less than 200",
+      "answer": "Less than 220",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "109",
+      "pred": "The approved priority is Hy. The AHA has a priority system that is used to determine the order in which the organization's and. The AHA has",
+      "answer": "The number 2 priority as approved by the AHA board of directors is Hypertension.",
+      "rouge_l_f": 0.24242423753902673
+    },
+    {
+      "id": "110",
+      "pred": "Jenkins",
+      "answer": "Jenkins",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "111",
+      "pred": "I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I",
+      "answer": "ITC has commenced ecological impact studies for some of their products.",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "112",
+      "pred": "The",
+      "answer": "The Order No. is 32709.",
+      "rouge_l_f": 0.33333333055555564
+    },
+    {
+      "id": "113",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The emp. no. of Herman W Arnett Jr is 052008.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "114",
+      "pred": "The account to be charged is the account of the person who is the account of the person who is the account of the person who is the account of the person",
+      "answer": "The account to be charged is PA73WBC45.",
+      "rouge_l_f": 0.7058823480968859
+    },
+    {
+      "id": "115",
+      "pred": "Chicago Tribune Greeley Daily Tribune Los Angeles Times New York Times",
+      "answer": "Chicago Tribune",
+      "rouge_l_f": 0.363636360661157
+    },
+    {
+      "id": "116",
+      "pred": "Robert Shank",
+      "answer": "Robert E. Shank",
+      "rouge_l_f": 0.7999999952000001
+    },
+    {
+      "id": "117",
+      "pred": "The Vis",
+      "answer": "The contact number of The Visiting Nurse Association of Greater St. Louis, St. Louis County is 314-533-9",
+      "rouge_l_f": 0.12499999781250003
+    },
+    {
+      "id": "118",
+      "pred": "The EFT",
+      "answer": "The EFT $ Amount is $3327.78.",
+      "rouge_l_f": 0.4444444409876544
+    },
+    {
+      "id": "119",
+      "pred": "$10.0",
+      "answer": "$10.01",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "120",
+      "pred": "The The The The The The The The The The The The TheTheTheTheTheTheTheTheTheThe||||||||||",
+      "answer": "The full form of POV is Privately-Owned Vehicle.",
+      "rouge_l_f": 0.19999999680000002
+    },
+    {
+      "id": "121",
+      "pred": "Washington University of Washington University of Washington University of Washington University of Washington University of Washington University of Washington University of Washington University of Washington University of Washington University of Washington University",
+      "answer": "Washington State University",
+      "rouge_l_f": 0.6666666616666668
+    },
+    {
+      "id": "122",
+      "pred": "The amount of calories in the food is listed as 2,875.",
+      "answer": "The amount of Calories under Chemical Analyses is 2,872 kcal.",
+      "rouge_l_f": 0.3809523759637189
+    },
+    {
+      "id": "123",
+      "pred": "651-686-6016",
+      "answer": "651-686-6016",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "124",
+      "pred": "The total cost of the package is $14.55.",
+      "answer": "The total cost is $14.55.",
+      "rouge_l_f": 0.7999999952000001
+    },
+    {
+      "id": "125",
+      "pred": "Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr Mr",
+      "answer": "Mr. S.V.Shanbhag",
+      "rouge_l_f": 0.39999999680000003
+    },
+    {
+      "id": "126",
+      "pred": "The",
+      "answer": "The SPEC Status field is blank in all the images.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "127",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The EST response percentage is 4.80%.",
+      "rouge_l_f": 0.24999999781250004
+    },
+    {
+      "id": "128",
+      "pred": "William M. Grosvenor, Jr. was the President of the American Sugar Refining Company.",
+      "answer": "William M. Grosvenor, Jr. is the Director of Research and Development.",
+      "rouge_l_f": 0.5217391254442345
+    },
+    {
+      "id": "129",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The Days offer is open for 91 days.",
+      "rouge_l_f": 0.2222222202469136
+    },
+    {
+      "id": "130",
+      "pred": "SUNDAY / JANUARY 4TH",
+      "answer": "SUNDAY / January 4th",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "131",
+      "pred": "Dr. J. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr. Dr.",
+      "answer": "Dr. W. J. Darby",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "132",
+      "pred": "The budget for the Medical Coordinator is $2,500.",
+      "answer": "The general budget total for Medical Coordinator is $3,000.",
+      "rouge_l_f": 0.7058823479584776
+    },
+    {
+      "id": "133",
+      "pred": "ELECTRICAL EAGLE STEPPERS TOWARD CHOPPERS",
+      "answer": "ELECTRICAL ENGINEERING DEPARTMENT",
+      "rouge_l_f": 0.24999999531250006
+    },
+    {
+      "id": "134",
+      "pred": "John Browe is the Chairman of the morning session.",
+      "answer": "John H. Brows",
+      "rouge_l_f": 0.18181817785123974
+    },
+    {
+      "id": "135",
+      "pred": "The date mentioned in the image is December 6, 1958.",
+      "answer": "The date mentioned in the given page is December 6 to December 8, 1958.",
+      "rouge_l_f": 0.6956521689981097
+    },
+    {
+      "id": "136",
+      "pred": "Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le Le",
+      "answer": "Lead Researcher",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "137",
+      "pred": "The name of the university is not provided in the image.",
+      "answer": "The name of the university mentioned in the given address is Thomas Jefferson University.",
+      "rouge_l_f": 0.5217391255198489
+    },
+    {
+      "id": "138",
+      "pred": "The form contains a section that is not visible.",
+      "answer": "The form mentions 12 professionals.",
+      "rouge_l_f": 0.285714281122449
+    },
+    {
+      "id": "139",
+      "pred": "555-5682",
+      "answer": "638-8723",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "140",
+      "pred": "The date on the letter is September 9, 1963.",
+      "answer": "The date mentioned in this letter is September 9, 1963.",
+      "rouge_l_f": 0.7368421002770082
+    },
+    {
+      "id": "141",
+      "pred": "Luc",
+      "answer": "Lucinda Sheers",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "142",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The full form of GLP is Good Laboratory Practice.",
+      "rouge_l_f": 0.1999999982
+    },
+    {
+      "id": "143",
+      "pred": "American",
+      "answer": "American Heart Association",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "144",
+      "pred": "The subject of the inter-office memorandum is LASLO TOTH.",
+      "answer": "The subject of the inter-office memorandum is LASZLO TOTH.",
+      "rouge_l_f": 0.888888883888889
+    },
+    {
+      "id": "145",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The voucher amount is $210,391.00.",
+      "rouge_l_f": 0.2857142832653061
+    },
+    {
+      "id": "146",
+      "pred": "There are four copies of the journal.",
+      "answer": "There are four copies of the journal of nutrition.",
+      "rouge_l_f": 0.9333333283555556
+    },
+    {
+      "id": "147",
+      "pred": "The correct answer is $0.55.",
+      "answer": "The correct answer is $0.55.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "148",
+      "pred": "The report dated Sept. 20, 1971.",
+      "answer": "The Report of Travel is dated Sept. 20, 1971.",
+      "rouge_l_f": 0.6666666618666668
+    },
+    {
+      "id": "149",
+      "pred": "The amount of potassium present in the liver is 295.",
+      "answer": "The amount of potassium present in liver (R) as mentioned in the given page is 296.",
+      "rouge_l_f": 0.6399999952000001
+    },
+    {
+      "id": "150",
+      "pred": "The",
+      "answer": "The program endorsed by the committee is the home economics program.",
+      "rouge_l_f": 0.1999999982
+    },
+    {
+      "id": "151",
+      "pred": "Washington University",
+      "answer": "Washington state university",
+      "rouge_l_f": 0.39999999520000007
+    },
+    {
+      "id": "152",
+      "pred": "The Payee is cg721t117pb.",
+      "answer": "The Payee's Account No. is cg721t117pb.",
+      "rouge_l_f": 0.5999999952
+    },
+    {
+      "id": "153",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The amount of Potassium mg./100g. for Squash, Winter, seeds removed is 406.",
+      "rouge_l_f": 0.14285714153061227
+    },
+    {
+      "id": "154",
+      "pred": "The contract number is DA-49-008-MD-1024.",
+      "answer": "The contract number is DA-49-007-MD-1024.",
+      "rouge_l_f": 0.7999999950000002
+    },
+    {
+      "id": "155",
+      "pred": "Kirk Hin",
+      "answer": "Kirk Hinshaw",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "156",
+      "pred": "Dr. O. A. Roels",
+      "answer": "Dr. O. A. Roels",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "157",
+      "pred": "PM Code",
+      "answer": "PM Code",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "158",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The correct answer is 280 mg/100g for potassium in figs.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "159",
+      "pred": "314002838",
+      "answer": "314002838",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "160",
+      "pred": "Lansy",
+      "answer": "Lansky",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "161",
+      "pred": "Golden",
+      "answer": "Golden Tobacco Limited",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "162",
+      "pred": "The",
+      "answer": "The expenses for meals (other than those at hotel) are $26.50.",
+      "rouge_l_f": 0.15384615242603553
+    },
+    {
+      "id": "163",
+      "pred": "The",
+      "answer": "The Memorandum is dated on August 3, 1994.",
+      "rouge_l_f": 0.2222222202469136
+    },
+    {
+      "id": "164",
+      "pred": "David Moore",
+      "answer": "David Moore",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "165",
+      "pred": "L L L L L L L L L L L L L L L L L L L L L L L L L L L L L L L L",
+      "answer": "LAX",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "166",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The value of 'Deposits' is $535.66.",
+      "rouge_l_f": 0.24999999781250004
+    },
+    {
+      "id": "167",
+      "pred": "Managing Director",
+      "answer": "Managing director",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "168",
+      "pred": "Donald K. Tressler is the Scientific Director of the American Association of the American Association of the American Association of the American Association of the American Association of",
+      "answer": "Donald K. Tressler is the Scientific Director of the Institute.",
+      "rouge_l_f": 0.8421052581717452
+    },
+    {
+      "id": "169",
+      "pred": "Mr. Ralph T. Smith",
+      "answer": "Mr. Ralph T. Smith",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "170",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The minimal volume for GH RRA is 3.0 cc.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "171",
+      "pred": "High priority designations should be able to be contracted or expanded.",
+      "answer": "High priority designations should be able to be modified, expanded or contracted.",
+      "rouge_l_f": 0.7619047569160999
+    },
+    {
+      "id": "172",
+      "pred": "The final report is titled \"Progress Report 10\" and is titled \"Progress Report 10\" in the final report.",
+      "answer": "The heading of the REPORT is progress report 10.",
+      "rouge_l_f": 0.2999999950500001
+    },
+    {
+      "id": "173",
+      "pred": "The title",
+      "answer": "The title of position for Charles L. Paxson is \"detective.\"",
+      "rouge_l_f": 0.30769230508875745
+    },
+    {
+      "id": "174",
+      "pred": "Salt",
+      "answer": "Salt is a major source of sodium.",
+      "rouge_l_f": 0.24999999781250004
+    },
+    {
+      "id": "175",
+      "pred": "\u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac \u20ac",
+      "answer": "\u20ac 3,436.98",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "176",
+      "pred": "The number is 266-52.",
+      "answer": "The electronic signature code number is 266-524-9.",
+      "rouge_l_f": 0.5454545408264463
+    },
+    {
+      "id": "177",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The issued date of this letter is July 16, 1999.",
+      "rouge_l_f": 0.18181818016528928
+    },
+    {
+      "id": "178",
+      "pred": "Department of Radiology.",
+      "answer": "Department of Cardiovascular Medicine.",
+      "rouge_l_f": 0.5714285665306124
+    },
+    {
+      "id": "179",
+      "pred": "The product designation is \"Sugar-Cane.\"",
+      "answer": "The product designation is \"Sugarcane.\"",
+      "rouge_l_f": 0.8333333283333335
+    },
+    {
+      "id": "180",
+      "pred": "The second quarter is the most significant.",
+      "answer": "The amount of the 2nd Quarter check mentioned in the form is $150,204.79.",
+      "rouge_l_f": 0.19999999545000013
+    },
+    {
+      "id": "181",
+      "pred": "A",
+      "answer": "ABBBOT LABS",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "182",
+      "pred": "7222222222222222222222222222222",
+      "answer": "716.725.7102",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "183",
+      "pred": "Project #7595",
+      "answer": "Project Manuscript",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "184",
+      "pred": "Executive Assistant",
+      "answer": "Executive Assistant",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "185",
+      "pred": "6 biographical data forms are attached to the letter.",
+      "answer": "6 biographical data forms are attached to the letter.",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "186",
+      "pred": "The",
+      "answer": "The issue date is October 26, 1998.",
+      "rouge_l_f": 0.24999999781250004
+    },
+    {
+      "id": "187",
+      "pred": "The proposed end date for Action 11 is 3/24/03.\n\nQuestion: What is the proposed end date for Action",
+      "answer": "The proposed end date for Action # 11 is 3/24/05.",
+      "rouge_l_f": 0.7272727223140496
+    },
+    {
+      "id": "188",
+      "pred": "The last Holding Date for \"Dalmia Housing Finance Corporation\" is 31-Dec-12.",
+      "answer": "The last Holding Date of Equity Owner for \"Dalmia Housing Finance Ltd\" is 31-Dec-10.",
+      "rouge_l_f": 0.7199999950720002
+    },
+    {
+      "id": "189",
+      "pred": "The date of goods Recovery is 02/13/73.",
+      "answer": "The date of goods received is 2/13/73.",
+      "rouge_l_f": 0.7142857092857143
+    },
+    {
+      "id": "190",
+      "pred": "Vanderbilt University is the institution named in the certificate.",
+      "answer": "Vanderbilt University",
+      "rouge_l_f": 0.39999999680000003
+    },
+    {
+      "id": "191",
+      "pred": "The given schedule at the time of 10:30 on Monday, June 20, is a workshop on food technology.",
+      "answer": "The given schedule at the time of 10:30 on Monday, June 20 is a lecture.",
+      "rouge_l_f": 0.8124999950195313
+    },
+    {
+      "id": "192",
+      "pred": "12/03/96",
+      "answer": "12/31/96",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "193",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "The location code is 11-0010-001.",
+      "rouge_l_f": 0.33333333055555564
+    },
+    {
+      "id": "194",
+      "pred": "J. Brozek's presentation is titled \"Physical Characteristics of Man.\"",
+      "answer": "J. Brozek's topic from 9:30-10:00 is \"CHARACTERIZATION OF PERSON'S",
+      "rouge_l_f": 0.31578946869806096
+    },
+    {
+      "id": "195",
+      "pred": "The quantity of 10 is not present in the image.\u042a",
+      "answer": "The quantity mentioned in the given page is 1.",
+      "rouge_l_f": 0.39999999505
+    },
+    {
+      "id": "196",
+      "pred": "William Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn Reyn",
+      "answer": "William Building",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "197",
+      "pred": "The",
+      "answer": "The invoice number is #154-0071.",
+      "rouge_l_f": 0.33333333055555564
+    },
+    {
+      "id": "198",
+      "pred": "Anthropic",
+      "answer": "Anthropology",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "199",
+      "pred": "The correct answer is 3,926.",
+      "answer": "The estimated population in poverty in Putnam county is 3,926.",
+      "rouge_l_f": 0.4285714239795918
+    }
+  ],
+  "failures": []
+}

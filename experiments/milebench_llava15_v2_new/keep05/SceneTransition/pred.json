@@ -1,0 +1,1002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "B",
+    "gt_response": "From the server room to the control center."
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "D. From the creek to the stairs.",
+    "gt_response": "From the creek to the stairs."
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "A. From Dreadnought to Death Island.",
+    "gt_response": "From Dreadnought to Death Island."
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "C. From the classroom to the art gallery.",
+    "gt_response": "From the library to the conference room."
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "C. From the office to the conference room.",
+    "gt_response": "From inside the bar to outside the bar."
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "B. From the staircase to the gangway.",
+    "gt_response": "From the staircase to the gangway."
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "A. From the French-Chinese home to the interview scene.",
+    "gt_response": "From the French-Chinese home to the interview scene."
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "A. From indoors to outdoors.",
+    "gt_response": "From indoors to outdoors."
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "C. From the broadcast room to the prison yard.",
+    "gt_response": "From the broadcast room to the prison yard."
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "A. From the kitchen to the living room.",
+    "gt_response": "From the office to outside the dormitory building."
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "B",
+    "gt_response": "From the mountain to the town."
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "C. From the front of the house to inside the living room.",
+    "gt_response": "From the front of the house to inside the living room."
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "C. From the elevator to the front of the Prophet's house.",
+    "gt_response": "From the elevator to the front of the Prophet's house.1."
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "A. From the school bus to the playground.",
+    "gt_response": "From the school bus to the playground."
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "D",
+    "gt_response": "From the classroom to the projection room."
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "A. From the land to the sea.",
+    "gt_response": "From the land to the sea."
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "C. From the suburban road to the helicopter above.",
+    "gt_response": "From the suburban road to the helicopter above.1."
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "B. From the park to the beach.",
+    "gt_response": "From upstairs to the cabin."
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "D. From the elevator to the corner of the room.",
+    "gt_response": "From the elevator to the corner of the room."
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "A. From Linggu to a room.",
+    "gt_response": "From Linggu to a room."
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "B",
+    "gt_response": "From the fire scene to above the plane."
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "D. From spaceship to Earth.",
+    "gt_response": "From spaceship to Earth."
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "A. From the park to the interior of the museum.",
+    "gt_response": "From the street to the interior of the restaurant."
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "A. From the living room to the bedroom.",
+    "gt_response": "From the kitchen to the hallway."
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "D",
+    "gt_response": "From room to spaceship."
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "A. From the car to the Nash's house.",
+    "gt_response": "From the car to the Nash's house."
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "A. From the ground to the rooftop.",
+    "gt_response": "From the ground to the rooftop."
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "A. From the room to the warehouse yard.",
+    "gt_response": "From the room to the warehouse yard."
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "C. From conversation scene to street scene.",
+    "gt_response": "From conversation scene to street scene."
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "A. From the outside street to the inside office.",
+    "gt_response": "From the outside street to the inside office."
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "C. From the airport to a room in New York City.",
+    "gt_response": "From the airport to a room in New York City."
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "A. From the classroom to the library.",
+    "gt_response": "From the phone to the soup lady."
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "A. From the alley to the room.",
+    "gt_response": "From the alley to the room."
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "C. From the city to the countryside.",
+    "gt_response": "From outside to inside."
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "B",
+    "gt_response": "From the house to the train."
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "D. From the office to the gym.",
+    "gt_response": "From outdoors to the restaurant."
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "A. From the kitchen to the living room.",
+    "gt_response": "From Parker's room to the yard."
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "D. From Taylor's room to the parking lot of the building.",
+    "gt_response": "From Taylor's room to the parking lot of the building."
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "A. From home to outside.",
+    "gt_response": "From home to outside."
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "A",
+    "gt_response": "From Su San's thoughts to the scene outside the prison."
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "A. From the room of Bi Ji to the town.",
+    "gt_response": "From the room of Bi Ji to the town."
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "A. From the mountain top to the crystal lake.",
+    "gt_response": "From the city wall to the Fogwood Forest."
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "A. From the entrance to the elevator to the entrance of the park.",
+    "gt_response": "From the entrance to the elevator to the entrance of the park."
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "A. From home to the grassland.",
+    "gt_response": "From home to the grassland."
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "C. From New Orleans to the interior of a villa.",
+    "gt_response": "From New Orleans to the interior of a villa."
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "B",
+    "gt_response": "From the kitchen to the rooftop."
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "B",
+    "gt_response": "From the room to the street."
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "C. From the street to the carriage.",
+    "gt_response": "From the street to the carriage."
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "A. From the classroom to Evan's dorm room.",
+    "gt_response": "From the classroom to Evan's dorm room."
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "C. From the surroundings to the secret chamber in the castle.",
+    "gt_response": "From the surroundings to the secret chamber in the castle."
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "C. From the street to the park.",
+    "gt_response": "From outside the city gate to inside the castle.1."
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "B",
+    "gt_response": "From the edge of the flower garden to outside the Parker's house."
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "A. From the road to the hotel.",
+    "gt_response": "From the road to the hotel."
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "C. FromTrue, from the Monkey King to the Bull Demon King.",
+    "gt_response": "FromTrue, from the Monkey King to the Bull Demon King.1."
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "A. From outdoors to indoors.",
+    "gt_response": "From outdoors to indoors."
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "B",
+    "gt_response": "From a stone house to a cave."
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "A. From the room to the city street.",
+    "gt_response": "From the room to the city street."
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "C. From the bottom of the ship to the ship's cabin.",
+    "gt_response": "From the bottom of the ship to the ship's cabin."
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "A. From the street to the temple fair.",
+    "gt_response": "From the street to the temple fair."
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "A. From the courtroom to the prison.",
+    "gt_response": "From the courtroom to the prison."
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "B. From the shooting range to the office scene.",
+    "gt_response": "From the shooting range to the office scene."
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "C. From outside to inside the house.",
+    "gt_response": "From outside to inside the house."
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "D",
+    "gt_response": "From the doctor's office to the street."
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "B",
+    "gt_response": "From the crowd to the sewer."
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "B",
+    "gt_response": "From the dining table to the entrance of a fast-food restaurant."
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "B",
+    "gt_response": "From room to ocean."
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "A. From the rooftop to the bank.",
+    "gt_response": "From the rooftop to the bank."
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "A. From Scarlett's house to New Orleans.",
+    "gt_response": "From Scarlett's house to New Orleans.1."
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "C. From the classroom to the library.",
+    "gt_response": "From the blacksmith shop to the prison."
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "A. From the office to the living room.",
+    "gt_response": "From the school to the bathroom."
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "C. From the elevator to the cockpit.",
+    "gt_response": "From the elevator to the cockpit."
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "C. From the kitchen to the living room.",
+    "gt_response": "From Mertok to the shore."
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "D. From the doorbell to the indoors.",
+    "gt_response": "From the doorbell to the indoors."
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "A. From the office to the mountains.",
+    "gt_response": "From the basketball court to the grassland."
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "B",
+    "gt_response": "From the pillow pile to the room."
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "A. From the hole to the endless corridor.",
+    "gt_response": "From the hole to the endless corridor."
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "A. From the office to the airport terminal.",
+    "gt_response": "From the office to the airport terminal."
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "A. From the beach to home.",
+    "gt_response": "From afar to home."
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "A. From the car to the city tower.",
+    "gt_response": "From the car to the city tower.1."
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "B",
+    "gt_response": "From the aisle to the ruins."
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "C. From the classroom to the library.",
+    "gt_response": "From the barbershop to the front of the glass window."
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "A. From Susan's grave to the house.",
+    "gt_response": "From Susan's grave to the house."
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "B",
+    "gt_response": "From the room to the outside of the building."
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "D",
+    "gt_response": "From the bedroom to the telephone booth."
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "D. From the beach to the restroom.",
+    "gt_response": "From the beach to the restroom."
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "A. From the hallway to the living room.",
+    "gt_response": "From outside to inside the restaurant."
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "A. From the bedroom to the terrace.",
+    "gt_response": "From the sofa to the window."
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "B",
+    "gt_response": "From the window to the breakfast table in the morning."
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "B",
+    "gt_response": "From the dining table to the entrance of the movie theater."
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "A. From the stairway to the night market on the other side of the river.",
+    "gt_response": "From the stairway to the night market on the other side of the river."
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "B",
+    "gt_response": "From Bryce's house to the street."
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "B",
+    "gt_response": "From the wall to the boat."
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "A. From the streets to the stage.",
+    "gt_response": "From the streets to the stage."
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "C. From the first floor to the second floor.",
+    "gt_response": "From the first floor to the second floor."
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "A. From the office to the hallway.",
+    "gt_response": "From the room to the front porch."
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "D. From the rooftop to the manager's office.",
+    "gt_response": "From the rooftop to the manager's office."
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "D. From the kitchen to the living room.",
+    "gt_response": "From shoes to the building.1."
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "C. From outdoor to indoor.",
+    "gt_response": "From outdoor to indoor."
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "A. From Shawn's car to a classroom.",
+    "gt_response": "From Shawn's car to a classroom."
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "B. From a small boat to the royal harbor.",
+    "gt_response": "From a small boat to the royal harbor."
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "D. From the office to the train station.",
+    "gt_response": "From the Guptas' home to the airport lobby.1."
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "A. From inside the car to outside.",
+    "gt_response": "From inside the car to outside."
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "A. From beauty to the hotel suite.",
+    "gt_response": "From beauty to the hotel suite."
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "B",
+    "gt_response": "From the room to the stairs."
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "D. From the room to the TV.",
+    "gt_response": "From the room to the TV."
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "B",
+    "gt_response": "From the carriage to the Bennet's household."
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "D. From Frodo's pocket to the study balcony.",
+    "gt_response": "From Frodo's pocket to the study balcony."
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "A. From the classroom to the library.",
+    "gt_response": "From the cabin to the boiler room."
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "D. From the campus to Mevis Prison.",
+    "gt_response": "From the campus to Mevis Prison."
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "C. From the classroom to the school library.",
+    "gt_response": "From Eve's room to the front of the amusement park."
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "D",
+    "gt_response": "From the Imperial Stable to the Heavenly Palace Cloud."
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "C. From dreams to the hotel lobby.",
+    "gt_response": "From dreams to the hotel lobby.1."
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "B. From the restroom to room 4.",
+    "gt_response": "From the restroom to room 4."
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "D. From the staircase to the church.",
+    "gt_response": "From the staircase to the church."
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "D",
+    "gt_response": "From the roof to an unknown location."
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "C. From a building to the interior of the building.",
+    "gt_response": "From a building to the interior of the building."
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "B",
+    "gt_response": "From the room to the banquet scene."
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "A. From Sengel to Rohan.",
+    "gt_response": "From Sengel to Rohan."
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "A. From the office to the conference room.",
+    "gt_response": "From True to Chongqing Tower."
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "D. From the elevator to the robot channel.",
+    "gt_response": "From the elevator to the robot channel."
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "A. From the airport to the hotel.",
+    "gt_response": "From the street to the train station."
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "A. From the entrance of the cave to the interior of the cave.",
+    "gt_response": "From the entrance of the cave to the interior of the cave."
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "D",
+    "gt_response": "From rice paddy to big tree."
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "A. From the Jade Emperor's Palace to Flower-Fruit Mountain.",
+    "gt_response": "From the Jade Emperor's Palace to Flower-Fruit Mountain."
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "C. From the classroom to the library.",
+    "gt_response": "From the wall to the elevator."
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "C. From New York to Los Angeles.",
+    "gt_response": "From Atlanta to Gettysburg."
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "B",
+    "gt_response": "FromTrue,"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "D. From behind the rock to the shore.",
+    "gt_response": "From behind the rock to the shore."
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "A. From the office to the window.",
+    "gt_response": "From the office to the window."
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "B",
+    "gt_response": "From the police station to the warehouse."
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "B",
+    "gt_response": "From elevator cabin to tower interior."
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "A. From prison to royal palace.",
+    "gt_response": "From prison to royal palace."
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "C. From prison to the bus.",
+    "gt_response": "From prison to the bus."
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "A. From the road to the van.",
+    "gt_response": "From the road to the van."
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "A. From outside the window to the kitchen inside the house.",
+    "gt_response": "From outside the window to the kitchen inside the house."
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "D. From Ikea to Parker home.",
+    "gt_response": "From Ikea to Parker home."
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "D",
+    "gt_response": "From the boat to the store."
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "A. From outside the train to the piano stage.",
+    "gt_response": "From outside the train to the piano stage."
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "D. From the train station to Tokyo.",
+    "gt_response": "From the airport to New York."
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "A. From the room to the hospital corridor.",
+    "gt_response": "From the room to the hospital corridor."
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "A. From the sheriff's office to the streets.",
+    "gt_response": "From the sheriff's office to the streets."
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "D. From the stairs to outside of the ship.",
+    "gt_response": "From the stairs to outside of the ship.1."
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "A. From the fishing vessel to the yacht club.",
+    "gt_response": "From the fishing vessel to the yacht club."
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "D",
+    "gt_response": "From Mondan's room to the sound of singing."
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "D. From the bed to the train station.",
+    "gt_response": "From the bed to the train station."
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "C. From the bedside to the embassy.",
+    "gt_response": "From the bedside to the embassy."
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "B",
+    "gt_response": "From Saito's room to the airport."
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "C. From the hospital corridor to the hospital entrance.",
+    "gt_response": "From the hospital corridor to the hospital entrance."
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "C. From the staircase landing to the cafeteria entrance.",
+    "gt_response": "From the staircase landing to the cafeteria entrance."
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "D. From the office to the park.",
+    "gt_response": "From the wall to the residential area."
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "D. From the apartment of Li Mei to the headquarters of XYZ Corporation.",
+    "gt_response": "From the home of Jiang Renhao to the Department of Education."
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "A. From the stairs to the sunshine.",
+    "gt_response": "From the stairs to the sunshine."
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "B",
+    "gt_response": "From the courtroom to the prison."
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "A. From indoors to garden scene.",
+    "gt_response": "From indoors to garden scene."
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "B",
+    "gt_response": "From【True, from the bedroom to the living room.】1."
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "D. From Beijing to Shanghai.",
+    "gt_response": "From Loghan to Ganguo."
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "A. From the classroom to the library.",
+    "gt_response": "From the office to the hallway.Additional sentences:1."
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "A. From the ward to the kitchen.",
+    "gt_response": "From the ward to the kitchen."
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "B",
+    "gt_response": "From my aunt's house to the bunker."
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "B",
+    "gt_response": "From inside the car to the grassland."
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "B",
+    "gt_response": "From the ship to the skyscraper."
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "D. From Paris to Rome.3.",
+    "gt_response": "From Las Vegas to Santa Clara.1."
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "A. From the office building to the inside of the conference room.",
+    "gt_response": "From the outside street to the inside of the hotel."
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "B",
+    "gt_response": "From Evan's room to the prison corridor."
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "A. From outside Liang's apartment to outside a taxi.",
+    "gt_response": "From outside Liang's apartment to outside a taxi."
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "A",
+    "gt_response": "From Jiaosu'e and Dad riding bicycles to walking, from an open road to Gaiqi Cake Shop."
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "A. From ZuBao to NiuFu.",
+    "gt_response": "From ZuBao to NiuFu."
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "A. From home to school.",
+    "gt_response": "From home to school."
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "C. From a crowded street to an open field.",
+    "gt_response": "From indoors to a cliff on the mountain."
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "D. From the castle to the riverside.",
+    "gt_response": "From the castle to the riverside."
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "A. From the street to the lakeside.",
+    "gt_response": "From the street to the lakeside."
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "B",
+    "gt_response": "From the car to the house."
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "A. From the manager's office to McDonald's interior.",
+    "gt_response": "From the manager's office to McDonald's interior."
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "A",
+    "gt_response": "From the skyscraper to the telephone booth."
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "A",
+    "gt_response": "From the decoration shop to the secretary's office."
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "B",
+    "gt_response": "From inside the tent to outside the tent."
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "A. From the train station to the hotel.",
+    "gt_response": "From the elevator to my own yard."
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "A. From Taylor's house to Jack's room.",
+    "gt_response": "From Taylor's house to Jack's room."
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "A. From the city streets to the tranquil countryside.",
+    "gt_response": "From the TV screen to the beach pier."
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "A",
+    "gt_response": "From home to church."
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "B. From the House room to the Security Department Building.",
+    "gt_response": "From the House room to the Security Department Building."
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "D. From the carriage to the Bennet household.",
+    "gt_response": "From the carriage to the Bennet household."
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "B",
+    "gt_response": "From A-Pao's house to the newspaper office."
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "A",
+    "gt_response": "From the security room to the front of the corridor."
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "D. From the living room to the mother's room.",
+    "gt_response": "From the living room to the mother's room. 1."
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "A",
+    "gt_response": "From the microphone scene to the walking scene."
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "B",
+    "gt_response": "From the launch pad to space."
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "B. From Earth to space.",
+    "gt_response": "From Earth to space."
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "C. From the library to the café.",
+    "gt_response": "From Kelly's house to the girls' dorm bedroom."
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "D",
+    "gt_response": "From indoors to outdoors."
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "A. From the lawn to the bus platform.",
+    "gt_response": "From the lawn to the bus platform."
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "C. From the living room to the bedroom.",
+    "gt_response": "From the secretary's office to the elevator."
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "D. From security guard to principal's office.",
+    "gt_response": "From security guard to principal's office."
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "B. From the entrance to the boiler room.",
+    "gt_response": "From the entrance to the boiler room."
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "A. From the beach to the alleyway.",
+    "gt_response": "From the beach to the alleyway."
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "D. From one cave to another.",
+    "gt_response": "From one cave to another."
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "A. From the conversation, we switched to the Tian Gong.",
+    "gt_response": "From the conversation, we switched to the Tian Gong."
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "A. From the park to beside the fountain.",
+    "gt_response": "From outside the hotel to next to the car."
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "D. From Molly's cabin to the mirror in front.",
+    "gt_response": "From Molly's cabin to the mirror in front."
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "A. From the building to the spaceship.",
+    "gt_response": "From the building to the spaceship."
+  }
+]

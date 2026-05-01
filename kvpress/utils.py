@@ -130,7 +130,12 @@ def extract_keys_and_values(cache: Cache, layer_idx: int) -> tuple[torch.Tensor,
     """
     if isinstance(cache, QuantizedCache):
         keys, values = dequantize_layer(cache.layers[layer_idx])
-    else:
+    elif hasattr(cache, "layers"):
         keys = cache.layers[layer_idx].keys
         values = cache.layers[layer_idx].values
+    elif hasattr(cache, "key_cache") and hasattr(cache, "value_cache"):
+        keys = cache.key_cache[layer_idx]
+        values = cache.value_cache[layer_idx]
+    else:
+        raise AttributeError(f"Unsupported cache layout for {type(cache)}")
     return keys, values

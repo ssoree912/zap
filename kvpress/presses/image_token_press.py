@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 
 from kvpress.presses.base_press import BasePress
-from kvpress.presses.kvzap_press import KVzapModel
+from kvpress.presses.foresight_press import KVzapModel
 
 
 HeadReduce = Literal["amax", "mean"]
@@ -1304,3 +1304,78 @@ class PreselectedImagePress(BasePress):
         keys = keys.gather(2, gather_idx).contiguous()
         values = values.gather(2, gather_idx).contiguous()
         return keys, values
+
+
+@dataclass
+class VisualUtilityStudentPress(ImageTokenTopKPress):
+    """3-branch visual-utility student for image-only KV eviction.
+
+    Loads a `VisualUtilityStudent` checkpoint trained against future-decode
+    attention. At each layer in the scope, scores image tokens using the
+    student's 3-branch (CNN + question + raw) head. Layers outside the scope
+    are passed through unchanged (no compression at untrained layers).
+
+    Per-sample, call `set_image_positions()` (parent) and `set_question_positions()`
+    before `model.generate()`.
+    """
+
+    student_model_name: str = ""
+    grid_h: int = 24
+    grid_w: int = 24
+    _student: Any = field(default=None, init=False, repr=False)
+    _loaded_name: Optional[str] = field(default=None, init=False, repr=False)
+    _scope_layers: Optional[set[int]] = field(default=None, init=False, repr=False)
+    _question_positions: Optional[torch.Tensor] = field(default=None, init=False, repr=False)
+    student_score_total_ms: float = field(default=0.0, init=False, repr=False)
+
+    def reset_student_timing(self) -> None:
+        self.student_score_total_ms = 0.0
+
+    def set_question_positions(self, q_positions: torch.Tensor) -> None:
+        self._question_positions = q_positions.detach().cpu().long().flatten()
+
+    def clear_sample_context(self) -> None:
+        super().clear_sample_context()
+        self._question_positions = None
+
+    def post_init_from_model(self, model) -> None:
+        if not self.student_model_name:
+            raise ValueError("student_model_name must be set for VisualUtilityStudentPress")
+        if self.student_model_name != self._loaded_name:
+            from kvpress.presses.visual_utility_student import VisualUtilityStudent
+
+            self._loaded_name = self.student_model_name
+            self._student = VisualUtilityStudent.from_pretrained(self.student_model_name)
+            self._scope_layers = set(self._student.layer_indices)
+
+    def compress(self, module, hidden_states, keys, values, attentions, kwargs):
+        if self._scope_layers is not None and module.layer_idx not in self._scope_layers:
+            return keys, values
+        return super().compress(module, hidden_states, keys, values, attentions, kwargs)
+
+    def score_image_tokens(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+        image_positions: torch.Tensor,
+    ) -> torch.Tensor:
+        if self._student is None:
+            raise RuntimeError("Student model not loaded; call post_init_from_model(model) first")
+        if self._question_positions is None:
+            raise RuntimeError("Call set_question_positions() before generate()")
+        device = hidden_states.device
+        dtype = hidden_states.dtype
+        layer = self._student.layers[str(module.layer_idx)]
+        layer = layer.to(device=device, dtype=dtype).eval()
+        image_idx = image_positions.to(device=device, dtype=torch.long).flatten()
+        q_idx = self._question_positions.to(device=device, dtype=torch.long).flatten()
+        _t0 = time.perf_counter()
+        with torch.no_grad():
+            scores = layer(hidden_states, image_idx, q_idx, self.grid_h, self.grid_w)
+        self.student_score_total_ms += (time.perf_counter() - _t0) * 1000.0
+        # Match ProbeImageTeacherPress contract: (1, n_heads_or_1, n_image)
+        return scores.unsqueeze(1)

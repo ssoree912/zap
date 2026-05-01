@@ -1,0 +1,31 @@
+{
+  "model_path": "/workspace/look-m/models/llava-v1.5-7b",
+  "model_base": null,
+  "dataset_path": "/workspace/zap/data/MileBench/MovingAttribute/MovingAttribute.json",
+  "output_dir": "/workspace/zap/experiments/EXP-20260501-007-prefixkv-llava15-milebench-lookm-input/outputs/keep050/MovingAttribute",
+  "keep_ratio": 0.5,
+  "start_size": 1,
+  "recent_size": 2047,
+  "max_new_tokens": 512,
+  "multichoice_max_new_tokens": 8,
+  "input_mode": "lookm",
+  "n_tokens_per_image": 576,
+  "conv_mode": "llava_v1",
+  "letter_only_prompt": true,
+  "max_context_len": 2048,
+  "oom_retry_context_lens": [
+    1024,
+    512,
+    256
+  ],
+  "image_aspect_ratio": "pad",
+  "conf_dir": "/workspace/zap/experiments/EXP-20260501-007-prefixkv-llava15-milebench-lookm-input/confs",
+  "samples_dir": "/workspace/zap/experiments/EXP-20260501-007-prefixkv-llava15-milebench-lookm-input/samples",
+  "load_8bit": false,
+  "load_4bit": false,
+  "profile_samples": 50,
+  "profile_error_limit": 5,
+  "limit": null,
+  "continue_on_error": true,
+  "force_profile": false
+}

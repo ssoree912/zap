@@ -1,0 +1,1002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "The main difference between the two images is the perspective from which they were taken. In the first image, the parking lot is viewed from a higher angle,",
+    "gt_response": "there is a person walking along cars in second picture"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "The main difference between the two pictures is the presence of a truck in the parking lot. In the first image, there is no truck visible,",
+    "gt_response": "both pictures are identicle"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "The main difference between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, showing the cars parked",
+    "gt_response": "there is one more person in the after photo"
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "The main difference between the two pictures is the presence of a parking garage in the background of the second image. This suggests that the parking garage",
+    "gt_response": "one person walk in the parking area"
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "In the first image, there is a parking lot with a row of cars parked in front of a building. The cars are parked in a straight",
+    "gt_response": "person is missing from tjis image"
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "The main difference between the two pictures is the presence of a truck in the parking lot. In the first image, there is no truck visible,",
+    "gt_response": "before there is a person walking in the parking lot but after there is not"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "The contrast between the two images lies in the presence of bicycles. In Image 1, there are no bicycles, while in Image 2",
+    "gt_response": "there are 2 people on the left image. one person at the very bottom of the right"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "The main difference between the two pictures is the presence of bicycles in the parking lot. In the first image, there are two bicycles park",
+    "gt_response": "the right photo contains 4 additional people"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "In the second image, there are more bicycles parked in the bike rack, with a total of 11 bicycles",
+    "gt_response": "two people are not outside the parking lot"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The parking lot is empty in one image, while it is",
+    "gt_response": "van leaving not in parking lot"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "In the first image, there are two people standing on the sidewalk, while in the second image, there are three people standing on the sidewalk. The",
+    "gt_response": "two people are standing next to the yellow concrete pillars"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "The main difference between the two images is the time of day. In the first image, the parking lot is filled with cars during the day, while in",
+    "gt_response": "car is missing on top left isle about 4 spaces down"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "The main distinguishing factor between the two images is the presence of a bicycle in one of them. In the first image, there is a bicy",
+    "gt_response": "four new people are in the picture"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "The contrast between the two images lies in the presence of people and bicycles. In the first image, there are two people standing on the sidewalk,",
+    "gt_response": "there are now two people in the picture whereas before there were none"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "The main difference between the two images is the presence of a car in one of them. In the first image, there is a car parked in a par",
+    "gt_response": "the picture on the right has two people standing by the car while the one on the left there are three people by the sidewalk and one by the car"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "The main difference between the two pictures is the presence of a truck in the parking lot. In the first image, the truck is parked in",
+    "gt_response": "a red car has left the scene. a person wearing red is walking out of the building"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The parking lot is empty in both images.\n3.",
+    "gt_response": "the picture on the right has a dark colored vehicle driving in middle lane and the left does not"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "The main difference between the two images is the time of day. In the first image, the parking lot is empty, and the sun is shining bright",
+    "gt_response": "a car is not driving through the middle of the lot"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "The main difference between the two pictures is the presence of a truck in the parking lot. In the first image, there is a truck parked",
+    "gt_response": "the car on the far back is no longer there"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "1. The presence of a person walking in the parking lot in Image 1, which is not visible in Image 2.\n2.",
+    "gt_response": "the people moved locations. there is one less person"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "The contrast between the two images lies in the parking lot's state of fullness. In the first image, the parking lot is empty, with",
+    "gt_response": "there are more cars by the truck now"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "In the first image, there is a parking lot filled with cars, and a truck is visible in the middle of the scene. The parking lot",
+    "gt_response": "the red car on the far street is gone. there is a red car parked a different red car that appears near the middle of the parking lot. there is a black car parked near the previous red car"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "The main difference between the two pictures is the presence of people walking in the parking lot. In the first image, there are three people walking, while in",
+    "gt_response": "two of the people by the yellow poles moved to the right center. there is now a third person"
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "1. The presence of two people walking on the sidewalk in the second image, while there are no people visible in the first image.\n2",
+    "gt_response": "there are two people standing in the street by the yellow poles"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "The main distinguishing factor between the two images is the time of day. In the first image, the parking lot is empty, and the sun is sh",
+    "gt_response": "grey car in the bottom right in the before. not there in the after"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "In the second image, there are more people walking on the sidewalk, with a total of six individuals. Additionally, there are two bicycles",
+    "gt_response": "there are four more people"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "The main distinguishing factor between the two images is the presence of people. In the first image, there are no people visible, while in the second image,",
+    "gt_response": "only to people in the right image. location of the people is different"
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "The first image shows a busy parking lot with numerous cars parked in various positions. The second image displays a similar parking lot, but the cars are",
+    "gt_response": "the person walking on the bottom left covered by the tree has moved"
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "The main difference between the two images is the presence of people walking on the sidewalk. In the first image, there are three people walking, while in the",
+    "gt_response": "more people on the right"
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "In the first image, there is a person walking on the sidewalk, while in the second image, the person is not visible. The sidewalk appears to",
+    "gt_response": "there are no people"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "In the second image, there are two people walking on the sidewalk, while in the first image, there are no people visible. The second image also shows",
+    "gt_response": "the people are no longer on the sidewalk"
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people present. The second image also",
+    "gt_response": "there is a car in the after image that is not present in the first photo. there is extra people in the after photo that are not present in the first"
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "In the second image, there are two people walking on the sidewalk, while in the first image, there is only one person walking. This difference",
+    "gt_response": "the car in the first image is absent in the second image. there are two people walking in the second image"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people present. Additionally, the car",
+    "gt_response": "there are two more people in the picture"
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are only two people walking on the sidewalk.",
+    "gt_response": "there is not a person standing on the sidewalk near the dividers. there is not a person in the parking lot near the building. there is an extra person in the small group"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "The first image shows a parking lot with several cars parked in it. The second image also displays a parking lot with cars parked, but it",
+    "gt_response": "the bluie truck appears to be backing out. there is a person near the car in the upper right corner. there is no person on the sidewalk near the pink building"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "The contrast between the two images lies in the parking lot's condition. In the first image, the parking lot is empty, with no cars visible",
+    "gt_response": "the person nearest the building in the first picture is missing from the second. the person in the blue shirt is walking in a different direction than the first picture. the person in the white shirt is also facing a different direction. the person closest to the photographer in the first picture is facing a different way and has moved"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "In the second image, there are three people walking down the sidewalk, while in the first image, there are only two people. The presence of an additional",
+    "gt_response": "4 people on the left. 4 people on the right and one person pushing something away on the right"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "The main difference between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, showing the cars parked",
+    "gt_response": "there is a person in a different position"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "In the first image, there is a street with a traffic light, and a few cars are parked along the side. The scene appears to be relatively calm",
+    "gt_response": "the people crossing the street have moved slightly. the people on the sidewalk have moved slightly"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "The main difference between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, while in the second image",
+    "gt_response": "there are no differences in the images"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are four people walking on the sidewalk. The",
+    "gt_response": "there are 4 people now standing on the sidewalk"
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "In the first image, three people are standing on the sidewalk, while in the second image, there are only two people present. The second image also shows",
+    "gt_response": "two people standing towards the back of the lot. there are no longer three peopke but two with one person walking up to them. person in the corner is no longer there"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "The difference between the two images is that one of them shows a parking lot with cars parked, while the other shows the same parking lot with no",
+    "gt_response": "there are three people in the right picture"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are only two people walking. The difference in the",
+    "gt_response": "the right image has a group of 3 boys the left has a group of two. the right image has two people towards the end of photo the right only has one walking over"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "In the second image, there is a noticeable difference in the parking lot's condition. The parking lot is now filled with cars, whereas in",
+    "gt_response": "a gray truck is missing from the top left of the photo. a gray truck is parked in the middle of the left row of parking spaces"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "The first image shows a parking lot filled with cars, while the second image displays a parking lot with no cars. The absence of cars in the second",
+    "gt_response": "a blue truck has appeared in the parking lot. the kid in the red shirt is now longer on the sidewalk. the two guys talking on the sidewalk have started walking. the man at the curb near the black car has moved towards the light pole"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "The main difference between the two pictures is the presence of a parking meter in the first image, which is not visible in the second image. Additionally, there",
+    "gt_response": "there is a pick up truck in the lot"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "The main difference between the two images is the perspective from which they were taken. In the first image, the parking lot is viewed from a higher angle,",
+    "gt_response": "the car on driving on the bottom of the left image is no present in the right image. there is a car on the top of the righ image that is not present in the left image"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "In the first image, there is a person walking on the sidewalk, and a car is parked nearby. In the second image, the person is walking",
+    "gt_response": "the right hand image a car has appeared in the car park"
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are four people walking on the sidewalk. The",
+    "gt_response": "the image on the left shows 5 people. the image on the right shows 3 people"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are four people walking on the sidewalk. The",
+    "gt_response": "after image shows a total of four people in the lot as opposed to none in the before image"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "In the first image, there are no people visible on the street. In the second image, there are people walking on the street. This change indicates that the",
+    "gt_response": "the people have shifted position slightly"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "In the second image, there is a noticeable difference in the parking lot's condition. A white truck is parked in the lot",
+    "gt_response": "there is a different traffic pattern. there are three people in the after image on the bottom right corner that are not there in the before image"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "The main difference between the two images is the perspective from which they were taken. In the first image, the parking lot is viewed from a higher angle,",
+    "gt_response": "people with umbrellas are gone. red car s slight seems to be off. black car has moved. other black car has also moved"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "The main difference between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, showing the cars parked",
+    "gt_response": "left blue car leaving the car park with while nine are parked. right nine cars parked"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "The main difference between the two images is the presence of cars in the parking lot. In the first image, there are several cars parked in the lot",
+    "gt_response": "the blue pickup truck is further out of the parking spot"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "In the first image, there is a car parked in a parking space, and a person is walking on the sidewalk. In the second image,",
+    "gt_response": "there is not a car in the parking lot"
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The angle of the parking lot is different in the two images",
+    "gt_response": "a blue truck is parked in the parking lot"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "The main distinguishing factor between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, while in the",
+    "gt_response": "blue truck pulling into spot. person standing by tree"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "1. The angle of the image is different, with one being a top-down view and the other being a side view.\n2. The",
+    "gt_response": "a man has appeared in front of the black cars"
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "The main difference between the two images is the presence of a car in one of them. In the first image, there is no car, while in the second",
+    "gt_response": "there aren t any people standing in front of the silver car on the sidewalk. there is no one near the door of the silver car. there is a person standing near the handicapped space. there are 2 people in the parking lot standing near the end of the building furthest from the camera"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "In the first image, there are no people visible on the street. In the second image, a group of people is standing on the sidewalk. The difference",
+    "gt_response": "left two people in the picture. right six people in the picture"
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "The main difference between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, showing the cars parked",
+    "gt_response": "i can t find any differences"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "The main difference between the two pictures is the presence of a car in the parking lot. In the first image, there is no car visible, while in",
+    "gt_response": "the two people standing in the middle left of the parking lot are now gone. the person walking towards the silver car is now gone. there are now 4 people on the concrete at the bottom of the image two on the left of the light pole and two on the right. the three people on the right side of the image have shifted positions slightly"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "The main distinguishing factor between the two images is the presence of people. In the first image, there are no people visible, while in the second image,",
+    "gt_response": "the guy in the red shirt in the middle of the picture has his his head up in the before picture and in the after picture his head is looking down"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "The main distinguishing factor between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, while in the",
+    "gt_response": "in the after image there is a vehicle and an additional person in the lot"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "In the second image, there are two people standing on the sidewalk, while in the first image, there are three people standing on the sidewalk. The",
+    "gt_response": "a person is walking across the parking lot in the second picture. one of the three men on the sidewalk has moved a bit"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "In the first image, there is a parking lot with a few cars parked. In the second image, the parking lot is full of cars,",
+    "gt_response": "i don t see any difference in the 2 images"
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "In the first image, there are several cars parked in a parking lot, and a person is visible in the scene. In the second image, the",
+    "gt_response": "the person is no longer near the blue truck. the person pulling a wagon is gone"
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people present. The first image also",
+    "gt_response": "the people was missing near by grass land. the man missing near by the light post"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people standing on the sidewalk.",
+    "gt_response": "the number of people in the parking lot has decreased. the location of the people in the parking lot has changed"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The angle of the parking lot is different in the two images",
+    "gt_response": "the blue car has pulled out of the parking spot and is leaving the parking lot"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "The main difference between the two images is the presence of a truck in the parking lot. In Image 1, there is no truck visible,",
+    "gt_response": "there are people behind the cars in the back"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The angle of the parking lot is different in the two images",
+    "gt_response": "there is a new car parked at the top of the screen with three people at it. the person on the sidewalk has left. there is a man on the corner of the after image walking in the road"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people present. The first image also",
+    "gt_response": "two person in the bottom third of the photo have left the screen. one person is walking across the parking lot mid screen right to left"
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "The main distinguishing factor between the two images is the perspective. In the first image, the parking lot is viewed from a higher angle, while in the",
+    "gt_response": "the blue truck in the upper right is gone in the after image"
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "The contrast between the two images lies in the presence of a pothole in one of them. In Image 1, there is a pothole on",
+    "gt_response": "the road grader has moved. the cyclist has passed the lady walking. a man and a girl are close to the crosswalk"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "In the first image, there is a red car parked in a parking lot, while in the second image, there is a red car parked in",
+    "gt_response": "there is one extra car in the after photo"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "In the first image, there is a car parked in the parking lot, while in the second image, the car is no longer present. This change",
+    "gt_response": "the man in the blue shirt is gone. there are two new people in the middle of the sidewalk area. the car in the distance has turned. there are 2 people standing in the distance"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "In the first image, there are several cars parked in a parking lot, with some cars parked closer to the foreground and others further back.",
+    "gt_response": "go ave form car parking"
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "In the first image, there is a red car parked on the side of the road, and a person is walking nearby. In the second image",
+    "gt_response": "the people walking are not in the same place in the after picture"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "The main difference between the two images is the perspective and angle from which they were taken. In the first image, the view is from a higher angle, looking",
+    "gt_response": "first picture has a car on the street. second picture there is someone walking on the street that same car is gone but another car is turning into a parking lot"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "In the first image, there is a car parked on the side of the road, while in the second image, the car is no longer present",
+    "gt_response": "the black car in front of the two parked cars is facing the opposite direction in the after image. there is not a person outside the black car in the after image"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "1. The presence of a car in the middle of the street in Image 1, which is not visible in Image 2.\n2.",
+    "gt_response": "a person is walking down the center road and a car is on the far right end of the main street"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "In the first image, there is a car parked on the side of the road, while in the second image, the car is no longer present",
+    "gt_response": "there is a gray car in the parking lot"
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "there is no silver car pulling into the parking lot. there are people walking on the side walk along side the parking lot"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "the blue truck in the street is no longer there"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "1. The time of day: The first image is taken during the day, while the second image is taken at night.\n2. The presence",
+    "gt_response": "the grey car is pulling into the lot"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "there is a car on the street and someone on the crosswalk in the after picture"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "In the second image, there is a noticeable difference in the presence of cars on the street. While there are cars in both images, the second",
+    "gt_response": "the silver car has moved to the exit of the parking lot in the after image. there is a black car in the parking lot of the before image that is not present in the after image"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 1, which is not visible in Image 2.\n2",
+    "gt_response": "the blue truck that was next to the cars in the parking lot in on the opposite side of the median"
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "In the second image, there are several differences compared to the first image. First, the street is now filled with cars, indicating that the area is",
+    "gt_response": "there is now a grey car to the right. there is now part of a dark car to the right"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "The main difference between the two images is the perspective and angle from which they were taken. In the first image, the view is from a higher angle, looking",
+    "gt_response": "there is now a grey mini van in the middle of the lot"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "In the first image, there is a red car parked in front of a church. In the second image, the red car is no longer present",
+    "gt_response": "the person in the parking lot is no longer there. a light blue car is driving on the main road towards the intersection to the parking lot"
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are four people walking on the sidewalk. The",
+    "gt_response": "the twosome near the bollards is gone. the threesome on the right is gone. there is now a person in white with a cart standing in the foreground"
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "In the second image, there are more cars parked on the street, with a total of 11 cars visible. Additionally, there are two",
+    "gt_response": "the silver car at the intersection is gone. the black car behind the silver car is gone"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "the first picture dosent have a car driving toward the stop sign"
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "the white van has left the scene. the green car has disappeared. a gray car is moving to the right"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "In the two pictures, there are noticeable differences in the number of cars parked in the parking lot. In the first image, there are",
+    "gt_response": "the person in white dragging something is no longer there. there is now a grey car next to the red car"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "In the two pictures, there are noticeable differences in the traffic flow and the presence of vehicles. In the first image, there are more cars on",
+    "gt_response": "person walking on sidewalk"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "The main difference between the two images is the presence of a car in the middle of the street. In Image 1, the car is parked on the",
+    "gt_response": "black car on road"
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "The two images showcase a city street with a significant difference in the presence of cars. In the first image, there are only a few cars visible, while",
+    "gt_response": "in the first picture there are people walking on the side walking further left in the picture. in picture two there is someone standing on the sidewalk that is in front of the parked cars. there is also a car driving down the street left to right"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "a black car is in the street approaching the main road"
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "In the first image, there is a red car parked on the side of the road, while in the second image, the red car is no",
+    "gt_response": "the black sedan entering the parking lot is no longer visible"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "The main difference between the two images is the perspective and the time of day. In the first image, the parking lot is captured from a higher angle,",
+    "gt_response": "the pedestrians seen near the top of the image are gone but there are two new groups of pedestrians one group of two to the right of the image and two near the bottom on the image"
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "In the two pictures, there are noticeable differences in the traffic flow and the presence of vehicles. In the first image, there are more cars on",
+    "gt_response": "the black car on the road is farther down. the blue truck has moved onto the road"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "there are now a couple of people standing near the red car. there is now a grey car behind the cross walk. there is now a person in red near that grey car. the car exiting the lot has either left or reversed slightly"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "In the first image, there is a red car parked on the side of the road, and a person is standing nearby. In the second image",
+    "gt_response": "the dark car exiting the lot is no longer there. there is now a person in a white shirt entering a dark car in the middle of the lot. the person walking behind the dark car is no longer there"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "In the two pictures, there are noticeable differences in the traffic flow and the presence of vehicles. In the first image, there are more cars on",
+    "gt_response": "blue truck is outside of the parking lot. person is stand in front of the suv"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "1. The presence of a red car in the parking lot in Image 2, which is not visible in Image 1.\n2.",
+    "gt_response": "there is a grey car. a black car is present in the road"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "the dark car in the middle of the lot has changed position slightly. there is now a person in a white shirt by the dark car"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "1. The presence of a red car in the middle of the street in Image 2, which is not visible in Image 1.\n2",
+    "gt_response": "white truck on the road. one person walking in parking lot"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "The first image shows a street scene with a red car parked in front of a church. The second image also features a red car parked in front of",
+    "gt_response": "you can see a gray car a black car and a person walking in the after picture"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "The first image shows a street scene with a red car parked in front of a church. The second image also features a red car parked in front of",
+    "gt_response": "there is a car on the street in the after picture"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "1. The presence of a red car in the parking lot in Image 2, which is not visible in Image 1.\n2.",
+    "gt_response": "the silver van is present. the white truck is missing"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "1. The first image shows a street scene with a red car parked on the side of the road. In the second image, the red car",
+    "gt_response": "the picture on the left has a blue truck in the parking lot while the picture on the right does not. the picture on the left has no human crossing the parking lot while the picture on the right does"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "In the two pictures, there are noticeable differences in the traffic flow and the presence of vehicles. In the first image, there are more cars on",
+    "gt_response": "the silver truck is no longer in the picture. there is no longer a person waiting at the stop sign"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "The main difference between the two images is the perspective. In the first image, the view is from above, looking down on the street scene, while the second",
+    "gt_response": "there is now a grey car exiting the lot. there is a person in a red shirt standing behind the grey car"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "The two images showcase a city street with a significant contrast in the presence of cars. In the first image, there are only a few cars visible, while",
+    "gt_response": "a car is in the street"
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "The main difference between the two images is the presence of a white van in the second image. In the first image, there is no white van, while in",
+    "gt_response": "two people walking near pole are not in second image. four additional people are walking in the second image"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "The main difference between the two images is the presence of umbrellas. In the first image, there are several umbrellas scattered throughout the scene",
+    "gt_response": "one person sitting under an umbrella is no longer there. one person on the stairs in blue is there"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "The main difference between the two images is the presence of people in the scene. In the first image, there are no people visible, while in the second image",
+    "gt_response": "the person under the umbrella is hunched more. the object in white is no longer there"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "The main difference between the two pictures is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "there is an individual under the umbrella in the bottom center. there are more individuals on the stairs and they are now on the right side instead of the left"
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "The main difference between the two pictures is the presence of umbrellas. In the first image, there are no umbrellas, while in the",
+    "gt_response": "in the before there are two women on the left of the image near the picnic tables. in the after picture there appears to be a woman on the stairs. in the after picture there appears to be a man at the top of the stairs. in the after picture there appears to be two or three people in the upper picnic area near the upper right corner of the picture"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "The main difference between the two pictures is the presence of umbrellas. In the first image, there are several umbrellas scattered around the area",
+    "gt_response": "there are people at the bottom of the staircase"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "In the first image, there is a grassy area with several umbrellas and chairs, creating a relaxing outdoor seating area. In",
+    "gt_response": "the before image shows five people walking up the staircase while the after image shows only two. the before image shows the table area to be deserted while the after image shows three people standing there"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "In the second image, there are more people walking around, and some of them are carrying backpacks. This suggests that the area is more crow",
+    "gt_response": "a person is walking down the walkway between the two buildings at the top of the frame. people are descending the stairs on the right hand side of the staircase. the person at the table has straightened their posture. there is a person in a white top that is walking near the building in the upper right near the building"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "1. The presence of a person walking on the sidewalk in the first image, while the second image does not show any pedestrians.",
+    "gt_response": "addition of individuals moving across pavement to and fro"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "In the first image, there is a large grassy area with several umbrellas scattered around, providing shade for people. The umbrellas",
+    "gt_response": "two people by tables"
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "The main difference between the two images is the time of day. In the first image, the parking lot is empty, and the sun is shining bright",
+    "gt_response": "the person who was walking near the trees by the black suv is gone. the silver car parked in front of the white car is gone"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "there appears to be no difference"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "The main difference between the two pictures is the presence of a person walking in the scene. In the first image, there is a person walking on the sidewalk",
+    "gt_response": "the lady in the tank top is not wearing a hat. the people in the picture on the lower half are closer in relation to the first picture"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "The main difference between the two pictures is the presence of people in the scene. In the first image, there are no people visible, while in the second image",
+    "gt_response": "there are three guys staying in the parking lot"
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "there is more people. there is less umbrellas"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "The main difference between the two images is the presence of umbrellas. In the first image, there are several umbrellas scattered around the area",
+    "gt_response": "2nd picture doesnt have the person in a blue shirt holding a briefcase"
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "The main difference between the two pictures is the presence of a truck in the parking lot. In the first image, there is a truck parked",
+    "gt_response": "a grey or silver car has appeared next to the white trailer in the back of the parking lot. the person in black walking towards a silver car is no longer there"
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "In the second image, there are more people walking on the sidewalk, with a total of 11 individuals visible. This indicates that the area",
+    "gt_response": "the after image has a person in a blue shirt. the after image has a woman walking before the person in a blue shirt. the after image has a dark person standing by the big tree"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "The main difference between the two images is the perspective and angle from which they were taken. In the first image, the parking lot is viewed from a higher",
+    "gt_response": "there are two cars missing near the back left"
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "The contrast between the two images lies in the parking lot's state of activity. In the first image, the parking lot is empty, with no",
+    "gt_response": "the red car is not there anymore. there is another red car there now in the middle"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "In the first image, there is a parking lot with several cars parked in it. The cars are parked in various positions, and some are closer",
+    "gt_response": "there is a white car now. there is a white truck now"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "In the first image, there are more people walking around, and the area appears to be more crowded. In the second image, the number of people has",
+    "gt_response": "the person on the stairs on the bottom is no longer there"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "The main difference between the two pictures is the presence of a person riding a bicycle in the parking lot in the first image, while the second",
+    "gt_response": "the man on his bike is not there anymore. there are people walking now"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "In the first image, there are several umbrellas set up in the outdoor area, providing shade for the guests. In the second image,",
+    "gt_response": "the people on the stairs are no longer there. there is now a person walking near the umbrellas"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "The contrast between the two images lies in the parking lot's state of fullness. In the first image, the parking lot is filled with numerous",
+    "gt_response": "there is more cars"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "The main distinguishing factor between the two images is the presence of umbrellas. In the first image, there are multiple umbrellas, while",
+    "gt_response": "one or more people have appeared standing in the distance at the top of the green hill"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "The main difference between the two pictures is the presence of umbrellas. In the first image, there are several umbrellas scattered around the area",
+    "gt_response": "the person walking is no longer there. the person under the umbrella is now in a different position"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "In the first image, there are several umbrellas and chairs set up in a grassy area, creating a relaxing outdoor seating area",
+    "gt_response": "there are people in the back now"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "In the first image, there is a white van parked on the side of the road, and a person is walking nearby. In the second image",
+    "gt_response": "the person in the bike is not there anymore. the people by the car are not there anymore"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "In the first image, there are no umbrellas, while in the second image, there are umbrellas present. The presence of umbre",
+    "gt_response": "the person near the umbrella is not there anymore"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "The main difference between the two pictures is the presence of people walking on the sidewalk. In the first image, there are no people visible, while in the",
+    "gt_response": "the people walking have moved"
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "The main difference between the two pictures is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "girl sitting far left bottom before not after. two men walking by tables before not after. people near top of stairs before not after. people near bottom of stairs after not before. different people walking around"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "In the second image, there are more people walking around, and some of them are carrying backpacks. The presence of more people and backpack",
+    "gt_response": "the people on the stairs are not there anymore"
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "The main difference between the two images is the presence of umbrellas. In the first image, there are several umbrellas scattered throughout the scene",
+    "gt_response": "the person near the umbrellas is not there anymore"
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "1. The presence of a few more people in the second image compared to the first.\n2. The umbrellas are open in the",
+    "gt_response": "there is no people on the left"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "two pepole where walking now there not there anymore"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "the man leaning against the light pole near the open red umbrellas is gone. the person sitting at the table is in a different position"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "In the two pictures, there are noticeable differences in the number of cars parked in the parking lot. In the first image, there are fewer cars",
+    "gt_response": "there is a bus in the after image"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "The main difference between the two pictures is the presence of umbrellas. In the first image, there are several umbrellas scattered around the area",
+    "gt_response": "the person sitting at the table is in a different position. the person at the top of the stairs is gone. there are 2 people in front of the building with the blue windows"
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "The main distinguishing factor between the two images is the presence of people. In the first image, there are no people visible, while in the second image,",
+    "gt_response": "person in before image not in the after image"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "The main difference between the two pictures is the presence of a parking lot in one and a street in the other. In the parking lot image, there",
+    "gt_response": "the white truck on the far end at the top of the picture has moved slightly"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "The main difference between the two images is the time of day. In the first image, the parking lot is empty, with no cars visible. In the",
+    "gt_response": "a man at the far right gone. a man walking in the parking lot"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "In the second image, there are more cars parked in the parking lot, with a total of 14 cars visible. In the first image,",
+    "gt_response": "traffic has changed in the picture leaving a clearing on the right"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "The contrast between the two images lies in the parking lot's occupancy. In Image 1, the parking lot is almost empty, with only",
+    "gt_response": "there is a man in a red shirt on the sidewalk in photo 1. there are three people on the sidewalk in photo 2"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "In the first image, there are several cars parked in the parking lot, and a person is walking near the center of the scene. In the second",
+    "gt_response": "the car and truck on the road in the left photo are absent in the right photo"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. In the first image, there are two people walking in the par",
+    "gt_response": "the person waiting at the crosswalk is no longer in picture. the person on the sidewalk wearing red is no longer in picture. the white truck and black sedan are no longer in picture. there is a group of 3 people on the sidewalk. there is a white van on the road"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "The main difference between the two images is the time of day. In the first image, the parking lot is empty, and the cars are parked in",
+    "gt_response": "there is a person by a white car in the lot. there is only one person by the red car in the lot. there is a person walking in the grass. there is a parked car in the road. there is a person by the parked car. there is one white car in the road. there are no dark cars in the road"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "The main difference between the two images is the presence of a person walking in the parking lot. In the first image, the person is walking near the center",
+    "gt_response": "there is a person walking in the parking lot on the far side in the after pic that is not in the before pic. there is a white car in the center parking spaces beside a grey one in the before pic that is not in the after pic. there is a silver car entering lot in the before pic that is not in the after pic. there is a utility truck and a car on the side street in the before pic that is not in the after pic"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "The main distinguishing factor between these two images is the time of day. In the first image, the parking lot is empty, and the cars are park",
+    "gt_response": "white van in left photo as opposed to the black car in the right photo with white truck"
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "The main distinguishing factor between the two images is the presence of a person in the parking lot. In Image 1, there is a person standing in",
+    "gt_response": "the white car is no longer entering the parking lot. the person leaving the parking lot is no longer there. the two people standing by the car have changed positions"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "In the first image, there are several cars parked in the parking lot, and a person is walking near the cars. In the second image, the",
+    "gt_response": "the right image displays 2 cars parked in the parking lot that wasn t there before. also there are two cars driving in opposite directions on the picture to the right that is not in the left. finally there are 2 people walking away from the camera on the right that were not there on the left"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "1. The presence of a person carrying a handbag in the first image is missing in the second image.\n2. The first image shows a",
+    "gt_response": "the two girls seem to be closer to the doors as if they walked backwards"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "The main difference between the two images is the presence of a person in the parking lot. In Image 1, there is a person walking in the par",
+    "gt_response": "school bus at stop sign"
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "1. The presence of a person walking on the sidewalk in the second image, which is not visible in the first image.\n2. The",
+    "gt_response": "the woman on the left slightly moved to the right on the after picture. the two people are moved slightly backward in the after picture"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The cars are parked in rows in both images.\n3",
+    "gt_response": "there are no cars on the road in photo 1. there is a pick up van on the road in photo 2"
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "The main difference between the two images is the presence of people in the parking lot. In the first image, there are no people visible, while in the",
+    "gt_response": "there are more cars in the parking lot. the people in the parking lot are in different positions. the white car and dark car behind it are no longer on the road"
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "The main difference between the two images is the perspective and angle at which they were taken. In the first image, the parking lot is viewed from a higher",
+    "gt_response": "there is a person in a red long coat next to the red van at the top of the parking lot"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "In the first image, there are three people walking on the sidewalk, while in the second image, there are four people walking on the sidewalk. The",
+    "gt_response": "four people are visible near the parking lot"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "In the first image, there is a red car parked on the side of the road, while in the second image, there is a red car",
+    "gt_response": "the grey car has left the car park and has turned right. the person waiting to cross the road in the middle of the picture has gone"
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "The main distinguishing factor between the two images is the presence of umbrellas. In the first image, there are several umbrellas scattered throughout",
+    "gt_response": "there are several people visible in the distance in the upper right. the person under the umbrella in the center has moved"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "The first image shows a street scene with cars parked on the side of the road, while the second image displays a different perspective of the same street. The",
+    "gt_response": "the car parallel parked in front of the parked cars has reversed a few feet. there is a person possibly 2 at the crosswalk at the entrance"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "The first image shows a street scene with a car parked on the side of the road. The second image also features a car parked on the side of",
+    "gt_response": "there is a car turning into the parking lot. there is a blue car in the middle right"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "The main difference between the two images is the time of day. In the first image, the scene is captured during the day, while the second image shows the",
+    "gt_response": "the silver car has exited the scene"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "1. The presence of a traffic light in the first image is missing in the second image.\n2. The first image shows a car driving down",
+    "gt_response": "the 2 people on the corner are in different positions in the pictures. the person walking by the white van is closer to the bottom of the picture in the after picture. the person on the right hand sidewalk by the silver van has moved further from the road"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "The main distinguishing factor between the two images is the presence of a fire hydrant in one of them. In the first image, there is a fire hyd",
+    "gt_response": "in the right picture people are more around the yellow pillars while on the left they stand on the sidewalk"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "1. The presence of a car in the middle of the street in Image 1, which is not visible in Image 2.\n2.",
+    "gt_response": "a red car is visible. a black car is visible. a person in white is no longer visible. a person is red is visible"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "2 people walking under lamp. no one walking ahead in photo now"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are two people walking down the sidewalk, while in the second",
+    "gt_response": "four people in the image have left. the person approaching the camera is closer"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people standing on the sidewalk.",
+    "gt_response": "there is three people in the right im on the sidewalk. there is now people on the lower side of the image that were not there on the before picture"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "The contrast between the two images lies in the presence of people. In the first image, there are no people visible, while in the second image, there are",
+    "gt_response": "was 7 people in parking lot. now only 5"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "In the first image, there are three people standing on the sidewalk, while in the second image, there are only two people present. The second image also",
+    "gt_response": "the people in the lot have moved slightly and a car in the spot has left"
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "The main difference between the two images is the presence of people. In the first image, there are no people, while in the second image, there are many",
+    "gt_response": "there are lots of people walking on the stairs"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "The main difference between the two images is the perspective and the time of day. In the first image, the parking lot is captured from a higher angle,",
+    "gt_response": "there is no blue vehicle existing the parking lot"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "1. The parking lot is full of cars in both images.\n2. The angle of the parking lot is different in the two images",
+    "gt_response": "the before image has a person entering a car. the after image doesn t have that person entering the car but has a person walking across the parking lot"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "In the second image, there are more cars parked in the parking lot, with a total of 13 cars visible. The parking",
+    "gt_response": "the blue truck in the lot has left"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "The first image shows a street scene with a blue car driving down the road, while the second image displays a different perspective of the same street. The second image",
+    "gt_response": "the blue truck is now in the lot"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "The main difference between the two pictures is the presence of a red car in the middle of the street in the second image. In the first image, the street",
+    "gt_response": "the silver car in the before image is entering the place of business. the silver car in the after image is exiting the place of business"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "In the first image, there are three people walking down the street, while in the second image, there are four people walking down the street. The difference in",
+    "gt_response": "the man in a white shirt is gone. the blue and red man are farther apart from each other"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "The main difference between the two pictures is the presence of umbrellas. In the first image, there are no umbrellas, while in the",
+    "gt_response": "the people walking up the stairs are different"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "In the second image, there are more cars parked in the parking lot, with a total of 14 cars visible. In the first",
+    "gt_response": "the black car towards the middle left of the picture is gone. there is a car driving behind the box truck middle right"
+  }
+]

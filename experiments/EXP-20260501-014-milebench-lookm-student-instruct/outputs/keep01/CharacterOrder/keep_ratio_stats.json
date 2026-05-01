@@ -1,0 +1,8 @@
+{
+  "task": "CharacterOrder",
+  "keep_ratio": 0.1,
+  "n_samples": 200,
+  "avg_image_keep_ratio": 0.07406477347883608,
+  "avg_n_image_original": 3818.88,
+  "avg_n_image_kept": 283.615
+}

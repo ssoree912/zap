@@ -1,0 +1,1235 @@
+{
+  "rouge_l_f_mean": 0.0595476184321466,
+  "n_samples": 200,
+  "n_failures": 0,
+  "elapsed_seconds": 91.90647435188293,
+  "sec_per_sample": 0.4595323717594147,
+  "args": {
+    "model_path": "/workspace/zap/ckpts/llava-1.5-7b-hf",
+    "data_path": "/workspace/zap/experiments/EXP-20260428-004-docvqa-random-scope/inputs/docvqa_200_gt.json",
+    "image_path": "/workspace/zap/data/MileBench/DocVQA/combined_1_images",
+    "eval_samples": 200,
+    "prompt_template": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\n{question} ASSISTANT:",
+    "max_new_tokens": 32,
+    "output_dir": "/workspace/zap/experiments/EXP-20260428-004-docvqa-random-scope/outputs/random_all_token/keep_0p2/rouge_gt",
+    "method": "random_all_token",
+    "student_model_name": null,
+    "quadrant": null,
+    "evict_ratio": 0.25,
+    "alpha": 0.5,
+    "future_blend_layers": [],
+    "image_keep_ratio": null,
+    "total_keep_ratio": 0.2,
+    "future_probe_name": null,
+    "selected_layer_indices": null,
+    "strict_selected": true,
+    "head_reduce": "amax",
+    "torch_dtype": "bfloat16",
+    "device": "cuda:0",
+    "attn_implementation": "sdpa",
+    "seed": 0
+  },
+  "per_sample": [
+    {
+      "id": "0",
+      "pred": "P",
+      "answer": "PRESIDENT, BRUSH BEET GROWERS ASS'N",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "1",
+      "pred": "The in the. The.",
+      "answer": "$12,000 to $15,000",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "2",
+      "pred": "I'o.",
+      "answer": "Res. Asst.",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "3",
+      "pred": "The (UUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+      "answer": "10/10/97",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "4",
+      "pred": "I ) 201920192019201920192019)In201",
+      "answer": "II",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "5",
+      "pred": "The The The The The The The the the the the way.",
+      "answer": "MEDICAL RESEARCH FOUNDATION OF OREGON",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "6",
+      "pred": "Wed Day)",
+      "answer": "Thursday",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "7",
+      "pred": "Jenn.",
+      "answer": "Helen A. guthrie",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "8",
+      "pred": "The4445454444444444444444444444444",
+      "answer": "$712,785,000",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "9",
+      "pred": "The, The, The, The, The, the, the, The, the, the, the, the, the, the. The. The.",
+      "answer": "hironao.ihara@takeda.com",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "10",
+      "pred": "Dr.222222222222222222222222222222",
+      "answer": "director",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "11",
+      "pred": "The and and and and and and | | | | | | | | | | || || || |\n|99995 |",
+      "answer": "by 4/21/95",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "12",
+      "pred": "C",
+      "answer": "Corsberg",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "13",
+      "pred": "The | | | | | | | | | | |||||||||||||||||||||",
+      "answer": "7.60",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "14",
+      "pred": "Mr.U10101010101001001000000000000",
+      "answer": "Dr.K.S.Houghton",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "15",
+      "pred": "The (Select)\nM01-S:\nS:A-Selectvio-Select-vouchesand-vouches:1",
+      "answer": "118.14",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "16",
+      "pred": "The",
+      "answer": "#072798",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "17",
+      "pred": "All. (",
+      "answer": "All Boston Region Full-Time Personnel",
+      "rouge_l_f": 0.2857142816326531
+    },
+    {
+      "id": "18",
+      "pred": "Exes",
+      "answer": "Sunoco, Inc. (R&M)",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "19",
+      "pred": "Theion..",
+      "answer": "$ 129,576",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "20",
+      "pred": "W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W",
+      "answer": "Winston-Salem",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "21",
+      "pred": "The (Sch), The, Associ, [Sch](Sch|), [Sch]",
+      "answer": "3178.17",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "22",
+      "pred": "Project. ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( (",
+      "answer": "Project \"NN\"",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "23",
+      "pred": "The.\nImage:\nImage.\nImage.\nImage.\n\nImage.\n\nImage.\n\nImage.\n\nImage.",
+      "answer": "407  ($48.30)",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "24",
+      "pred": "The M. is\u042a.",
+      "answer": "401",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "25",
+      "pred": "The (111111111111111111111111111111",
+      "answer": "10/5 -10/30/98",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "26",
+      "pred": "K. K. in the K. in the K. in. in. in. in. in. in. in. in. in. in.",
+      "answer": "K. P. Dubrovin",
+      "rouge_l_f": 0.3333333283333334
+    },
+    {
+      "id": "27",
+      "pred": "The | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+      "answer": "Friday, November 1, 1974",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "28",
+      "pred": "B B B B B B B BBsgtgtttgtttgtttgtttgtttgtttgttt",
+      "answer": "BVS1 (AMM)",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "29",
+      "pred": "The3333333333333333333333333333333",
+      "answer": "$12",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "30",
+      "pred": "The,0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.",
+      "answer": "0.02",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "31",
+      "pred": "Cam",
+      "answer": "a creamy indulgent flavor that offers an intriguing and pleasurable smoking experience.",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "32",
+      "pred": "The p e e e e e e | | | |",
+      "answer": "7.50",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "33",
+      "pred": "The Page ||||||||||||||||||||||||||||||",
+      "answer": "2 nov 1967",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "34",
+      "pred": "Tim Tim Tim Tim Tim tim)tim)tim)tim)tim)tim)tim)tim)tim)tim)tim)tim)tim)tim",
+      "answer": "Tim",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "35",
+      "pred": "Gilbert",
+      "answer": "Gilbert B. Forbes",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "36",
+      "pred": "The |sug|t|su||||||||||||||||||||||||",
+      "answer": "September 1, 1949",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "37",
+      "pred": "2 | | | | | | | | | | |\n. | | | | | | | | | | | | | | | | |",
+      "answer": "4",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "38",
+      "pred": "The | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+      "answer": "63",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "39",
+      "pred": "PL | | | | | |",
+      "answer": "PLANT DRY WT(% OF CONTROL)",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "40",
+      "pred": "Dr,dr,dr,dr,dr,dr,dr,dr,dr,1,1,1,1,1,1,1,",
+      "answer": "Dr. Robert E. Shank",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "41",
+      "pred": "The.\u042a.",
+      "answer": "0612-80-505",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "42",
+      "pred": "The",
+      "answer": "Wednesday 22nd",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "43",
+      "pred": "The image.\u042a.",
+      "answer": "nearly 30 percent",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "44",
+      "pred": "The.",
+      "answer": "586,950",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "45",
+      "pred": "The.\n22.2222.\n\n2222222222222222222",
+      "answer": "$1,295.87",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "46",
+      "pred": "Mitch.",
+      "answer": "John Barrasso",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "47",
+      "pred": "The is the.",
+      "answer": "22",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "48",
+      "pred": "The)",
+      "answer": "185-58361",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "49",
+      "pred": "Dr Dr to [] [] [] []\u00a0[]\u00a0[ |\u00a0[)\u00a0[]\u00a0[)\u00a0[ |)\u00a0[",
+      "answer": "Dr. Dodge",
+      "rouge_l_f": 0.22222221876543213
+    },
+    {
+      "id": "50",
+      "pred": "TheTim(Tim)",
+      "answer": "3Q98",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "51",
+      "pred": "The time.",
+      "answer": "22.85",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "52",
+      "pred": "The,D-1-table-man-and-the-table-table-man-and-the-table-table-table-table-",
+      "answer": "1,088.8",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "53",
+      "pred": "Rev |).",
+      "answer": "Bill Coleman",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "54",
+      "pred": "Th is: to the: 19 1 1 1",
+      "answer": "morale vitamin",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "55",
+      "pred": "According C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.",
+      "answer": "36.9%",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "56",
+      "pred": "D.\u042a",
+      "answer": "DORAL EDLP RETAIL PRICING AGREEMENT",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "57",
+      "pred": "A.",
+      "answer": "SPECIFIC ACTIVITY",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "58",
+      "pred": "Hi in the 1 1  all.allallallall",
+      "answer": "Herophilus",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "59",
+      "pred": "The,",
+      "answer": "108 Depot Avenue, N. E., Knoxville, Tennessee",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "60",
+      "pred": "5555555555555555555555555555555",
+      "answer": "3",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "61",
+      "pred": "Washington University 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+      "answer": "Missouri",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "62",
+      "pred": "D.",
+      "answer": "Drew Huyett",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "63",
+      "pred": "Thext.\u042a",
+      "answer": "Opening Remarks/Introduction",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "64",
+      "pred": "The.\u042a",
+      "answer": "1,516.86",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "65",
+      "pred": "The Date. ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( (",
+      "answer": "July 10th, 1950",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "66",
+      "pred": "The",
+      "answer": "CF85",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "67",
+      "pred": "The 100000000000000000000000000000",
+      "answer": "2.50",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "68",
+      "pred": "Dr Dr Dr!",
+      "answer": "Dr. M.G. Wagh",
+      "rouge_l_f": 0.33333332888888895
+    },
+    {
+      "id": "69",
+      "pred": "Calu.44444444444444444444444444444",
+      "answer": "Calories per day",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "70",
+      "pred": "George for to for to.",
+      "answer": "George Murdoch Saunders",
+      "rouge_l_f": 0.3333333283333334
+    },
+    {
+      "id": "71",
+      "pred": "",
+      "answer": "282-2511",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "72",
+      "pred": "Joh.",
+      "answer": "Washington",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "73",
+      "pred": "The",
+      "answer": "8.00",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "74",
+      "pred": "Harvard of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of",
+      "answer": "William Marsh rice University",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "75",
+      "pred": "The | | | | | | | | | | | | | | | | | | | | | | | | | |99999",
+      "answer": "574.49",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "76",
+      "pred": "The. |. |. |. |. |. |. |. |. |. |. |. |. |. |. |.",
+      "answer": "2,299",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "77",
+      "pred": "1999999999999999999999999999999",
+      "answer": "09/30/97",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "78",
+      "pred": "The",
+      "answer": "139,132",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "79",
+      "pred": "W and.\u042a.",
+      "answer": "WINSTON",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "80",
+      "pred": "The is.\u042a.",
+      "answer": "601270",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "81",
+      "pred": "The.\n19.1.1.1.1.1.1.1.1.1.1.1.1.1.",
+      "answer": "$3,000.00*",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "82",
+      "pred": "The.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.",
+      "answer": "1,713,000",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "83",
+      "pred": "August 1 1 19 1999a555555555555555555",
+      "answer": "september",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "84",
+      "pred": "Market target target target target target target target target target target target target target target target target target target target target target target target target target target target target target target target",
+      "answer": "Targetbase",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "85",
+      "pred": "The Am.\u042a.",
+      "answer": "1200",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "86",
+      "pred": "The and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and and",
+      "answer": "814",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "87",
+      "pred": "Approved:\n00000000000\n\nC\n\nC\n\nC\n\nC.C.C.",
+      "answer": "Sponsoring Members",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "88",
+      "pred": "The LLGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+      "answer": "THE ALBANY MEDICAL COLLEGE OF UNION UNIVERSITY",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "89",
+      "pred": "Mr.fromth) from August,999999999999999999999999",
+      "answer": "Mr. R Ramamurthy",
+      "rouge_l_f": 0.2857142808163266
+    },
+    {
+      "id": "90",
+      "pred": "The conference.",
+      "answer": "1.30 to 3:00 p.m",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "91",
+      "pred": "The",
+      "answer": "0.08",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "92",
+      "pred": "The",
+      "answer": "Supply chain Management (SCM)",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "93",
+      "pred": "The is the image.\nCho\u042a.\n.C.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "answer": "04 08 1100 9143 821",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "94",
+      "pred": "The\n20.\n2.\n2.",
+      "answer": "12-20 and 141/2-241/2.",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "95",
+      "pred": "Nap..",
+      "answer": "Naples Beach Hotel & Golf Club",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "96",
+      "pred": "The000 0 0 0 0 0 0",
+      "answer": "3,363",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "97",
+      "pred": "The l.\u042a",
+      "answer": "South Lounge",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "98",
+      "pred": "Marie.",
+      "answer": "Marie C. Newman",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "99",
+      "pred": "The of. (201)",
+      "answer": "Swedish Nutrition Foundation",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "100",
+      "pred": "The The The The.\u042a",
+      "answer": "10",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "101",
+      "pred": "members",
+      "answer": "members of the U.S. medical advisory committee",
+      "rouge_l_f": 0.2222222202469136
+    },
+    {
+      "id": "102",
+      "pred": "The.\u042a",
+      "answer": "03760",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "103",
+      "pred": "The Daily.",
+      "answer": "1/3 lb.",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "104",
+      "pred": "The",
+      "answer": "February 25, 2002",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "105",
+      "pred": "Material safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety",
+      "answer": "material safety data sheet",
+      "rouge_l_f": 0.33333332888888895
+    },
+    {
+      "id": "106",
+      "pred": "The\n111111111111111111111111111111",
+      "answer": "september 27, 1989",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "107",
+      "pred": "The page image is the most. The number 7\u042a.",
+      "answer": "751035",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "108",
+      "pred": "Less.\u042a",
+      "answer": "more than 220",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "109",
+      "pred": "The third is the third.",
+      "answer": "Atherosclerosis",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "110",
+      "pred": "Jenkins and the and the and the and the and the and the and the and the and the and the and the and the and the and the and the and",
+      "answer": "Kirk",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "111",
+      "pred": "I'01010..",
+      "answer": "life cycle assessment studies",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "112",
+      "pred": "The. is the.",
+      "answer": "32709",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "113",
+      "pred": "The",
+      "answer": "052008",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "114",
+      "pred": "The. ( ( ( ( ( ( ( ( ( ( (( (( (( (( (( (( (( (( (( ((",
+      "answer": "PA73WBC44",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "115",
+      "pred": "Chicago.",
+      "answer": "Greeley Daily Tribune",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "116",
+      "pred": "Robert is is is is is is is is is.",
+      "answer": "Robert E. Shank",
+      "rouge_l_f": 0.39999999520000007
+    },
+    {
+      "id": "117",
+      "pred": "The is the contact of. (1)",
+      "answer": "314-533-9680",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "118",
+      "pred": "The The The | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+      "answer": "3327.78",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "119",
+      "pred": "$. ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( (",
+      "answer": "$ 10.00",
+      "rouge_l_f": 0.39999999520000007
+    },
+    {
+      "id": "120",
+      "pred": "The ...",
+      "answer": "Privately-Owned Vehicle",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "121",
+      "pred": "Washington University university university university university university university university university university university university university university university university university university university university university university university university university university university university university university university",
+      "answer": "Washington university",
+      "rouge_l_f": 0.7999999952000001
+    },
+    {
+      "id": "122",
+      "pred": "The Cal",
+      "answer": "2,872 cal",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "123",
+      "pred": "0.",
+      "answer": "651-686-6016",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "124",
+      "pred": "The.\u042a",
+      "answer": "$14.55",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "125",
+      "pred": "Mr v - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+      "answer": "Mr. S.V.Shanbhag",
+      "rouge_l_f": 0.2857142808163266
+    },
+    {
+      "id": "126",
+      "pred": "TheTheThe | | | | | | | | | | |/ |/ |/ |/ |/ |/ |/ |/ |/ |",
+      "answer": "CURRENT",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "127",
+      "pred": "The",
+      "answer": "5.00%",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "128",
+      "pred": "William and the American and and and and and and and and and and and and and and and and and.",
+      "answer": "Director of Research and Development",
+      "rouge_l_f": 0.22222221728395072
+    },
+    {
+      "id": "129",
+      "pred": "The",
+      "answer": "91",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "130",
+      "pred": "S T E BO CONO WILE CONO WILE CONO WILE CONO WILE CONO WILE CONO",
+      "answer": "SUNDAY / January 4th",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "131",
+      "pred": "Dr.d.e.e.e.e.e.e.\n-e.\n-e.\n-e.\n-e.",
+      "answer": "Dr. W . J. Darby",
+      "rouge_l_f": 0.24999999500000009
+    },
+    {
+      "id": "132",
+      "pred": "The.\u042a.",
+      "answer": "$3,000",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "133",
+      "pred": "EAL GENAL GENAL time and time and time and time and time time and time time time time time time time time time time time time time",
+      "answer": "CHEMICAL DEPARTMENT",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "134",
+      "pred": "John",
+      "answer": "John H. Browe",
+      "rouge_l_f": 0.4999999962500001
+    },
+    {
+      "id": "135",
+      "pred": "The The The The The The The The The The The 1 1 1 1 1 1 1 1 1 1",
+      "answer": "december 6-8, 1958",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "136",
+      "pred": "Leaaaaa's''s'''''''''''''''''''''''",
+      "answer": "Chief Chemist.",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "137",
+      "pred": "Thedy | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+      "answer": "thomas jefferson university",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "138",
+      "pred": "The 2222222222222222.2",
+      "answer": "12 Professionals",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "139",
+      "pred": "5 -t of the, 999999999999999999999999",
+      "answer": "744-5106",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "140",
+      "pred": "The",
+      "answer": "September 9, 1963",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "141",
+      "pred": "Lucin.",
+      "answer": "Lucinda Sheer",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "142",
+      "pred": "The | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+      "answer": "Good Laboratory Practice",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "143",
+      "pred": "American.",
+      "answer": "American",
+      "rouge_l_f": 0.999999995
+    },
+    {
+      "id": "144",
+      "pred": "The.",
+      "answer": "LASZLO TOTH",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "145",
+      "pred": "The.\u042a.",
+      "answer": "$210,391.00",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "146",
+      "pred": "There ...",
+      "answer": "4400",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "147",
+      "pred": "The |",
+      "answer": "0.55",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "148",
+      "pred": "The",
+      "answer": "Sept. 20, 1971",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "149",
+      "pred": "The.",
+      "answer": "296",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "150",
+      "pred": "The and the and the and the and the and the and the and the and the and the and the and the and the and the and the and the and",
+      "answer": "home economics program",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "151",
+      "pred": "Washington.",
+      "answer": "Washington university",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "152",
+      "pred": "The.",
+      "answer": "cg721t117pb",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "153",
+      "pred": "The The)",
+      "answer": "407",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "154",
+      "pred": "The1222222222222222222222222222222",
+      "answer": "DA-49-007-MD-1024",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "155",
+      "pred": "Kirk",
+      "answer": "Kirk Hinshaw",
+      "rouge_l_f": 0.6666666622222223
+    },
+    {
+      "id": "156",
+      "pred": "Dr.\u042a",
+      "answer": "o. a. roels",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "157",
+      "pred": "PM W [ [ [] [] [] [] [] [] [] [] [] [] [] [] [] []",
+      "answer": "PM Code",
+      "rouge_l_f": 0.33333332888888895
+    },
+    {
+      "id": "158",
+      "pred": "Theg's10000000 [10000 [10] [10 [10 [10]",
+      "answer": "290",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "159",
+      "pred": "20. The.Ch.",
+      "answer": "314002838",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "160",
+      "pred": "L L L L L L L L L L L L L L L L L L L L L L L L L L L L L L L L",
+      "answer": "LANSKY",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "161",
+      "pred": "Golden..\n\nQuestion: What is the name of the company that is being paid?",
+      "answer": "GOLDEN TOBACCO LIMITED",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "162",
+      "pred": "The,99999999999999:0. The.t:t.t.t.t.t",
+      "answer": "26.50",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "163",
+      "pred": "The | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+      "answer": "August 30, 1994",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "164",
+      "pred": "David 1.",
+      "answer": "David Moore",
+      "rouge_l_f": 0.4999999950000001
+    },
+    {
+      "id": "165",
+      "pred": "L",
+      "answer": "BEY",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "166",
+      "pred": "The \"question.",
+      "answer": "$535.66",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "167",
+      "pred": "Man.\n[] [.], [the.t.g.s.e.the.f.e.the.f.e.the",
+      "answer": "president",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "168",
+      "pred": "Donald.\u042a",
+      "answer": "Scientific Director of the Institute",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "169",
+      "pred": "Mr.\nC.C.C.C.C.C.C.F.\nF.F.F.F.F.F.",
+      "answer": "Mr. Ralph T. Smith",
+      "rouge_l_f": 0.2857142808163266
+    },
+    {
+      "id": "170",
+      "pred": "The.",
+      "answer": "3.0 cc",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "171",
+      "pred": "High Cdccd, 0 0 0 0 0 0 0 0 0 0 0 0 0",
+      "answer": "low priority designations",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "172",
+      "pred": "The [199999999999",
+      "answer": "progress report 10",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "173",
+      "pred": "The is a choice. Choose to be a choice. Choose Choose Choosekokokokokokokokokokokokokok",
+      "answer": "investigator",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "174",
+      "pred": "Salt",
+      "answer": "Salt is a major source of sodium.",
+      "rouge_l_f": 0.24999999781250004
+    },
+    {
+      "id": "175",
+      "pred": "\u20ac.",
+      "answer": "$ 3,436.98",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "176",
+      "pred": "The  | 1 |  |  |  |  |  | | | | | | | | | | | | | | | | |",
+      "answer": "266-524-9",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "177",
+      "pred": "The letter,19999999999999999999999999999",
+      "answer": "July 16, 1999",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "178",
+      "pred": "Department. ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( (",
+      "answer": "Department of Cardiovascular Medicine.",
+      "rouge_l_f": 0.33333332888888895
+    },
+    {
+      "id": "179",
+      "pred": "The. ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( (",
+      "answer": "Sugar-cane",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "180",
+      "pred": "The is the form is the form is the form is is the form is is the form is is the form is is the form is is the form is is",
+      "answer": "150,204.79",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "181",
+      "pred": "A",
+      "answer": "ABBOTT LABORATORIES",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "182",
+      "pred": "7777777777777777777777777777777",
+      "answer": "716.725.7100",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "183",
+      "pred": "Project",
+      "answer": "#7595 Manuscript",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "184",
+      "pred": "Executive.",
+      "answer": "Administrative Assistant",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "185",
+      "pred": "1111111.",
+      "answer": "6 biographical data forms",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "186",
+      "pred": "The issue date January.\u042a.",
+      "answer": "October 26, 1998",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "187",
+      "pred": "The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The The",
+      "answer": "3/24/03",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "188",
+      "pred": "The \n\n\n\n\n\n\n\n\n2222222222",
+      "answer": "31-Dec-08",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "189",
+      "pred": "The [ [ [ [) [ [ [ [ [ [) [ [ [ [ [) [ [ [ [ [ [ [ [ [ [ [ [ [",
+      "answer": "2/13/73",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "190",
+      "pred": "V A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A",
+      "answer": "Vanderbilt University",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "191",
+      "pred": "The is at the. (1)",
+      "answer": "orientation",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "192",
+      "pred": "",
+      "answer": "12/31/96",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "193",
+      "pred": "The and the.\u042a.",
+      "answer": "11-0010-001",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "194",
+      "pred": "J 4.",
+      "answer": "CHARACTERIZATION OF MAN'S PHYSIQUE",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "195",
+      "pred": "The.\u042a",
+      "answer": "1",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "196",
+      "pred": "William's'p'ous're'199's'may'1999's'may'1999'",
+      "answer": "Reynolds Building",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "197",
+      "pred": "The. | |. |. |. |. |. | | |. | | | | | | | | | | | | | | |",
+      "answer": "#154-0071",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "198",
+      "pred": "Anthi  Ste.\nQuestion:\n\nStev's \n\nStev's 1111111111",
+      "answer": "Anthropology",
+      "rouge_l_f": 0.0
+    },
+    {
+      "id": "199",
+      "pred": "The and in the)",
+      "answer": "3,926",
+      "rouge_l_f": 0.0
+    }
+  ],
+  "failures": []
+}

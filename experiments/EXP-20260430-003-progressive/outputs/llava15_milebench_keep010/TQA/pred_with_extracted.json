@@ -1,0 +1,4810 @@
+[
+    {
+        "sample_id": 0,
+        "pred_response": "d",
+        "gt_response": "x",
+        "choice_list": [
+            "p",
+            "w",
+            "x",
+            "f"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "0.png",
+            "1.png",
+            "2.png",
+            "3.png",
+            "4.png",
+            "5.png",
+            "6.png",
+            "7.png",
+            "8.png",
+            "9.png",
+            "10.png",
+            "11.png",
+            "12.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 1,
+        "pred_response": "a",
+        "gt_response": "x",
+        "choice_list": [
+            "x",
+            "s",
+            "k",
+            "f"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "13.png",
+            "14.png",
+            "15.png",
+            "16.png",
+            "17.png",
+            "18.png",
+            "19.png",
+            "20.png",
+            "21.png",
+            "22.png",
+            "23.png",
+            "24.png",
+            "25.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 2,
+        "pred_response": "b",
+        "gt_response": "d",
+        "choice_list": [
+            "d",
+            "t",
+            "k",
+            "w"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "26.png",
+            "27.png",
+            "28.png",
+            "29.png",
+            "30.png",
+            "31.png",
+            "32.png",
+            "33.png",
+            "34.png",
+            "35.png",
+            "36.png",
+            "37.png",
+            "38.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 3,
+        "pred_response": "d",
+        "gt_response": "d",
+        "choice_list": [
+            "l",
+            "d",
+            "e",
+            "a"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "39.png",
+            "40.png",
+            "41.png",
+            "42.png",
+            "43.png",
+            "44.png",
+            "45.png",
+            "46.png",
+            "47.png",
+            "48.png",
+            "49.png",
+            "50.png",
+            "51.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 4,
+        "pred_response": "a",
+        "gt_response": "k",
+        "choice_list": [
+            "v",
+            "e",
+            "a",
+            "k"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "52.png",
+            "53.png",
+            "54.png",
+            "55.png",
+            "56.png",
+            "57.png",
+            "58.png",
+            "59.png",
+            "60.png",
+            "61.png",
+            "62.png",
+            "63.png",
+            "64.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 5,
+        "pred_response": "a",
+        "gt_response": "v",
+        "choice_list": [
+            "v",
+            "w",
+            "f",
+            "j"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "65.png",
+            "66.png",
+            "67.png",
+            "68.png",
+            "69.png",
+            "70.png",
+            "71.png",
+            "72.png",
+            "73.png",
+            "74.png",
+            "75.png",
+            "76.png",
+            "77.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 6,
+        "pred_response": "b",
+        "gt_response": "x",
+        "choice_list": [
+            "n",
+            "e",
+            "x",
+            "l"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "78.png",
+            "79.png",
+            "80.png",
+            "81.png",
+            "82.png",
+            "83.png",
+            "84.png",
+            "85.png",
+            "86.png",
+            "87.png",
+            "88.png",
+            "89.png",
+            "90.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 7,
+        "pred_response": "b",
+        "gt_response": "e",
+        "choice_list": [
+            "a",
+            "l",
+            "x",
+            "e"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "91.png",
+            "92.png",
+            "93.png",
+            "94.png",
+            "95.png",
+            "96.png",
+            "97.png",
+            "98.png",
+            "99.png",
+            "100.png",
+            "101.png",
+            "102.png",
+            "103.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 8,
+        "pred_response": "d",
+        "gt_response": "r",
+        "choice_list": [
+            "p",
+            "r",
+            "u",
+            "v"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "104.png",
+            "105.png",
+            "106.png",
+            "107.png",
+            "108.png",
+            "109.png",
+            "110.png",
+            "111.png",
+            "112.png",
+            "113.png",
+            "114.png",
+            "115.png",
+            "116.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 9,
+        "pred_response": "a",
+        "gt_response": "u",
+        "choice_list": [
+            "v",
+            "l#",
+            "u",
+            "x"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "117.png",
+            "118.png",
+            "119.png",
+            "120.png",
+            "121.png",
+            "122.png",
+            "123.png",
+            "124.png",
+            "125.png",
+            "126.png",
+            "127.png",
+            "128.png",
+            "129.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 10,
+        "pred_response": "d",
+        "gt_response": "v",
+        "choice_list": [
+            "r",
+            "v",
+            "u",
+            "a"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "130.png",
+            "131.png",
+            "132.png",
+            "133.png",
+            "134.png",
+            "135.png",
+            "136.png",
+            "137.png",
+            "138.png",
+            "139.png",
+            "140.png",
+            "141.png",
+            "142.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 11,
+        "pred_response": "c",
+        "gt_response": "petiole",
+        "choice_list": [
+            "axil",
+            "vein",
+            "petiole",
+            "stipule"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "143.png",
+            "144.png",
+            "145.png",
+            "146.png",
+            "147.png",
+            "148.png",
+            "149.png",
+            "150.png",
+            "151.png",
+            "152.png",
+            "153.png",
+            "154.png",
+            "155.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 12,
+        "pred_response": "b",
+        "gt_response": "4",
+        "choice_list": [
+            "3",
+            "2",
+            "4",
+            "5"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "156.png",
+            "157.png",
+            "158.png",
+            "159.png",
+            "160.png",
+            "161.png",
+            "162.png",
+            "163.png",
+            "164.png",
+            "165.png",
+            "166.png",
+            "167.png",
+            "168.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 13,
+        "pred_response": "d",
+        "gt_response": "stem",
+        "choice_list": [
+            "rachis",
+            "petiolule",
+            "stem",
+            "petiole"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "169.png",
+            "170.png",
+            "171.png",
+            "172.png",
+            "173.png",
+            "174.png",
+            "175.png",
+            "176.png",
+            "177.png",
+            "178.png",
+            "179.png",
+            "180.png",
+            "181.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 14,
+        "pred_response": "a",
+        "gt_response": "d",
+        "choice_list": [
+            "b",
+            "a",
+            "c",
+            "d"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "182.png",
+            "183.png",
+            "184.png",
+            "185.png",
+            "186.png",
+            "187.png",
+            "188.png",
+            "189.png",
+            "190.png",
+            "191.png",
+            "192.png",
+            "193.png",
+            "194.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 15,
+        "pred_response": "c",
+        "gt_response": "stipule",
+        "choice_list": [
+            "petiole",
+            "stem",
+            "stipule",
+            "vein"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "195.png",
+            "196.png",
+            "197.png",
+            "198.png",
+            "199.png",
+            "200.png",
+            "201.png",
+            "202.png",
+            "203.png",
+            "204.png",
+            "205.png",
+            "206.png",
+            "207.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 16,
+        "pred_response": "c",
+        "gt_response": "a veins",
+        "choice_list": [
+            "a veins",
+            "d stem",
+            "c petiole",
+            "b midrib"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "208.png",
+            "209.png",
+            "210.png",
+            "211.png",
+            "212.png",
+            "213.png",
+            "214.png",
+            "215.png",
+            "216.png",
+            "217.png",
+            "218.png",
+            "219.png",
+            "220.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 17,
+        "pred_response": "b",
+        "gt_response": "petiole",
+        "choice_list": [
+            "blade",
+            "petiole",
+            "midrib",
+            "stipule"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "221.png",
+            "222.png",
+            "223.png",
+            "224.png",
+            "225.png",
+            "226.png",
+            "227.png",
+            "228.png",
+            "229.png",
+            "230.png",
+            "231.png",
+            "232.png",
+            "233.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 18,
+        "pred_response": "a petiole",
+        "gt_response": "petiole",
+        "choice_list": [
+            "petiole",
+            "vein",
+            "tip",
+            "margin"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "234.png",
+            "235.png",
+            "236.png",
+            "237.png",
+            "238.png",
+            "239.png",
+            "240.png",
+            "241.png",
+            "242.png",
+            "243.png",
+            "244.png",
+            "245.png",
+            "246.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 19,
+        "pred_response": "b",
+        "gt_response": "6",
+        "choice_list": [
+            "4",
+            "6",
+            "5",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "247.png",
+            "248.png",
+            "249.png",
+            "250.png",
+            "251.png",
+            "252.png",
+            "253.png",
+            "254.png",
+            "255.png",
+            "256.png",
+            "257.png",
+            "258.png",
+            "259.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 20,
+        "pred_response": "a",
+        "gt_response": "midrib",
+        "choice_list": [
+            "midrib",
+            "leafstalk",
+            "sheath",
+            "blade"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "260.png",
+            "261.png",
+            "262.png",
+            "263.png",
+            "264.png",
+            "265.png",
+            "266.png",
+            "267.png",
+            "268.png",
+            "269.png",
+            "270.png",
+            "271.png",
+            "272.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 21,
+        "pred_response": "d",
+        "gt_response": "mesophyll",
+        "choice_list": [
+            "vein",
+            "bundle of seath",
+            "guard cells",
+            "mesophyll"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "273.png",
+            "274.png",
+            "275.png",
+            "276.png",
+            "277.png",
+            "278.png",
+            "279.png",
+            "280.png",
+            "281.png",
+            "282.png",
+            "283.png",
+            "284.png",
+            "285.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 22,
+        "pred_response": "d",
+        "gt_response": "upper epidermis",
+        "choice_list": [
+            "upper epidermis",
+            "lower epidermis",
+            "lower epidermis",
+            "guard cells"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "286.png",
+            "287.png",
+            "288.png",
+            "289.png",
+            "290.png",
+            "291.png",
+            "292.png",
+            "293.png",
+            "294.png",
+            "295.png",
+            "296.png",
+            "297.png",
+            "298.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 23,
+        "pred_response": "c",
+        "gt_response": "epidermis",
+        "choice_list": [
+            "epidermis",
+            "stomata",
+            "guard cells",
+            "vascular tissue"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "299.png",
+            "300.png",
+            "301.png",
+            "302.png",
+            "303.png",
+            "304.png",
+            "305.png",
+            "306.png",
+            "307.png",
+            "308.png",
+            "309.png",
+            "310.png",
+            "311.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 24,
+        "pred_response": "c",
+        "gt_response": "vascular",
+        "choice_list": [
+            "guard cells",
+            "ground tissue",
+            "vascular",
+            "cuticle"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "312.png",
+            "313.png",
+            "314.png",
+            "315.png",
+            "316.png",
+            "317.png",
+            "318.png",
+            "319.png",
+            "320.png",
+            "321.png",
+            "322.png",
+            "323.png",
+            "324.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 25,
+        "pred_response": "d",
+        "gt_response": "petiole",
+        "choice_list": [
+            "primary vein",
+            "margin",
+            "blade",
+            "petiole"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "325.png",
+            "326.png",
+            "327.png",
+            "328.png",
+            "329.png",
+            "330.png",
+            "331.png",
+            "332.png",
+            "333.png",
+            "334.png",
+            "335.png",
+            "336.png",
+            "337.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 26,
+        "pred_response": "c",
+        "gt_response": "palisade mesophyll",
+        "choice_list": [
+            "sub stomatal cavity",
+            "phloem",
+            "spongy mesophyll",
+            "palisade mesophyll"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "338.png",
+            "339.png",
+            "340.png",
+            "341.png",
+            "342.png",
+            "343.png",
+            "344.png",
+            "345.png",
+            "346.png",
+            "347.png",
+            "348.png",
+            "349.png",
+            "350.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 27,
+        "pred_response": "a petiole",
+        "gt_response": "petiole",
+        "choice_list": [
+            "petiole",
+            "tip",
+            "vein",
+            "axil"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "351.png",
+            "352.png",
+            "353.png",
+            "354.png",
+            "355.png",
+            "356.png",
+            "357.png",
+            "358.png",
+            "359.png",
+            "360.png",
+            "361.png",
+            "362.png",
+            "363.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 28,
+        "pred_response": "d",
+        "gt_response": "6",
+        "choice_list": [
+            "8",
+            "4",
+            "2",
+            "6"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "364.png",
+            "365.png",
+            "366.png",
+            "367.png",
+            "368.png",
+            "369.png",
+            "370.png",
+            "371.png",
+            "372.png",
+            "373.png",
+            "374.png",
+            "375.png",
+            "376.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 29,
+        "pred_response": "d",
+        "gt_response": "petiole midrib blade vein small netted veins",
+        "choice_list": [
+            "big netted veins",
+            "petoiel",
+            "mibrid",
+            "petiole midrib blade vein small netted veins"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "377.png",
+            "378.png",
+            "379.png",
+            "380.png",
+            "381.png",
+            "382.png",
+            "383.png",
+            "384.png",
+            "385.png",
+            "386.png",
+            "387.png",
+            "388.png",
+            "389.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 30,
+        "pred_response": "a",
+        "gt_response": "a",
+        "choice_list": [
+            "c",
+            "d",
+            "a",
+            "b"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "390.png",
+            "391.png",
+            "392.png",
+            "393.png",
+            "394.png",
+            "395.png",
+            "396.png",
+            "397.png",
+            "398.png",
+            "399.png",
+            "400.png",
+            "401.png",
+            "402.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 31,
+        "pred_response": "b",
+        "gt_response": "lateral roots",
+        "choice_list": [
+            "primary root",
+            "lateral roots",
+            "vascular system",
+            "root cap"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "403.png",
+            "404.png",
+            "405.png",
+            "406.png",
+            "407.png",
+            "408.png",
+            "409.png",
+            "410.png",
+            "411.png",
+            "412.png",
+            "413.png",
+            "414.png",
+            "415.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 32,
+        "pred_response": "a",
+        "gt_response": "d",
+        "choice_list": [
+            "b",
+            "d",
+            "a",
+            "c"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "416.png",
+            "417.png",
+            "418.png",
+            "419.png",
+            "420.png",
+            "421.png",
+            "422.png",
+            "423.png",
+            "424.png",
+            "425.png",
+            "426.png",
+            "427.png",
+            "428.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 33,
+        "pred_response": "d",
+        "gt_response": "d",
+        "choice_list": [
+            "c",
+            "a",
+            "d",
+            "b"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "429.png",
+            "430.png",
+            "431.png",
+            "432.png",
+            "433.png",
+            "434.png",
+            "435.png",
+            "436.png",
+            "437.png",
+            "438.png",
+            "439.png",
+            "440.png",
+            "441.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 34,
+        "pred_response": "a",
+        "gt_response": "stem",
+        "choice_list": [
+            "stem",
+            "apical bud",
+            "leaf",
+            "axillary bud"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "442.png",
+            "443.png",
+            "444.png",
+            "445.png",
+            "446.png",
+            "447.png",
+            "448.png",
+            "449.png",
+            "450.png",
+            "451.png",
+            "452.png",
+            "453.png",
+            "454.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 35,
+        "pred_response": "d",
+        "gt_response": "flower",
+        "choice_list": [
+            "root system",
+            "flower",
+            "secondary root",
+            "primary root"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "455.png",
+            "456.png",
+            "457.png",
+            "458.png",
+            "459.png",
+            "460.png",
+            "461.png",
+            "462.png",
+            "463.png",
+            "464.png",
+            "465.png",
+            "466.png",
+            "467.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 36,
+        "pred_response": "b",
+        "gt_response": "6",
+        "choice_list": [
+            "8",
+            "9",
+            "6",
+            "10"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "468.png",
+            "469.png",
+            "470.png",
+            "471.png",
+            "472.png",
+            "473.png",
+            "474.png",
+            "475.png",
+            "476.png",
+            "477.png",
+            "478.png",
+            "479.png",
+            "480.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 37,
+        "pred_response": "d",
+        "gt_response": "root",
+        "choice_list": [
+            "fruit",
+            "leaf",
+            "flower",
+            "root"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "481.png",
+            "482.png",
+            "483.png",
+            "484.png",
+            "485.png",
+            "486.png",
+            "487.png",
+            "488.png",
+            "489.png",
+            "490.png",
+            "491.png",
+            "492.png",
+            "493.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 38,
+        "pred_response": "b",
+        "gt_response": "r",
+        "choice_list": [
+            "r",
+            "p",
+            "q",
+            "s"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "494.png",
+            "495.png",
+            "496.png",
+            "497.png",
+            "498.png",
+            "499.png",
+            "500.png",
+            "501.png",
+            "502.png",
+            "503.png",
+            "504.png",
+            "505.png",
+            "506.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 39,
+        "pred_response": "c",
+        "gt_response": "a",
+        "choice_list": [
+            "b",
+            "c",
+            "a",
+            "d"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "507.png",
+            "508.png",
+            "509.png",
+            "510.png",
+            "511.png",
+            "512.png",
+            "513.png",
+            "514.png",
+            "515.png",
+            "516.png",
+            "517.png",
+            "518.png",
+            "519.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 40,
+        "pred_response": "a",
+        "gt_response": "flower",
+        "choice_list": [
+            "flower",
+            "fruit",
+            "seed",
+            "leaf"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "520.png",
+            "521.png",
+            "522.png",
+            "523.png",
+            "524.png",
+            "525.png",
+            "526.png",
+            "527.png",
+            "528.png",
+            "529.png",
+            "530.png",
+            "531.png",
+            "532.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 41,
+        "pred_response": "b",
+        "gt_response": "root",
+        "choice_list": [
+            "stem",
+            "root",
+            "basal leaf",
+            "flower bud"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "533.png",
+            "534.png",
+            "535.png",
+            "536.png",
+            "537.png",
+            "538.png",
+            "539.png",
+            "540.png",
+            "541.png",
+            "542.png",
+            "543.png",
+            "544.png",
+            "545.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 42,
+        "pred_response": "b",
+        "gt_response": "root system",
+        "choice_list": [
+            "shoot system",
+            "root system",
+            "flower bud",
+            "node"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "546.png",
+            "547.png",
+            "548.png",
+            "549.png",
+            "550.png",
+            "551.png",
+            "552.png",
+            "553.png",
+            "554.png",
+            "555.png",
+            "556.png",
+            "557.png",
+            "558.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 43,
+        "pred_response": "a",
+        "gt_response": "1",
+        "choice_list": [
+            "2",
+            "6",
+            "1",
+            "4"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "559.png",
+            "560.png",
+            "561.png",
+            "562.png",
+            "563.png",
+            "564.png",
+            "565.png",
+            "566.png",
+            "567.png",
+            "568.png",
+            "569.png",
+            "570.png",
+            "571.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 44,
+        "pred_response": "c",
+        "gt_response": "needle like",
+        "choice_list": [
+            "linear",
+            "awl like",
+            "needle like",
+            "scale like"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "572.png",
+            "573.png",
+            "574.png",
+            "575.png",
+            "576.png",
+            "577.png",
+            "578.png",
+            "579.png",
+            "580.png",
+            "581.png",
+            "582.png",
+            "583.png",
+            "584.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 45,
+        "pred_response": "d",
+        "gt_response": "4",
+        "choice_list": [
+            "2",
+            "4",
+            "5",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "585.png",
+            "586.png",
+            "587.png",
+            "588.png",
+            "589.png",
+            "590.png",
+            "591.png",
+            "592.png",
+            "593.png",
+            "594.png",
+            "595.png",
+            "596.png",
+            "597.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 46,
+        "pred_response": "b",
+        "gt_response": "veins",
+        "choice_list": [
+            "stomata",
+            "chloroplasts",
+            "veins",
+            "dermal cells"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "598.png",
+            "599.png",
+            "600.png",
+            "601.png",
+            "602.png",
+            "603.png",
+            "604.png",
+            "605.png",
+            "606.png",
+            "607.png",
+            "608.png",
+            "609.png",
+            "610.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 47,
+        "pred_response": "d",
+        "gt_response": "3",
+        "choice_list": [
+            "3",
+            "4",
+            "5",
+            "2"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "611.png",
+            "612.png",
+            "613.png",
+            "614.png",
+            "615.png",
+            "616.png",
+            "617.png",
+            "618.png",
+            "619.png",
+            "620.png",
+            "621.png",
+            "622.png",
+            "623.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 48,
+        "pred_response": "b",
+        "gt_response": "3",
+        "choice_list": [
+            "0",
+            "1",
+            "5",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "624.png",
+            "625.png",
+            "626.png",
+            "627.png",
+            "628.png",
+            "629.png",
+            "630.png",
+            "631.png",
+            "632.png",
+            "633.png",
+            "634.png",
+            "635.png",
+            "636.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 49,
+        "pred_response": "a",
+        "gt_response": "opposite",
+        "choice_list": [
+            "opposite",
+            "parallel",
+            "alternate",
+            "perpendicular"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "637.png",
+            "638.png",
+            "639.png",
+            "640.png",
+            "641.png",
+            "642.png",
+            "643.png",
+            "644.png",
+            "645.png",
+            "646.png",
+            "647.png",
+            "648.png",
+            "649.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 50,
+        "pred_response": "a cordate",
+        "gt_response": "cuneate",
+        "choice_list": [
+            "cordate",
+            "obtuse",
+            "cuneate",
+            "oblique"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "650.png",
+            "651.png",
+            "652.png",
+            "653.png",
+            "654.png",
+            "655.png",
+            "656.png",
+            "657.png",
+            "658.png",
+            "659.png",
+            "660.png",
+            "661.png",
+            "662.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 51,
+        "pred_response": "b",
+        "gt_response": "5",
+        "choice_list": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "663.png",
+            "664.png",
+            "665.png",
+            "666.png",
+            "667.png",
+            "668.png",
+            "669.png",
+            "670.png",
+            "671.png",
+            "672.png",
+            "673.png",
+            "674.png",
+            "675.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 52,
+        "pred_response": "b",
+        "gt_response": "8",
+        "choice_list": [
+            "7",
+            "6",
+            "8",
+            "9"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "676.png",
+            "677.png",
+            "678.png",
+            "679.png",
+            "680.png",
+            "681.png",
+            "682.png",
+            "683.png",
+            "684.png",
+            "685.png",
+            "686.png",
+            "687.png",
+            "688.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 53,
+        "pred_response": "c",
+        "gt_response": "13",
+        "choice_list": [
+            "13",
+            "14",
+            "12",
+            "10"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "689.png",
+            "690.png",
+            "691.png",
+            "692.png",
+            "693.png",
+            "694.png",
+            "695.png",
+            "696.png",
+            "697.png",
+            "698.png",
+            "699.png",
+            "700.png",
+            "701.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 54,
+        "pred_response": "d agudo",
+        "gt_response": "obtuso",
+        "choice_list": [
+            "obtuso",
+            "mucronado",
+            "acuminado",
+            "agudo"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "702.png",
+            "703.png",
+            "704.png",
+            "705.png",
+            "706.png",
+            "707.png",
+            "708.png",
+            "709.png",
+            "710.png",
+            "711.png",
+            "712.png",
+            "713.png",
+            "714.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 55,
+        "pred_response": "a",
+        "gt_response": "connate",
+        "choice_list": [
+            "petiolate",
+            "closed sheath",
+            "connate",
+            "cessile"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "715.png",
+            "716.png",
+            "717.png",
+            "718.png",
+            "719.png",
+            "720.png",
+            "721.png",
+            "722.png",
+            "723.png",
+            "724.png",
+            "725.png",
+            "726.png",
+            "727.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 56,
+        "pred_response": "a broad elliptic",
+        "gt_response": "broad elliptic",
+        "choice_list": [
+            "broad elliptic",
+            "lanceolate",
+            "elliptic",
+            "obovate"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "728.png",
+            "729.png",
+            "730.png",
+            "731.png",
+            "732.png",
+            "733.png",
+            "734.png",
+            "735.png",
+            "736.png",
+            "737.png",
+            "738.png",
+            "739.png",
+            "740.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 57,
+        "pred_response": "b",
+        "gt_response": "acicular",
+        "choice_list": [
+            "mucronate",
+            "cordiform",
+            "acicular",
+            "asymetrical"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "741.png",
+            "742.png",
+            "743.png",
+            "744.png",
+            "745.png",
+            "746.png",
+            "747.png",
+            "748.png",
+            "749.png",
+            "750.png",
+            "751.png",
+            "752.png",
+            "753.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 58,
+        "pred_response": "a",
+        "gt_response": "oval",
+        "choice_list": [
+            "long",
+            "round",
+            "square",
+            "oval"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "754.png",
+            "755.png",
+            "756.png",
+            "757.png",
+            "758.png",
+            "759.png",
+            "760.png",
+            "761.png",
+            "762.png",
+            "763.png",
+            "764.png",
+            "765.png",
+            "766.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 59,
+        "pred_response": "b",
+        "gt_response": "2",
+        "choice_list": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "767.png",
+            "768.png",
+            "769.png",
+            "770.png",
+            "771.png",
+            "772.png",
+            "773.png",
+            "774.png",
+            "775.png",
+            "776.png",
+            "777.png",
+            "778.png",
+            "779.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 60,
+        "pred_response": "d lobed",
+        "gt_response": "entire",
+        "choice_list": [
+            "entire",
+            "singly toothed",
+            "doubly toothed",
+            "lobed"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "780.png",
+            "781.png",
+            "782.png",
+            "783.png",
+            "784.png",
+            "785.png",
+            "786.png",
+            "787.png",
+            "788.png",
+            "789.png",
+            "790.png",
+            "791.png",
+            "792.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 61,
+        "pred_response": "b",
+        "gt_response": "9",
+        "choice_list": [
+            "7",
+            "2",
+            "9",
+            "4"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "793.png",
+            "794.png",
+            "795.png",
+            "796.png",
+            "797.png",
+            "798.png",
+            "799.png",
+            "800.png",
+            "801.png",
+            "802.png",
+            "803.png",
+            "804.png",
+            "805.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 62,
+        "pred_response": "d",
+        "gt_response": "acicular",
+        "choice_list": [
+            "deltiod",
+            "falcate",
+            "linear",
+            "acicular"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "806.png",
+            "807.png",
+            "808.png",
+            "809.png",
+            "810.png",
+            "811.png",
+            "812.png",
+            "813.png",
+            "814.png",
+            "815.png",
+            "816.png",
+            "817.png",
+            "818.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 63,
+        "pred_response": "d",
+        "gt_response": "hastate",
+        "choice_list": [
+            "linear",
+            "hastate",
+            "obcordate",
+            "spatulate"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "819.png",
+            "820.png",
+            "821.png",
+            "822.png",
+            "823.png",
+            "824.png",
+            "825.png",
+            "826.png",
+            "827.png",
+            "828.png",
+            "829.png",
+            "830.png",
+            "831.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 64,
+        "pred_response": "b",
+        "gt_response": "underneath the leaf",
+        "choice_list": [
+            "on the stem",
+            "underneath the leaf",
+            "on top of the leaf",
+            "in the roots"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "832.png",
+            "833.png",
+            "834.png",
+            "835.png",
+            "836.png",
+            "837.png",
+            "838.png",
+            "839.png",
+            "840.png",
+            "841.png",
+            "842.png",
+            "843.png",
+            "844.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 65,
+        "pred_response": "b",
+        "gt_response": "5",
+        "choice_list": [
+            "5",
+            "4",
+            "2",
+            "1"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "845.png",
+            "846.png",
+            "847.png",
+            "848.png",
+            "849.png",
+            "850.png",
+            "851.png",
+            "852.png",
+            "853.png",
+            "854.png",
+            "855.png",
+            "856.png",
+            "857.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 66,
+        "pred_response": "a petiole",
+        "gt_response": "margin",
+        "choice_list": [
+            "petiole",
+            "margin",
+            "sinus",
+            "lobe"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "858.png",
+            "859.png",
+            "860.png",
+            "861.png",
+            "862.png",
+            "863.png",
+            "864.png",
+            "865.png",
+            "866.png",
+            "867.png",
+            "868.png",
+            "869.png",
+            "870.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 67,
+        "pred_response": "c",
+        "gt_response": "f",
+        "choice_list": [
+            "e",
+            "f",
+            "t",
+            "k"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "871.png",
+            "872.png",
+            "873.png",
+            "874.png",
+            "875.png",
+            "876.png",
+            "877.png",
+            "878.png",
+            "879.png",
+            "880.png",
+            "881.png",
+            "882.png",
+            "883.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 68,
+        "pred_response": "c",
+        "gt_response": "anther",
+        "choice_list": [
+            "stigma",
+            "sepal",
+            "anther",
+            "petal"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "884.png",
+            "885.png",
+            "886.png",
+            "887.png",
+            "888.png",
+            "889.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 69,
+        "pred_response": "a",
+        "gt_response": "s",
+        "choice_list": [
+            "a",
+            "s",
+            "e",
+            "j"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "890.png",
+            "891.png",
+            "892.png",
+            "893.png",
+            "894.png",
+            "895.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 70,
+        "pred_response": "c",
+        "gt_response": "4",
+        "choice_list": [
+            "2",
+            "1",
+            "4",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "896.png",
+            "897.png",
+            "898.png",
+            "899.png",
+            "900.png",
+            "901.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 71,
+        "pred_response": "a life cycle of a butterfly",
+        "gt_response": "life cycle of a jellyfish",
+        "choice_list": [
+            "life cycle of a butterfly",
+            "life cycle of humans",
+            "life cycle of a crab",
+            "life cycle of a jellyfish"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "902.png",
+            "903.png",
+            "904.png",
+            "905.png",
+            "906.png",
+            "907.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 72,
+        "pred_response": "d",
+        "gt_response": "yes",
+        "choice_list": [
+            "maybe",
+            "cannot determine",
+            "no",
+            "yes"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "908.png",
+            "909.png",
+            "910.png",
+            "911.png",
+            "912.png",
+            "913.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 73,
+        "pred_response": "d",
+        "gt_response": "seed",
+        "choice_list": [
+            "seedling",
+            "fruit",
+            "seed",
+            "adult"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "914.png",
+            "915.png",
+            "916.png",
+            "917.png",
+            "918.png",
+            "919.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 74,
+        "pred_response": "b",
+        "gt_response": "chrysalis",
+        "choice_list": [
+            "egg",
+            "chrysalis",
+            "larva",
+            "adult butterfly"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "920.png",
+            "921.png",
+            "922.png",
+            "923.png",
+            "924.png",
+            "925.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 75,
+        "pred_response": "c",
+        "gt_response": "larva",
+        "choice_list": [
+            "larva",
+            "pupa",
+            "adult butterfly",
+            "egg"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "926.png",
+            "927.png",
+            "928.png",
+            "929.png",
+            "930.png",
+            "931.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 76,
+        "pred_response": "c",
+        "gt_response": "4",
+        "choice_list": [
+            "4",
+            "2",
+            "3",
+            "1"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "932.png",
+            "933.png",
+            "934.png",
+            "935.png",
+            "936.png",
+            "937.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 77,
+        "pred_response": "c",
+        "gt_response": "adult ladybug",
+        "choice_list": [
+            "adult ladybug",
+            "larva",
+            "pupa",
+            "egg"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "938.png",
+            "939.png",
+            "940.png",
+            "941.png",
+            "942.png",
+            "943.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 78,
+        "pred_response": "c",
+        "gt_response": "2",
+        "choice_list": [
+            "1",
+            "5",
+            "2",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "944.png",
+            "945.png",
+            "946.png",
+            "947.png",
+            "948.png",
+            "949.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 79,
+        "pred_response": "a their population would decrease",
+        "gt_response": "their population would decrease",
+        "choice_list": [
+            "their population would decrease",
+            "i don't know",
+            "their population remains constant",
+            "their population would increase"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "950.png",
+            "951.png",
+            "952.png",
+            "953.png",
+            "954.png",
+            "955.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 80,
+        "pred_response": "b",
+        "gt_response": "larva",
+        "choice_list": [
+            "adult",
+            "pupa",
+            "young adult",
+            "larva"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "956.png",
+            "957.png",
+            "958.png",
+            "959.png",
+            "960.png",
+            "961.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 81,
+        "pred_response": "a",
+        "gt_response": "7",
+        "choice_list": [
+            "7",
+            "8",
+            "6",
+            "5"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "962.png",
+            "963.png",
+            "964.png",
+            "965.png",
+            "966.png",
+            "967.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 82,
+        "pred_response": "a reptiles and long tailed weasel",
+        "gt_response": "reptiles and long tailed weasel",
+        "choice_list": [
+            "reptiles and long tailed weasel",
+            "bobcat",
+            "cougar",
+            "coyote"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "968.png",
+            "969.png",
+            "970.png",
+            "971.png",
+            "972.png",
+            "973.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 83,
+        "pred_response": "d",
+        "gt_response": "mussel shrimp and oyster",
+        "choice_list": [
+            "barnacle and oyster",
+            "sea anemone and oyster",
+            "mussel shrimp and oyster",
+            "mussel and barnacle"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "974.png",
+            "975.png",
+            "976.png",
+            "977.png",
+            "978.png",
+            "979.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 84,
+        "pred_response": "b",
+        "gt_response": "1",
+        "choice_list": [
+            "3",
+            "1",
+            "2",
+            "4"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "980.png",
+            "981.png",
+            "982.png",
+            "983.png",
+            "984.png",
+            "985.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 85,
+        "pred_response": "a",
+        "gt_response": "4",
+        "choice_list": [
+            "4",
+            "3",
+            "1",
+            "2"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "986.png",
+            "987.png",
+            "988.png",
+            "989.png",
+            "990.png",
+            "991.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 86,
+        "pred_response": "c",
+        "gt_response": "owls",
+        "choice_list": [
+            "grasshopper",
+            "shrew",
+            "owls",
+            "grass"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "992.png",
+            "993.png",
+            "994.png",
+            "995.png",
+            "996.png",
+            "997.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 87,
+        "pred_response": "a",
+        "gt_response": "human and dolphin",
+        "choice_list": [
+            "zooplankton",
+            "phytoplankton",
+            "human and dolphin",
+            "herring fish"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "998.png",
+            "999.png",
+            "1000.png",
+            "1001.png",
+            "1002.png",
+            "1003.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 88,
+        "pred_response": "c frogs",
+        "gt_response": "crickets",
+        "choice_list": [
+            "hawks",
+            "crickets",
+            "frogs",
+            "snakes"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1004.png",
+            "1005.png",
+            "1006.png",
+            "1007.png",
+            "1008.png",
+            "1009.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 89,
+        "pred_response": "d",
+        "gt_response": "cougar",
+        "choice_list": [
+            "snake",
+            "rabbit",
+            "cougar",
+            "mouse"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1010.png",
+            "1011.png",
+            "1012.png",
+            "1013.png",
+            "1014.png",
+            "1015.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 90,
+        "pred_response": "c",
+        "gt_response": "tadpole",
+        "choice_list": [
+            "fish",
+            "producers",
+            "bird",
+            "tadpole"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1016.png",
+            "1017.png",
+            "1018.png",
+            "1019.png",
+            "1020.png",
+            "1021.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 91,
+        "pred_response": "d",
+        "gt_response": "water plants",
+        "choice_list": [
+            "fresh air",
+            "birds",
+            "fish",
+            "water plants"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1022.png",
+            "1023.png",
+            "1024.png",
+            "1025.png",
+            "1026.png",
+            "1027.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 92,
+        "pred_response": "a pine borer",
+        "gt_response": "pine borer",
+        "choice_list": [
+            "pine borer",
+            "acorns",
+            "kinglet",
+            "squirrel"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1028.png",
+            "1029.png",
+            "1030.png",
+            "1031.png",
+            "1032.png",
+            "1033.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 93,
+        "pred_response": "b",
+        "gt_response": "2",
+        "choice_list": [
+            "2",
+            "1",
+            "7",
+            "6"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1034.png",
+            "1035.png",
+            "1036.png",
+            "1037.png",
+            "1038.png",
+            "1039.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 94,
+        "pred_response": "d",
+        "gt_response": "owl",
+        "choice_list": [
+            "owl",
+            "grass",
+            "grasshopper",
+            "mouse"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1040.png",
+            "1041.png",
+            "1042.png",
+            "1043.png",
+            "1044.png",
+            "1045.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 95,
+        "pred_response": "c",
+        "gt_response": "5",
+        "choice_list": [
+            "4",
+            "5",
+            "3",
+            "2"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1046.png",
+            "1047.png",
+            "1048.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 96,
+        "pred_response": "a accumulation zone",
+        "gt_response": "accumulation zone",
+        "choice_list": [
+            "accumulation zone",
+            "ice front",
+            "ablation zone",
+            "margin of glacier"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1049.png",
+            "1050.png",
+            "1051.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 97,
+        "pred_response": "b",
+        "gt_response": "l",
+        "choice_list": [
+            "k",
+            "l",
+            "d",
+            "n"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1052.png",
+            "1053.png",
+            "1054.png",
+            "1055.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 98,
+        "pred_response": "d",
+        "gt_response": "2",
+        "choice_list": [
+            "3",
+            "4",
+            "1",
+            "2"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1056.png",
+            "1057.png",
+            "1058.png",
+            "1059.png",
+            "1060.png",
+            "1061.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 99,
+        "pred_response": "d",
+        "gt_response": "3",
+        "choice_list": [
+            "5",
+            "2",
+            "3",
+            "4"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1062.png",
+            "1063.png",
+            "1064.png",
+            "1065.png",
+            "1066.png",
+            "1067.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 100,
+        "pred_response": "b",
+        "gt_response": "m",
+        "choice_list": [
+            "j",
+            "m",
+            "w",
+            "p"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1068.png",
+            "1069.png",
+            "1070.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 101,
+        "pred_response": "c",
+        "gt_response": "so2 and hg",
+        "choice_list": [
+            "voc only",
+            "so2 and hg",
+            "nox and particulate pollutants",
+            "voc and nox"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1071.png",
+            "1072.png",
+            "1073.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 102,
+        "pred_response": "d",
+        "gt_response": "inner core",
+        "choice_list": [
+            "convection zone",
+            "inner core",
+            "subsurface flows",
+            "photosphere"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1074.png",
+            "1075.png",
+            "1076.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 103,
+        "pred_response": "d",
+        "gt_response": "waxing gibbous",
+        "choice_list": [
+            "full moon",
+            "waxing gibbous",
+            "new moon",
+            "waxing crescent"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1077.png",
+            "1078.png",
+            "1079.png",
+            "1080.png",
+            "1081.png",
+            "1082.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 104,
+        "pred_response": "d",
+        "gt_response": "last quarter",
+        "choice_list": [
+            "first quarter",
+            "waxing gibbous",
+            "last quarter",
+            "waning crescent"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1083.png",
+            "1084.png",
+            "1085.png",
+            "1086.png",
+            "1087.png",
+            "1088.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 105,
+        "pred_response": "c",
+        "gt_response": "k",
+        "choice_list": [
+            "k",
+            "e",
+            "s",
+            "n"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1089.png",
+            "1090.png",
+            "1091.png",
+            "1092.png",
+            "1093.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 106,
+        "pred_response": "c",
+        "gt_response": "neptune",
+        "choice_list": [
+            "neptune",
+            "mercury",
+            "earth",
+            "mars"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1094.png",
+            "1095.png",
+            "1096.png",
+            "1097.png",
+            "1098.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 107,
+        "pred_response": "d",
+        "gt_response": "earth",
+        "choice_list": [
+            "jupiter",
+            "earth",
+            "mars",
+            "uranus"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1099.png",
+            "1100.png",
+            "1101.png",
+            "1102.png",
+            "1103.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 108,
+        "pred_response": "c",
+        "gt_response": "s",
+        "choice_list": [
+            "r",
+            "f",
+            "a",
+            "s"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1104.png",
+            "1105.png",
+            "1106.png",
+            "1107.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 109,
+        "pred_response": "d",
+        "gt_response": "x",
+        "choice_list": [
+            "f",
+            "x",
+            "k",
+            "p"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1108.png",
+            "1109.png",
+            "1110.png",
+            "1111.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 110,
+        "pred_response": "d",
+        "gt_response": "f",
+        "choice_list": [
+            "s",
+            "b",
+            "r",
+            "f"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1112.png",
+            "1113.png",
+            "1114.png",
+            "1115.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 111,
+        "pred_response": "c",
+        "gt_response": "radiation",
+        "choice_list": [
+            "sun",
+            "light",
+            "radiation",
+            "water"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1116.png",
+            "1117.png",
+            "1118.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 112,
+        "pred_response": "b",
+        "gt_response": "3",
+        "choice_list": [
+            "2",
+            "4",
+            "5",
+            "3"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1119.png",
+            "1120.png",
+            "1121.png",
+            "1122.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 113,
+        "pred_response": "c",
+        "gt_response": "t",
+        "choice_list": [
+            "d",
+            "c",
+            "u",
+            "t"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1123.png",
+            "1124.png",
+            "1125.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 114,
+        "pred_response": "a",
+        "gt_response": "66.5 n",
+        "choice_list": [
+            "66.5 n",
+            "65 w",
+            "55 w",
+            "67s"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1126.png",
+            "1127.png",
+            "1128.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 115,
+        "pred_response": "d",
+        "gt_response": "22 dec",
+        "choice_list": [
+            "september 23",
+            "22 dec",
+            "june 22",
+            "march 21"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1129.png",
+            "1130.png",
+            "1131.png",
+            "1132.png",
+            "1133.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 116,
+        "pred_response": "b",
+        "gt_response": "solstice",
+        "choice_list": [
+            "solstice",
+            "equinox",
+            "hurricane",
+            "tornado"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1134.png",
+            "1135.png",
+            "1136.png",
+            "1137.png",
+            "1138.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 117,
+        "pred_response": "c",
+        "gt_response": "aortic arches",
+        "choice_list": [
+            "dorsal blood vessels",
+            "crops",
+            "aortic arches",
+            "gizzards"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1139.png",
+            "1140.png",
+            "1141.png",
+            "1142.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 118,
+        "pred_response": "b",
+        "gt_response": "5",
+        "choice_list": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1143.png",
+            "1144.png",
+            "1145.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 119,
+        "pred_response": "a",
+        "gt_response": "they help fish swim and navigate in the water",
+        "choice_list": [
+            "they help fish swim and navigate in the water",
+            "to reduce water resistance",
+            "for breathing",
+            "for staying long under water"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1146.png",
+            "1147.png",
+            "1148.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 120,
+        "pred_response": "c",
+        "gt_response": "w",
+        "choice_list": [
+            "f",
+            "j",
+            "y",
+            "w"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1149.png",
+            "1150.png",
+            "1151.png",
+            "1152.png",
+            "1153.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 121,
+        "pred_response": "d",
+        "gt_response": "sebaceous gland",
+        "choice_list": [
+            "adipose tissue",
+            "hair root",
+            "arrector pili muscle",
+            "sebaceous gland"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1154.png",
+            "1155.png",
+            "1156.png",
+            "1157.png",
+            "1158.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 122,
+        "pred_response": "d",
+        "gt_response": "fat",
+        "choice_list": [
+            "blood vessel",
+            "epidermis",
+            "fat",
+            "sweat gland"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1159.png",
+            "1160.png",
+            "1161.png",
+            "1162.png",
+            "1163.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 123,
+        "pred_response": "d",
+        "gt_response": "humerus",
+        "choice_list": [
+            "clavicle",
+            "ulna",
+            "humerus",
+            "scapula"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1164.png",
+            "1165.png",
+            "1166.png",
+            "1167.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 124,
+        "pred_response": "b",
+        "gt_response": "u",
+        "choice_list": [
+            "n",
+            "u",
+            "p",
+            "v"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1168.png",
+            "1169.png",
+            "1170.png",
+            "1171.png",
+            "1172.png",
+            "1173.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 125,
+        "pred_response": "c",
+        "gt_response": "5",
+        "choice_list": [
+            "6",
+            "3",
+            "4",
+            "5"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1174.png",
+            "1175.png",
+            "1176.png",
+            "1177.png",
+            "1178.png",
+            "1179.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 126,
+        "pred_response": "b",
+        "gt_response": "muscle fiber",
+        "choice_list": [
+            "epimysium",
+            "muscle fiber",
+            "blood vessel",
+            "perimysium"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1180.png",
+            "1181.png",
+            "1182.png",
+            "1183.png",
+            "1184.png",
+            "1185.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 127,
+        "pred_response": "d",
+        "gt_response": "x",
+        "choice_list": [
+            "x",
+            "p",
+            "arteries",
+            "larynx"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1186.png",
+            "1187.png",
+            "1188.png",
+            "1189.png",
+            "1190.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 128,
+        "pred_response": "b",
+        "gt_response": "the esophagus",
+        "choice_list": [
+            "the esophagus",
+            "the stomach",
+            "the liver",
+            "the large intestine"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1191.png",
+            "1192.png",
+            "1193.png",
+            "1194.png",
+            "1195.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 129,
+        "pred_response": "b",
+        "gt_response": "small intestine",
+        "choice_list": [
+            "large intestine",
+            "colon",
+            "stomach",
+            "small intestine"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1196.png",
+            "1197.png",
+            "1198.png",
+            "1199.png",
+            "1200.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 130,
+        "pred_response": "a",
+        "gt_response": "the heart",
+        "choice_list": [
+            "the liver",
+            "the pancreas",
+            "the heart",
+            "the diaphragm"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1201.png",
+            "1202.png",
+            "1203.png",
+            "1204.png",
+            "1205.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 131,
+        "pred_response": "c",
+        "gt_response": "lung",
+        "choice_list": [
+            "stomach",
+            "liver",
+            "spleen",
+            "lung"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1206.png",
+            "1207.png",
+            "1208.png",
+            "1209.png",
+            "1210.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 132,
+        "pred_response": "b",
+        "gt_response": "2",
+        "choice_list": [
+            "8",
+            "4",
+            "1",
+            "2"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1211.png",
+            "1212.png",
+            "1213.png",
+            "1214.png",
+            "1215.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 133,
+        "pred_response": "d",
+        "gt_response": "4",
+        "choice_list": [
+            "3",
+            "1",
+            "4",
+            "2"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1216.png",
+            "1217.png",
+            "1218.png",
+            "1219.png",
+            "1220.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 134,
+        "pred_response": "b",
+        "gt_response": "gallbladder",
+        "choice_list": [
+            "salivary glands",
+            "gallbladder",
+            "large intestine",
+            "esophagus"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1221.png",
+            "1222.png",
+            "1223.png",
+            "1224.png",
+            "1225.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 135,
+        "pred_response": "b",
+        "gt_response": "it enters the stomach through the esophagus",
+        "choice_list": [
+            "it stays there",
+            "it enters the stomach through the esophagus",
+            "it goes straight to the anus",
+            "it is digested there"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1226.png",
+            "1227.png",
+            "1228.png",
+            "1229.png",
+            "1230.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 136,
+        "pred_response": "a oesophagus",
+        "gt_response": "oesophagus",
+        "choice_list": [
+            "oesophagus",
+            "rectum",
+            "gallbladder",
+            "liver"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1231.png",
+            "1232.png",
+            "1233.png",
+            "1234.png",
+            "1235.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 137,
+        "pred_response": "a colon",
+        "gt_response": "small intestine",
+        "choice_list": [
+            "colon",
+            "liver",
+            "stomach",
+            "small intestine"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1236.png",
+            "1237.png",
+            "1238.png",
+            "1239.png",
+            "1240.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 138,
+        "pred_response": "d",
+        "gt_response": "a",
+        "choice_list": [
+            "u",
+            "t",
+            "s",
+            "a"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1241.png",
+            "1242.png",
+            "1243.png",
+            "1244.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 139,
+        "pred_response": "c",
+        "gt_response": "4",
+        "choice_list": [
+            "5",
+            "6",
+            "4",
+            "3"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1245.png",
+            "1246.png",
+            "1247.png",
+            "1248.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 140,
+        "pred_response": "c",
+        "gt_response": "y",
+        "choice_list": [
+            "w",
+            "c",
+            "n",
+            "y"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1249.png",
+            "1250.png",
+            "1251.png",
+            "1252.png",
+            "1253.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 141,
+        "pred_response": "a",
+        "gt_response": "t",
+        "choice_list": [
+            "d",
+            "v",
+            "t",
+            "h"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1254.png",
+            "1255.png",
+            "1256.png",
+            "1257.png",
+            "1258.png",
+            "1259.png",
+            "1260.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 142,
+        "pred_response": "c",
+        "gt_response": "w",
+        "choice_list": [
+            "a",
+            "h",
+            "w",
+            "k"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1261.png",
+            "1262.png",
+            "1263.png",
+            "1264.png",
+            "1265.png",
+            "1266.png",
+            "1267.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 143,
+        "pred_response": "b",
+        "gt_response": "h",
+        "choice_list": [
+            "h",
+            "c",
+            "u",
+            "j"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1268.png",
+            "1269.png",
+            "1270.png",
+            "1271.png",
+            "1272.png",
+            "1273.png",
+            "1274.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 144,
+        "pred_response": "d",
+        "gt_response": "t",
+        "choice_list": [
+            "l",
+            "t",
+            "d",
+            "p"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1275.png",
+            "1276.png",
+            "1277.png",
+            "1278.png",
+            "1279.png",
+            "1280.png",
+            "1281.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 145,
+        "pred_response": "a",
+        "gt_response": "m",
+        "choice_list": [
+            "a",
+            "u",
+            "s",
+            "m"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1282.png",
+            "1283.png",
+            "1284.png",
+            "1285.png",
+            "1286.png",
+            "1287.png",
+            "1288.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 146,
+        "pred_response": "a",
+        "gt_response": "parietal lobe",
+        "choice_list": [
+            "parietal lobe",
+            "central sulcus",
+            "prefontal lobe",
+            "frontal lobe"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1289.png",
+            "1290.png",
+            "1291.png",
+            "1292.png",
+            "1293.png",
+            "1294.png",
+            "1295.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 147,
+        "pred_response": "c",
+        "gt_response": "4",
+        "choice_list": [
+            "3",
+            "4",
+            "2",
+            "5"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1296.png",
+            "1297.png",
+            "1298.png",
+            "1299.png",
+            "1300.png",
+            "1301.png",
+            "1302.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 148,
+        "pred_response": "a pituitary gland",
+        "gt_response": "pituitary gland",
+        "choice_list": [
+            "pituitary gland",
+            "hypothalamus",
+            "cerebrum",
+            "pineal gland"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1303.png",
+            "1304.png",
+            "1305.png",
+            "1306.png",
+            "1307.png",
+            "1308.png",
+            "1309.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 149,
+        "pred_response": "c",
+        "gt_response": "medulla",
+        "choice_list": [
+            "ventricles",
+            "pineal gland",
+            "medulla",
+            "hypothalamus"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1310.png",
+            "1311.png",
+            "1312.png",
+            "1313.png",
+            "1314.png",
+            "1315.png",
+            "1316.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 150,
+        "pred_response": "a",
+        "gt_response": "hearing is affected",
+        "choice_list": [
+            "reasoning is affected",
+            "sense of touch is affected",
+            "hearing is affected",
+            "sight is affected"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1317.png",
+            "1318.png",
+            "1319.png",
+            "1320.png",
+            "1321.png",
+            "1322.png",
+            "1323.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 151,
+        "pred_response": "d",
+        "gt_response": "neck",
+        "choice_list": [
+            "neck",
+            "head",
+            "legs",
+            "back"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1324.png",
+            "1325.png",
+            "1326.png",
+            "1327.png",
+            "1328.png",
+            "1329.png",
+            "1330.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 152,
+        "pred_response": "b",
+        "gt_response": "10",
+        "choice_list": [
+            "12",
+            "11",
+            "9",
+            "10"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1331.png",
+            "1332.png",
+            "1333.png",
+            "1334.png",
+            "1335.png",
+            "1336.png",
+            "1337.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 153,
+        "pred_response": "a",
+        "gt_response": "behind the 4th ventricle",
+        "choice_list": [
+            "behind the frontal lobe",
+            "front of the brain",
+            "next to the lateral ventricle",
+            "behind the 4th ventricle"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1338.png",
+            "1339.png",
+            "1340.png",
+            "1341.png",
+            "1342.png",
+            "1343.png",
+            "1344.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 154,
+        "pred_response": "d",
+        "gt_response": "18",
+        "choice_list": [
+            "22",
+            "20",
+            "18",
+            "16"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1345.png",
+            "1346.png",
+            "1347.png",
+            "1348.png",
+            "1349.png",
+            "1350.png",
+            "1351.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 155,
+        "pred_response": "a",
+        "gt_response": "the temporal lobe",
+        "choice_list": [
+            "the temporal lobe",
+            "the occipital lobe",
+            "the frontal lobe",
+            "the cerebellum"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1352.png",
+            "1353.png",
+            "1354.png",
+            "1355.png",
+            "1356.png",
+            "1357.png",
+            "1358.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 156,
+        "pred_response": "c",
+        "gt_response": "4",
+        "choice_list": [
+            "5",
+            "2",
+            "4",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1359.png",
+            "1360.png",
+            "1361.png",
+            "1362.png",
+            "1363.png",
+            "1364.png",
+            "1365.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 157,
+        "pred_response": "c myelin sheath",
+        "gt_response": "myelin sheath",
+        "choice_list": [
+            "node of ranvier",
+            "synapse",
+            "myelin sheath",
+            "schwann cell"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1366.png",
+            "1367.png",
+            "1368.png",
+            "1369.png",
+            "1370.png",
+            "1371.png",
+            "1372.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 158,
+        "pred_response": "d",
+        "gt_response": "synapse",
+        "choice_list": [
+            "axon",
+            "dendrite",
+            "myelin sheath",
+            "synapse"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1373.png",
+            "1374.png",
+            "1375.png",
+            "1376.png",
+            "1377.png",
+            "1378.png",
+            "1379.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 159,
+        "pred_response": "d",
+        "gt_response": "w",
+        "choice_list": [
+            "h",
+            "w",
+            "d",
+            "n"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1380.png",
+            "1381.png",
+            "1382.png",
+            "1383.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 160,
+        "pred_response": "c",
+        "gt_response": "vas deferens",
+        "choice_list": [
+            "testis",
+            "bladder",
+            "vas deferens",
+            "penis"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1384.png",
+            "1385.png",
+            "1386.png",
+            "1387.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 161,
+        "pred_response": "a",
+        "gt_response": "the uterus",
+        "choice_list": [
+            "ureter",
+            "aorta",
+            "kidneys",
+            "the uterus"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1388.png",
+            "1389.png",
+            "1390.png",
+            "1391.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 162,
+        "pred_response": "d",
+        "gt_response": "urethra",
+        "choice_list": [
+            "epididymis",
+            "testis",
+            "scrotum",
+            "urethra"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1392.png",
+            "1393.png",
+            "1394.png",
+            "1395.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 163,
+        "pred_response": "d the blastocyst would develop in 10 days",
+        "gt_response": "it would take 8 days for the blastocyst to develop",
+        "choice_list": [
+            "it would take 8 days for the blastocyst to develop",
+            "the morula would develop in 48 hours",
+            "the pregnancy would take half the time that it normally does",
+            "the blastocyst would develop in 10 days"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1396.png",
+            "1397.png",
+            "1398.png",
+            "1399.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 164,
+        "pred_response": "c",
+        "gt_response": "x",
+        "choice_list": [
+            "l",
+            "a",
+            "x",
+            "c"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1400.png",
+            "1401.png",
+            "1402.png",
+            "1403.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 165,
+        "pred_response": "b",
+        "gt_response": "precipitation",
+        "choice_list": [
+            "condensation",
+            "precipitation",
+            "transpiration",
+            "evaporation"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1404.png",
+            "1405.png",
+            "1406.png",
+            "1407.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 166,
+        "pred_response": "a condensation & evaporation",
+        "gt_response": "transpiration & evaporation",
+        "choice_list": [
+            "condensation & evaporation",
+            "evaporation & precipitation",
+            "transpiration & accumulation",
+            "transpiration & evaporation"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1408.png",
+            "1409.png",
+            "1410.png",
+            "1411.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 167,
+        "pred_response": "d",
+        "gt_response": "oxygen",
+        "choice_list": [
+            "carbon monoxide",
+            "oxygen",
+            "nitrogen",
+            "carbon dioxide"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1412.png",
+            "1413.png",
+            "1414.png",
+            "1415.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 168,
+        "pred_response": "b cambrian",
+        "gt_response": "cambrian",
+        "choice_list": [
+            "permian",
+            "cambrian",
+            "jurassic",
+            "neogene"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1416.png",
+            "1417.png",
+            "1418.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 169,
+        "pred_response": "a mammals",
+        "gt_response": "mammals",
+        "choice_list": [
+            "mammals",
+            "flowering plants",
+            "fishes",
+            "homo sapiens"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1419.png",
+            "1420.png",
+            "1421.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 170,
+        "pred_response": "d",
+        "gt_response": "yes",
+        "choice_list": [
+            "yes",
+            "intermittently",
+            "cannot answer from the given information",
+            "no"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1422.png",
+            "1423.png",
+            "1424.png",
+            "1425.png"
+        ],
+        "extracted": "D",
+        "result": 0
+    },
+    {
+        "sample_id": 171,
+        "pred_response": "b",
+        "gt_response": "external sphincter",
+        "choice_list": [
+            "calyx",
+            "external sphincter",
+            "renal pelvis",
+            "kidney"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1426.png",
+            "1427.png",
+            "1428.png",
+            "1429.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 172,
+        "pred_response": "b",
+        "gt_response": "u",
+        "choice_list": [
+            "u",
+            "x",
+            "f",
+            "c"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1430.png",
+            "1431.png",
+            "1432.png",
+            "1433.png",
+            "1434.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 173,
+        "pred_response": "c",
+        "gt_response": "it creates a very unstable uranium 236 atom that splits almost instantly",
+        "choice_list": [
+            "it absorbs heat",
+            "it breaks down into a very unstable uranium 236 atom",
+            "it creates a very unstable uranium 236 atom that splits almost instantly",
+            "nothing happens"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1435.png",
+            "1436.png",
+            "1437.png",
+            "1438.png",
+            "1439.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 174,
+        "pred_response": "c",
+        "gt_response": "rod",
+        "choice_list": [
+            "truck",
+            "bulldozer",
+            "rod",
+            "crane"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1440.png",
+            "1441.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 175,
+        "pred_response": "a",
+        "gt_response": "2",
+        "choice_list": [
+            "3",
+            "2",
+            "1",
+            "4"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1442.png",
+            "1443.png",
+            "1444.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 176,
+        "pred_response": "c",
+        "gt_response": "2",
+        "choice_list": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1445.png",
+            "1446.png",
+            "1447.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    },
+    {
+        "sample_id": 177,
+        "pred_response": "b",
+        "gt_response": "p",
+        "choice_list": [
+            "v",
+            "w",
+            "p",
+            "e"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1448.png",
+            "1449.png",
+            "1450.png",
+            "1451.png",
+            "1452.png",
+            "1453.png",
+            "1454.png",
+            "1455.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 178,
+        "pred_response": "a finderscope",
+        "gt_response": "hopper",
+        "choice_list": [
+            "finderscope",
+            "hopper",
+            "eyepiece",
+            "optical tube"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1456.png",
+            "1457.png",
+            "1458.png",
+            "1459.png",
+            "1460.png",
+            "1461.png",
+            "1462.png",
+            "1463.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 179,
+        "pred_response": "a 27",
+        "gt_response": "27",
+        "choice_list": [
+            "27",
+            "13",
+            "15",
+            "20"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1464.png",
+            "1465.png",
+            "1466.png",
+            "1467.png",
+            "1468.png",
+            "1469.png",
+            "1470.png",
+            "1471.png",
+            "1472.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 180,
+        "pred_response": "d",
+        "gt_response": "18",
+        "choice_list": [
+            "12",
+            "35",
+            "17",
+            "18"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1473.png",
+            "1474.png",
+            "1475.png",
+            "1476.png",
+            "1477.png",
+            "1478.png",
+            "1479.png",
+            "1480.png",
+            "1481.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 181,
+        "pred_response": "b",
+        "gt_response": "27",
+        "choice_list": [
+            "21",
+            "27",
+            "4",
+            "59"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1482.png",
+            "1483.png",
+            "1484.png",
+            "1485.png",
+            "1486.png",
+            "1487.png",
+            "1488.png",
+            "1489.png",
+            "1490.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 182,
+        "pred_response": "c",
+        "gt_response": "3",
+        "choice_list": [
+            "4",
+            "2",
+            "3",
+            "1"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1491.png",
+            "1492.png",
+            "1493.png",
+            "1494.png",
+            "1495.png",
+            "1496.png",
+            "1497.png",
+            "1498.png",
+            "1499.png"
+        ],
+        "extracted": "C",
+        "result": 1
+    },
+    {
+        "sample_id": 183,
+        "pred_response": "d",
+        "gt_response": "proton",
+        "choice_list": [
+            "electron",
+            "neutron",
+            "nucleus",
+            "proton"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1500.png",
+            "1501.png",
+            "1502.png",
+            "1503.png",
+            "1504.png",
+            "1505.png",
+            "1506.png",
+            "1507.png",
+            "1508.png"
+        ],
+        "extracted": "D",
+        "result": 1
+    },
+    {
+        "sample_id": 184,
+        "pred_response": "b",
+        "gt_response": "nucleus",
+        "choice_list": [
+            "proton",
+            "nucleus",
+            "electron",
+            "neutron"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1509.png",
+            "1510.png",
+            "1511.png",
+            "1512.png",
+            "1513.png",
+            "1514.png",
+            "1515.png",
+            "1516.png",
+            "1517.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 185,
+        "pred_response": "a protons and neutrons",
+        "gt_response": "protons and neutrons",
+        "choice_list": [
+            "protons and neutrons",
+            "electrons and neutrons",
+            "electrons and protones",
+            "neutrons only"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1518.png",
+            "1519.png",
+            "1520.png",
+            "1521.png",
+            "1522.png",
+            "1523.png",
+            "1524.png",
+            "1525.png",
+            "1526.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 186,
+        "pred_response": "b",
+        "gt_response": "16",
+        "choice_list": [
+            "10",
+            "16",
+            "18",
+            "8"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1527.png",
+            "1528.png",
+            "1529.png",
+            "1530.png",
+            "1531.png",
+            "1532.png",
+            "1533.png",
+            "1534.png",
+            "1535.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 187,
+        "pred_response": "b",
+        "gt_response": "1",
+        "choice_list": [
+            "4",
+            "2",
+            "1",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1536.png",
+            "1537.png",
+            "1538.png",
+            "1539.png",
+            "1540.png",
+            "1541.png",
+            "1542.png",
+            "1543.png",
+            "1544.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 188,
+        "pred_response": "a carbon 13",
+        "gt_response": "carbon 13",
+        "choice_list": [
+            "carbon 13",
+            "carbon 11",
+            "carbon 15",
+            "carbon 10"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1545.png",
+            "1546.png",
+            "1547.png",
+            "1548.png",
+            "1549.png",
+            "1550.png",
+            "1551.png",
+            "1552.png",
+            "1553.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 189,
+        "pred_response": "a",
+        "gt_response": "zero",
+        "choice_list": [
+            "1",
+            "2",
+            "zero",
+            "3"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1554.png",
+            "1555.png",
+            "1556.png",
+            "1557.png",
+            "1558.png",
+            "1559.png",
+            "1560.png",
+            "1561.png",
+            "1562.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 190,
+        "pred_response": "a 27",
+        "gt_response": "27",
+        "choice_list": [
+            "27",
+            "13",
+            "30",
+            "33"
+        ],
+        "image_quantity_level": "Medium",
+        "image": [
+            "1563.png",
+            "1564.png",
+            "1565.png",
+            "1566.png",
+            "1567.png",
+            "1568.png",
+            "1569.png",
+            "1570.png",
+            "1571.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 191,
+        "pred_response": "b",
+        "gt_response": "nonmetals",
+        "choice_list": [
+            "nonmetals",
+            "symbols",
+            "metalloids",
+            "metals"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1572.png",
+            "1573.png",
+            "1574.png",
+            "1575.png"
+        ],
+        "extracted": "B",
+        "result": 0
+    },
+    {
+        "sample_id": 192,
+        "pred_response": "b",
+        "gt_response": "6",
+        "choice_list": [
+            "11",
+            "6",
+            "9",
+            "7"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1576.png",
+            "1577.png",
+            "1578.png",
+            "1579.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 193,
+        "pred_response": "a",
+        "gt_response": "4",
+        "choice_list": [
+            "2",
+            "4",
+            "6",
+            "8"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1580.png",
+            "1581.png",
+            "1582.png",
+            "1583.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 194,
+        "pred_response": "a",
+        "gt_response": "6",
+        "choice_list": [
+            "6",
+            "4",
+            "8",
+            "2"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1584.png",
+            "1585.png",
+            "1586.png",
+            "1587.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 195,
+        "pred_response": "a isomers",
+        "gt_response": "isomers",
+        "choice_list": [
+            "isomers",
+            "cyclic",
+            "alkene",
+            "chiral"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1588.png",
+            "1589.png",
+            "1590.png",
+            "1591.png"
+        ],
+        "extracted": "A",
+        "result": 1
+    },
+    {
+        "sample_id": 196,
+        "pred_response": "b",
+        "gt_response": "glycolysis",
+        "choice_list": [
+            "atp",
+            "glycolysis",
+            "electron",
+            "mitochondrion"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1592.png",
+            "1593.png",
+            "1594.png",
+            "1595.png"
+        ],
+        "extracted": "B",
+        "result": 1
+    },
+    {
+        "sample_id": 197,
+        "pred_response": "a",
+        "gt_response": "no",
+        "choice_list": [
+            "yes",
+            "not enough information to know",
+            "probably",
+            "no"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1596.png",
+            "1597.png",
+            "1598.png",
+            "1599.png",
+            "1600.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 198,
+        "pred_response": "a thymine",
+        "gt_response": "adenine",
+        "choice_list": [
+            "thymine",
+            "adenine",
+            "cytosine",
+            "guanine"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1601.png",
+            "1602.png",
+            "1603.png"
+        ],
+        "extracted": "A",
+        "result": 0
+    },
+    {
+        "sample_id": 199,
+        "pred_response": "c",
+        "gt_response": "k",
+        "choice_list": [
+            "p",
+            "e",
+            "u",
+            "k"
+        ],
+        "image_quantity_level": "Few",
+        "image": [
+            "1604.png",
+            "1605.png",
+            "1606.png",
+            "1607.png"
+        ],
+        "extracted": "C",
+        "result": 0
+    }
+]

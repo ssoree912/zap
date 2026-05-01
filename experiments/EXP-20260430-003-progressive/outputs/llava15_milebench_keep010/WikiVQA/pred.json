@@ -1,0 +1,1002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "the First Lady. The goal is to create a Ukrainian bookshelf in every Ukrainian community around the world. The First Lady also initiated the project",
+    "gt_response": "The Kyiv Summit of First Ladies and Gentlemen"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "Navy Ship\nB. Ocean (EIC Ship)\nC. Carnatic\nD. Windham\nE. Henry Addington\nF",
+    "gt_response": "Ocean"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "at night.  \nThe trial lasted two days, and the jury found in favour of Eastwood. The judge directed the jury to find for",
+    "gt_response": "The artifacts, known as Billy and Charley forgeries, were falsely dated using Arabic numerals which only came into use in England during the 15th century."
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "reports were not without their effect. The Daily Mail, which had taken Thomas on, was reprimanded by the authorities for allowing him to go.",
+    "gt_response": "The individual in the first image was a British war correspondent who initially defied military authorities but later received official accreditation and was knighted for his wartime reporting."
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "by the Ring; Boromir is strong, corrupted by the desire for power; and Samwise Gamgee is strong, but not corrupted by",
+    "gt_response": "Power has a corrupting influence, and absolute power can lead to absolute corruption."
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "o toolchain.  \n* In September 2013, NXP announced the LPC1100LV series with dual supply",
+    "gt_response": "LPC1768"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "A",
+    "gt_response": "Image 7"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "f\nB. A marble statue of Prometheus Bound\nC. A marble statue of Iris Putting on Her Wings\nD",
+    "gt_response": "The sculpture \"Religion Instructing an Indian\" from 1745"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "B. Kirby–Bauer disk diffusion test",
+    "gt_response": "Kirby–Bauer disk diffusion test"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "ited the most important Hungarian artists of the 1960s. His first one-man exhibition in Germany was held in the Folkwang Museum",
+    "gt_response": "\"Isa pur\" by László Lakner"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "most watched show on Colors. I was playing a character that was a mix of good and bad. I was playing a character that was a mix of good and",
+    "gt_response": "The 12th Indian Television Academy (ITA) Awards"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "Down.\n\n### Event  \nThe event featured five matches, with the main event being the men's Royal Rumble match, where the winner",
+    "gt_response": "Royal Rumble"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "A. The Colosseum",
+    "gt_response": "The Colosseum"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "In 1978, as the World Health Organization (WHO) was shortly to announce that the world's last case of",
+    "gt_response": "Image 4: Ward 32, where Geddes diagnosed smallpox in 1978"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "the next municipal election is scheduled for November 2022.  \nPrince Edward Island has 50 rural municipalities, which cover 9",
+    "gt_response": "Summerside is the only other city in PEI besides Charlottetown."
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "Neither image\n\nAnswer: C. Both images",
+    "gt_response": "Image 1"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "A. Counterfeit NSDAP-party dues stamps",
+    "gt_response": "Propaganda flyer for Austria"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "D. Michael Jackson in 2016",
+    "gt_response": "Michael Jackson in 2016"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "101, NC12341) for the U.S. Army Air Service.  \nThe Bolivian Air Force operated a fleet of",
+    "gt_response": "The aircraft in the first image was the last of its type to be operational in Bolivia as of 1954."
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "The Nun II also features a cameo by a young boy who plays a young Ed Warren.",
+    "gt_response": "The former Couvent des Prêcheurs monastery in Aix-en-Provence"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": ". He wrote the book for the musical comedy The Love-Lorn Lobster (1897) with lyrics by Herbert and music by John St",
+    "gt_response": "The Love-Lorn Lobster"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "emocrat)  \n* Michigan Secretary of State: Candice S. Miller (Republican)  \n* Michigan State Treasurer: Doug A",
+    "gt_response": "Carl Levin"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "connects Xining, Qinghai Province, with Lhasa, Tibet Autonomous Region.  \nThe C-38AChe is",
+    "gt_response": "China Railway NJ2 0053"
+  },
+  {
+    "sample_id": 23,
+    "pred_response": ".  \nMin = Minutes played; W = Wins; L = Losses; OTL = Overtime losses; GA = Go",
+    "gt_response": "Image 3: Rocco Grimaldi of the United States"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "translation: \"M. Hulot and Sons: Movers to the Nobility\").",
+    "gt_response": "The exploration of human anxiety and the concept of death"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "Smolyar achieved a higher championship position in the Formula 3 series in the 2021 season.",
+    "gt_response": "2021"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "the earth was the bottom half.  \n### Mythological places  \nMythological places in Chinese mythology are often characterized by their ex",
+    "gt_response": "A scroll illustrating characters associated with the Chinese underworld."
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "behind the curtains\".  \nMartinez's debut extended play, Dollhouse, was released on September 30, 20",
+    "gt_response": "\"Carousel\""
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "A. Image 1: A miniature depicting the proclamation of Leo V the Armenian as emperor.",
+    "gt_response": "Image 1: A miniature depicting the proclamation of Leo V the Armenian as emperor."
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "into place, this was the first official confirmation of the disbandment.",
+    "gt_response": "Assimi Goïta"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "D. The painting \"Cafe Gurzuf\" was first exhibited in 1960 at the grand Annual Exhibition of works",
+    "gt_response": "The central seated figure in the painting \"Cafe Gurzuf\" was modeled after Samokhvalov's wife, Maria Alekseevna Kleschar."
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "among other things. They are also responsible for the maintenance of roads, sidewalks, and other public infrastructure.\n\n## Incorporation and",
+    "gt_response": "Town hall of Neufelden, Upper Austria"
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "Sm.  \n* Miconia atabapensis Wurdack  \n* Miconia atamaiensis Gamba & Almeda",
+    "gt_response": "Image 2"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "### Ancient Greece  \nThe earliest known theatrical performance in Greece is attributed to the city of Athens and the festival of Dion",
+    "gt_response": "Image 2: A mural showing a group of performers with instruments and elaborate costumes."
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "D",
+    "gt_response": "Rice weevil (Sitophilus oryzae)"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "doubles  \nSara Errani / ITA Roberta Vinci defeated CZE Andrea Hlaváčková / CZE Lucie Hrade",
+    "gt_response": "They are both examples of blue clay courts."
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "C. Seismic soundings",
+    "gt_response": "Seismic soundings"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "erospace engineering textbook in 1981.  \nIn 1988, he was awarded the Ho Leung Ho Memorial Prize for",
+    "gt_response": "Shenyang JJ-1 jet trainer"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "75 MW solar farm, which is expected to be completed by the end of 2019.  \nIn 2019",
+    "gt_response": "Medium installation on South Beach roof in 2012"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "surface of the bridge\nD. The bridge's historical significance\nC",
+    "gt_response": "The riveted grate surface of the bridge"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "B. Isabelle, in a feathered hat and period costume",
+    "gt_response": "Isabelle, in a feathered hat and period costume"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "B",
+    "gt_response": "Image of a historic building with a classical facade and multiple windows."
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "C. Gatwick Airport (South Terminal)",
+    "gt_response": "Gatwick Airport (South Terminal)"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "C. Dean of Exeter",
+    "gt_response": "Dean of Exeter"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "C",
+    "gt_response": "An alien from The War of the Worlds"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "C. A screenshot of a Wikipedia article with the \"citation needed\" tag included in the text",
+    "gt_response": "A screenshot of a Wikipedia article with the \"citation needed\" tag included in the text"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "\"a delightful, lighthearted, and well-executed arrangement.\"  \n* The Whispers (2000)  \n*",
+    "gt_response": "The Varsity Vocals International Championship of Collegiate A Cappella (ICCA) Midwest Semifinal"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "access these essential supplies.\n\n<Image 3> A destroyed building in the British Virgin Islands.\n\n<Image 4> A destroyed building in",
+    "gt_response": "Image 4: Royal Marines delivering aid on Jost Van Dyke."
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "C",
+    "gt_response": "Juffali in her F4 car at Thruxton in April 2019"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "ol, expectant management or surgery should be considered.\n\nIn the context of tissue from a dilation and curettage, the presence",
+    "gt_response": "Products of conception include both chorionic villi and fetal parts, which can be identified in a micrograph."
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "arn estate, was a younger son, and the marriage was a strategic alliance between the two families. The tower was designed by the master mason,",
+    "gt_response": "A rectangular external footprint"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "Hayward was expected to compete with Tramon Williams for the starting job at cornerback. He was named the Packers' starting cornerback",
+    "gt_response": "2021"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "freeman shall have absolute power and authority over his own Negroes, Indians, and others of his own color, or over such as he hath manum",
+    "gt_response": "Harriet Jacobs"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "like wonder.  \n## Reception  \n\"Nobody Knows Me\" received generally favorable reviews from music critics. Many of whom called it",
+    "gt_response": "MDNA Tour in 2012"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "ahyan. In August 2020, al-Burhan met with US Secretary of State Mike Pompeo in Washington, D.C",
+    "gt_response": "Image 3: Al-Burhan with US Secretary of State Mike Pompeo"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "Eastern Squadron, RNAS Eastchurch, 1914.\n\nQuestion:\nWho is Reginald Marix?\nWhat was Mar",
+    "gt_response": "Image 2: Flight Commander Marix and his Farman MF.11 aircraft"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "of retired Delhi High Court judge, S. N. Aggarwal, to investigate the alleged CNG fitness scam. The Delhi",
+    "gt_response": "The person in image 4"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "the 520s, he would have been a Roman, and if in the 530s, a Goth. The author's eth",
+    "gt_response": "The Frankish Table of Nations was likely composed in the Byzantine Empire, with evidence suggesting it was related to the interests of emperors Justin I and Justinian I."
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "y industry consultant Jim Silver.  \nThe Spice Girls' success was a turning point in the history of children's marketing. It led to",
+    "gt_response": "Girls participating in a Barbie Fashion Show"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "choice: B",
+    "gt_response": "Palmer Park Stadium with a velodrome and athletics track"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "the town of Colne\".",
+    "gt_response": "Malkin Tower is likely to have been a simple cottage, and its exact location remains uncertain despite various claims and local folklore."
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "Endurance Championship. The team's drivers were selected from the Czech Republic, with Jan Charouz, Dominik Kraihamer, and Thomas Hol",
+    "gt_response": "No. 32"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "spine are modified to hold batteries.\n\n### Parasitism and symbiosis (mutualism)  \nParasit",
+    "gt_response": "A monster created by an unorthodox biology experiment."
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "AFEI World Congresses  \nThe IAFEI World Congresses are held annually since 1969. The congresses rotate",
+    "gt_response": "The 43rd IAFEI World Congress in Warsaw, Poland"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "B",
+    "gt_response": "The development of rib vaults"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "B. A NASCAR race at Talladega Superspeedway",
+    "gt_response": "A NASCAR race at Talladega Superspeedway"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "minute pre-show event on the same day as No Surrender, which was broadcast on the internet. The pre-show featured a match between Alex",
+    "gt_response": "The wrestler in image 1"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "not to push the Slovaks too far. The Slovak State became more strongly oriented towards Germany, especially in the area of anti-Jewish measures",
+    "gt_response": "The Salzburg Conference led to the expulsion of the Nástup faction from the Slovak government and increased German influence over the Slovak State."
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "w the line with Wilson, who was not a party to the London pacts, and had even threatened to leave the conference.  \nIn conclusion,",
+    "gt_response": "Italy acquired Trentino-Alto Adige and the Austrian Littoral, but did not secure a large portion of Dalmatia as promised."
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "Spider-Man.  \nThe Spider-Society is led by Miguel, who is the Spider-Man of Earth-928. The group",
+    "gt_response": "The sequel was initially planned as a single film but was later split into two parts due to the size of the story."
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "useum Celle)  \n* Harald Müller: Theodor Krüger. Ein Leben für Musik und Heimat (Celler Schriften)",
+    "gt_response": "Theodor Krüger and Marie Suerburg during their engagement"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "orman, photographer  \n* Michael Gross, author  \n* Michael Kamen, composer  \n* Michael Kiesow, architect",
+    "gt_response": "Image of a man in a suit and tie"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": ", Netherlands, designed by Benthem Crouwel Architects.  \n* October 11 – Opening of the new National Museum of China in",
+    "gt_response": "The Shard in London, England"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "ore became a philanthropist, focusing on Jewish causes. He founded Mishkenot Sha'ananim, the first Jewish settlement outside the",
+    "gt_response": "He built a windmill in Palestine to provide cheap flour to poor Jews."
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "B",
+    "gt_response": "MG Richard Caswell, New Bern District Brigade and North Carolina Militia commander"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "mouth Action Group had raised funds to commission a new report on the Catalpa. The report was to be prepared by Roy Finch, the same tree surgeon",
+    "gt_response": "Metal supports were placed under some large branches to provide structural support."
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "the image in full colour, making it the first known instance of a full-colour photograph in a scientific book.",
+    "gt_response": "John Browning was an optician and instrument maker who installed the first electric light in London for a banquet honoring the Shah of Persia."
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "In the 19th century, the indigenous Norwegian Travellers were known for their horse-drawn carts, which they used for",
+    "gt_response": "Romani people"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "-square-foot infield care center, where he would be examined for a possible concussion. The race would be red-flagged for",
+    "gt_response": "Marcos Ambrose"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "ater production. She is cast as Sharpay Evans in the second season and the understudy for Gabriella in the third season.  \n*",
+    "gt_response": "The Lion King"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "ant Bird Area (IBA) due to the presence of the endemic Christmas Island goshawk (Accipiter lathami), the Christmas Island star",
+    "gt_response": "The second image depicts the Tahitian chestnut tree, which is one of the dominant trees on Christmas Island."
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "Cornelis Escher, graphic artist (b. 1898)  \n* 11 October – Jan van Dijk, ro",
+    "gt_response": "Piet Mondrian - Painter and Theoretician"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "uncommon for Edison to \"borrow\" from other studios' productions, so it is possible that Shaw's name was included in the cred",
+    "gt_response": "De Voortrekkers (1916)"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "I, (built 1970), Neebish Island ferry, Barbeau, former Sugar Islander II  \n* Neeb",
+    "gt_response": "SS Badger"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "C. Image 1",
+    "gt_response": "Image 1"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "Calgary, Canada  \n-  Certificate of Honor by Ms.Susan Savage, President of the Canadian Paralympic Committee",
+    "gt_response": "He was awarded the President of India's silver medal for Census Operations in 2001."
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "of the album's cover art, which features him wearing a Rolex and handcuffs, as a metaphor for the struggle of making",
+    "gt_response": "Rick Ross"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "Russia has been described as a mafia state by various sources, including Russian and foreign journalists, politicians, and diplomats. The Russian",
+    "gt_response": "A former prime minister of Italy"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "",
+    "gt_response": "Makkari"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "Bulldogs in the 1980 national championship game, 26–23.  \n### Coaches  \nAlabama'",
+    "gt_response": "Georgia Bulldogs"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "people in their fight for survival and freedom.\n\n### The Transgender District  \n<Image 2> Janetta Johnson, Aria Sa",
+    "gt_response": "Janetta Johnson"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "feud with Chief Keef, his associates had attempted to shoot the rapper.  \nOn February 1, 2019, Hern",
+    "gt_response": "An attempted shooting outside the W Hotel in Manhattan."
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "A. The person in Image 1",
+    "gt_response": "The person in Image 1"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "the Air Force's global air mobility fleet.\n\n### Vice Chairman of the Joint Chiefs of Staff  \nright  \nS",
+    "gt_response": "Image 2"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "evitable part of the Hymenoptera, it was not until the 1970s that it was fully appreciated that the Aculeata were not",
+    "gt_response": "Image 4: A European hornet butchering a bee."
+  },
+  {
+    "sample_id": 95,
+    "pred_response": ", was a significant aspect of Tamil literature. The Sangam period is believed to have lasted from the 2nd century BCE to the 3",
+    "gt_response": "A rock-cut temple complex with intricate carvings and multiple shrines."
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "from Arizona and Pennsylvania in the 2020 presidential election. He has repeatedly claimed that Joe Biden is not the legitimate president of the United",
+    "gt_response": "Donalds being sworn in by House Minority Leader Kevin McCarthy"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "John was a son of Thomas, but it is also possible that Allatius was mistaken or that the information he had was incomplete.  \nIn conclusion,",
+    "gt_response": "The Greek War of Independence delegation's search for living descendants of the Byzantine imperial family was ultimately in vain."
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "a Maurya in Taxila.  \n* Yavanachandra, a king of the Yavanas (Greeks) who is said to",
+    "gt_response": "King Pasenadi of Kosala"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "B. Chikara Campeonatos de Parejas",
+    "gt_response": "Chikara Campeonatos de Parejas"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": ", Merritt with 16, and Chaplin with 12.  \n### Great Britain  \nReport:  \ncenter|1=",
+    "gt_response": "Image 2"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": ", Wu Sansi is described as being in love with Su E, and the novel ends with the two of them being married.",
+    "gt_response": "The first image shows Chinese sex education coins, while the second image features a charm that symbolizes the union of a man and a woman."
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "services were also operated by Midland General.  \n### Felix Bus Services  \nFelix Bus Services was a bus operator based in Buxton",
+    "gt_response": "Nottingham Express Transit AT6/5 tram in Nottingham in July 2009"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "own. The highest snowfall in the state was abbr=on in Westwood, and the highest total in the state was abbr=on in West",
+    "gt_response": "Image 3: Children receiving treats from a table with a shiny orange covering during Halloween."
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "'s history and of the broader cultural currents that have shaped it\". He also notes that the book's \"lack of a strong continuous argument",
+    "gt_response": "Swami Vivekananda"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "Lumia devices, such as the Lumia 800, were later upgraded to Windows Phone 8.  \nIn 20",
+    "gt_response": "The device in Image 1 is the first Lumia device, introduced by Nokia in partnership with Microsoft, while the device in Image 2 is the first Microsoft-branded Lumia device."
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "tress) include both inhumations and cremations, and the site has yielded a wide range of artefacts, including pottery, j",
+    "gt_response": "Image 3: Umm Al Nar period terracotta bottle on display at the Louvre, Abu Dhabi"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "dominate the local music scene.  The term 'Pop Yeh-yeh' is derived from the Hokkien term \"Yeah-",
+    "gt_response": "The artist in Image 2"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "edonia, but they were not successful in winning over the Macedonian communists. The Macedonian communists were not yet ready to join the Y",
+    "gt_response": "Svetozar Vukmanović"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "able items and enemies.",
+    "gt_response": "George Miller"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "ates the province's national day.",
+    "gt_response": "Oscar Brand"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "doctoral stay to test this idea. Gilbert was interested and offered him a postdoctoral position.  \nIn 1978, Bernard",
+    "gt_response": "A Cold Spring Harbor Laboratory meeting in the 1980s"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "D. Image 4 with close-up of volcanic rocks shows the scoria from the Eldborgir.",
+    "gt_response": "Image 4 with close-up of volcanic rocks"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "for the game's soundtrack.",
+    "gt_response": "The musician shown playing an acoustic guitar and singing into a microphone"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "railway ambush was set. The German train had been delayed by the first ambush and had reached Agbeluvhoe at about 10:0",
+    "gt_response": "A British military campaign against German forces in Togoland during World War I"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "olis as Ms. Margolis, the school guidance counselor, and  \n## Images  \nThe image shows a young Tony Soprano",
+    "gt_response": "The person depicted in Image 2"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "A. Image 1",
+    "gt_response": "Image 1"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "War I and was a member of the 369th. On August 1, 1919, he was lynched by a",
+    "gt_response": "Image of a group of soldiers in uniform posing together."
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "A. Hydraulic ramp controls",
+    "gt_response": "Hydraulic ramp controls"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "# Collapsed barn at Hörsne, Gotland, Sweden  \n<Image 1>\n\nThe collapsed barn at Hör",
+    "gt_response": "An ancient stepped pyramid with a partially collapsed outer casing."
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "of thousands of dollars by the time the child turns 18. This would be funded by a tax on the wealthy. He has also called for",
+    "gt_response": "Creating \"baby bonds\" to close the racial wealth gap"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "his eyes are closed, reflecting the physical and mental exhaustion of the Passion. The work is a masterpiece of medieval art, and is considered",
+    "gt_response": "Giunta Pisano's Crucifix, tempera on wood, 1240s, with open eyes and unblemished skin, reflecting the Christus triumphans style."
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "A. The driver who won the race",
+    "gt_response": "The driver pictured in 2015"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "in the NDH, the Italians began to legalize some of the Chetnik bands in eastern Bosnia and Herzegovina as auxiliaries",
+    "gt_response": "Baćović's Chetniks killing 900 Croats in the Makarska region."
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "The paddlewheel steamboat PS Belle, built in 1812, was the first steamboat to use a return connecting",
+    "gt_response": "Image 1"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "and to ensure that the project's requirements were met. Purnell's role in coordinating the Manhattan Project with the navy was crucial",
+    "gt_response": "Rear Admiral William R. Purnell"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "C. Sir William Killigrew",
+    "gt_response": "Sir William Killigrew"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "his mind about André's handshake, which he found too firm.  \nThe next week, André was booked to face Hogan in a",
+    "gt_response": "A Body Slam"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "11 January 1846, he was assigned to the 1st Regiment of Light Cavalry, and on 11 January 1",
+    "gt_response": "The second image, showing a church heavily damaged during the siege of Paysandú in 1865."
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "an Indonesia association, which was a student organization that aimed to promote Indonesian independence. p = 26 He became an advocate for Indonesian",
+    "gt_response": "The agreement to form the Central Indonesian National Committee (KNIP) where Sartono was a member."
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "Sydney to Brisbane.  \n### \nQuestion:\nWho was Norman Selfe and what were his contributions to Sydney?",
+    "gt_response": "Designing the world's steepest scenic railway originally for coal transportation"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "the legal position of married women. She was a member of the Dutch Association for Women's Suffrage (VVVK) and was one of",
+    "gt_response": "Bakker-Nort played a crucial role in the International Woman Suffrage Alliance's protest at the 1930 League of Nations conference on international law held at the Peace Palace in The Hague."
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "ra.  \nThe Supra was initially available in two trims: 3.0 and 3.0 Premium. The 3.0",
+    "gt_response": "The Golden Steering Wheel award in 2019"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "C. The phrase \"Their Name Liveth For Evermore\" on the War Stone was selected by Rudyard Kipling.",
+    "gt_response": "The phrase \"Their Name Liveth For Evermore\" on the War Stone was selected by Rudyard Kipling."
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "B",
+    "gt_response": "Chief of office of international relations of the State Border Service"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "economic growth.  \n### 2020  \nIn June 2020, the Trump administration proposed a $1.5 tr",
+    "gt_response": "The Trump administration approved the Gemini Solar Farm project in Nevada, which is the largest solar farm project ever approved in the United States."
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "dress, which was a nod to the album's theme of nostalgia. The cover artwork was inspired by the album's title, Future N",
+    "gt_response": "\"Love Again\""
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "is a floating museum and convention center.  \n### Steamboats  \n#### SS Edmund Fitzgerald: 1958-1",
+    "gt_response": "The Arthur M. Anderson as shown in image 2"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "cotourism has also provided a source of income for local communities, which has been used to improve infrastructure, education, and healthcare. This has led",
+    "gt_response": "Image of the zip line in the cloud forest near Arenal Volcano, an adventure activity popular with tourists."
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "write the novel \"The Pillars of the Earth\".  \n\nInquiries:\n1. What is the Basque Autonomous Community?",
+    "gt_response": "Vitoria-Gasteiz"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "ized relationship with American discus thrower Al Oerter, who would go on to win four consecutive Olympic gold medals.  \nIn 19",
+    "gt_response": "Pat McDonald, the first athlete to carry the flag for the United States on two occasions and the first flag bearer born outside of the U.S."
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "at the Double or Nothing event, he defeated Omega to win the inaugural AEW World Championship.\n\n### Event  \nThe event was",
+    "gt_response": "AEW Double or Nothing"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "shino.\nB. The abandoned house is located in the village of Pechnikovo.\nC. The abandoned house is located in the village of",
+    "gt_response": "The area was included into Ingermanlandia Governorate in 1708 and went through several administrative changes including the establishment of Kamensky District with the administrative center in Kuvshinovo, and later became part of Tver Oblast."
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "ected woman, and, in exchange for a small gift, would receive a smallpox scab. The child would then be inoculated with the sc",
+    "gt_response": "Thomas Dimsdale was invited to Russia to variolate Catherine the Great, and was rewarded with a barony and a monetary sum for his successful work."
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "s and weekends for seven years. The team was small, with only seven people working on the game at any given time. The team was dedicated to making",
+    "gt_response": "Time loop manipulation"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "or to Henry Wood at the Proms, and later to Adrian Boult. He also conducted the first performance of William Walton's Façade",
+    "gt_response": "The person on the left in image 1"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "D. The man in the fourth image",
+    "gt_response": "The man in the fourth image"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": ", but was unsuccessful in winning the title.  \n#### The Usos (2014)  \nOn the April 28 episode",
+    "gt_response": "WrestleMania 32"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": ", who in 1880 published a book about the history of the city of Salerno, where he spoke about the women of Salerno for the",
+    "gt_response": "A renowned medical school in medieval southern Italy known for its inclusivity and intellectual openness"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "was the first episode to air after the delay, and it was the first episode to air after the delay, and it was the first episode to air after the",
+    "gt_response": "When Troy leaves to get the pizza, a series of disasters ensues."
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "B",
+    "gt_response": "Chase Elliott won the race after taking the lead in the final laps."
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "C",
+    "gt_response": "Commissioner of Dhaka Metropolitan Police"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": ". The Munich State Opera ballet was only allowed to perform in the second part of the event.  \n## Decoration  \nThe decoration of",
+    "gt_response": "The images are related to events and artworks that were used for propaganda purposes in the 1930s."
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "B. Damba Ayusheev specialized in Tibetan Medicine and later became the XXIV Khambo Lama.",
+    "gt_response": "Damba Ayusheev specialized in Tibetan Medicine and later became the XXIV Khambo Lama."
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "s, he became a leading proponent of the unitary psychosis theory. He was a professor at the University of Berlin and later at the University of Fre",
+    "gt_response": "The person depicted in image 2"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "-kind contributions.  \nIn 2009, the AWF had 120 staff members, including 100 in Africa and",
+    "gt_response": "Virunga National Park, Democratic Republic of the Congo"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "C. Image 1",
+    "gt_response": "Image 1"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": ". A painting of a flower.\nC. A painting of a fruit.\nD. A painting of a landscape.\nE. A painting of a",
+    "gt_response": "A botanical illustration of Arum maculatum."
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "0)  \n* The Apocrypha Controversy (Edinburgh, 1844)  \n* The Grey Scholarships",
+    "gt_response": "Image 2: A grayscale illustration of a man in profile, wearing a dark coat and white neckwear, holding a document."
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "the first time Xiaomi had manufactured a phone in a country where it was launching.  \nIn 2015, the company sold",
+    "gt_response": "Xiaomi's first smartphone was released in August 2011, and by 2014, it had captured the largest market share of smartphones sold in China."
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "C. O Brother, Where Art Thou?",
+    "gt_response": "O Brother, Where Art Thou?"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "B",
+    "gt_response": "Image of a map depicting Roman trade with ancient Coastal India according to the Periplus Maris Erythraei 1st century CE"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "C. Vienna Secession, recognized for its ornamental details and use of colorful tiles.",
+    "gt_response": "Vienna Secession, recognized for its ornamental details and use of colorful tiles"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "C",
+    "gt_response": "The person depicted in image 3"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "B",
+    "gt_response": "Image 1, showing a set of Sencha utensils, Sasashima ware by Maki Bokusai"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "as a few choice Watch the Throne tracks.\" The tour was also praised for its production value, with The New York Times writing that the show was",
+    "gt_response": "Madison Square Garden"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "French government confiscated it in 1922, she left for good.  \n\nIn conclusion, Maria Brignole Sale De Ferr",
+    "gt_response": "The construction of a fashion museum in Paris."
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "s factory in Mumbai, India, preparing for his debut in Formula E.",
+    "gt_response": "The driver pictured in Image 1"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "generally too low to be used for reaction progress kinetic analysis. However, these techniques may be employed to confirm the validity of the reaction system of interest by",
+    "gt_response": "Image 3: It explains the use of same-excess experiments to distinguish uninhibited catalysis, irreversible catalyst death, and product inhibition."
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "C",
+    "gt_response": "2013"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "announced a new constitution on 18 June 1956, which was adopted on 23 June. The new constitution established Egypt as a one",
+    "gt_response": "Nasser handing documents to an Egyptian fellah in a land distribution ceremony"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "1958.  \n## F-104H  \n<Image 3> A Japanese F-104H in flight",
+    "gt_response": "F-104C at the National Museum of the United States Air Force"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "by, Max Wartell and Irving Wallman are also credited as writers on the song. The final version of the song was created by combining the",
+    "gt_response": "The filming of the music video for \"Love Again\""
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "ers to evict them.  \nOn 29 November, the City of London Corporation announced that it would be taking legal action against the Bank of Ide",
+    "gt_response": "The Occupy London movement"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "total fine of £1200. The fine was paid in instalments, the last of which was paid in 1652.",
+    "gt_response": "Richard Ottley, who was knighted shortly after the return of Charles II and was involved in local government."
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "taken to the Greek ships.",
+    "gt_response": "The release of prisoners and subsequent violence including the massacre of Turkish civilians and mistreatment of prisoners."
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "bler  \n* Bearded tit: (n & r)  \n* Crested tit: (n & r)  \n* Coal tit",
+    "gt_response": "Grey heron"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "areas of counter-terrorism.  \nCICTE's Executive Secretary is Michael J. Sullivan, a former US federal prosecutor",
+    "gt_response": "Inter-American Drug Abuse Control Commission (CICAD)"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "* Simon Bent Elling Frank Ashley, 2010  \n* William Shakespeare Timon Atenjanin as Painter,",
+    "gt_response": "Painter"
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "agreement of the founding parties will be maintained. The new statute will also provide for the possibility of the direct recruitment of individual citizens as members,",
+    "gt_response": "Marco Cappato"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "C. Lahore",
+    "gt_response": "Lahore"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "D",
+    "gt_response": "Image 3"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "anded in Paris.  \n* 12 February – the government announced a new €125 million fund to help small and medium-sized",
+    "gt_response": "Maeve Binchy"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "was promoted to the rank of commander on June 1, 1928, and assumed command of destroyer Whipp, operating with the Scout",
+    "gt_response": "Leading a cruiser task force during the Battle of the Coral Sea"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "B",
+    "gt_response": "Vice-President of the Indian Adult Education Association"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "* 2010 FIVB Volleyball Women's World Championship – Bronze Medal  \n* 2012 London Olympic",
+    "gt_response": "2011 Montreux Volley Masters"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "of his name.  \n\n### Singles that peaked in 1995 but were in the top 10 in 199",
+    "gt_response": "Fugees"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "1 April 1944.  \n* Alexander Conrady, commander between 21 April 1944 and 1 May",
+    "gt_response": "The 260th Infantry Division was captured and destroyed near Minsk on 9 July 1944."
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "ces.  \nThe church has been well-maintained and preserved, and is now a Grade I Listed building.  \n\nQuestion:",
+    "gt_response": "The oak and Sussex Marble lychgate"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "s\". However, she praised the lyrics and the way Smulders sings it, saying that it is \"a great song\".  \nThe",
+    "gt_response": "Zuma Beach, Malibu, California"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "728-second lap, with Earnhardt, Harvick, Kenseth, Biffle, and Hamlin following in positions two to",
+    "gt_response": "The driver with the beard, who ended a 143-race winless streak with this victory."
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "B. Senator of Milan",
+    "gt_response": "Senator of Milan"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": ". The Khatmiyya were a Sufi order that had been established in the 1840s by a former slave, Muhammad al",
+    "gt_response": "Anṣār"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "The illustrations were praised by critics for their \"Renaissance and Baroque painting-like quality\" and the \"Caravaggio-like light",
+    "gt_response": "Image 1"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "Houston announced plans to expand its operations in the Ion District. The incubator's expansion was expected to create 100 new jobs and increase",
+    "gt_response": "The building that was formerly a Sears store"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "Railroad Company. The Columbus Railroad Company was the largest streetcar company in Columbus, operating 12 lines, and had a fleet of",
+    "gt_response": "The Columbus streetcars were replaced by trolley buses after 1948, with the last trolley bus running in 1965."
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "avias was about to break out, Spear decided to seize the brig, which turned out to be the Dutch 12-gun brig Zee",
+    "gt_response": "The Battle of the Saintes"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "B",
+    "gt_response": "Faery Magic"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "C. Kostervalsen",
+    "gt_response": "Bondvals"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "in the ship's head, but the ship continued to drive.  \nThe ship struck the rocks at 11:30 pm.  The",
+    "gt_response": "Survivors included five of the ship's officers, forty seamen, and twenty-five soldiers."
+  }
+]

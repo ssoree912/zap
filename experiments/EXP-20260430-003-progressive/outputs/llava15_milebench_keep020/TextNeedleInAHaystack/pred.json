@@ -1,0 +1,1602 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "The special magic Yerevan number is 7984462.",
+    "gt_response": "7984462"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "The special magic Tunis number is 3872087.",
+    "gt_response": "3872087"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "The special magic Almaty number is 7032553.",
+    "gt_response": "7032553"
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "The special magic Kigali number is 8990305.",
+    "gt_response": "8990305"
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "The special magic Lisbon number is 6309132.",
+    "gt_response": "6309132"
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "The special magic Brussels number is 6781704.",
+    "gt_response": "6781704"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "The special magic Kigali number is 3206444.",
+    "gt_response": "3206444"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "The special magic Amman number is 1222415.",
+    "gt_response": "1222415"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "The special magic Cairo number is 7176248.",
+    "gt_response": "7176248"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "The special magic Khartoum number is 3151762.",
+    "gt_response": "3151762"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "The special magic Cairo number is 5377665.",
+    "gt_response": "5377665"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "The special magic Brussels number is 9152900.",
+    "gt_response": "9152900"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "The special magic Chicago number is 8957150.",
+    "gt_response": "8957150"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "The special magic Santiago number is 4883661.",
+    "gt_response": "4883661"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "The special magic Kigali number is 4048429.",
+    "gt_response": "4048429"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "The special magic Belgrade number is 3927828.",
+    "gt_response": "3927828"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "The special magic Kigali number is 5442976.",
+    "gt_response": "5442976"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "The special magic Brussels number is 1034592.",
+    "gt_response": "1034592"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "The special magic Khartoum number is 3689206.",
+    "gt_response": "3689206"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "The special magic Belgrade number is 2846522.",
+    "gt_response": "2846522"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "is to have a good product.  The best way to convince users is to have a good product.  The best way to convince investors is",
+    "gt_response": "7489987"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "place for the growth of such a language.  The language is called \"Damascus\" and it is designed to be a general-purpose programming",
+    "gt_response": "9944654"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "to be one of them.  The most important thing is to be able to learn new things.  The most important thing is to be able to learn new",
+    "gt_response": "1609256"
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "The first time I saw a computer, I was 12.  The first time I saw a computer, I was 12.  The",
+    "gt_response": "1589318"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "people interested in startups is that you need a lot of people to be able to invest in them.  The first startup I ever worked on was called Via",
+    "gt_response": "1911890"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "The company was a startup, but the technology was not.  The company was a startup, but the technology was not.  The company was a startup",
+    "gt_response": "4018797"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "1000 startups, 100 might become successful companies.  The idea of a startup is to create a company that can grow fast.",
+    "gt_response": "1464960"
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "to get sucked into working longer than you expected at the money job.  But ambitious programmers are better off doing their own thing and failing",
+    "gt_response": "6118302"
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "Silicon Valley standards.  The founders were all over the place, and the company was in a state of constant flux.  The founders were all",
+    "gt_response": "3282426"
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "I'm not sure I'd want to be a novelist if I had to do it for a living.  I'm not sure I'",
+    "gt_response": "8692758"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "time.  The first part is how you get a product that people want.  The second part is how you get people to use it.  The third",
+    "gt_response": "9715017"
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "vertiser\" in the image might be surprised by the consequences of the licensing deal for the iPhone.  The first time I walked into a Starbu",
+    "gt_response": "7233297"
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "ted in his service.  The image of the man in the field is a metaphor for the man in the field who is not a farmer.",
+    "gt_response": "8208592"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "you'll be rich.  The other is that the people who are most likely to be successful are those who are most likely to be successful in other domains",
+    "gt_response": "6860948"
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "is one that I've never been able to understand.  The idea that you can't want what you want is a common one, but it'",
+    "gt_response": "7362884"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "computer science are the ones who were previously majoring in mathematics.  The most important thing is to be able to learn from your mistakes.  The most important",
+    "gt_response": "2382122"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "itions to the antibody repertoire, we're all going to be in a lot of trouble.  The antidote is people.",
+    "gt_response": "1021853"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "done and that you're probably the right person to do it.  The most important thing is to find something that you enjoy doing, and that you'",
+    "gt_response": "5890369"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "person.  <Image 7>  The most important thing is to have a good time.  The most important thing is to have a good time.",
+    "gt_response": "5510511"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "own decisions.  I'm not sure what the answer is, but I think it's worth considering.  It's not just that we",
+    "gt_response": "5041757"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "next level, which is to start charging for it.  The more people you can help, the better.  <Image 7>   The interesting",
+    "gt_response": "1096860"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "was a nightmare.  The first time I saw a computer, I was 12.  The first time I saw a computer that could be",
+    "gt_response": "8849085"
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "to make Unix.  The only way to get a good night's sleep is to have a regular routine.  The only way to get a good night",
+    "gt_response": "5025913"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "think, a forgery.  The company is now worth $100 million.  The company is now worth $100 million.  The",
+    "gt_response": "1461579"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "want.  The most successful founders are usually good people, they tend to have a piratical gleam in their eye.  The most successful found",
+    "gt_response": "5392620"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "own judgment.  The only way to be sure is to test your idea.  The only way to test your idea is to try it.  And the",
+    "gt_response": "1907819"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "bad.  <Image 7>   The other end of the spectrum is designing chairs.  It was a pleasing bit of code, but",
+    "gt_response": "9126835"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "of a word is a word.  [1]  The first rule of any technology used in a business is that automation applied to an efficient operation will",
+    "gt_response": "9469506"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "The language is built in layers.  The language is built in layers.  The language is built in layers.  The language is built in layers.",
+    "gt_response": "1243597"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "will have a device that can run their app.  The other way is to make a new technology that is so much better than the old one that it disp",
+    "gt_response": "3923030"
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "ative Hermeneutics of Quantum Physics,\" in Social Text, No. 25/26 (1996): 217",
+    "gt_response": "3514594"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "VCs will try to undermine the super-angels by acting more patient.  The students were mostly interested in the work of the faculty",
+    "gt_response": "5203307"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "leep at the wheel.  <Image 7>  The most important thing is to be able to write code.  The most important thing is to be",
+    "gt_response": "7998911"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "talk about the future of work, they often talk about how technology will make it easier for people to work from home, or how AI will automate certain",
+    "gt_response": "9402286"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "having to write a bunch of code to do the same thing.  The most important thing is to be able to learn from your mistakes.  The most important",
+    "gt_response": "9309785"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": ".  I'm not sure what the right answer is, but I do know that the answer is not to pretend that the problem doesn't exist",
+    "gt_response": "4160435"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "own right, and it's a skill that can be learned.  The first time I saw a painting by Roy Lichtenstein, I knew it was",
+    "gt_response": "8288125"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "you is how much of what you've written people will agree with.  The first is that you need time to grow a silicon valley.  [",
+    "gt_response": "2810523"
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "with it.  <Image 7>   The most important thing about a startup is that it should be able to make a product that a lot of people",
+    "gt_response": "2911257"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "aggerate a little to refute it.  <Image 7>   The most important quality in a startup founder is determination.  The most important",
+    "gt_response": "6153654"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "they were people, we can make them do things that would be impossible if we treated them as if they were just data.  The first time I saw a",
+    "gt_response": "8307832"
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "oun, was a new and exciting one.  <Image 7>   I was a little surprised to find that I was not the only one who",
+    "gt_response": "2331147"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "at the people who are most successful, they're the ones who are most likely to be doing something they like.  The most successful people are the ones",
+    "gt_response": "6350368"
+  },
+  {
+    "sample_id": 63,
+    "pred_response": ", they're already too old.  The most important thing is to be able to write code.  The most important thing is to be able to write",
+    "gt_response": "2046511"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "live, it's a good way to work.  The only way to be a good teacher is to be a good student.  <Image 7",
+    "gt_response": "9271882"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "by the architecture.  <Image 7>   The problem is that the people who are most likely to be interested in the product are the ones who are",
+    "gt_response": "8130461"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "'re useful.  <Image 7>  The most important thing is to have a good idea.  The most important thing is to have a good",
+    "gt_response": "6472862"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "from the way you'd feel if you were a 100% shareholder.  The only way to know for sure would be to try it",
+    "gt_response": "6878512"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "is no paradox, let me show you how to show there is a paradox.  The paradox is that the more successful the startup",
+    "gt_response": "2588316"
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "ers are also the CEO.  The problem is that the founders are also the CEO because they are the only ones who can make the company work",
+    "gt_response": "1910336"
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "is broken.  The people who've worked for a few years do seem better than the ones straight out of college, but only because they're that",
+    "gt_response": "7877334"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "anyone who's ever been a manager.  The most important thing is to be able to find a way to spend a lot of time doing it.",
+    "gt_response": "7012294"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": ".  The hacker's dream language is a language that is easy to learn, easy to use, and easy to write programs in.  <Image",
+    "gt_response": "3592890"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": ", it's probably a good investment.  The people who are most likely to be successful are those who are most likely to be successful.  The",
+    "gt_response": "4376530"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "The founders are usually the only ones who can afford to take the risk.  The founders are usually the only ones who can afford to take the",
+    "gt_response": "7378410"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "ually, is not a language that most people would choose to learn for its own sake.  The most important thing is to be able to learn from your mistakes",
+    "gt_response": "3300881"
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "code had been removed from the human race.  The company was called Viaweb, and it was the first web-based software company.  The company was",
+    "gt_response": "9438068"
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "things, and I was right.  The most important quality in a startup founder is commitment.  The most important quality in a startup founder is commitment",
+    "gt_response": "9353463"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "the decline of the West is that it's not cyclic.  The decline of the West is not cyclic.  The decline of",
+    "gt_response": "2269484"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "the conclusion that the best way to get a 10x return on his investment was to invest in a company that was 10x better than",
+    "gt_response": "7444053"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "that's a good question.  I think it's a good question.  I think it's a good question.  I think it'",
+    "gt_response": "8803677"
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "way of trying to understand what I was doing.  The first image of a black hole was a triumph of visualization.  The first image of a black",
+    "gt_response": "6801072"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "bbied for.  The other one is to get a good lawyer.  The other one is to get a good lawyer.  The other one is to",
+    "gt_response": "7250531"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "were to try to describe what I meant by \"good design\" to a non-designer, I'd have a hard time not using the phrase \"",
+    "gt_response": "7258496"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": ".  [1]  The most important thing is to be able to write code.  The most important thing is to be able to write code.",
+    "gt_response": "2898684"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "world of possibilities is opening up.  The most important part of design is redesign.  The most important part of design is redesign.",
+    "gt_response": "9853204"
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "ambda.  The human body is a strange thing, but when you're designing a chair, that's what you're designing for,",
+    "gt_response": "4257398"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "Y Combinator, which also funded Paul Graham's  company, Viaweb.  The first wave of the web was about the browser, the",
+    "gt_response": "4031308"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "about the lack of communication.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn",
+    "gt_response": "3952612"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "most important things are done by people who are not experts.  The most important things are done by people who are not experts.  The most important",
+    "gt_response": "8468892"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "was before.  <Image 7>  The most important thing about a startup is that it's a startup.  The most important thing about a",
+    "gt_response": "3826671"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "organization, the more it will suck.  The most important thing is to be able to learn new things.  The most important thing is to be able",
+    "gt_response": "1072897"
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "the test you use to measure performance must be a valid one.  If being good art really is a property of objects, it should be in the object somehow",
+    "gt_response": "9309300"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "chvarov's notion of the \"psychological\" is a bit more complicated than this.  The only way to make a silicon valley is",
+    "gt_response": "6182145"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "to be a genius to be a successful entrepreneur.  The image shows a man in a suit and tie, with a laptop.  <Image",
+    "gt_response": "2071359"
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "live in them.  The most important thing is to be able to learn from your mistakes.  <Image 7>   The most important thing is to",
+    "gt_response": "3749337"
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "a similar fate.  The reason I'm sad about my mother is not just that I miss her but that I think of all the things we could have",
+    "gt_response": "1302911"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "The word \"regressive\" as applied to tax rates has a similar effect, at least on me; how can anything regressive be good?",
+    "gt_response": "9238519"
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "the best art school in the country.  The first time I saw a computer, I was 12 years old.  The first time I saw a",
+    "gt_response": "7626799"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "lives that they were eager to fill.  <Image 7>  The first time I met him, I was in awe.  The first time",
+    "gt_response": "7449832"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": ", and they're not really startups, they're just a bunch of people who are already rich and have a lot of connections.  <Image",
+    "gt_response": "8819020"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "The most important thing is to be able to explain your ideas to other people.  The most important thing is to be able to explain your ideas to other people",
+    "gt_response": "9142770"
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "'s a good idea to be aware of this, and to try to make the most of your time.  [1]  The most important thing is",
+    "gt_response": "6376263"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "ch Cassidy and the Sundance Kid were not the only ones who knew how to use a gun.  The other side of the coin is that the",
+    "gt_response": "4705185"
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "willing to bet that the next 10 years will be like the last 10?  The answer is zero.  The next 10 years",
+    "gt_response": "6818671"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "ends a year.  <Image 7>   I'm not sure what the right answer is.  I'm not sure what the right answer",
+    "gt_response": "9407570"
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "and the definition of a good job was one where you could do that.  The idea of a \"hackathon\" is to bring together people who are",
+    "gt_response": "1321791"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "number of customers they have.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn",
+    "gt_response": "9986301"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "I was a kid, I'd been reading science fiction.  It's a very good idea to be able to write code.  It's",
+    "gt_response": "5976432"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "a web app that was as fast and responsive as a desktop app.  The web is a medium, not a place.  The web is a medium",
+    "gt_response": "5362081"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "oretical Knowledge of the subject is the key to the problem.  The problem is that the people who are most likely to be interested in the product are",
+    "gt_response": "5207472"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "we of the greatness of the universe are not necessarily the ones who are most likely to be great at it.  The most important thing is to be able",
+    "gt_response": "2548606"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "users.  The first time I saw a computer, I was 12.  The first time I saw a computer, I was 12.",
+    "gt_response": "1696807"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "feet.  The answer to the paradox, I think, is that you have to design for the user, but you have to design what the user",
+    "gt_response": "5502635"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "people to join a startup, you'll get a lot of stock.  It's a great way to get rich.  It's not that",
+    "gt_response": "7207568"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": ", I was a lousy programmer.  <Image 7>   The founders were all in their 20s, and they were all",
+    "gt_response": "7583538"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "about how much of what we do is just a bunch of random noise.  It's not surprising that the most successful people in the world are the ones",
+    "gt_response": "7927568"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "-rate universities were founded by the wealthy.  The ancient Greeks and the ancient Chinese were both very good at inventing things.  The ancient",
+    "gt_response": "1466644"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "to think, but it's a better thing for them to teach students how to learn how to think.  It's a good idea to have a",
+    "gt_response": "1229215"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "we must be wrong.  <Image 7>  The most important thing is to be able to learn from your mistakes.  The most important thing is",
+    "gt_response": "7089509"
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "opic ambitions.  I was a little surprised to find that I was already a professor.  I'd been a professor for a year, and",
+    "gt_response": "8057076"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": ".  The most important thing is to keep learning.  The most important thing is to keep learning.  The most important thing is to keep learning.",
+    "gt_response": "3234670"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "knew what they were doing.  The idea that you can't be a good person and a good programmer is a myth.  The idea that you can",
+    "gt_response": "2182231"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "'s not that I'm not interested in the subject, but I'm not interested in the way it's being presented.  I'm",
+    "gt_response": "2813218"
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "to learn to write.  <Image 7>   The first time I saw a computer was in 1968, when I was 1",
+    "gt_response": "8690633"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "the wealth gap.  The root cause is the fact that the economy is not growing fast enough to create new opportunities for everyone.  The image of the",
+    "gt_response": "4357888"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "makes the world go round.  The company was called \"The Art of the Real\".  The company was called \"The Art of the Real\".  The",
+    "gt_response": "3868184"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "who are not ready to face the consequences of their actions are not ready to take responsibility for their actions.  The first thing that strikes one is how tiny",
+    "gt_response": "2654078"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "are not going to be satisfied with a language that doesn't let them do anything they want.  <Image 7>   The image shows a computer",
+    "gt_response": "4417976"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "something something something something something something something something something something something something something something something something something something something something something something something something something something something something something something something something",
+    "gt_response": "6181685"
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "you'll be loved.  [8] The founders of a startup are often the most important people in the company, and they're usually the",
+    "gt_response": "2397933"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "house software development teams can benefit from open-source software.  The first is that you need time to grow a silicon valley.  The first is that",
+    "gt_response": "7552886"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "t do better than to read this book.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be",
+    "gt_response": "6899912"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "esthetic sense that is not only more complex than their sense of smell but also more accessible to them.  The company is ultimately doomed.",
+    "gt_response": "4457677"
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "just import the people.  The other way to think about this is that the people who are successful in Silicon Valley are the ones who are good at taking",
+    "gt_response": "7021704"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "))or(= x (if foo 1 22)(if bar 1 2))or(= x (if foo 1 2",
+    "gt_response": "1325918"
+  },
+  {
+    "sample_id": 136,
+    "pred_response": ">   The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your mistakes.",
+    "gt_response": "7746553"
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "The middle class is not the problem.  It's the solution.  The problem is that the middle class is not the ruling class.)  The",
+    "gt_response": "8791725"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": ".  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your mistakes.",
+    "gt_response": "9250216"
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "vel REPL.  It's not just that you can run any command you like, but that you can run any command you like and see the result",
+    "gt_response": "3462116"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "re not going to get a second chance.  <Image 7>   The most important thing is to be able to write code.  The most important",
+    "gt_response": "5002386"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "mousetrap.  The most important part of design is redesign.  The most important part of design is redesign.  The most",
+    "gt_response": "3369641"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "(creating a new kind of art).  The most important thing is to be able to learn from your mistakes.  <Image 7>  The",
+    "gt_response": "7604988"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "was the year I started working on Bel.  The most important thing I learned in college was that I didn't want to be a math major.",
+    "gt_response": "1028281"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "vention, they're likely to be interested in the former.  The other is the ability to create a new market.  The other is the ability to",
+    "gt_response": "9264023"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "7>   The problem is, if you're not a hacker, you can't tell who the good hackers are.  Prose",
+    "gt_response": "9729290"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "The essays I write are for my own amusement, and I don't care if anyone else reads them.  I'm not trying to impress",
+    "gt_response": "8357108"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "t find a job.  <Image 7>   The most important thing is to be able to find a way to make a living.  The most",
+    "gt_response": "7364614"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "of the people who had them.  The most important thing is to be a good person.  <Image 7>  The most important thing is to",
+    "gt_response": "1094460"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "now.  The company was called \"The Mezzanine Group\".  <Image 7>   The company was called \"The Mezzanine",
+    "gt_response": "2249946"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "to score.  The most important thing is to be a good team member.  <Image 7>   The most important thing is to be a good",
+    "gt_response": "8101707"
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "The company was called Aspra.  The company was called Aspra.  The company was called Aspra.  The company was called Aspra.",
+    "gt_response": "2852082"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "it, and I'll do it well, and that's the point where I'll be happy.  I'm not saying that's",
+    "gt_response": "4638507"
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "'s why I'm so interested in the idea of a new Lisp.  The other end of the spectrum is designing chairs.  The",
+    "gt_response": "8676834"
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "t wrong either.  The most important thing is to be able to get yourself to do what you need to do, and like it.  <Image",
+    "gt_response": "8237529"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "ater square.  The most important thing is to be able to learn from your mistakes.  <Image 7>   The most important thing is to be",
+    "gt_response": "5447362"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "ater, the audience is always right, and the actors are always wrong.  The most important thing is to be able to learn from your mistakes.  <",
+    "gt_response": "2968784"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "of Maxim Hot 100, which is a list of the 100 most beautiful women in the world.  <Image 7>",
+    "gt_response": "3632384"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": ".  The people who are most likely to be successful are those who are most likely to be successful in the future.  The people who are most likely to",
+    "gt_response": "2049077"
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "without the change.  The company was called NeXT, and it was a computer hardware and software company that Steve Jobs had founded after he was ousted",
+    "gt_response": "9190938"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "ays and painting.  The painting was a way of trying to make sense of the world, and the essays were a way of trying to make sense of",
+    "gt_response": "4205238"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "person to learn a new skill.  The idea is that you can't be a good programmer without being a good learner.  The idea is that",
+    "gt_response": "3599463"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "ater of the mind is the human brain.  The most important thing about the Internet is that it's a network.  The most important thing about the",
+    "gt_response": "9353152"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": ".  The first stories about Jaynes cited this source, but now it's simply repeated as if it were part of the indictment.",
+    "gt_response": "3958126"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "-one to help me.  The most important thing is to make something people want.  The most important thing is to make something people want.  The",
+    "gt_response": "3693485"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "was different from other kinds of work I've done.  The first time I went to a YC event, I was surprised to find that the people",
+    "gt_response": "8453668"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": ".  The first is that you need time to grow a silicon valley.  <Image 7>   The most important thing is to be able to",
+    "gt_response": "2226380"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": ".  <Image 7>   The only way to get a good implementation is to get a good implementation team.  The best way to get a good",
+    "gt_response": "1358031"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "ed the idea, we decided to try to make a startup.  The first one was a total failure.  The second one was a total success.",
+    "gt_response": "5852340"
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "a certain type is that the selection process is not a random sample of the population.  The way to make a startup work is to make it work.",
+    "gt_response": "2314740"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": ".  [2]  The most important thing is to be able to learn from your mistakes.  [2]  The dictator in the 1",
+    "gt_response": "1938023"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "parentheses, and (b) it's a macro.  The best way to get a good idea is to have lots of ideas.  The best way",
+    "gt_response": "6708972"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "for the research.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your",
+    "gt_response": "7188944"
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "that are not always apparent.  The other half is expressing yourself well.  The other half is expressing yourself well.  The other half is express",
+    "gt_response": "1592295"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "kle bracelet.  The first time I saw a computer, I was 12 years old.  <Image 7>  The first",
+    "gt_response": "6361321"
+  },
+  {
+    "sample_id": 175,
+    "pred_response": ".  The idea of a startup community around a university is not new.  The idea of a startup community around a university is not new.  The idea",
+    "gt_response": "5514503"
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "but now I'm not so sure.  The term was invented by John Battelle, who wrote a book about it.  The term \"Web",
+    "gt_response": "2267847"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": ".  [1]",
+    "gt_response": "7394437"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "the right, is that he is not interested in the facts.  The most important thing is to be able to learn from your mistakes.  <Image",
+    "gt_response": "7078566"
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "someone.  The idea of a startup is to create a company that can grow fast.  The idea of a startup is to create a company that can grow",
+    "gt_response": "6000471"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "can get in early and make a killing.  The most important thing is to be able to tell a good idea from a bad one.  <Image",
+    "gt_response": "8241080"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": ".  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your mistakes.",
+    "gt_response": "7585827"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "vestors are not dishonest.  [6] So if you make it clear you're going to succeed no matter what, and the only",
+    "gt_response": "6788047"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "will ever be a startup hub.  The other implication of the organic growth hypothesis is that you can't be somewhat of a startup hub.",
+    "gt_response": "7577880"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "'re passionate about.  The most important thing is to find work you enjoy.  The most important thing is to find work you enjoy.  The",
+    "gt_response": "8748172"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "startup is $12k.  The first time I saw a web page that was interactive, I was stunned.  The first time I saw",
+    "gt_response": "8313596"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "an artist.  <Image 7>  The most important thing is to be able to learn from your mistakes.  The most important thing is to be",
+    "gt_response": "3368579"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "will be the case.  The manual is thin, and has few warnings and qualifications.  The language has a small core, and powerful, highly orthogonal",
+    "gt_response": "8360978"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": ", which was the company that YC was originally called.  The first version of the YC website was written in Common Lisp.  The first version",
+    "gt_response": "3377981"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "even a decade.  The idea is that you can write a program that will compile to machine language, and then you can run it on a computer.",
+    "gt_response": "5539713"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "code.\"  I'm not sure what the right word is, but it's not \"hack.\"  <Image 7>   I'",
+    "gt_response": "9621984"
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "or the desire to be with people you like.  The more you know, the more you know you don't know.  The more you know,",
+    "gt_response": "5626534"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "win.  The other way is to look at the number of people who are using the language.  The other way is to look at the number of people",
+    "gt_response": "9912361"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "of the New York Times, and the head of the New York Times.  The NPD Group is a market research company that tracks sales of books, music",
+    "gt_response": "1881472"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "It's not a good idea.  The most important thing is to build a great product.  The most important thing is to build a great product",
+    "gt_response": "9089664"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "inds me of the way you can see the wind blowing things around.  <Image 7>  The most important thing is to be clear about what",
+    "gt_response": "2878287"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "use the word \"hack\" in the sense of a clever programmer.  The most important thing is to be able to learn new things.  <Image",
+    "gt_response": "8024981"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "look at the history of the last 100 years.  <Image 7>  The most important thing is to be able to learn from your",
+    "gt_response": "8440414"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "xic waste management.  The first time I saw a Mac, I was blown away.  [5]  The problem is that the people who are",
+    "gt_response": "6787968"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "been in the last 10 years.  The computer would be just as happy speaking any language that was unambiguous.  The computer would be just",
+    "gt_response": "9727740"
+  },
+  {
+    "sample_id": 200,
+    "pred_response": "do so.  The web is a medium of communication, not a medium of information.  <Image 7>   The web is a medium of communication",
+    "gt_response": "6159080"
+  },
+  {
+    "sample_id": 201,
+    "pred_response": "but it's a question that makes sense to ask later on.  The Bay Area was a magnet for the young and optimistic for decades before it",
+    "gt_response": "5831037"
+  },
+  {
+    "sample_id": 202,
+    "pred_response": "t understand it.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your",
+    "gt_response": "3187478"
+  },
+  {
+    "sample_id": 203,
+    "pred_response": "<Image 7>  The problem is that the people who are good at something are usually not the ones who are good at explaining it.  The",
+    "gt_response": "7922621"
+  },
+  {
+    "sample_id": 204,
+    "pred_response": "oshi, John Ousterhout, and Harj Taggar for reading drafts of this.  The book is called \"The Structure of Scientific",
+    "gt_response": "5098516"
+  },
+  {
+    "sample_id": 205,
+    "pred_response": "best way to go about it?  <Image 7>  The first step is to decide what you want to do.  The first step is to",
+    "gt_response": "7684438"
+  },
+  {
+    "sample_id": 206,
+    "pred_response": "even a necessary one in the wrong place.  The most important thing is to be able to write code that is easy to read and understand.  <Image",
+    "gt_response": "6656661"
+  },
+  {
+    "sample_id": 207,
+    "pred_response": "\"Sure, that would be great!\"  [11]  The most important thing is to be able to learn from your mistakes.  The most",
+    "gt_response": "2967986"
+  },
+  {
+    "sample_id": 208,
+    "pred_response": "10] ]  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your",
+    "gt_response": "7302749"
+  },
+  {
+    "sample_id": 209,
+    "pred_response": ".  The most valuable insights are both general and surprising.  <Image 7>   The most valuable insights are both general and surprising.",
+    "gt_response": "4786889"
+  },
+  {
+    "sample_id": 210,
+    "pred_response": "you want to know the value of a man, ask him what he thinks of his own mother.  [1]  The best way to get a job",
+    "gt_response": "5374146"
+  },
+  {
+    "sample_id": 211,
+    "pred_response": "ciously decide to be a generalist.  The people who are interested in art learn about it for themselves, and those who aren't don't",
+    "gt_response": "8628268"
+  },
+  {
+    "sample_id": 212,
+    "pred_response": "programmers or not.  The fact that they're not using a language that's widely used in the industry is a red flag.  <Image",
+    "gt_response": "7320364"
+  },
+  {
+    "sample_id": 213,
+    "pred_response": "-believe worlds.  The first batch of YC companies was pretty good.  The first batch of YC companies was pretty good.  The",
+    "gt_response": "4774593"
+  },
+  {
+    "sample_id": 214,
+    "pred_response": "s a lot of work to be done.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be",
+    "gt_response": "5795181"
+  },
+  {
+    "sample_id": 215,
+    "pred_response": "and cities that have experienced a significant influx of new residents have experienced a significant increase in the number of startups.  The other is that you need a",
+    "gt_response": "9483136"
+  },
+  {
+    "sample_id": 216,
+    "pred_response": "see see see see see see see see see see see see see see see see see see see see see see see see see see see see see see see see",
+    "gt_response": "2516290"
+  },
+  {
+    "sample_id": 217,
+    "pred_response": "to find the one that said what I wanted to say.  The most important thing is to be able to learn from your mistakes.  The most important thing",
+    "gt_response": "3833304"
+  },
+  {
+    "sample_id": 218,
+    "pred_response": "live in.  The first time I saw a computer, I was in high school, and I was amazed by how much it could do.  I",
+    "gt_response": "4843336"
+  },
+  {
+    "sample_id": 219,
+    "pred_response": "a single project.  The most important thing is to be able to learn from your mistakes.  <Image 7>   The most important thing is to",
+    "gt_response": "3752211"
+  },
+  {
+    "sample_id": 220,
+    "pred_response": "ing is that we should be able to use the same language to describe both the world and the programs that operate on it.  The only way to make a",
+    "gt_response": "4344896"
+  },
+  {
+    "sample_id": 221,
+    "pred_response": "verness, Scotland, the average person has 1.3 children.  The most important thing about a startup is that it's a startup.",
+    "gt_response": "8319132"
+  },
+  {
+    "sample_id": 222,
+    "pred_response": "otle.  The most valuable way to approach the current philosophical tradition may be neither to get lost in pointless speculations like Berkeley, nor to",
+    "gt_response": "9575855"
+  },
+  {
+    "sample_id": 223,
+    "pred_response": ".  The first time I saw a computer, I was 12.  I'm not sure what the best way to learn to code is,",
+    "gt_response": "4339362"
+  },
+  {
+    "sample_id": 224,
+    "pred_response": "they don't already know is a powerful motivator.  <Image 7>   The first time I saw a computer, I was 12",
+    "gt_response": "5054318"
+  },
+  {
+    "sample_id": 225,
+    "pred_response": "be the goal of education?  To make people as ignorant as possible about what is going on in the world?  To make people as ignorant as",
+    "gt_response": "2867960"
+  },
+  {
+    "sample_id": 226,
+    "pred_response": "base to drive significant innovation.  <Image 7>   The most important thing is to have a good idea.  The most important thing is to",
+    "gt_response": "5438753"
+  },
+  {
+    "sample_id": 227,
+    "pred_response": "is a language.  The language is a language.  The language is a language.  The language is a language.  The language is a language.",
+    "gt_response": "6435186"
+  },
+  {
+    "sample_id": 228,
+    "pred_response": "The best way to learn is to do.  <Image 7>   The best way to learn is to do.  The best way to learn",
+    "gt_response": "2594014"
+  },
+  {
+    "sample_id": 229,
+    "pred_response": "than any other language.  <Image 7>  The problem is not Apple's products but their policies.  The problem is not Apple's",
+    "gt_response": "5418839"
+  },
+  {
+    "sample_id": 230,
+    "pred_response": ".  The people who are interested in art learn about it for themselves, and those who aren't don't.  The people who are interested in",
+    "gt_response": "3954411"
+  },
+  {
+    "sample_id": 231,
+    "pred_response": "it easier to do so?  No.  The most important thing is to be able to write code.  <Image 7>  The most important",
+    "gt_response": "6636365"
+  },
+  {
+    "sample_id": 232,
+    "pred_response": "to be alone, and that's ok.  The only way to get a good job is to be good.  The only way to be good is",
+    "gt_response": "2330514"
+  },
+  {
+    "sample_id": 233,
+    "pred_response": "isp.\"  The fact that I'm not doing that is a complete accident.  The fact that I'm not doing that is a complete accident.",
+    "gt_response": "7260736"
+  },
+  {
+    "sample_id": 234,
+    "pred_response": "as many users as Digg.  The first time I saw a computer, I was 13.  <Image 7>  The first time",
+    "gt_response": "1151034"
+  },
+  {
+    "sample_id": 235,
+    "pred_response": "is a new kind of company, one that's not a traditional company, not a traditional startup, not a traditional anything.  It's a company",
+    "gt_response": "1561362"
+  },
+  {
+    "sample_id": 236,
+    "pred_response": "no angel investors.  The only way to get a startup off the ground is to be a great salesman.  The only way to get a",
+    "gt_response": "3944276"
+  },
+  {
+    "sample_id": 237,
+    "pred_response": "Image 7>  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able to learn from your",
+    "gt_response": "4709782"
+  },
+  {
+    "sample_id": 238,
+    "pred_response": "a good place to work.  The reason I'm not a philosopher is that I'm not smart enough.  [1]  The",
+    "gt_response": "2698231"
+  },
+  {
+    "sample_id": 239,
+    "pred_response": "to join you is a good way to get them to do something, inviting people to join you in a startup is a good way to get them to do",
+    "gt_response": "4415451"
+  },
+  {
+    "sample_id": 240,
+    "pred_response": "'t.  <Image 7>   The usual motives are few: drugs, money, sex, revenge.  The lower of two",
+    "gt_response": "3398157"
+  },
+  {
+    "sample_id": 241,
+    "pred_response": "'s what makes it so hard to get people to invest in your startup.  The other side of the coin is that the people who are most likely to",
+    "gt_response": "2834109"
+  },
+  {
+    "sample_id": 242,
+    "pred_response": "such as between a Ph.D.  The most important thing is to be able to learn from your mistakes.  The most important thing is to be able",
+    "gt_response": "2619865"
+  },
+  {
+    "sample_id": 243,
+    "pred_response": "is that it's a language for building languages.  The first time I saw a Lisp program, I was struck by how much it looked like a",
+    "gt_response": "6401091"
+  },
+  {
+    "sample_id": 244,
+    "pred_response": "the all too accurate sense that something is missing.And indeed, a lot of published essays peter out in this same way. I remember vividly",
+    "gt_response": "8156862"
+  },
+  {
+    "sample_id": 245,
+    "pred_response": "[1] The company was called \"The Lisp Machine\".  [1] The company was called \"The Lisp Machine\".  [1]",
+    "gt_response": "4575153"
+  },
+  {
+    "sample_id": 246,
+    "pred_response": "learn to code?  Start with the basics.  Learn to code with our beginner-friendly curriculum.  <Image 7>",
+    "gt_response": "1969407"
+  },
+  {
+    "sample_id": 247,
+    "pred_response": "can work for themselves.  <Image 7>   The most important thing about a startup is that it should be able to make a product that a lot",
+    "gt_response": "3555434"
+  },
+  {
+    "sample_id": 248,
+    "pred_response": "ater, the audience is supposed to suspend disbelief.  <Image 7>   The most important thing about a language is how well it lets",
+    "gt_response": "1782228"
+  },
+  {
+    "sample_id": 249,
+    "pred_response": "The most important is to explain, as concisely as possible, what the hell your site is about.  At that age (like most succeeding ages",
+    "gt_response": "1372658"
+  },
+  {
+    "sample_id": 250,
+    "pred_response": "is one of them.  The most important thing is to be able to explain what you're doing.  The most important thing is to be able to",
+    "gt_response": "8639064"
+  },
+  {
+    "sample_id": 251,
+    "pred_response": "you're doing is a huge advantage.  The problem is that the people who are most likely to be interested in your startup are also the people who are",
+    "gt_response": "1452613"
+  },
+  {
+    "sample_id": 252,
+    "pred_response": "the end of the year, we'd have a big party and give out awards.  The first time I saw a computer, I was ten years old",
+    "gt_response": "2990255"
+  },
+  {
+    "sample_id": 253,
+    "pred_response": "a seedling to a tree.  The most important part of design is redesign.  <Image 7>   The most important part of design",
+    "gt_response": "7229071"
+  },
+  {
+    "sample_id": 254,
+    "pred_response": ".  The students were mostly in the US, but some were in other countries.  The students were mostly in the US, but some were in other countries",
+    "gt_response": "5429877"
+  },
+  {
+    "sample_id": 255,
+    "pred_response": "tried to read a few philosophy books.  They're facts that contradict things you thought you knew.  But it's not because liberals are sm",
+    "gt_response": "9851868"
+  },
+  {
+    "sample_id": 256,
+    "pred_response": "'s not that you're not allowed to do it, it's just that you're not allowed to do it in that way.  The",
+    "gt_response": "1229186"
+  },
+  {
+    "sample_id": 257,
+    "pred_response": "300 people is a lot more efficient than a group of 3.  The problem is that the people who are good at this are also good at",
+    "gt_response": "8625274"
+  },
+  {
+    "sample_id": 258,
+    "pred_response": "to Sam Altman, Trevor Blackwell, Ross Boucher,  James Bracy, Gabor Cselle, Patrick Collison, Jason Freed",
+    "gt_response": "8528270"
+  },
+  {
+    "sample_id": 259,
+    "pred_response": ", but it's not.  I'm not sure what the best way to do this is, but I'm pretty sure it's better",
+    "gt_response": "9745093"
+  },
+  {
+    "sample_id": 260,
+    "pred_response": "ater.  The most important thing is to be able to learn from your mistakes.  <Image 7>   [4]  The most important thing",
+    "gt_response": "2075853"
+  },
+  {
+    "sample_id": 261,
+    "pred_response": "that that the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the",
+    "gt_response": "2723615"
+  },
+  {
+    "sample_id": 262,
+    "pred_response": "people.  The problem is that the people who are interested in art are not the same people who are interested in business.  The problem is that the people",
+    "gt_response": "9170064"
+  },
+  {
+    "sample_id": 263,
+    "pred_response": "d bet on the next big thing being something that's already in the works.  <Image 7>  The most important thing is to be able",
+    "gt_response": "2660825"
+  },
+  {
+    "sample_id": 264,
+    "pred_response": "to make the other group look bad.  The most important thing is to be able to write code that is easy to read and understand.  The most important",
+    "gt_response": "2630167"
+  },
+  {
+    "sample_id": 265,
+    "pred_response": "of working.  The most important thing is to be able to learn from your mistakes.  <Image 7>  The most important thing is to be",
+    "gt_response": "5698333"
+  },
+  {
+    "sample_id": 266,
+    "pred_response": "faces are a problem because they tend to be one of the most ad hoc parts of any system.  The problem is that the people who are good at",
+    "gt_response": "1552113"
+  },
+  {
+    "sample_id": 267,
+    "pred_response": "tendency to be overly optimistic.  <Image 7>   The best startups almost have to start as side projects, because great ideas tend",
+    "gt_response": "1566909"
+  },
+  {
+    "sample_id": 268,
+    "pred_response": "ms from bad ones, and they know how to get good PR.  The only way to get a good night's sleep is to have a regular sleep",
+    "gt_response": "9713268"
+  },
+  {
+    "sample_id": 269,
+    "pred_response": "]  The most important thing is to be able to learn from your mistakes.  <Image 7>  The most important thing is to be able to",
+    "gt_response": "6467283"
+  },
+  {
+    "sample_id": 270,
+    "pred_response": "m saying is that the people who are most likely to succeed are those who are most likely to be happy.  The people who are most likely to succeed are",
+    "gt_response": "9725901"
+  },
+  {
+    "sample_id": 271,
+    "pred_response": "ecdote: I was at a conference where a speaker was talking about the importance of innovation.  He asked the audience if they knew anyone who was",
+    "gt_response": "7033017"
+  },
+  {
+    "sample_id": 272,
+    "pred_response": "some extent.  The language is a tool, and the user is the one who decides how to use it.  The language is a tool, and",
+    "gt_response": "4632013"
+  },
+  {
+    "sample_id": 273,
+    "pred_response": "icited advice.  The best way to learn is to teach.  The best way to learn to program is to teach it.  The best way to",
+    "gt_response": "8290025"
+  },
+  {
+    "sample_id": 274,
+    "pred_response": "in Paris in 1999.\"  [1]  The phrase was then used in a 2004 conference by O'Reilly",
+    "gt_response": "4032184"
+  },
+  {
+    "sample_id": 275,
+    "pred_response": "87.  [4]  The students and faculty in the painting department at the Accademia were the nicest people you could imagine, but",
+    "gt_response": "8313731"
+  },
+  {
+    "sample_id": 276,
+    "pred_response": "because it's the most visible.  The best way to find out if you're suited to running a startup is to try it.  The",
+    "gt_response": "6210467"
+  },
+  {
+    "sample_id": 277,
+    "pred_response": "The best way to make a good product is to make something people want.  The best way to make something people want is to make it easy to use",
+    "gt_response": "1362776"
+  },
+  {
+    "sample_id": 278,
+    "pred_response": "stock they get is newly issued and all the stock they get is newly issued and all the stock they get is newly issued and all the stock they get is newly",
+    "gt_response": "4927927"
+  },
+  {
+    "sample_id": 279,
+    "pred_response": "the line.  The most important part of design is redesign.  <Image 7>   The most important part of design is redesign",
+    "gt_response": "5764748"
+  },
+  {
+    "sample_id": 280,
+    "pred_response": "to be able to adjust your advice to the specifics of each one.  <Image 7>  The first is that the most important thing for a",
+    "gt_response": "1539056"
+  },
+  {
+    "sample_id": 281,
+    "pred_response": "programming, you should make it a language that is easy to read and write.  The most important thing is to be able to read and write in the language",
+    "gt_response": "5583385"
+  },
+  {
+    "sample_id": 282,
+    "pred_response": "is not a good fit for the way you think, it's going to be hard to use it effectively.  The idea of a startup is to create",
+    "gt_response": "2203981"
+  },
+  {
+    "sample_id": 283,
+    "pred_response": "context?  The idea of a startup is to create a new market, not to compete with an existing one.  The most important thing is to be",
+    "gt_response": "7996711"
+  },
+  {
+    "sample_id": 284,
+    "pred_response": "a lot of luck, and were now in a position to take advantage of it.  The language is designed to be easy to learn and use, but not",
+    "gt_response": "8563699"
+  },
+  {
+    "sample_id": 285,
+    "pred_response": "that you can write a program that can be understood by a human and a machine in the same way.  The most important thing is to be able to write",
+    "gt_response": "1905700"
+  },
+  {
+    "sample_id": 286,
+    "pred_response": "in high school?  The fact that it's a startup is a fact that's going to be important to the outcome.  The fact that it",
+    "gt_response": "2272177"
+  },
+  {
+    "sample_id": 287,
+    "pred_response": "is useful for understanding the world, and some that is useful for understanding the mind.  The first kind is the kind that is useful for understanding the world.",
+    "gt_response": "1732422"
+  },
+  {
+    "sample_id": 288,
+    "pred_response": "in a world where you could do anything.  The first time I saw a computer, I was 12.  I was a very good student,",
+    "gt_response": "2032492"
+  },
+  {
+    "sample_id": 289,
+    "pred_response": "++ and Java was unreadable.  The first time I heard the phrase \"Web 2.0\" was in the name of the Web 2",
+    "gt_response": "4505187"
+  },
+  {
+    "sample_id": 290,
+    "pred_response": "genstein: The Duty of Genius (1990) 199.  <Image 7>  The way to come",
+    "gt_response": "9662952"
+  },
+  {
+    "sample_id": 291,
+    "pred_response": "in aphorisms.  The other is that the people who are most likely to be successful at a startup are those who are most likely to be successful",
+    "gt_response": "4233533"
+  },
+  {
+    "sample_id": 292,
+    "pred_response": "and customers.  The first was that it was a programming language.  The second was that it was a programming language.  The third was that it was",
+    "gt_response": "2297040"
+  },
+  {
+    "sample_id": 293,
+    "pred_response": "othing that it's like a lullaby.  The way to get novelty is to write about topics you've thought about a lot.",
+    "gt_response": "8353690"
+  },
+  {
+    "sample_id": 294,
+    "pred_response": "brick of our thoughts.  <Image 7>  The first time I saw a computer, I was 12.  The first time I saw",
+    "gt_response": "9034788"
+  },
+  {
+    "sample_id": 295,
+    "pred_response": "odore Roosevelt quote about how it's not the critic who counts, but the man who does the work—that's for people who produce",
+    "gt_response": "4505512"
+  },
+  {
+    "sample_id": 296,
+    "pred_response": "largest software acquisition in history.  <Image 7>   The way to make a startup successful is to make something people want.  The way to",
+    "gt_response": "3744682"
+  },
+  {
+    "sample_id": 297,
+    "pred_response": "The most important thing is to have a good idea.  The most important thing is to have a good idea.  The most important thing is to have",
+    "gt_response": "5277872"
+  },
+  {
+    "sample_id": 298,
+    "pred_response": "that we didn't even know what to call it.  The most important thing is to make something people want.  The most important thing is to make",
+    "gt_response": "3530009"
+  },
+  {
+    "sample_id": 299,
+    "pred_response": "to get rich is to start a company.  The other side of the coin is that the rich are not necessarily the smartest.  The other side of",
+    "gt_response": "4092570"
+  },
+  {
+    "sample_id": 300,
+    "pred_response": "and the rules are still being written.  The image of the future is not so much one of no-land as one of a few people plotting their",
+    "gt_response": "3557107"
+  },
+  {
+    "sample_id": 301,
+    "pred_response": "2001, and I've been working on my own startup since then.  The other big difference between a real essay and the things",
+    "gt_response": "3488811"
+  },
+  {
+    "sample_id": 302,
+    "pred_response": "10 years.  The first version of the code was mostly Lisp, because the ordering system was small.  The first version of the code was mostly",
+    "gt_response": "4153914"
+  },
+  {
+    "sample_id": 303,
+    "pred_response": "the most out of it?  The people who were already rich.  The people who were already rich.  The people who were already rich.  The",
+    "gt_response": "3364451"
+  },
+  {
+    "sample_id": 304,
+    "pred_response": "the same time was $2.4 million.  The average salary of a teacher in the United States is $50,300.",
+    "gt_response": "6050425"
+  },
+  {
+    "sample_id": 305,
+    "pred_response": ", 2013.  I'd been a computer science professor for 20 years, and I was getting tired.  I'd",
+    "gt_response": "9859636"
+  },
+  {
+    "sample_id": 306,
+    "pred_response": "for evaluating people.  The company was called Viaweb, and it was a startup that was trying to build a store-building software.  The company",
+    "gt_response": "7856900"
+  },
+  {
+    "sample_id": 307,
+    "pred_response": "of a clear and compelling reason to do so, it is not unreasonable to assume that the reason for the choice of programming language is simply that the",
+    "gt_response": "9308494"
+  },
+  {
+    "sample_id": 308,
+    "pred_response": "third counterintuitive point is that it's not that important to be rich.  The first rule of writing is to write.  The first rule",
+    "gt_response": "4559246"
+  },
+  {
+    "sample_id": 309,
+    "pred_response": ".  The book is a collection of essays, not a novel.  The book is a collection of essays, not a novel.  The book",
+    "gt_response": "9634819"
+  },
+  {
+    "sample_id": 310,
+    "pred_response": "the edge of the frame.  The first time I saw a computer, I was 12 years old.  The first time I saw a computer,",
+    "gt_response": "4685978"
+  },
+  {
+    "sample_id": 311,
+    "pred_response": "hubs.  The founders would be able to keep their options open.  The founders would be able to keep their options open.  The found",
+    "gt_response": "3754914"
+  },
+  {
+    "sample_id": 312,
+    "pred_response": "actic things with a language called Lisp.  The idea is that you can use the same language to describe both the problem and the solution, which is a",
+    "gt_response": "1105857"
+  },
+  {
+    "sample_id": 313,
+    "pred_response": "company is called.  The company name is the least important part of your brand.  The company name is the least important part of your brand.  The",
+    "gt_response": "5837013"
+  },
+  {
+    "sample_id": 314,
+    "pred_response": "are other programmers.  The other approach, the big bang method, is exemplified by the VC-backed, heavily marketed startup.",
+    "gt_response": "6610703"
+  },
+  {
+    "sample_id": 315,
+    "pred_response": "people to the first meeting.  The first time I saw a computer, I was 12 years old.  The first time I saw a computer,",
+    "gt_response": "9009010"
+  },
+  {
+    "sample_id": 316,
+    "pred_response": "'d never met them.  <Image 7>   The App Store is an ongoing karma leak.  The App Store is an ongoing",
+    "gt_response": "5937654"
+  },
+  {
+    "sample_id": 317,
+    "pred_response": "ed.  The company was called \"The Hitchhiker's Guide to the Galaxy.\"  The company was called \"The Hitchhiker",
+    "gt_response": "1460890"
+  },
+  {
+    "sample_id": 318,
+    "pred_response": "-liner, he summed up the whole of the modern era.  The modern era is characterized by the fact that the most important things are changing",
+    "gt_response": "3765652"
+  },
+  {
+    "sample_id": 319,
+    "pred_response": ": I'm sorry, but I'm not sure what you are asking. Can you please provide more context or clarify your question?",
+    "gt_response": "3571476"
+  }
+]

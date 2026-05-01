@@ -1,0 +1,1002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "D",
+    "gt_response": "Over 25 million"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "D",
+    "gt_response": "13.2"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "D",
+    "gt_response": "Bruno Lafont"
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "D",
+    "gt_response": "2013"
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "B",
+    "gt_response": "Sales activation"
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "A",
+    "gt_response": "28"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "C",
+    "gt_response": "FIDUCIARY"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "A. Disclosed, Unspecified, Partially Disclosed",
+    "gt_response": "Disclosed, Undisclosed, Partially Disclosed"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "D",
+    "gt_response": "10"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "D",
+    "gt_response": "Z97S SLI PLUS"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "D",
+    "gt_response": "1007"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "B",
+    "gt_response": "Renal corpuscle"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "C",
+    "gt_response": "96"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "D",
+    "gt_response": "70"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "A",
+    "gt_response": "HAIR, NOSE, LIPS, EYE, EAR"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "B",
+    "gt_response": "Longer"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "D",
+    "gt_response": "10.67"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "B",
+    "gt_response": "A lot"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "B",
+    "gt_response": "Increased"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "D",
+    "gt_response": "88"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "D",
+    "gt_response": "Google"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "C",
+    "gt_response": "Learn and Live"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "B",
+    "gt_response": "9"
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "D",
+    "gt_response": "5"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "B",
+    "gt_response": "Intel Math Kernel Library"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "C",
+    "gt_response": "scavenging action"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "B",
+    "gt_response": "Increase"
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "C. Solid, Liquid, Gaseous",
+    "gt_response": "Solid, Liquid, Gaseous"
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "D",
+    "gt_response": "Invest for growth"
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "B. Shoppersmobile.com/uk/conversationindex",
+    "gt_response": "Bazaarvoice.com/uk/conversationindex"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "D",
+    "gt_response": "Mon"
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "A",
+    "gt_response": "High"
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "D",
+    "gt_response": "1,200K"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "D",
+    "gt_response": "Big Data: Analytics and Visualization landscape"
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "C",
+    "gt_response": "3"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "D",
+    "gt_response": "3.5"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "B",
+    "gt_response": "Indian brands"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "B",
+    "gt_response": "137.91"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "C",
+    "gt_response": "Easy to set up account"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "C",
+    "gt_response": "Traditional 2D"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "D",
+    "gt_response": "39"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "B",
+    "gt_response": "5"
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "D",
+    "gt_response": "Need"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "A",
+    "gt_response": "60"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "A",
+    "gt_response": "1.2"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "C",
+    "gt_response": "0.5"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "B",
+    "gt_response": "165752"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "A",
+    "gt_response": "8231"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "D",
+    "gt_response": "110"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "C",
+    "gt_response": "Analyst avgquarterly wages"
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "D",
+    "gt_response": "5"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "D",
+    "gt_response": "compression, rarefaction"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "D. Enamel-dentin junction",
+    "gt_response": "Tertiary Dentin"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "C",
+    "gt_response": "3400"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "A",
+    "gt_response": "1058750"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "B",
+    "gt_response": "10"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "D",
+    "gt_response": "130714.68"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "B",
+    "gt_response": "Central Noida"
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "B",
+    "gt_response": "2014"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "C",
+    "gt_response": "West Bengal- Kolkata"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "D",
+    "gt_response": "1224"
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "C",
+    "gt_response": "2"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "C",
+    "gt_response": "Street Lighting"
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "B",
+    "gt_response": "1"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "C",
+    "gt_response": "147"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "D",
+    "gt_response": "Consumer Internet"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "B",
+    "gt_response": "Facebook"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "B",
+    "gt_response": "Wind"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "C. Processing at the recycling facility",
+    "gt_response": "TRANSPORT TO MRF"
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "D",
+    "gt_response": "32"
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "D",
+    "gt_response": "obtaining their own health information (such as labs or records)"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "B",
+    "gt_response": "West Bromwich Albion"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "B",
+    "gt_response": "4.8"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "D",
+    "gt_response": "14"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "B",
+    "gt_response": "KFRC BY ORGANIZED CRIME GROUPS/CRIMINAL GANGS"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "D",
+    "gt_response": "72"
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "C",
+    "gt_response": "Plants"
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "D",
+    "gt_response": "Knowledge"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "B",
+    "gt_response": "25,000"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "D",
+    "gt_response": "100"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "A",
+    "gt_response": "Google Sites"
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "B",
+    "gt_response": "Good bots"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "B",
+    "gt_response": "negative torque"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "D",
+    "gt_response": "fermentation"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "A",
+    "gt_response": "3:26.00"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "C. Make Offer",
+    "gt_response": "Make Offer"
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "D",
+    "gt_response": "18-29"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "A",
+    "gt_response": "2012"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "B",
+    "gt_response": "71"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "D",
+    "gt_response": "3 hours 18 minutes"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "D",
+    "gt_response": "4343645"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "D",
+    "gt_response": "125"
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "D",
+    "gt_response": "Volcano"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "C",
+    "gt_response": "World Population"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "D",
+    "gt_response": "0.4"
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "A",
+    "gt_response": "New Delhi"
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "B",
+    "gt_response": "Attendees"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "B",
+    "gt_response": "35"
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "B",
+    "gt_response": "Active Mobile Devices"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "C",
+    "gt_response": "6"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "A",
+    "gt_response": "26,915"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "B",
+    "gt_response": "Preferred Land closing, Construction loan closing, Building of the project"
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "A",
+    "gt_response": "80"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "D",
+    "gt_response": "80"
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "A",
+    "gt_response": "North America"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "D",
+    "gt_response": "1,512,559"
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "D",
+    "gt_response": "5.3"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "B",
+    "gt_response": "2.84"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "B",
+    "gt_response": "Mobile Revenues"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "D",
+    "gt_response": "87.9"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "B",
+    "gt_response": "604"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "A",
+    "gt_response": "2.3"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "A",
+    "gt_response": "16"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "A",
+    "gt_response": "38"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "A",
+    "gt_response": "ETIHAD"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "D",
+    "gt_response": "focuses on shared goals"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "A. Chemical Disinfenction, thermal technology",
+    "gt_response": "Chemical Disinfenction, thermal technology"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "C",
+    "gt_response": "Huawei, Android"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "D",
+    "gt_response": "Quality Control, Quality Assurance"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "B",
+    "gt_response": "24"
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "C. Second-line Managers",
+    "gt_response": "First-line Managers"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "D. vaporization",
+    "gt_response": "reached saturation"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "A",
+    "gt_response": "Swartz, 1979"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "B",
+    "gt_response": "Meshach"
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "B",
+    "gt_response": "Propagation"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "A. 1. % Promoters + % Detractors",
+    "gt_response": "% Promoters - % Detractors"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "B",
+    "gt_response": "MODERN VALUES"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "C",
+    "gt_response": "Vietnam"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "B",
+    "gt_response": "12"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "B",
+    "gt_response": "Dowse, OpenHAB, TheThingSystem, ZIPR, Ponte, WebSphere, RabbitMQ, Dweet"
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "B",
+    "gt_response": "300"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "B",
+    "gt_response": "Always On, Bursty Traffic, QoS Cost / MB, CAPEX & OPEX"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "C",
+    "gt_response": "2001"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "B",
+    "gt_response": "280,000+"
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "A. CFRP, AFRP, GFRP",
+    "gt_response": "CFRP, AFRP, GFRP"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "C. Cobalt Institute 2011",
+    "gt_response": "Cobalt Development Institute 2010"
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "B",
+    "gt_response": "2012"
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "D",
+    "gt_response": "11"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "A",
+    "gt_response": "Virtual Reality"
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "B",
+    "gt_response": "Personal Computers"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "B",
+    "gt_response": "Citibank"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "A",
+    "gt_response": "bottled water"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "A",
+    "gt_response": "31,000 HOMES, 50,000 ELECTRIC CARS"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "A",
+    "gt_response": "iPhone"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "A. Both fungi and bacteria",
+    "gt_response": "Bacteria"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "B",
+    "gt_response": "Andreasen"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "B",
+    "gt_response": "1"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "A",
+    "gt_response": "Decreased"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "B",
+    "gt_response": "Short"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "B",
+    "gt_response": "Connection lines"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "B",
+    "gt_response": "By phone"
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "B",
+    "gt_response": "63"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "D",
+    "gt_response": "Status"
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "B",
+    "gt_response": "Cariogenic, periodontal ds' producing, calculogenic"
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "A",
+    "gt_response": "37"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "D",
+    "gt_response": "47411"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "B",
+    "gt_response": "Game consoles"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "A",
+    "gt_response": "67"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "B",
+    "gt_response": "25-34"
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "C",
+    "gt_response": "5"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "A",
+    "gt_response": "China"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "A",
+    "gt_response": "2835"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "A",
+    "gt_response": "2011"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "A",
+    "gt_response": "24.8"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "B",
+    "gt_response": "Brazil"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "D",
+    "gt_response": "1.9"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "B",
+    "gt_response": "Google"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "C",
+    "gt_response": "51"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "A",
+    "gt_response": "2014"
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "A",
+    "gt_response": "Hydro"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "B",
+    "gt_response": "business"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "B",
+    "gt_response": "2"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "B",
+    "gt_response": "central govt., state govt., project"
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "C",
+    "gt_response": "10.04"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "A",
+    "gt_response": "82"
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "D",
+    "gt_response": "Powerful Cross-platform Push notification service"
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "D",
+    "gt_response": "19"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "A",
+    "gt_response": "228.2"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "A",
+    "gt_response": "1.40"
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "C. Famotidine",
+    "gt_response": "Famotidine"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "D",
+    "gt_response": "Clean Care is Safer Care, Safe Surgery Saves Lives"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "A",
+    "gt_response": "PEOPLE, PLACE, PROPERTY"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "C. Stacie Zaretsky",
+    "gt_response": "STACI ZARETSKY"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "D",
+    "gt_response": "89"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "A",
+    "gt_response": "41"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "B",
+    "gt_response": "Calgary"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "B",
+    "gt_response": "Print Traditionalists"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "A",
+    "gt_response": "Santos Basin"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "C. Discovering Connections",
+    "gt_response": "Enjoy Connecting"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "D",
+    "gt_response": "Regional Office"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "D",
+    "gt_response": "Stress"
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "A",
+    "gt_response": "3.3"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "D",
+    "gt_response": "disparate"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "A",
+    "gt_response": "16.9"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "D",
+    "gt_response": "33"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "D",
+    "gt_response": "176"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "B",
+    "gt_response": "2000"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "B",
+    "gt_response": "Q2'13"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "D",
+    "gt_response": "Make, Track"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "C. Huawei, Samsung",
+    "gt_response": "Huawei, Samsung"
+  }
+]

@@ -1,0 +1,121 @@
+level,category,task_code,task_name,task_dataset_name,dataset,metric,method,ratio,score,score_percent,n_samples,n_failures,components
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Localization,ActionLocalization,Accuracy,LOOK-M,0.01,0.240000,24,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Prediction,ActionPrediction,Accuracy,LOOK-M,0.01,0.470000,47,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Sequence,ActionSequence,Accuracy,LOOK-M,0.01,0.420000,42,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Moving Attribute,MovingAttribute,Accuracy,LOOK-M,0.01,0.470000,47,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Existence,ObjectExistence,Accuracy,LOOK-M,0.01,0.530000,53,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Interaction,ObjectInteraction,Accuracy,LOOK-M,0.01,0.460000,46,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Shuffle,ObjectShuffle,Accuracy,LOOK-M,0.01,0.340000,34,,,
+dataset,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,Egocentric Navigation,EgocentricNavigation,Accuracy,LOOK-M,0.01,0.325000,32.5,,,
+dataset,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,Moving Direction,MovingDirection,Accuracy,LOOK-M,0.01,0.310000,31,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Character Order,CharacterOrder,Accuracy,LOOK-M,0.01,0.225000,22.5,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Counterfactual Inference,CounterfactualInference,Accuracy,LOOK-M,0.01,0.270000,27,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Scene Transition,SceneTransition,Accuracy,LOOK-M,0.01,0.635000,63.5,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,State Change,StateChange,Accuracy,LOOK-M,0.01,0.360000,36,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Complex Multimodal QA,MultiModalQA,Accuracy,LOOK-M,0.01,0.675000,67.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Textbook QA,TQA,Accuracy,LOOK-M,0.01,0.440000,44,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Webpage QA,WebQA,Accuracy,LOOK-M,0.01,0.575000,57.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Long Text with Images QA,WikiVQA,Accuracy,LOOK-M,0.01,0.680000,68,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,Document QA,DocVQA,Accuracy,LOOK-M,0.01,0.435000,43.5,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,OCR QA,OCR-VQA,Accuracy,LOOK-M,0.01,0.100000,10,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,Slide QA,SlideVQA,Accuracy,LOOK-M,0.01,0.430000,43,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Change Captioning,CLEVR-Change,ROUGE-L,LOOK-M,0.01,0.006600,0.66,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Relationship Expressing,IEdit,ROUGE-L,LOOK-M,0.01,0.001200,0.12,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Change Captioning,Spot-the-Diff,ROUGE-L,LOOK-M,0.01,0.003600,0.36,,,
+dataset,Semantic Multi-image,S-4,Dialogue,Conversational Embodied Dialogue,ALFRED,ROUGE-L,LOOK-M,0.01,0.043800,4.38,,,
+dataset,Semantic Multi-image,S-4,Dialogue,Multimodal Dialogue,MMCoQA,Accuracy,LOOK-M,0.01,0.360000,36,,,
+dataset,Semantic Multi-image,S-5,Space Understanding,Space Understanding,nuscenes,Accuracy,LOOK-M,0.01,0.640000,64,,,
+dataset,Needle In A Haystack,NH,Needle In A Haystack,Image Needle In A Haystack,ImageNeedleInAHaystack,Accuracy,LOOK-M,0.01,0.000000,0,,,
+dataset,Needle In A Haystack,NH,Needle In A Haystack,Text Needle In A Haystack,TextNeedleInAHaystack,Accuracy,LOOK-M,0.01,0.209400,20.94,,,
+dataset,Image Retrieval,IR,Image Retrieval,Image Retrieval,GPR1200,Accuracy,LOOK-M,0.01,0.028300,2.83,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Localization,ActionLocalization,Accuracy,LOOK-M,0.05,0.240000,24,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Prediction,ActionPrediction,Accuracy,LOOK-M,0.05,0.480000,48,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Sequence,ActionSequence,Accuracy,LOOK-M,0.05,0.395000,39.5,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Moving Attribute,MovingAttribute,Accuracy,LOOK-M,0.05,0.470000,47,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Existence,ObjectExistence,Accuracy,LOOK-M,0.05,0.530000,53,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Interaction,ObjectInteraction,Accuracy,LOOK-M,0.05,0.465000,46.5,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Shuffle,ObjectShuffle,Accuracy,LOOK-M,0.05,0.340000,34,,,
+dataset,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,Egocentric Navigation,EgocentricNavigation,Accuracy,LOOK-M,0.05,0.320000,32,,,
+dataset,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,Moving Direction,MovingDirection,Accuracy,LOOK-M,0.05,0.310000,31,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Character Order,CharacterOrder,Accuracy,LOOK-M,0.05,0.300000,30,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Counterfactual Inference,CounterfactualInference,Accuracy,LOOK-M,0.05,0.290000,29,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Scene Transition,SceneTransition,Accuracy,LOOK-M,0.05,0.720000,72,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,State Change,StateChange,Accuracy,LOOK-M,0.05,0.385000,38.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Complex Multimodal QA,MultiModalQA,Accuracy,LOOK-M,0.05,0.685000,68.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Textbook QA,TQA,Accuracy,LOOK-M,0.05,0.465000,46.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Webpage QA,WebQA,Accuracy,LOOK-M,0.05,0.575000,57.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Long Text with Images QA,WikiVQA,Accuracy,LOOK-M,0.05,0.680000,68,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,Document QA,DocVQA,Accuracy,LOOK-M,0.05,0.435000,43.5,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,OCR QA,OCR-VQA,Accuracy,LOOK-M,0.05,0.105000,10.5,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,Slide QA,SlideVQA,Accuracy,LOOK-M,0.05,0.435000,43.5,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Change Captioning,CLEVR-Change,ROUGE-L,LOOK-M,0.05,0.153800,15.38,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Relationship Expressing,IEdit,ROUGE-L,LOOK-M,0.05,0.005500,0.55,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Change Captioning,Spot-the-Diff,ROUGE-L,LOOK-M,0.05,0.141200,14.12,,,
+dataset,Semantic Multi-image,S-4,Dialogue,Conversational Embodied Dialogue,ALFRED,ROUGE-L,LOOK-M,0.05,0.114100,11.41,,,
+dataset,Semantic Multi-image,S-4,Dialogue,Multimodal Dialogue,MMCoQA,Accuracy,LOOK-M,0.05,0.350000,35,,,
+dataset,Semantic Multi-image,S-5,Space Understanding,Space Understanding,nuscenes,Accuracy,LOOK-M,0.05,0.645000,64.5,,,
+dataset,Needle In A Haystack,NH,Needle In A Haystack,Image Needle In A Haystack,ImageNeedleInAHaystack,Accuracy,LOOK-M,0.05,0.000000,0,,,
+dataset,Needle In A Haystack,NH,Needle In A Haystack,Text Needle In A Haystack,TextNeedleInAHaystack,Accuracy,LOOK-M,0.05,0.209400,20.94,,,
+dataset,Image Retrieval,IR,Image Retrieval,Image Retrieval,GPR1200,Accuracy,LOOK-M,0.05,0.038300,3.83,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Localization,ActionLocalization,Accuracy,LOOK-M,0.2,0.230000,23,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Prediction,ActionPrediction,Accuracy,LOOK-M,0.2,0.480000,48,,,
+dataset,Temporal Multi-image,T-1,Action Understanding and Prediction,Action Sequence,ActionSequence,Accuracy,LOOK-M,0.2,0.410000,41,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Moving Attribute,MovingAttribute,Accuracy,LOOK-M,0.2,0.470000,47,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Existence,ObjectExistence,Accuracy,LOOK-M,0.2,0.530000,53,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Interaction,ObjectInteraction,Accuracy,LOOK-M,0.2,0.465000,46.5,,,
+dataset,Temporal Multi-image,T-2,Object and Scene Understanding,Object Shuffle,ObjectShuffle,Accuracy,LOOK-M,0.2,0.340000,34,,,
+dataset,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,Egocentric Navigation,EgocentricNavigation,Accuracy,LOOK-M,0.2,0.315000,31.5,,,
+dataset,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,Moving Direction,MovingDirection,Accuracy,LOOK-M,0.2,0.315000,31.5,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Character Order,CharacterOrder,Accuracy,LOOK-M,0.2,0.295000,29.5,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Counterfactual Inference,CounterfactualInference,Accuracy,LOOK-M,0.2,0.290000,29,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,Scene Transition,SceneTransition,Accuracy,LOOK-M,0.2,0.720000,72,,,
+dataset,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,State Change,StateChange,Accuracy,LOOK-M,0.2,0.390000,39,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Complex Multimodal QA,MultiModalQA,Accuracy,LOOK-M,0.2,0.695000,69.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Textbook QA,TQA,Accuracy,LOOK-M,0.2,0.465000,46.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Webpage QA,WebQA,Accuracy,LOOK-M,0.2,0.585000,58.5,,,
+dataset,Semantic Multi-image,S-1,Knowledge Grounded QA,Long Text with Images QA,WikiVQA,Accuracy,LOOK-M,0.2,0.680000,68,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,Document QA,DocVQA,Accuracy,LOOK-M,0.2,0.460000,46,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,OCR QA,OCR-VQA,Accuracy,LOOK-M,0.2,0.100000,10,,,
+dataset,Semantic Multi-image,S-2,Text-Rich Images QA,Slide QA,SlideVQA,Accuracy,LOOK-M,0.2,0.440000,44,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Change Captioning,CLEVR-Change,ROUGE-L,LOOK-M,0.2,0.173500,17.35,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Relationship Expressing,IEdit,ROUGE-L,LOOK-M,0.2,0.011500,1.15,,,
+dataset,Semantic Multi-image,S-3,Visual Relation Inference,Visual Change Captioning,Spot-the-Diff,ROUGE-L,LOOK-M,0.2,0.159800,15.98,,,
+dataset,Semantic Multi-image,S-4,Dialogue,Conversational Embodied Dialogue,ALFRED,ROUGE-L,LOOK-M,0.2,0.164600,16.46,,,
+dataset,Semantic Multi-image,S-4,Dialogue,Multimodal Dialogue,MMCoQA,Accuracy,LOOK-M,0.2,0.365000,36.5,,,
+dataset,Semantic Multi-image,S-5,Space Understanding,Space Understanding,nuscenes,Accuracy,LOOK-M,0.2,0.645000,64.5,,,
+dataset,Needle In A Haystack,NH,Needle In A Haystack,Image Needle In A Haystack,ImageNeedleInAHaystack,Accuracy,LOOK-M,0.2,0.000000,0,,,
+dataset,Needle In A Haystack,NH,Needle In A Haystack,Text Needle In A Haystack,TextNeedleInAHaystack,Accuracy,LOOK-M,0.2,0.206200,20.62,,,
+dataset,Image Retrieval,IR,Image Retrieval,Image Retrieval,GPR1200,Accuracy,LOOK-M,0.2,0.028300,2.83,,,
+task_average,Temporal Multi-image,T-1,Action Understanding and Prediction,,T-1,Accuracy,LOOK-M,0.2,0.373333,37.3,,,ActionLocalization;ActionPrediction;ActionSequence
+task_average,Temporal Multi-image,T-2,Object and Scene Understanding,,T-2,Accuracy,LOOK-M,0.2,0.451250,45.1,,,MovingAttribute;ObjectExistence;ObjectInteraction;ObjectShuffle
+task_average,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,,T-3,Accuracy,LOOK-M,0.2,0.315000,31.5,,,EgocentricNavigation;MovingDirection
+task_average,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,,T-4,Accuracy,LOOK-M,0.2,0.423750,42.4,,,CharacterOrder;CounterfactualInference;SceneTransition;StateChange
+task_average,Semantic Multi-image,S-1,Knowledge Grounded QA,,S-1,Accuracy,LOOK-M,0.2,0.606250,60.6,,,MultiModalQA;TQA;WebQA;WikiVQA
+task_average,Semantic Multi-image,S-2,Text-Rich Images QA,,S-2,Accuracy,LOOK-M,0.2,0.333333,33.3,,,DocVQA;OCR-VQA;SlideVQA
+task_average,Semantic Multi-image,S-3,Visual Relation Inference,,S-3,ROUGE-L,LOOK-M,0.2,0.114933,11.5,,,CLEVR-Change;IEdit;Spot-the-Diff
+task_average,Semantic Multi-image,S-4,Dialogue,,S-4,Accuracy+ROUGE-L,LOOK-M,0.2,0.264800,26.5,,,ALFRED;MMCoQA
+task_average,Semantic Multi-image,S-5,Space Understanding,,S-5,Accuracy,LOOK-M,0.2,0.645000,64.5,,,nuscenes
+task_average,Needle In A Haystack,NH,Needle In A Haystack,,NH,Accuracy,LOOK-M,0.2,0.103100,10.3,,,ImageNeedleInAHaystack;TextNeedleInAHaystack
+task_average,Image Retrieval,IR,Image Retrieval,,IR,Accuracy,LOOK-M,0.2,0.028300,2.8,,,GPR1200
+task_average,Temporal Multi-image,T-1,Action Understanding and Prediction,,T-1,Accuracy,LOOK-M,0.05,0.371667,37.2,,,ActionLocalization;ActionPrediction;ActionSequence
+task_average,Temporal Multi-image,T-2,Object and Scene Understanding,,T-2,Accuracy,LOOK-M,0.05,0.451250,45.1,,,MovingAttribute;ObjectExistence;ObjectInteraction;ObjectShuffle
+task_average,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,,T-3,Accuracy,LOOK-M,0.05,0.315000,31.5,,,EgocentricNavigation;MovingDirection
+task_average,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,,T-4,Accuracy,LOOK-M,0.05,0.423750,42.4,,,CharacterOrder;CounterfactualInference;SceneTransition;StateChange
+task_average,Semantic Multi-image,S-1,Knowledge Grounded QA,,S-1,Accuracy,LOOK-M,0.05,0.601250,60.1,,,MultiModalQA;TQA;WebQA;WikiVQA
+task_average,Semantic Multi-image,S-2,Text-Rich Images QA,,S-2,Accuracy,LOOK-M,0.05,0.325000,32.5,,,DocVQA;OCR-VQA;SlideVQA
+task_average,Semantic Multi-image,S-3,Visual Relation Inference,,S-3,ROUGE-L,LOOK-M,0.05,0.100167,10.0,,,CLEVR-Change;IEdit;Spot-the-Diff
+task_average,Semantic Multi-image,S-4,Dialogue,,S-4,Accuracy+ROUGE-L,LOOK-M,0.05,0.232050,23.2,,,ALFRED;MMCoQA
+task_average,Semantic Multi-image,S-5,Space Understanding,,S-5,Accuracy,LOOK-M,0.05,0.645000,64.5,,,nuscenes
+task_average,Needle In A Haystack,NH,Needle In A Haystack,,NH,Accuracy,LOOK-M,0.05,0.104700,10.5,,,ImageNeedleInAHaystack;TextNeedleInAHaystack
+task_average,Image Retrieval,IR,Image Retrieval,,IR,Accuracy,LOOK-M,0.05,0.038300,3.8,,,GPR1200
+task_average,Temporal Multi-image,T-1,Action Understanding and Prediction,,T-1,Accuracy,LOOK-M,0.01,0.376667,37.7,,,ActionLocalization;ActionPrediction;ActionSequence
+task_average,Temporal Multi-image,T-2,Object and Scene Understanding,,T-2,Accuracy,LOOK-M,0.01,0.450000,45.0,,,MovingAttribute;ObjectExistence;ObjectInteraction;ObjectShuffle
+task_average,Temporal Multi-image,T-3,Visual Navigation and Spatial Localization,,T-3,Accuracy,LOOK-M,0.01,0.317500,31.8,,,EgocentricNavigation;MovingDirection
+task_average,Temporal Multi-image,T-4,Counterfactual Reasoning and State Change,,T-4,Accuracy,LOOK-M,0.01,0.372500,37.2,,,CharacterOrder;CounterfactualInference;SceneTransition;StateChange
+task_average,Semantic Multi-image,S-1,Knowledge Grounded QA,,S-1,Accuracy,LOOK-M,0.01,0.592500,59.2,,,MultiModalQA;TQA;WebQA;WikiVQA
+task_average,Semantic Multi-image,S-2,Text-Rich Images QA,,S-2,Accuracy,LOOK-M,0.01,0.321667,32.2,,,DocVQA;OCR-VQA;SlideVQA
+task_average,Semantic Multi-image,S-3,Visual Relation Inference,,S-3,ROUGE-L,LOOK-M,0.01,0.003800,0.4,,,CLEVR-Change;IEdit;Spot-the-Diff
+task_average,Semantic Multi-image,S-4,Dialogue,,S-4,Accuracy+ROUGE-L,LOOK-M,0.01,0.201900,20.2,,,ALFRED;MMCoQA
+task_average,Semantic Multi-image,S-5,Space Understanding,,S-5,Accuracy,LOOK-M,0.01,0.640000,64.0,,,nuscenes
+task_average,Needle In A Haystack,NH,Needle In A Haystack,,NH,Accuracy,LOOK-M,0.01,0.104700,10.5,,,ImageNeedleInAHaystack;TextNeedleInAHaystack
+task_average,Image Retrieval,IR,Image Retrieval,,IR,Accuracy,LOOK-M,0.01,0.028300,2.8,,,GPR1200

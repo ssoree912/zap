@@ -1,0 +1,3002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "The most comparable candidate to the anchor image is Image 6.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "The anchor image is most comparable to Image 6.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "<Image 6>",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "The most comparable candidate to the anchor image is Image 6.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 5>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a man with a tie,",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "<Image 6>",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "<Image 6>",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a church with a clock tower",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "The most comparable candidate to the anchor image is Image 6.",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "<Image 6>",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a church setting, with a",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "The most comparable candidate to the anchor image is Image 3. Both the anchor image and Image 3 feature a woman with blonde hair, which is",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "The most comparable candidate to the anchor image is Image 3, as it features a bird in a similar setting.",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a bird, specifically a se",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a zebra, a",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 5>.",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a woman smiling and",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "<Image 6>",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 5>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "The anchor image is most comparable to Image 6.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "The most comparable candidate to the anchor image is Image 6.",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "<Image 6>",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 6>.",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "E. image5",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "E. image5",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "E. image5",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 6>.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "E",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "E",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "E",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "E. image5",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "The most comparable candidate to the anchor image is Image 6.",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "E",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "E. image5",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "E",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 200,
+    "pred_response": "A",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 201,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 202,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 203,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 204,
+    "pred_response": "The most comparable candidate to the anchor image is Image 3, as it features a bird in a tree. The other images do not have a similar subject",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 205,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 206,
+    "pred_response": "G. image7",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 207,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 208,
+    "pred_response": "A",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 209,
+    "pred_response": "G. image7",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 210,
+    "pred_response": "A. image1",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 211,
+    "pred_response": "The most comparable candidate to the anchor image is Image 4. Both the anchor image and Image 4 feature a woman with dark hair, and they are",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 212,
+    "pred_response": "The most comparable candidate to the anchor image is Image 15.",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 213,
+    "pred_response": "The anchor image is most similar to Image 7.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 214,
+    "pred_response": "A",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 215,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 216,
+    "pred_response": "A. image1",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 217,
+    "pred_response": "A. image1",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 218,
+    "pred_response": "G. image7",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 219,
+    "pred_response": "A. image1",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 220,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 221,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 222,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 223,
+    "pred_response": "N. image14",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 224,
+    "pred_response": "N. image14",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 225,
+    "pred_response": "G. image7",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 226,
+    "pred_response": "A. image1",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 227,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 228,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 229,
+    "pred_response": "Image13",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 230,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 231,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 232,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 233,
+    "pred_response": "The most comparable candidate to the anchor image is Image 13.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 234,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 235,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 236,
+    "pred_response": "G. image7",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 237,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 238,
+    "pred_response": "A",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 239,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 240,
+    "pred_response": "A. image1",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 241,
+    "pred_response": "H. image8",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 242,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 12>.",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 243,
+    "pred_response": "G. image7",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 244,
+    "pred_response": "A. image1",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 245,
+    "pred_response": "H. image8",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 246,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 247,
+    "pred_response": "Image 12",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 248,
+    "pred_response": "Image11",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 249,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 250,
+    "pred_response": "B",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 251,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 252,
+    "pred_response": "G. image7",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 253,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 254,
+    "pred_response": "J. image8",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 255,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 256,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 257,
+    "pred_response": "A. image1",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 258,
+    "pred_response": "H. image8",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 259,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 260,
+    "pred_response": "A",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 261,
+    "pred_response": "G. image7",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 262,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 263,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 264,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 265,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 266,
+    "pred_response": "J. image8",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 267,
+    "pred_response": "N. image14",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 268,
+    "pred_response": "<Image 7>",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 269,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 270,
+    "pred_response": "G. image7",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 271,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 272,
+    "pred_response": "A. image1",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 273,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 274,
+    "pred_response": "G. image7",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 275,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 276,
+    "pred_response": "The anchor image is <Image 8>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 277,
+    "pred_response": "B",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 278,
+    "pred_response": "<Image 7>",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 279,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 7>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 280,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 281,
+    "pred_response": "N. image14",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 282,
+    "pred_response": "The most comparable candidate to the anchor image is Image12.",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 283,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 284,
+    "pred_response": "A. image1",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 285,
+    "pred_response": "A. image1",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 286,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 287,
+    "pred_response": "A. image1",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 288,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 289,
+    "pred_response": "A. image1",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 290,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 291,
+    "pred_response": "A",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 292,
+    "pred_response": "A",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 293,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 294,
+    "pred_response": "A. image1",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 295,
+    "pred_response": "A. image1",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 296,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 297,
+    "pred_response": "A",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 298,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 299,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 300,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 301,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 302,
+    "pred_response": "<Image 7>",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 303,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 304,
+    "pred_response": "A. image1",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 305,
+    "pred_response": "B",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 306,
+    "pred_response": "A",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 307,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 308,
+    "pred_response": "A. image1",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 309,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 10>.",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 310,
+    "pred_response": "N. image14",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 311,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 312,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 313,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 314,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 315,
+    "pred_response": "A. image1",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 316,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 317,
+    "pred_response": "A. image1",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 318,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 319,
+    "pred_response": "J. image8",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 320,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 321,
+    "pred_response": "J. image8",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 322,
+    "pred_response": "G. image7",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 323,
+    "pred_response": "A. image1",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 324,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 325,
+    "pred_response": "N. image14",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 326,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 327,
+    "pred_response": "N. image14",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 328,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 3>. Both the anchor image and <Image 3> feature a woman smiling,",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 329,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 330,
+    "pred_response": "The most comparable candidate to the anchor image is Image 11.",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 331,
+    "pred_response": "<Image 8>",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 332,
+    "pred_response": "The most comparable candidate to the anchor image is Image 12.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 333,
+    "pred_response": "A",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 334,
+    "pred_response": "A",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 335,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 336,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 337,
+    "pred_response": "The anchor image is most comparable to Image 10.",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 338,
+    "pred_response": "A. image1",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 339,
+    "pred_response": "Image13",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 340,
+    "pred_response": "B",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 341,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 342,
+    "pred_response": "B",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 343,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 344,
+    "pred_response": "N. image14",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 345,
+    "pred_response": "B",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 346,
+    "pred_response": "<Image 7>",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 347,
+    "pred_response": "A. image1",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 348,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 349,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 350,
+    "pred_response": "A",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 351,
+    "pred_response": "The most comparable candidate to the anchor image is Image11.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 352,
+    "pred_response": "Image 7",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 353,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 354,
+    "pred_response": "A. image1",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 355,
+    "pred_response": "A. image1",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 356,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 357,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 3>. Both images feature a woman, although the anchor image has a more prominent focus on",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 358,
+    "pred_response": "A. image1",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 359,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 360,
+    "pred_response": "A",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 361,
+    "pred_response": "N. image14",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 362,
+    "pred_response": "N. image14",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 363,
+    "pred_response": "A. image1",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 364,
+    "pred_response": "A. image1",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 365,
+    "pred_response": "N. image14",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 366,
+    "pred_response": "A. image1",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 367,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 368,
+    "pred_response": "B",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 369,
+    "pred_response": "The most comparable candidate to the anchor image is Image 13.",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 370,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 371,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 372,
+    "pred_response": "B",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 373,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 10>.",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 374,
+    "pred_response": "A",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 375,
+    "pred_response": "<Image 7>",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 376,
+    "pred_response": "A. image1",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 377,
+    "pred_response": "J. image8",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 378,
+    "pred_response": "A. image1",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 379,
+    "pred_response": "The most comparable candidate image to the anchor image is <Image 11>.",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 380,
+    "pred_response": "A",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 381,
+    "pred_response": "The most comparable candidate to the anchor image is Image 3. Both the anchor image and Image 3 feature a woman smiling, which suggests a strong",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 382,
+    "pred_response": "The most comparable candidate image to the anchor image is Image 3. Both the anchor image and Image 3 feature a chair, a bird, and a",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 383,
+    "pred_response": "N. image14",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 384,
+    "pred_response": "N",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 385,
+    "pred_response": "A",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 386,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 387,
+    "pred_response": "A. image1",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 388,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 389,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 390,
+    "pred_response": "The anchor image is most comparable to Image 8.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 391,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 392,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 393,
+    "pred_response": "A. image1",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 394,
+    "pred_response": "A",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 395,
+    "pred_response": "N. image14",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 396,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 397,
+    "pred_response": "M. image13",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 398,
+    "pred_response": "A",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 399,
+    "pred_response": "N. image14",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 400,
+    "pred_response": "The anchor image is <Image 64>.",
+    "gt_response": "image29"
+  },
+  {
+    "sample_id": 401,
+    "pred_response": "Y",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 402,
+    "pred_response": "A. image1",
+    "gt_response": "image36"
+  },
+  {
+    "sample_id": 403,
+    "pred_response": "A. image1",
+    "gt_response": "image43"
+  },
+  {
+    "sample_id": 404,
+    "pred_response": "Image 25",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 405,
+    "pred_response": "B",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 406,
+    "pred_response": "The image that most closely resembles the anchor image is <Image 58>.",
+    "gt_response": "image27"
+  },
+  {
+    "sample_id": 407,
+    "pred_response": "The anchor image is <Image 30>.",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 408,
+    "pred_response": "A",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 409,
+    "pred_response": "B",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 410,
+    "pred_response": "The anchor image is <Image 60>.",
+    "gt_response": "image45"
+  },
+  {
+    "sample_id": 411,
+    "pred_response": "B",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 412,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 29>.",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 413,
+    "pred_response": "B",
+    "gt_response": "image25"
+  },
+  {
+    "sample_id": 414,
+    "pred_response": "B",
+    "gt_response": "image18"
+  },
+  {
+    "sample_id": 415,
+    "pred_response": "The image that resembles the anchor the most in visual attributes is <Image 30>.",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 416,
+    "pred_response": "The anchor image is <Image 54>.",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 417,
+    "pred_response": "The anchor image is <Image 39>.",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 418,
+    "pred_response": "The anchor image is <Image 51>.",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 419,
+    "pred_response": "B",
+    "gt_response": "image42"
+  },
+  {
+    "sample_id": 420,
+    "pred_response": "B",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 421,
+    "pred_response": "A. image1",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 422,
+    "pred_response": "C",
+    "gt_response": "image32"
+  },
+  {
+    "sample_id": 423,
+    "pred_response": "A",
+    "gt_response": "image17"
+  },
+  {
+    "sample_id": 424,
+    "pred_response": "A",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 425,
+    "pred_response": "A",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 426,
+    "pred_response": "B",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 427,
+    "pred_response": "A. image1",
+    "gt_response": "image45"
+  },
+  {
+    "sample_id": 428,
+    "pred_response": "B",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 429,
+    "pred_response": "The anchor image is <Image 52>.",
+    "gt_response": "image40"
+  },
+  {
+    "sample_id": 430,
+    "pred_response": "A. image1",
+    "gt_response": "image30"
+  },
+  {
+    "sample_id": 431,
+    "pred_response": "B",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 432,
+    "pred_response": "A. image1",
+    "gt_response": "image46"
+  },
+  {
+    "sample_id": 433,
+    "pred_response": "The anchor image is <Image 54>.",
+    "gt_response": "image30"
+  },
+  {
+    "sample_id": 434,
+    "pred_response": "B. image2",
+    "gt_response": "image46"
+  },
+  {
+    "sample_id": 435,
+    "pred_response": "B",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 436,
+    "pred_response": "B",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 437,
+    "pred_response": "B",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 438,
+    "pred_response": "The anchor image is <Image 59>.",
+    "gt_response": "image50"
+  },
+  {
+    "sample_id": 439,
+    "pred_response": "D",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 440,
+    "pred_response": "B",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 441,
+    "pred_response": "A",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 442,
+    "pred_response": "A. image1",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 443,
+    "pred_response": "A",
+    "gt_response": "image22"
+  },
+  {
+    "sample_id": 444,
+    "pred_response": "The image that resembles the anchor the most is <Image 29>.",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 445,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 446,
+    "pred_response": "The anchor image is <Image 52>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 447,
+    "pred_response": "A. image1",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 448,
+    "pred_response": "B. image2",
+    "gt_response": "image44"
+  },
+  {
+    "sample_id": 449,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 450,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 29>.",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 451,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 452,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 38>.",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 453,
+    "pred_response": "A. image1",
+    "gt_response": "image50"
+  },
+  {
+    "sample_id": 454,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 455,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 11>. Both the anchor image and <Image 11> feature a bird, although",
+    "gt_response": "image4"
+  },
+  {
+    "sample_id": 456,
+    "pred_response": "A. image1",
+    "gt_response": "image29"
+  },
+  {
+    "sample_id": 457,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 458,
+    "pred_response": "A. image1",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 459,
+    "pred_response": "B",
+    "gt_response": "image23"
+  },
+  {
+    "sample_id": 460,
+    "pred_response": "A. image1",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 461,
+    "pred_response": "B",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 462,
+    "pred_response": "B",
+    "gt_response": "image26"
+  },
+  {
+    "sample_id": 463,
+    "pred_response": "The anchor image is <Image 58>.",
+    "gt_response": "image42"
+  },
+  {
+    "sample_id": 464,
+    "pred_response": "The anchor image is <Image 29>.",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 465,
+    "pred_response": "A. image1",
+    "gt_response": "image19"
+  },
+  {
+    "sample_id": 466,
+    "pred_response": "B",
+    "gt_response": "image34"
+  },
+  {
+    "sample_id": 467,
+    "pred_response": "Image16",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 468,
+    "pred_response": "The anchor image is <Image 64>.",
+    "gt_response": "image54"
+  },
+  {
+    "sample_id": 469,
+    "pred_response": "A. image1",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 470,
+    "pred_response": "A. image1",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 471,
+    "pred_response": "A. image1",
+    "gt_response": "image44"
+  },
+  {
+    "sample_id": 472,
+    "pred_response": "A. image1",
+    "gt_response": "image19"
+  },
+  {
+    "sample_id": 473,
+    "pred_response": "A. image1",
+    "gt_response": "image46"
+  },
+  {
+    "sample_id": 474,
+    "pred_response": "A",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 475,
+    "pred_response": "A. image1",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 476,
+    "pred_response": "The anchor image is <Image 49>.",
+    "gt_response": "image47"
+  },
+  {
+    "sample_id": 477,
+    "pred_response": "A. image1",
+    "gt_response": "image17"
+  },
+  {
+    "sample_id": 478,
+    "pred_response": "B",
+    "gt_response": "image37"
+  },
+  {
+    "sample_id": 479,
+    "pred_response": "The image that resembles the anchor the most is <Image 48>.",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 480,
+    "pred_response": "B. image2",
+    "gt_response": "image43"
+  },
+  {
+    "sample_id": 481,
+    "pred_response": "A",
+    "gt_response": "image20"
+  },
+  {
+    "sample_id": 482,
+    "pred_response": "A. image1",
+    "gt_response": "image49"
+  },
+  {
+    "sample_id": 483,
+    "pred_response": "A. image1",
+    "gt_response": "image34"
+  },
+  {
+    "sample_id": 484,
+    "pred_response": "Y",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 485,
+    "pred_response": "A. image1",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 486,
+    "pred_response": "The image that resembles the anchor the most is <Image 48>.",
+    "gt_response": "image34"
+  },
+  {
+    "sample_id": 487,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 488,
+    "pred_response": "C. image3",
+    "gt_response": "image26"
+  },
+  {
+    "sample_id": 489,
+    "pred_response": "A. image1",
+    "gt_response": "image32"
+  },
+  {
+    "sample_id": 490,
+    "pred_response": "A",
+    "gt_response": "image20"
+  },
+  {
+    "sample_id": 491,
+    "pred_response": "Image57",
+    "gt_response": "image48"
+  },
+  {
+    "sample_id": 492,
+    "pred_response": "B",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 493,
+    "pred_response": "B",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 494,
+    "pred_response": "Y",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 495,
+    "pred_response": "A. image1",
+    "gt_response": "image28"
+  },
+  {
+    "sample_id": 496,
+    "pred_response": "A. image1",
+    "gt_response": "image43"
+  },
+  {
+    "sample_id": 497,
+    "pred_response": "B",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 498,
+    "pred_response": "A. image1",
+    "gt_response": "image38"
+  },
+  {
+    "sample_id": 499,
+    "pred_response": "The anchor image is <Image 48>.",
+    "gt_response": "image35"
+  },
+  {
+    "sample_id": 500,
+    "pred_response": "B",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 501,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 502,
+    "pred_response": "A. image1",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 503,
+    "pred_response": "A",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 504,
+    "pred_response": "B",
+    "gt_response": "image28"
+  },
+  {
+    "sample_id": 505,
+    "pred_response": "The anchor image is <Image 48>.",
+    "gt_response": "image33"
+  },
+  {
+    "sample_id": 506,
+    "pred_response": "A. image1",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 507,
+    "pred_response": "B",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 508,
+    "pred_response": "Image 22",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 509,
+    "pred_response": "A",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 510,
+    "pred_response": "The anchor image is <Image 55>.",
+    "gt_response": "image22"
+  },
+  {
+    "sample_id": 511,
+    "pred_response": "A. image1",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 512,
+    "pred_response": "A. image1",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 513,
+    "pred_response": "B",
+    "gt_response": "image27"
+  },
+  {
+    "sample_id": 514,
+    "pred_response": "A. image1",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 515,
+    "pred_response": "The anchor image is <Image 54>.",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 516,
+    "pred_response": "A. image1",
+    "gt_response": "image55"
+  },
+  {
+    "sample_id": 517,
+    "pred_response": "B. image2",
+    "gt_response": "image39"
+  },
+  {
+    "sample_id": 518,
+    "pred_response": "Image52",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 519,
+    "pred_response": "B",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 520,
+    "pred_response": "The image that resembles the anchor the most in visual attributes is <Image 39>.",
+    "gt_response": "image35"
+  },
+  {
+    "sample_id": 521,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 522,
+    "pred_response": "O. image15",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 523,
+    "pred_response": "The anchor image is <Image 55>.",
+    "gt_response": "image38"
+  },
+  {
+    "sample_id": 524,
+    "pred_response": "A. image1",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 525,
+    "pred_response": "A. image1",
+    "gt_response": "image44"
+  },
+  {
+    "sample_id": 526,
+    "pred_response": "B",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 527,
+    "pred_response": "Image16",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 528,
+    "pred_response": "B",
+    "gt_response": "image26"
+  },
+  {
+    "sample_id": 529,
+    "pred_response": "A. image1",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 530,
+    "pred_response": "A",
+    "gt_response": "image30"
+  },
+  {
+    "sample_id": 531,
+    "pred_response": "The most visually similar candidate image to the anchor image is <Image 33>.",
+    "gt_response": "image16"
+  },
+  {
+    "sample_id": 532,
+    "pred_response": "The anchor image is <Image 56>.",
+    "gt_response": "image23"
+  },
+  {
+    "sample_id": 533,
+    "pred_response": "A. image1",
+    "gt_response": "image30"
+  },
+  {
+    "sample_id": 534,
+    "pred_response": "B",
+    "gt_response": "image31"
+  },
+  {
+    "sample_id": 535,
+    "pred_response": "The anchor image is <Image 56>.",
+    "gt_response": "image17"
+  },
+  {
+    "sample_id": 536,
+    "pred_response": "The anchor image is <Image 62>.",
+    "gt_response": "image38"
+  },
+  {
+    "sample_id": 537,
+    "pred_response": "D",
+    "gt_response": "image24"
+  },
+  {
+    "sample_id": 538,
+    "pred_response": "A. image1",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 539,
+    "pred_response": "P. image16",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 540,
+    "pred_response": "B",
+    "gt_response": "image25"
+  },
+  {
+    "sample_id": 541,
+    "pred_response": "A. image1",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 542,
+    "pred_response": "A. image1",
+    "gt_response": "image31"
+  },
+  {
+    "sample_id": 543,
+    "pred_response": "A",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 544,
+    "pred_response": "A",
+    "gt_response": "image10"
+  },
+  {
+    "sample_id": 545,
+    "pred_response": "The anchor image is <Image 62>.",
+    "gt_response": "image50"
+  },
+  {
+    "sample_id": 546,
+    "pred_response": "A",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 547,
+    "pred_response": "The anchor image is <Image 47>.",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 548,
+    "pred_response": "Image 19",
+    "gt_response": "image14"
+  },
+  {
+    "sample_id": 549,
+    "pred_response": "The image that resembles the anchor the most in visual attributes is <Image 28>.",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 550,
+    "pred_response": "A. image1",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 551,
+    "pred_response": "A. image1",
+    "gt_response": "image41"
+  },
+  {
+    "sample_id": 552,
+    "pred_response": "A. image1",
+    "gt_response": "image35"
+  },
+  {
+    "sample_id": 553,
+    "pred_response": "B",
+    "gt_response": "image21"
+  },
+  {
+    "sample_id": 554,
+    "pred_response": "The anchor image is <Image 62>.",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 555,
+    "pred_response": "A",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 556,
+    "pred_response": "A. image1",
+    "gt_response": "image32"
+  },
+  {
+    "sample_id": 557,
+    "pred_response": "A. image1",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 558,
+    "pred_response": "The anchor image is <Image 46>.",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 559,
+    "pred_response": "A",
+    "gt_response": "image39"
+  },
+  {
+    "sample_id": 560,
+    "pred_response": "The most visually similar candidate image to the anchor image is <Image 29>.",
+    "gt_response": "image13"
+  },
+  {
+    "sample_id": 561,
+    "pred_response": "A. image1",
+    "gt_response": "image27"
+  },
+  {
+    "sample_id": 562,
+    "pred_response": "A. image1",
+    "gt_response": "image34"
+  },
+  {
+    "sample_id": 563,
+    "pred_response": "A. image1",
+    "gt_response": "image33"
+  },
+  {
+    "sample_id": 564,
+    "pred_response": "A. image1",
+    "gt_response": "image48"
+  },
+  {
+    "sample_id": 565,
+    "pred_response": "A. image1",
+    "gt_response": "image36"
+  },
+  {
+    "sample_id": 566,
+    "pred_response": "B",
+    "gt_response": "image31"
+  },
+  {
+    "sample_id": 567,
+    "pred_response": "B",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 568,
+    "pred_response": "A",
+    "gt_response": "image20"
+  },
+  {
+    "sample_id": 569,
+    "pred_response": "B",
+    "gt_response": "image22"
+  },
+  {
+    "sample_id": 570,
+    "pred_response": "The anchor image is <Image 52>.",
+    "gt_response": "image36"
+  },
+  {
+    "sample_id": 571,
+    "pred_response": "A. image1",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 572,
+    "pred_response": "B",
+    "gt_response": "image17"
+  },
+  {
+    "sample_id": 573,
+    "pred_response": "The anchor image is <Image 61>.",
+    "gt_response": "image22"
+  },
+  {
+    "sample_id": 574,
+    "pred_response": "B",
+    "gt_response": "image39"
+  },
+  {
+    "sample_id": 575,
+    "pred_response": "A. image1",
+    "gt_response": "image1"
+  },
+  {
+    "sample_id": 576,
+    "pred_response": "The anchor image is <Image 61>.",
+    "gt_response": "image7"
+  },
+  {
+    "sample_id": 577,
+    "pred_response": "Image28",
+    "gt_response": "image6"
+  },
+  {
+    "sample_id": 578,
+    "pred_response": "B",
+    "gt_response": "image17"
+  },
+  {
+    "sample_id": 579,
+    "pred_response": "The most comparable candidate to the anchor image is Image 16.",
+    "gt_response": "image2"
+  },
+  {
+    "sample_id": 580,
+    "pred_response": "A",
+    "gt_response": "image8"
+  },
+  {
+    "sample_id": 581,
+    "pred_response": "The anchor image is <Image 47>.",
+    "gt_response": "image33"
+  },
+  {
+    "sample_id": 582,
+    "pred_response": "A",
+    "gt_response": "image3"
+  },
+  {
+    "sample_id": 583,
+    "pred_response": "B",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 584,
+    "pred_response": "The anchor image is <Image 33>.",
+    "gt_response": "image15"
+  },
+  {
+    "sample_id": 585,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 22>.",
+    "gt_response": "image19"
+  },
+  {
+    "sample_id": 586,
+    "pred_response": "Image52",
+    "gt_response": "image22"
+  },
+  {
+    "sample_id": 587,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 25>.",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 588,
+    "pred_response": "A. image1",
+    "gt_response": "image9"
+  },
+  {
+    "sample_id": 589,
+    "pred_response": "A",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 590,
+    "pred_response": "A. image1",
+    "gt_response": "image25"
+  },
+  {
+    "sample_id": 591,
+    "pred_response": "A",
+    "gt_response": "image12"
+  },
+  {
+    "sample_id": 592,
+    "pred_response": "The anchor image is <Image 62>.",
+    "gt_response": "image5"
+  },
+  {
+    "sample_id": 593,
+    "pred_response": "A. image1",
+    "gt_response": "image17"
+  },
+  {
+    "sample_id": 594,
+    "pred_response": "A",
+    "gt_response": "image11"
+  },
+  {
+    "sample_id": 595,
+    "pred_response": "A",
+    "gt_response": "image21"
+  },
+  {
+    "sample_id": 596,
+    "pred_response": "A. image1",
+    "gt_response": "image57"
+  },
+  {
+    "sample_id": 597,
+    "pred_response": "A. image1",
+    "gt_response": "image22"
+  },
+  {
+    "sample_id": 598,
+    "pred_response": "The most comparable candidate to the anchor image is <Image 32>.",
+    "gt_response": "image20"
+  },
+  {
+    "sample_id": 599,
+    "pred_response": "The anchor image is <Image 48>.",
+    "gt_response": "image15"
+  }
+]

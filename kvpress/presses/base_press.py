@@ -11,6 +11,7 @@ import torch
 from torch import nn
 from transformers import (
     LlamaForCausalLM,
+    LlavaForConditionalGeneration,
     MistralForCausalLM,
     Phi3ForCausalLM,
     PreTrainedModel,
@@ -41,6 +42,7 @@ SUPPORTED_MODELS = tuple(
     model_cls
     for model_cls in (
         LlamaForCausalLM,
+        LlavaForConditionalGeneration,
         MistralForCausalLM,
         Phi3ForCausalLM,
         Qwen2ForCausalLM,
@@ -49,6 +51,30 @@ SUPPORTED_MODELS = tuple(
     )
     if model_cls is not None
 )
+
+
+def _resolve_decoder_model(model: PreTrainedModel):
+    """Return the decoder module that owns `.layers` for LM or VLM wrappers."""
+    candidates = []
+    if hasattr(model, "language_model"):
+        candidates.append(model.language_model)
+    if hasattr(model, "model"):
+        inner = model.model
+        if hasattr(inner, "language_model"):
+            candidates.append(inner.language_model)
+        candidates.append(inner)
+    candidates.append(model)
+
+    for candidate in candidates:
+        if candidate is None:
+            continue
+        if hasattr(candidate, "layers"):
+            return candidate
+        nested = getattr(candidate, "model", None)
+        if nested is not None and hasattr(nested, "layers"):
+            return nested
+
+    raise AttributeError(f"Could not resolve decoder layers for model {type(model)}")
 
 
 @dataclass
@@ -148,8 +174,12 @@ class BasePress:
         """
 
         hidden_states = kwargs["hidden_states"]
-        cache = kwargs["past_key_values"]
-        cache_layer = cache.layers[module.layer_idx]
+        cache = kwargs.get("past_key_values")
+        if cache is None:
+            cache = kwargs.get("past_key_value")
+        if cache is None:
+            return output
+        cache_layer = cache.layers[module.layer_idx] if hasattr(cache, "layers") else None
         q_len = hidden_states.shape[1]
 
         # Don't compress after pre-filling
@@ -161,14 +191,21 @@ class BasePress:
         keys, values = self.compress(module, hidden_states, keys, values, output[1], kwargs)
 
         if isinstance(cache, QuantizedCache):
+            if cache_layer is None:
+                raise AttributeError(f"Quantized cache for {type(cache)} does not expose layers")
             cache_layer._quantized_keys = cache_layer._quantize(keys, axis=cache_layer.axis_key)
             cache_layer._quantized_values = cache_layer._quantize(values, axis=cache_layer.axis_value)
             cache_layer.keys = torch.zeros(0, dtype=keys.dtype, device=keys.device)  # type: ignore[index]
             cache_layer.values = torch.zeros(0, dtype=keys.dtype, device=keys.device)  # type: ignore[index]
             cache_layer.cumulative_length = keys.shape[2]
-        else:
+        elif cache_layer is not None:
             cache_layer.keys = keys
             cache_layer.values = values
+        elif hasattr(cache, "key_cache") and hasattr(cache, "value_cache"):
+            cache.key_cache[module.layer_idx] = keys
+            cache.value_cache[module.layer_idx] = values
+        else:
+            raise AttributeError(f"Unsupported cache layout for {type(cache)}")
 
         return output
 
@@ -207,12 +244,13 @@ class BasePress:
         self.post_init_from_model(model)
         hooks = []
         try:
-            language_model = model.model.language_model if hasattr(model.model, "language_model") else model.model
+            language_model = _resolve_decoder_model(model)
             for layer in language_model.layers:
                 if is_gemma3 and layer.self_attn.is_sliding:
                     # Skip layers with sliding window attention, only for Gemma3
                     continue
-                layer.self_attn.rotary_emb = language_model.rotary_emb
+                if hasattr(language_model, "rotary_emb"):
+                    layer.self_attn.rotary_emb = language_model.rotary_emb
                 hooks.append(layer.self_attn.register_forward_hook(self.forward_hook, with_kwargs=True))
             yield
         finally:

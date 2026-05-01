@@ -1,0 +1,53 @@
+#!/bin/bash
+# mm-vet PPL + ROUGE-L vs full-cache output, random_image_only @ keep=0.2.
+# Default GPU=1.
+set -uo pipefail
+
+GPU=${GPU:-1}
+KEEP=0.2
+DATA_GT=/workspace/data/mm-vet/mm-vet.json                    # real dataset GT (for PPL)
+DATA_FULL=/workspace/zap/data/rouge_ref/our_full_mm-vet.json  # full-cache output (for ROUGE-vs-full)
+IMG_ROOT=/workspace/data/mm-vet
+OUT_ROOT=/workspace/zap/artifacts/EXP-20260426-001-figure/mmvet_random_image
+mkdir -p "$OUT_ROOT"
+
+PPL_DIR="$OUT_ROOT/ppl"
+ROUGE_DIR="$OUT_ROOT/rouge_vsourfull"
+mkdir -p "$PPL_DIR" "$ROUGE_DIR"
+
+# ── PPL ───────────────────────────────────────────────────────────────────────
+if [ -f "$PPL_DIR/result.json" ]; then
+  echo "[skip] PPL already done"
+else
+  echo "[gpu $GPU] PPL random_image_only keep=$KEEP"
+  CUDA_VISIBLE_DEVICES=$GPU python /workspace/zap/eval_ppl.py \
+    --method random_image_only \
+    --total-keep-ratio "$KEEP" \
+    --data-path "$DATA_GT" \
+    --image-path "$IMG_ROOT" \
+    --eval-samples 218 \
+    --output-dir "$PPL_DIR" \
+    --attn-implementation sdpa \
+    > "$PPL_DIR/run.log" 2>&1
+  echo "[gpu $GPU] PPL done (rc=$?)"
+fi
+
+# ── ROUGE-L vs full-cache reference ──────────────────────────────────────────
+if [ -f "$ROUGE_DIR/result.json" ]; then
+  echo "[skip] ROUGE already done"
+else
+  echo "[gpu $GPU] ROUGE random_image_only keep=$KEEP"
+  CUDA_VISIBLE_DEVICES=$GPU python /workspace/zap/eval_rouge.py \
+    --method random_image_only \
+    --total-keep-ratio "$KEEP" \
+    --data-path "$DATA_FULL" \
+    --image-path "$IMG_ROOT" \
+    --eval-samples 218 \
+    --output-dir "$ROUGE_DIR" \
+    --max-new-tokens 512 \
+    --attn-implementation sdpa \
+    > "$ROUGE_DIR/run.log" 2>&1
+  echo "[gpu $GPU] ROUGE done (rc=$?)"
+fi
+
+echo "[done] random_image_only @ keep=$KEEP on mm-vet"

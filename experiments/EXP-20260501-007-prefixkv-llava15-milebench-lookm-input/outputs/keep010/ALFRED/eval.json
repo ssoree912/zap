@@ -1,0 +1,22 @@
+{
+  "Rouge-L f": 0.06465514220441591,
+  "image_quantity_level-Accuracy": {
+    "Few": 0.06465514220441591,
+    "Medium": 0.0,
+    "Many": 0.0
+  },
+  "image_quantity_level-Result": {
+    "Few": [
+      12.931028440883184,
+      200
+    ],
+    "Medium": [
+      0,
+      0
+    ],
+    "Many": [
+      0,
+      0
+    ]
+  }
+}

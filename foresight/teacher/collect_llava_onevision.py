@@ -1,0 +1,732 @@
+#!/usr/bin/env python3
+"""Stage 1 teacher cache for LLaVA-OneVision.
+
+Mirrors `collect_future_teacher_v2.py` but targets the HF
+`LlavaOnevisionForConditionalGeneration` model with Qwen2 backbone +
+AnyRes image tokenization. Because OneVision prompts can reach several
+thousand tokens, a single `model.generate(..., output_attentions=True)`
+call would materialize a [L, H, T, T] prefill attention tensor and OOM,
+so this script runs prefill once with `output_attentions=False`, then
+loops decode steps manually with `output_attentions=True` (each step
+only stores [L, H, 1, T_prompt+i]).
+
+Per-sample output: ``<output_root>/<dataset>/<sample_id>.pt`` with the
+same schema as the LLaVA-1.5 collector (teacher_raw, teacher_norm,
+image_token_indices, question_token_indices, prompt_len_mm, T, n_img,
+trajectory_m).
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import random
+import re
+import sys
+import time
+from pathlib import Path
+
+import numpy as np
+import torch
+from PIL import Image
+from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
+
+sys.path.insert(0, "/workspace/zap")
+from ..llava_onevision_extractor import (
+    configure_onevision_processor,
+    infer_onevision_image_positions_no_forward,
+)
+
+
+# ── dataset loaders ────────────────────────────────────────────────────────
+# Return (sample_id, question_text, image_paths_list) — the OneVision
+# Qwen2 chat template is applied in `collect_one()`.
+
+from pilot_attention_analysis import (
+    build_scienceqa_prompt,
+)
+
+
+_LLAVA_INSTRUCT_SUBSETS = [
+    "complex_reasoning_77k",
+    "conversation_58k",
+    "detail_23k",
+]
+
+
+def _load_llava_instruct_subset(
+    subset: str, hf_cache_dir: str | None
+) -> list[tuple[str, str, list]]:
+    from datasets import load_dataset
+
+    ds = load_dataset(
+        "liuhaotian/LLaVA-Instruct-150K", name=subset, split="train",
+        cache_dir=hf_cache_dir,
+    )
+    candidates: list[tuple[str, str, list]] = []
+    for i, rec in enumerate(ds):
+        sid = str(rec.get("id", f"{subset}_{i:06d}"))
+        convs = rec.get("conversations", [])
+        if not convs:
+            continue
+        human_turn = next((c for c in convs if c.get("from") == "human"), None)
+        if human_turn is None:
+            continue
+        question = human_turn.get("value", "").strip()
+        question = re.sub(r"<image>\n?", "", question).strip()
+        if not question:
+            continue
+        img = rec.get("image")
+        if img is None:
+            continue
+        if not isinstance(img, Image.Image):
+            try:
+                img = Image.fromarray(img).convert("RGB")
+            except Exception:
+                continue
+        else:
+            img = img.convert("RGB")
+        candidates.append((sid, question, [img]))
+    return candidates
+
+
+def load_llava_instruct_questions_hf(
+    n_samples: int, seed: int, hf_cache_dir: str | None = None
+) -> list[tuple[str, str, list]]:
+    """Load LLaVA-Instruct-150K with stratified sampling across 3 sub-categories.
+
+    Samples are drawn equally from complex_reasoning_77k, conversation_58k,
+    and detail_23k to avoid the natural skew (51% / 39% / 15%).
+    Falls back to loading the default split if named configs are unavailable.
+    """
+    rng = random.Random(seed)
+
+    # Try stratified loading first
+    try:
+        per_subset = max(1, n_samples // len(_LLAVA_INSTRUCT_SUBSETS))
+        all_candidates: list[tuple[str, str, list]] = []
+        for subset in _LLAVA_INSTRUCT_SUBSETS:
+            pool = _load_llava_instruct_subset(subset, hf_cache_dir)
+            rng.shuffle(pool)
+            all_candidates.extend(pool[:per_subset])
+        # Fill remainder from any subset to hit n_samples exactly
+        if len(all_candidates) < n_samples:
+            extra_pool: list[tuple[str, str, list]] = []
+            for subset in _LLAVA_INSTRUCT_SUBSETS:
+                extra_pool.extend(_load_llava_instruct_subset(subset, hf_cache_dir))
+            existing_ids = {s[0] for s in all_candidates}
+            extra_pool = [s for s in extra_pool if s[0] not in existing_ids]
+            rng.shuffle(extra_pool)
+            all_candidates.extend(extra_pool[: n_samples - len(all_candidates)])
+        rng.shuffle(all_candidates)
+        return all_candidates[:n_samples]
+    except Exception as e:
+        print(f"[warn] stratified load failed ({e}), falling back to default split", flush=True)
+
+    # Fallback: single split (original distribution)
+    from datasets import load_dataset
+
+    ds = load_dataset(
+        "liuhaotian/LLaVA-Instruct-150K", split="train", cache_dir=hf_cache_dir
+    )
+    candidates: list[tuple[str, str, list]] = []
+    for i, rec in enumerate(ds):
+        sid = str(rec.get("id", f"llava_instruct_{i:06d}"))
+        convs = rec.get("conversations", [])
+        if not convs:
+            continue
+        human_turn = next((c for c in convs if c.get("from") == "human"), None)
+        if human_turn is None:
+            continue
+        question = human_turn.get("value", "").strip()
+        question = re.sub(r"<image>\n?", "", question).strip()
+        if not question:
+            continue
+        img = rec.get("image")
+        if img is None:
+            continue
+        if not isinstance(img, Image.Image):
+            try:
+                img = Image.fromarray(img).convert("RGB")
+            except Exception:
+                continue
+        else:
+            img = img.convert("RGB")
+        candidates.append((sid, question, [img]))
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
+def load_mmvet_questions_hf(
+    n_samples: int, seed: int, hf_cache_dir: str | None = None
+) -> list[tuple[str, str, list]]:
+    """Load MMVet from HuggingFace."""
+    from datasets import load_dataset
+
+    # lmms-lab/MMVet has a default split; try 'test' or default
+    try:
+        ds = load_dataset("lmms-lab/MMVet", split="test", cache_dir=hf_cache_dir)
+    except Exception:
+        ds = load_dataset("lmms-lab/MMVet", cache_dir=hf_cache_dir)
+        # pick the first available split
+        if hasattr(ds, "keys"):
+            ds = ds[next(iter(ds.keys()))]
+    candidates: list[tuple[str, str, list]] = []
+    for i, rec in enumerate(ds):
+        sid = str(rec.get("imagename", rec.get("id", f"mmvet_{i:04d}")))
+        question = str(rec.get("question", "")).strip()
+        if not question:
+            continue
+        img = rec.get("image")
+        if img is None:
+            continue
+        if not isinstance(img, Image.Image):
+            try:
+                img = Image.fromarray(img).convert("RGB")
+            except Exception:
+                continue
+        else:
+            img = img.convert("RGB")
+        candidates.append((sid, question, [img]))
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
+def load_scienceqa_questions(
+    problems_json: Path, images_root: Path, split: str, n_samples: int, seed: int
+) -> list[tuple[str, str, list[str]]]:
+    with problems_json.open() as f:
+        problems = json.load(f)
+    candidates: list[tuple[str, str, list[str]]] = []
+    prefix = f"{split}_"
+    for qid, prob in problems.items():
+        if not qid.startswith(prefix):
+            continue
+        img_path = images_root / split / qid / "image.png"
+        if not img_path.exists():
+            continue
+        prompt_full = build_scienceqa_prompt(prob)
+        # Strip the LLaVA-1.5 scaffolding to recover bare question text.
+        question = (
+            prompt_full.replace("USER: <image>\n", "").replace("\nASSISTANT:", "").strip()
+        )
+        candidates.append((qid, question, [str(img_path)]))
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
+def load_gqa_questions(
+    questions_json: Path, images_root: Path, n_samples: int, seed: int
+) -> list[tuple[str, str, list[str]]]:
+    with questions_json.open() as f:
+        questions = json.load(f)
+    candidates: list[tuple[str, str, list[str]]] = []
+    for qid, rec in questions.items():
+        image_id = rec.get("imageId") or rec.get("image_id")
+        if not image_id:
+            continue
+        img_path = images_root / f"{image_id}.jpg"
+        if not img_path.exists():
+            continue
+        question = str(rec.get("question", "")).strip()
+        if not question:
+            continue
+        question = f"Question: {question}\nAnswer the question briefly."
+        candidates.append((str(qid), question, [str(img_path)]))
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
+def load_st_vqa_questions(
+    data_json: Path, images_root: Path, n_samples: int, seed: int
+) -> list[tuple[str, str, list[str]]]:
+    """ST-VQA train_task_3 loader.
+
+    Schema (CVC UAB ST-VQA): a JSON file with key 'data' containing records
+    that include 'question', 'file_path' (or 'file_name'), 'answers'.
+    Image directory layout matches `file_path` relative to `images_root`.
+    """
+    with data_json.open() as f:
+        payload = json.load(f)
+    records = payload.get("data", payload) if isinstance(payload, dict) else payload
+    candidates: list[tuple[str, str, list[str]]] = []
+    for i, rec in enumerate(records):
+        question = str(rec.get("question", "")).strip()
+        if not question:
+            continue
+        rel = rec.get("file_path") or rec.get("file_name")
+        if not rel:
+            continue
+        img_path = images_root / rel
+        if not img_path.exists():
+            # Try a flat layout (file_name only) as fallback.
+            alt = images_root / Path(rel).name
+            if alt.exists():
+                img_path = alt
+            else:
+                continue
+        qid = str(rec.get("question_id", rec.get("id", f"st_vqa_{i:06d}")))
+        question = f"Question: {question}\nAnswer the question briefly."
+        candidates.append((qid, question, [str(img_path)]))
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
+def load_samples_from_json(
+    samples_json: Path, n_samples: int, seed: int
+) -> list[tuple[str, str, list[str]]]:
+    """Generic loader for pre-sampled datasets saved as samples.json.
+
+    JSON format: list of {sample_id, image_path, question, answer}.
+    """
+    with samples_json.open() as f:
+        records = json.load(f)
+    candidates: list[tuple[str, str, list[str]]] = []
+    for rec in records:
+        sid = str(rec["sample_id"])
+        question = str(rec["question"]).strip()
+        question = f"Question: {question}\nAnswer the question briefly."
+        img_path = rec["image_path"]
+        if not Path(img_path).exists():
+            continue
+        candidates.append((sid, question, [img_path]))
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
+# ── prompt construction ────────────────────────────────────────────────────
+
+
+def build_onevision_prompt(processor, question: str, num_images: int) -> str:
+    """Use the Qwen2 chat template carried by the OneVision processor."""
+    content: list[dict] = [{"type": "image"} for _ in range(num_images)]
+    content.append({"type": "text", "text": question})
+    conversation = [{"role": "user", "content": content}]
+    return processor.apply_chat_template(conversation, add_generation_prompt=True)
+
+
+# ── manual prefill + decode loop ───────────────────────────────────────────
+
+
+@torch.no_grad()
+def _generate_with_per_step_attentions(
+    model,
+    inputs: dict,
+    image_indices: torch.Tensor,
+    max_new_tokens: int,
+    do_sample: bool,
+    temperature: float,
+    top_p: float,
+    eos_token_id: int,
+) -> tuple[torch.Tensor, int]:
+    """Run prefill (no attentions) then decode loop with per-step attentions.
+
+    Returns (teacher [L, N_I] fp32 cpu, T) where T is number of decode steps
+    actually executed.
+    """
+    prefill_out = model(
+        input_ids=inputs["input_ids"],
+        attention_mask=inputs["attention_mask"],
+        pixel_values=inputs.get("pixel_values"),
+        image_sizes=inputs.get("image_sizes"),
+        use_cache=True,
+        output_attentions=False,
+        return_dict=True,
+    )
+    past_kv = prefill_out.past_key_values
+    next_logits = prefill_out.logits[:, -1, :]
+
+    if do_sample:
+        probs = _top_p_sample_probs(next_logits / max(temperature, 1e-6), top_p)
+        next_token = torch.multinomial(probs, num_samples=1)
+    else:
+        next_token = next_logits.argmax(dim=-1, keepdim=True)
+
+    L: int | None = None
+    n_img = int(image_indices.numel())
+    teacher: torch.Tensor | None = None
+    T = 0
+    attn_mask = inputs["attention_mask"]
+
+    image_indices_dev = image_indices.to(model.device)
+
+    for _ in range(max_new_tokens):
+        attn_mask = torch.cat(
+            [attn_mask, torch.ones((1, 1), dtype=attn_mask.dtype, device=attn_mask.device)],
+            dim=1,
+        )
+        step_out = model(
+            input_ids=next_token,
+            attention_mask=attn_mask,
+            past_key_values=past_kv,
+            use_cache=True,
+            output_attentions=True,
+            return_dict=True,
+        )
+        past_kv = step_out.past_key_values
+        if L is None:
+            L = len(step_out.attentions)
+            teacher = torch.zeros(L, n_img, dtype=torch.float32)
+        for l in range(L):
+            # step_out.attentions[l]: [1, H, 1, T_now] — gather image positions
+            a = step_out.attentions[l][0, :, -1, :].index_select(dim=-1, index=image_indices_dev)
+            teacher[l] += a.float().mean(dim=0).cpu()
+        T += 1
+
+        next_logits = step_out.logits[:, -1, :]
+        if do_sample:
+            probs = _top_p_sample_probs(next_logits / max(temperature, 1e-6), top_p)
+            next_token = torch.multinomial(probs, num_samples=1)
+        else:
+            next_token = next_logits.argmax(dim=-1, keepdim=True)
+
+        if int(next_token.item()) == eos_token_id:
+            break
+
+    if T == 0 or teacher is None:
+        raise RuntimeError("Decode loop produced zero steps")
+    teacher /= float(T)
+
+    del past_kv, prefill_out
+    import gc
+    gc.collect()
+    torch.cuda.empty_cache()
+    return teacher, T
+
+
+def _top_p_sample_probs(logits: torch.Tensor, top_p: float) -> torch.Tensor:
+    probs = torch.softmax(logits, dim=-1)
+    if top_p >= 1.0:
+        return probs
+    sorted_probs, sorted_idx = probs.sort(dim=-1, descending=True)
+    cum = sorted_probs.cumsum(dim=-1)
+    mask = cum > top_p
+    mask[..., 0] = False  # always keep top-1
+    sorted_probs = sorted_probs.masked_fill(mask, 0.0)
+    sorted_probs /= sorted_probs.sum(dim=-1, keepdim=True).clamp_min(1e-12)
+    out = torch.zeros_like(probs).scatter_(-1, sorted_idx, sorted_probs)
+    return out
+
+
+def infer_question_positions(prompt_len_mm: int, image_positions: torch.Tensor) -> torch.Tensor:
+    if image_positions.numel() == 0:
+        return torch.arange(prompt_len_mm, dtype=torch.long)
+    last_img = int(image_positions.max().item())
+    if last_img + 1 >= prompt_len_mm:
+        return torch.empty(0, dtype=torch.long)
+    return torch.arange(last_img + 1, prompt_len_mm, dtype=torch.long)
+
+
+@torch.no_grad()
+def collect_one(
+    model,
+    processor,
+    image,
+    question: str,
+    max_new_tokens: int,
+    device: torch.device,
+    trajectory_m: int = 1,
+    trajectory_temperature: float = 0.7,
+    trajectory_top_p: float = 0.9,
+    eps: float = 1e-8,
+) -> dict:
+    n_images = len(image) if isinstance(image, (list, tuple)) else 1
+    prompt = build_onevision_prompt(processor, question, num_images=n_images)
+    inputs = processor(images=image, text=prompt, return_tensors="pt")
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+
+    image_positions, prompt_len_mm = infer_onevision_image_positions_no_forward(
+        prompt_inputs=inputs,
+        model_config=model.config,
+        num_images=n_images,
+    )
+    n_img = int(image_positions.numel())
+    question_positions = infer_question_positions(prompt_len_mm, image_positions)
+
+    eos_token_id = int(processor.tokenizer.eos_token_id or model.config.eos_token_id or 151645)
+    M = max(1, trajectory_m)
+    use_sampling = M > 1
+
+    traj_scores: list[torch.Tensor] = []
+    t_lengths: list[int] = []
+    for _ in range(M):
+        score, T = _generate_with_per_step_attentions(
+            model=model,
+            inputs=inputs,
+            image_indices=image_positions,
+            max_new_tokens=max_new_tokens,
+            do_sample=use_sampling,
+            temperature=trajectory_temperature,
+            top_p=trajectory_top_p,
+            eos_token_id=eos_token_id,
+        )
+        traj_scores.append(score)
+        t_lengths.append(T)
+
+    stacked = torch.stack(traj_scores, dim=0)
+    teacher = stacked.mean(dim=0)
+    teacher_norm = teacher / teacher.sum(dim=-1, keepdim=True).clamp_min(eps)
+
+    result = dict(
+        teacher_raw=teacher.to(torch.float16),
+        teacher_norm=teacher_norm.to(torch.float16),
+        image_token_indices=image_positions.to(torch.long),
+        question_token_indices=question_positions.to(torch.long),
+        prompt_len_mm=int(prompt_len_mm),
+        T=int(np.mean(t_lengths)),
+        n_img=int(n_img),
+        trajectory_m=M,
+    )
+    if M > 1:
+        result["teacher_var"] = stacked.var(dim=0).to(torch.float16)
+    return result
+
+
+def main() -> int:
+    p = argparse.ArgumentParser()
+    p.add_argument("--model", default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf")
+    p.add_argument("--dataset", required=True, choices=["scienceqa", "gqa", "st_vqa", "chartqa", "docvqa", "infovqa", "llava_instruct", "mmvet"])
+    p.add_argument("--n-samples", type=int, default=500)
+    p.add_argument("--max-new-tokens", type=int, default=64)
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--device", default="cuda:0")
+    p.add_argument("--output-root", default="/workspace/zap/data/teacher_v2_onevision")
+    p.add_argument("--problems-json", default="/workspace/zap/data/scienceqa/problems.json")
+    p.add_argument("--images-root", default="/workspace/zap/data/scienceqa/images")
+    p.add_argument("--split", default="train")
+    p.add_argument(
+        "--gqa-questions-json",
+        default="/workspace/zap/data/gqa/val_balanced_questions.json",
+    )
+    p.add_argument("--gqa-images-root", default="/workspace/zap/data/gqa/images")
+    p.add_argument(
+        "--st-vqa-json",
+        default="/workspace/zap/data/st_vqa/train_task_3.json",
+    )
+    p.add_argument(
+        "--st-vqa-images-root",
+        default="/workspace/zap/data/st_vqa",
+    )
+    p.add_argument(
+        "--chartqa-samples-json",
+        default="/workspace/zap/data/chartqa_train_sample/samples.json",
+    )
+    p.add_argument(
+        "--docvqa-samples-json",
+        default="/workspace/zap/data/docvqa_train_sample/samples.json",
+    )
+    p.add_argument(
+        "--infovqa-samples-json",
+        default="/workspace/zap/data/infovqa_train_sample/samples.json",
+    )
+    p.add_argument("--max-image-size", type=int, default=0,
+                   help="If >0, resize images so the longest side <= this value before processing.")
+    p.add_argument("--hf-cache-dir", default=None,
+                   help="HuggingFace datasets cache directory for llava_instruct / mmvet.")
+    p.add_argument("--llava-instruct-samples-json",
+                   default="/workspace/zap/data/llava_instruct_sample/samples.json")
+    p.add_argument("--mmvet-samples-json",
+                   default="/workspace/zap/data/mmvet_sample/samples.json")
+    p.add_argument("--trajectory-m", type=int, default=1)
+    p.add_argument("--trajectory-temperature", type=float, default=0.7)
+    p.add_argument("--trajectory-top-p", type=float, default=0.9)
+    args = p.parse_args()
+
+    torch.manual_seed(args.seed)
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+
+    out_dir = Path(args.output_root) / args.dataset
+    out_dir.mkdir(parents=True, exist_ok=True)
+    device = torch.device(args.device)
+
+    print(f"[load] {args.model} dtype=fp16 attn=eager device={device}", flush=True)
+    model = LlavaOnevisionForConditionalGeneration.from_pretrained(
+        args.model,
+        torch_dtype=torch.float16,
+        attn_implementation="eager",
+        low_cpu_mem_usage=True,
+    ).to(device).eval()
+
+    processor = AutoProcessor.from_pretrained(args.model)
+    processor = configure_onevision_processor(processor, model.config)
+    print(
+        f"[info] num_hidden_layers={model.config.text_config.num_hidden_layers} "
+        f"hidden_size={model.config.text_config.hidden_size}",
+        flush=True,
+    )
+
+    if args.dataset == "scienceqa":
+        samples = load_scienceqa_questions(
+            problems_json=Path(args.problems_json),
+            images_root=Path(args.images_root),
+            split=args.split,
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "gqa":
+        samples = load_gqa_questions(
+            questions_json=Path(args.gqa_questions_json),
+            images_root=Path(args.gqa_images_root),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "st_vqa":
+        samples = load_st_vqa_questions(
+            data_json=Path(args.st_vqa_json),
+            images_root=Path(args.st_vqa_images_root),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "chartqa":
+        samples = load_samples_from_json(
+            samples_json=Path(args.chartqa_samples_json),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "docvqa":
+        samples = load_samples_from_json(
+            samples_json=Path(args.docvqa_samples_json),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "infovqa":
+        samples = load_samples_from_json(
+            samples_json=Path(args.infovqa_samples_json),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "llava_instruct":
+        samples = load_samples_from_json(
+            samples_json=Path(args.llava_instruct_samples_json),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    else:  # mmvet
+        samples = load_samples_from_json(
+            samples_json=Path(args.mmvet_samples_json),
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    print(f"[info] dataset={args.dataset} loaded {len(samples)} samples", flush=True)
+
+    saved = 0
+    skipped: list[tuple[str, str]] = []
+    t_list: list[int] = []
+    t0 = time.time()
+
+    for idx, (sid, question, img_paths) in enumerate(samples):
+        safe_sid = re.sub(r"[^A-Za-z0-9._-]+", "_", str(sid))[:128]
+        out_path = out_dir / f"{safe_sid}.pt"
+        if out_path.exists():
+            saved += 1
+            continue
+        try:
+            def _resolve_image(src) -> Image.Image:
+                if isinstance(src, str):
+                    img = Image.open(src).convert("RGB")
+                else:
+                    img = src.convert("RGB")
+                if args.max_image_size > 0:
+                    w, h = img.size
+                    long_side = max(w, h)
+                    if long_side > args.max_image_size:
+                        scale = args.max_image_size / long_side
+                        img = img.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+                return img
+
+            def _stored(src) -> str:
+                return src if isinstance(src, str) else f"hf:{args.dataset}:{sid}"
+
+            if isinstance(img_paths, (list, tuple)) and len(img_paths) == 1:
+                image = _resolve_image(img_paths[0])
+                stored_path = _stored(img_paths[0])
+            else:
+                image = [_resolve_image(p) for p in img_paths]
+                stored_path = [_stored(p) for p in img_paths]
+            rec = collect_one(
+                model=model,
+                processor=processor,
+                image=image,
+                question=question,
+                max_new_tokens=args.max_new_tokens,
+                device=device,
+                trajectory_m=args.trajectory_m,
+                trajectory_temperature=args.trajectory_temperature,
+                trajectory_top_p=args.trajectory_top_p,
+            )
+            rec.update(
+                sample_id=sid,
+                dataset=args.dataset,
+                model="llava-onevision-qwen2-7b-ov-hf",
+                question_text=question,
+                image_path=stored_path,
+                seed=args.seed,
+                max_new_tokens=args.max_new_tokens,
+            )
+            torch.save(rec, out_path)
+            saved += 1
+            t_list.append(rec["T"])
+            if idx == 0:
+                print(
+                    f"[sanity] sid={sid} L={rec['teacher_raw'].shape[0]} "
+                    f"N_I={rec['teacher_raw'].shape[1]} T={rec['T']} "
+                    f"prompt_len_mm={rec['prompt_len_mm']} "
+                    f"|img|={rec['image_token_indices'].numel()} "
+                    f"|q|={rec['question_token_indices'].numel()}",
+                    flush=True,
+                )
+        except (RuntimeError, ValueError, IOError) as e:
+            skipped.append((sid, repr(e)))
+            print(f"[skip] {sid}: {e}", flush=True)
+            continue
+
+        if (idx + 1) % 25 == 0:
+            elapsed = time.time() - t0
+            print(
+                f"[progress] {idx+1}/{len(samples)} | rate={(idx+1)/max(elapsed,1e-6):.2f}/s "
+                f"| elapsed={elapsed:.1f}s | T_mean={np.mean(t_list):.2f} "
+                f"| saved={saved} skipped={len(skipped)}",
+                flush=True,
+            )
+        torch.cuda.empty_cache()
+
+    elapsed = time.time() - t0
+    print(
+        f"[done] dataset={args.dataset} saved={saved}/{len(samples)} "
+        f"skipped={len(skipped)} elapsed={elapsed:.1f}s "
+        f"T_mean={np.mean(t_list) if t_list else 0:.2f}",
+        flush=True,
+    )
+
+    summary_path = out_dir / "_summary.json"
+    summary_path.write_text(
+        json.dumps(
+            dict(
+                dataset=args.dataset,
+                n_requested=args.n_samples,
+                n_saved=saved,
+                n_skipped=len(skipped),
+                skipped=skipped,
+                t_mean=float(np.mean(t_list)) if t_list else 0.0,
+                seed=args.seed,
+                max_new_tokens=args.max_new_tokens,
+                elapsed_seconds=elapsed,
+                trajectory_m=args.trajectory_m,
+                trajectory_temperature=args.trajectory_temperature,
+                trajectory_top_p=args.trajectory_top_p,
+            ),
+            indent=2,
+        )
+    )
+    print(f"[save] {summary_path}", flush=True)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

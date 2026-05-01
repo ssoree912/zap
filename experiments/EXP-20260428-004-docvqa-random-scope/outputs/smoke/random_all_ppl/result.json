@@ -1,0 +1,40 @@
+{
+  "ppl": 7745.55328272854,
+  "n_samples": 1,
+  "n_failures": 0,
+  "n_total_answer_tokens": 4,
+  "elapsed_seconds": 0.4148223400115967,
+  "sec_per_sample": 0.4148223400115967,
+  "args": {
+    "model_path": "/workspace/zap/ckpts/llava-1.5-7b-hf",
+    "data_path": "experiments/EXP-20260428-004-docvqa-random-scope/outputs/smoke/docvqa_smoke_gt.json",
+    "image_path": "/workspace/zap/data/MileBench/DocVQA/combined_1_images",
+    "eval_samples": 1,
+    "prompt_template": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\n{question} ASSISTANT:",
+    "max_answer_tokens": 4,
+    "output_dir": "experiments/EXP-20260428-004-docvqa-random-scope/outputs/smoke/random_all_ppl",
+    "method": "random_all_token",
+    "student_model_name": null,
+    "quadrant": null,
+    "evict_ratio": 0.25,
+    "alpha": 0.5,
+    "future_blend_layers": [],
+    "image_keep_ratio": null,
+    "total_keep_ratio": 0.1,
+    "future_probe_name": null,
+    "selected_layer_indices": null,
+    "strict_selected": true,
+    "head_reduce": "amax",
+    "torch_dtype": "bfloat16",
+    "device": "cuda:0",
+    "attn_implementation": "sdpa"
+  },
+  "per_sample": [
+    {
+      "id": "0",
+      "n_answer_tokens": 4,
+      "sum_nll": 35.819496750831604
+    }
+  ],
+  "failures": []
+}

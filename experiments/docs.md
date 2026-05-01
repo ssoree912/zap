@@ -1,408 +1,387 @@
-# Future 지도학습 & Hybrid 점수 블렌딩 — All-Token 방법론 레퍼런스
+# Method: 질문 조건부 Visual Utility Student
 
-**배경.** LLaVA-1.5-7B 의 KV cache pruning 을 **all-token 예산**(이미지·텍스트
-구분 없이 프롬프트 전 위치를 후보로 하는 단일 budget) 위에서 수행하는 방법
-문서. 본 문서는 *Future 지도학습 probe* 와, 추론 시 Future 신호에 H2O
-(prefill 누적 어텐션) 를 블렌딩하는 *Hybrid* all-token scorer 를 재현 가능한
-수준으로 정리한다. 수식, 텐서 shape, 코드 위치, 그리고 전체 파이프라인(수집
-→ 학습 → 평가)을 한 곳에 모았다.
+**VisualUtilityStudentPress**의 레이어별 scoring student에 대한 공식 표기.
+구현 출처: `kvpress/presses/visual_utility_student.py`.
 
-image-only 변형(텍스트 토큰을 예산 밖으로 두고 이미지 토큰만 top-k) 은 본
-문서에서 다루지 않는다. 공정 비교를 위해 모든 비교군(LOOK-M, vanilla H2O,
-Future, Hybrid) 은 동일한 `r_total` (= `total_keep_ratio`) 위에서 해석된다.
+본 문서는 LLaVA-1.5용 `VisualUtilityStudentPress` / `mode=visual_utility_student`에 대한 표기이다.
+기존 `mode=probe`의 `ProbeImageTeacherPress` / `KVzapModel` probe는 image hidden만 입력으로 쓰는 별도 경로이며, 이 문서의 CNN branch, question branch, fusion 구조를 사용하지 않는다.
 
-전체에서 사용하는 표기:
+핵심 규약:
 
-- `L`  = Transformer layer 수 (LLaVA-1.5-7B 의 경우 32).
-- `D`  = hidden dimension (4096).
-- `N_prompt` = 프롬프트 전체 토큰 수 (= `N_img + N_txt`).
-- `H` = attention head 수; `H_kv` = key/value head 수.
-- `T` = greedy-decoded 정답 토큰 수.
-- `A^{(l)} ∈ R^{H × T × N_prompt}` = layer-l 의 *decode → prompt* 어텐션.
-- `A_pre^{(l)} ∈ R^{H × N_prompt × N_prompt}` = layer-l prefill self-attention.
-- `h^{(l)} ∈ R^{N_prompt × D}` = layer-l prefill hidden state.
-- `r_total` = 보존할 프롬프트 토큰 비율 (예산 = `⌈r_total · N_prompt⌉`).
+| 의미 | 기호 |
+|---|---|
+| 레이어 수 | $L$ |
+| Hidden dimension | $D$ |
+| Attention head 수 | $N_h$ |
+| Head dimension | $d_h = D / N_h$ |
+| Prefill hidden state | $X^{(l)}$ |
+| Image-token hidden matrix | $X_{\mathrm{img}}^{(l)}$ |
+| Question-token hidden matrix | $X_q^{(l)}$ |
+| $i$-번째 image token hidden | $x_i^{v,(l)}$ |
+| Projected visual feature | $\bar{x}_i^{v,(l)} = W_v\, x_i^{v,(l)}$ |
+| Projected question feature | $\bar{q}^{(l)} = W_q\,\mathrm{Pool}(X_q^{(l)})$ |
+| Projected CNN context | $\bar{c}_i^{(l)}$ |
+| Teacher raw / dist | $s_i^{(l),\star}$ / $y_i^{(l),\star}$ |
+| Student raw / dist | $\hat{s}_i^{(l)}$ / $\hat{y}_i^{(l)}$ |
+
+코드 변수명은 논문 표기와 반드시 일치하지 않는다. 예를 들어 구현의 `W_h`, `H_proj`는 논문 표기에서 각각 $W_v$, $\bar{X}_{\mathrm{img}}^{(l)}$에 대응한다.
 
 ---
 
-## 1. Future 지도학습 probe (all-token)
+## 1. Prefill hidden state - 토큰 분할
 
-### 1.1 Teacher 신호 (증류 대상 oracle)
+레이어 $l$에서 prefill hidden state 전체는
 
-프롬프트 전 위치 `i ∈ {0, …, N_prompt−1}` 에 대해, Future teacher 점수는
-*decode → 해당 위치* 어텐션을 모든 head 와 모든 decode step 에 걸쳐 평균한
-값이다:
+$$
+X^{(l)} \in \mathbb{R}^{B \times N \times D}
+$$
 
-```
-s_future^{(l)}(i) = (1 / (H · T)) · Σ_{h=1..H} Σ_{t=1..T}  A^{(l)}[h, t, i]        (1)
-```
+이며, $B$는 batch size, $N$은 prefill 시퀀스 길이, $D$는 hidden dimension이다.
 
-image-only 변형과 **수식은 동일**하되, `i` 가 이미지 인덱스 집합에 국한되지
-않고 프롬프트 전 위치에 걸쳐 정의된다는 점이 핵심이다. 이 all-token teacher
-는 "미래 decode 가 어느 텍스트 / 시스템 / 이미지 토큰에 실제로 접근하는가"
-를 한 번에 말해준다.
+$\mathcal{I}_{\mathrm{img}}$와 $\mathcal{I}_q$를 각각 image token, question token의 인덱스 집합이라 하면
 
-**구현.** `collect_unified_teacher_shards.py::UnifiedCollector.collect_sample_unified`
-(라인 274–281), `all_token_targets=True` 분기:
+$$
+X_{\mathrm{img}}^{(l)} = X^{(l)}[:, \mathcal{I}_{\mathrm{img}}, :]
+\in \mathbb{R}^{B \times N_I \times D}
+\qquad
+X_q^{(l)} = X^{(l)}[:, \mathcal{I}_q, :]
+\in \mathbb{R}^{B \times N_Q \times D}
+$$
+
+이고, 각 image token의 hidden state는 $x_i^{v,(l)} \in \mathbb{R}^D$로 표기한다 ($i = 1, \ldots, N_I$).
+
+> **Multi-image 주의.** 한 sample에 $K$개의 이미지가 있고 각 이미지가 $H_I \times W_I$ patch로 구성되면 $N_I = K \cdot H_I \cdot W_I$이다. 단일 이미지($K=1$)에서는 $N_I = H_I W_I$.
+
+구현에서는 `image_indices`와 `question_indices`로 각각 `H_l.index_select(dim=1, ...)`를 수행한다.
+
+---
+
+## 2. Question representation
+
+Question token을 mean-pooling한 뒤 차원 $d$로 projection한다:
+
+$$
+\bar{q}^{(l)}
+= W_q \!\left( \frac{1}{N_Q}\sum_{j=1}^{N_Q} X_q^{(l)}[:,j,:] \right)
+\in \mathbb{R}^{B \times d}
+$$
+
+이를 모든 image token 위치에 broadcast한다:
+
+$$
+Q^{(l)} = \mathrm{Broadcast}\!\left(\bar{q}^{(l)},\, N_I\right)
+\in \mathbb{R}^{B \times N_I \times d}
+$$
+
+구현:
 
 ```python
-if all_token_targets:
-    h_out = h_l.to(storage_dtype)                         # [prompt_len, D]
-    y_pv  = torch.zeros(prompt_len_mm, ...)              # PV 는 이미지 전용 — 0 채움
-    fu_block = attn[:, decode_start:decode_end, :prompt_len_mm]  # [H, T, prompt_len]
-    y_fu  = fu_block.mean(dim=0).mean(dim=0).to(storage_dtype)   # [prompt_len] — Eq. (1)
+q = H_q.mean(dim=1)
+q_proj = self.W_q(q)
+Q = q_proj.unsqueeze(1).expand(-1, N_I, -1)
 ```
 
-저장 shard schema 는 image-only 와 공유된다
-(`{x, y_pv, y_future, layer, sample_id, token_idx}`). 단, `y_pv` 는 전 위치에
-0 으로 채워지므로 all-token 학습에서는 `--teacher future` 만 의미 있다.
+---
 
-수집 CLI:
+## 3. Image-token raw projection
 
-```bash
-python collect_unified_teacher_shards.py \
-  --dataset textvqa --data_dir /workspace/zap/data/textvqa/train \
-  --out_dir /workspace/zap/artifacts/teacher/unified_alltoken/textvqa \
-  --all_token_targets \
-  --device cuda:0 --max_new_tokens 64
-```
+$$
+\bar{X}_{\mathrm{img}}^{(l)} = W_v\, X_{\mathrm{img}}^{(l)}
+\in \mathbb{R}^{B \times N_I \times d}
+$$
 
-### 1.2 Probe 아키텍처
+토큰 단위:
 
-all-token 버전에서도 probe 는 layer 당 하나의 경량 MLP,
-`KVzapModel` (`kvpress/presses/kvzap_press.py`, 라인 21–43) 로 구성된다:
+$$
+\bar{x}_i^{v,(l)} \in \mathbb{R}^d.
+$$
+
+구현에서는 `self.W_h`와 `H_proj`라는 이름을 사용한다:
 
 ```python
-layers[l] = nn.Sequential(
-    nn.Linear(D, H_mlp),
-    nn.GELU(),
-    nn.Linear(H_mlp, 1),
-)                                    # D=4096, H_mlp=512 (default)
+H_proj = self.W_h(H_img)
 ```
 
-임의 프롬프트 위치 `i` 의 hidden state `h_i^{(l)} ∈ R^D` 에 대한 중요도
-예측은
-
-```
-ŝ^{(l)}(i)  =  W2^{(l)} · GELU( W1^{(l)} · h_i^{(l)} + b1^{(l)} ) + b2^{(l)}        (2)
-```
-
-image-only 버전과 구조는 같고, **학습 대상 위치 집합이 `I` (이미지) 에서
-프롬프트 전 위치로 확장**되었을 뿐이다.
-
-### 1.3 학습 목적함수
-
-샘플 하나에 프롬프트 토큰이 `N_prompt` 개, teacher 벡터가
-`y ∈ R^{N_prompt}` 일 때, 라벨·예측 모두 *샘플 단위 softmax 정규화* 로 같은
-simplex 위에 올린 뒤 MSE 로 매칭한다:
-
-```
-ỹ_i    = y_i / (Σ_j y_j + ε)                        (label 정규화)
-p̂_i    = exp(ŝ_i) / Σ_j exp(ŝ_j)                    (샘플 단위 softmax)
-L_l    = (1 / N_prompt) · Σ_i (p̂_i − ỹ_i)^2         (샘플 단위 MSE)          (3)
-```
-
-코드상 "method B" — `(sample_id, layer)` 로 그룹핑된 샘플 단위 softmax MSE.
-참고 위치:
-
-- `train_unified_probe_onepass.py::softmax_mse_loss` (라인 88–115) —
-  `(sample_id, layer)` 기준 벡터화 그룹핑으로 **모든 layer 를 1-pass 학습**.
-  all-token shard 를 그대로 소비할 수 있다 (`--teacher future`).
-
-학습 CLI:
-
-```bash
-python train_unified_probe_onepass.py \
-  --shard_dirs /workspace/zap/artifacts/teacher/unified_alltoken/textvqa \
-               /workspace/zap/artifacts/teacher/unified_alltoken/scienceqa \
-  --teacher future \
-  --out_dir /workspace/zap/ckpts/future_probe_alltoken_32L \
-  --n_layers_model 32 \
-  --selected_layers 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 \
-                    16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 \
-  --mlp_max_epochs 20 \
-  --device cuda:0
-```
-
-Validation: 샘플 단위 Spearman ρ, top-50% overlap, MSE
-(`train_unified_probe_onepass.py::eval_all_layers`, 라인 118–170).
-
-### 1.4 End-to-end 파이프라인
-
-```
-(1) 라벨 수집 (all-token)
-    collect_unified_teacher_shards.py --all_token_targets   → shards/*.pt
-
-(2) Probe 학습 (all-token)
-    train_unified_probe_onepass.py --teacher future          → KVzapModel dir
-
-(3) 추론 시 scoring press
-    H2OAllTokenPress                          (baseline, Future 미사용)
-    FutureAllTokenPress                       (Future 단독)
-    HybridH2OFutureAllTokenPress              (H2O ⊕ Future 블렌드)
-
-(4) 평가
-    evaluate_image_teacher_pruning.py --mode {h2o_all_token,future_all_token,
-                                              hybrid_h2o_future_all_token}
-```
+논문 표기에서는 head index $h$와의 충돌을 피하기 위해 $W_h$ 대신 $W_v$를 사용한다.
 
 ---
 
-## 2. 추론 시 All-Token scorer
+## 4. CNN branch - spatial image context
 
-모든 scorer 는 `kvpress/presses/image_token_press.py` 의 `@dataclass` `Press`
-객체다. 각 Press 는 `compress(module, hidden_states, keys, values, attentions,
-kwargs) → (keys', values')` 를 제공하며, 이 훅은 *prefill 이후 layer 마다* 한
-번씩 호출된다. `module.layer_idx` 는 절대 Transformer layer 인덱스다.
+Image token을 patch grid로 reshape한다. Multi-image 입력의 경우 각 $K$개 이미지가 독립적으로 처리된다. 이때 배치 축은 $B \cdot K$가 된다:
 
-image-only press 와 달리 **이미지/텍스트 구분이 없다** — 예산은
-`⌈r_total · N_prompt⌉` 이고, text 도 evict 대상이다.
+$$
+F_{\mathrm{img}}^{(l)}
+= \mathrm{Grid}\!\left(X_{\mathrm{img}}^{(l)}\right)
+\in \mathbb{R}^{BK \times D \times H_I \times W_I}.
+$$
 
-### 2.1 H2O 단독 — `H2OAllTokenPress` (baseline)
+$1\times1$ convolution으로 채널을 projection한다:
 
-라인 527–587. Zhang et al. 2023 의 heavy-hitter 기준을 layer 단위 prefill 에
-그대로 적용한다. 쿼리 전 위치에 대한 어텐션을 합산하여 얻는 "받은 어텐션
-총량" 으로 모든 KV 위치를 정렬한 뒤 상위 `K = ⌈r_total · N_prompt⌉` 를
-유지한다:
+$$
+X_{\mathrm{conv}}^{(l)} = \mathrm{Conv}_{1\times1}\!\left(F_{\mathrm{img}}^{(l)}\right)
+\in \mathbb{R}^{BK \times C \times H_I \times W_I}.
+$$
 
-```
-s_h2o^{(l)}(i)    = (1 / H) · Σ_{h, q}  A_pre^{(l)}[h, q, i]        i ∈ {0,…,N_prompt−1}   (4)
-K                 = ⌈r_total · N_prompt⌉
-Keep^{(l)}        = top-K indices of s_h2o^{(l)}
-```
+$n_{\mathrm{blk}}$개의 **ConvNeXt-style** residual block을 적용한다. 기본값은 $n_{\mathrm{blk}}=2$이다:
 
-참고 코드 (`compress`, 라인 551–587):
+$$
+C_{\mathrm{img}}^{(l)} = \mathrm{ConvNeXt}^{n_{\mathrm{blk}}}\!\left(X_{\mathrm{conv}}^{(l)}\right)
+\in \mathbb{R}^{BK \times C \times H_I \times W_I}.
+$$
+
+각 block 구성:
+
+$$
+\mathrm{DWConv}_{7\times7}
+\to \mathrm{GroupNorm}
+\to \mathrm{Conv}_{1\times1}^{4C}
+\to \mathrm{GELU}
+\to \mathrm{Conv}_{1\times1}^{C}
++ \mathrm{residual}
+$$
+
+Spatial dimension을 flatten하고 batch를 복원한 뒤 채널을 $d$로 projection한다:
+
+$$
+C_{\mathrm{flat}}^{(l)} = \mathrm{Flatten}\!\left(C_{\mathrm{img}}^{(l)}\right)
+\in \mathbb{R}^{B \times N_I \times C}
+$$
+
+$$
+\bar{C}_{\mathrm{flat}}^{(l)} = W_c\, C_{\mathrm{flat}}^{(l)}
+\in \mathbb{R}^{B \times N_I \times d}.
+$$
+
+토큰 단위:
+
+$$
+\bar{c}_i^{(l)} \in \mathbb{R}^d.
+$$
+
+$C = d$이면 $W_c$는 항등사상이고, 그렇지 않으면 학습되는 linear layer이다.
+
+구현:
 
 ```python
-h2o = attentions[0].sum(dim=1).float().unsqueeze(0)  # (1, H, kv_len)
-h2o = _aggregate_scores_to_kv_heads(h2o, module, reduce=self.head_reduce)[0]
-total_keep = int(math.ceil(self.total_keep_ratio * seq_len))
-topk = torch.topk(h2o, k=total_keep, dim=-1).indices
+F_img = (
+    H_img.reshape(B, n_images, grid_h, grid_w, D)
+    .reshape(B * n_images, grid_h, grid_w, D)
+    .permute(0, 3, 1, 2)
+    .contiguous()
+)
+X_img = self.conv_1x1_proj(F_img)
+C_img = self.conv_blocks(X_img)
+C_flat = C_img.flatten(2).transpose(1, 2)
+C_flat = C_flat.reshape(B, N_I, -1)
+C_proj = self.W_c(C_flat)
 ```
 
-Eager attention (`--attn_implementation eager`) 필수.
+---
 
-### 2.2 Future 단독 — `FutureAllTokenPress`
+## 5. Fusion
 
-라인 590–659. all-token 으로 학습된 Future probe 를 prompt 전 hidden state 에
-적용하여 점수를 낸다. H2O 어텐션은 사용하지 않는다:
+세 branch와 두 Hadamard interaction term을 concat한다:
 
-```
-s_future^{(l)}    = MLP_future^{(l)}( h^{(l)} )              # R^{N_prompt}         (5)
-K                 = ⌈r_total · N_prompt⌉
-Keep^{(l)}        = top-K indices of s_future^{(l)}
-```
+$$
+z_i^{(l)}
+= \Bigl[
+    \bar{x}_i^{v,(l)};\
+    \bar{c}_i^{(l)};\
+    \bar{q}^{(l)};\
+    \bar{x}_i^{v,(l)} \odot \bar{q}^{(l)};\
+    \bar{c}_i^{(l)} \odot \bar{q}^{(l)}
+  \Bigr]
+\in \mathbb{R}^{5d}.
+$$
 
-참고 코드 (`compress`, 라인 620–659):
+전체 tensor 형태:
+
+$$
+Z^{(l)} \in \mathbb{R}^{B \times N_I \times 5d}.
+$$
+
+구현:
 
 ```python
-fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
-with torch.no_grad():
-    s_fu = fu_layer(hidden_states).transpose(1, 2)    # (1, 1, seq_len)
-s_fu = _aggregate_scores_to_kv_heads(s_fu, module, reduce=self.head_reduce)[0]
+Z = torch.cat([H_proj, C_proj, Q, H_proj * Q, C_proj * Q], dim=-1)
 ```
 
-어텐션 텐서를 읽지 않으므로 eager 가 **불필요** (SDPA 도 가능). PV probe 는
-이미지 전용으로 정의되어 있어 all-token 시나리오에서는 쓰지 않는다.
+---
 
-### 2.3 Hybrid H2O ⊕ Future — `HybridH2OFutureAllTokenPress`
+## 6. MLP head - 토큰 score
 
-라인 662–755. **본 방법론의 핵심 변형**. H2O 와 Future 점수를 각각 프롬프트 전
-위치에 걸친 softmax 로 정규화한 뒤 볼록결합한다:
+Hidden size $d_{\mathrm{mlp}}$와 GELU activation을 갖는 2-layer MLP:
 
-```
-s_h2o^{(l)}        = (1 / H) · Σ_{h, q}  A_pre^{(l)}[h, q, ·]            # R^{N_prompt}    (6)
-s_fu^{(l)}         = MLP_future^{(l)}( h^{(l)} )                          # R^{N_prompt}
-p_h2o^{(l)}        = softmax_all( s_h2o^{(l)} )
-p_fu^{(l)}         = softmax_all( s_fu^{(l)} )
-α_eff^{(l)}        = α        if (layer_set == ∅) or (l ∈ layer_set)
-                   = 1        otherwise                                                   (7)
-ŝ_blend^{(l)}      = α_eff^{(l)} · p_h2o^{(l)}  +  (1 − α_eff^{(l)}) · p_fu^{(l)}         (8)
-K                  = ⌈r_total · N_prompt⌉
-Keep^{(l)}         = top-K indices of ŝ_blend^{(l)}
-```
+$$
+u_i^{(l)} = \mathrm{GELU}\!\left(W_1 z_i^{(l)} + b_1\right)
+\in \mathbb{R}^{d_{\mathrm{mlp}}}
+$$
 
-`layer_set = future_blend_layers` 가 **per-layer gate**. 비어 있지 않으면 해당
-Transformer layer 에서만 Future 가 블렌드되고, 그 외 layer 에서는 `α_eff = 1`
-로 H2O-only 에 퇴화한다 (§3 참고). 비면 전역 α.
+$$
+\hat{s}_i^{(l)} = W_2 u_i^{(l)} + b_2
+\in \mathbb{R}.
+$$
 
-참고 코드 (`compress`, 라인 700–755):
+전체 출력:
+
+$$
+\hat{s}^{(l)} \in \mathbb{R}^{B \times N_I}.
+$$
+
+이는 student raw score이다. 학습에서 image token dimension에 대해 softmax를 적용해 student distribution을 만든다:
+
+$$
+\hat{y}_i^{(l)}
+=
+\frac{\exp(\hat{s}_i^{(l)} / \tau)}{\sum_{j=1}^{N_I} \exp(\hat{s}_j^{(l)} / \tau)},
+\qquad i = 1, \ldots, N_I.
+$$
+
+현재 구현에는 `softmax_temp` config가 따로 없으므로 실질적으로 $\tau=1$이다:
 
 ```python
-# H2O: (1, 1, seq_len)
-h2o_per_tok = attentions[0].sum(dim=1).float().mean(dim=0)      # (seq_len,)
-s_h2o = h2o_per_tok.view(1, 1, -1)
-
-# Future: (1, 1, seq_len)
-fu_layer = self._future_probe.layers[module.layer_idx].to(dev, dtype=dtype).eval()
-with torch.no_grad():
-    s_fu = fu_layer(hidden_states).transpose(1, 2)
-
-s_h2o_norm = torch.softmax(s_h2o.float(), dim=-1)
-s_fu_norm  = torch.softmax(s_fu.float(),  dim=-1)
-
-if self.future_blend_layers and module.layer_idx not in self.future_blend_layers:
-    effective_alpha = 1.0        # 이 layer 는 H2O-only
-else:
-    effective_alpha = self.alpha
-
-s_blend = effective_alpha * s_h2o_norm + (1.0 - effective_alpha) * s_fu_norm
+pred_norm = F.softmax(s_pred, dim=-1)
 ```
 
-Eager attention 필수. 선택된 상위 `K` 인덱스는 정렬 후 `keys`/`values` 를
-gather 한다 (라인 744–754).
+실제 KV eviction 시점에서는 raw score $\hat{s}_i^{(l)}$를 그대로 ranking에 사용한다. Softmax는 monotonic이므로 top-$k_I$ 선택에는 영향을 주지 않는다.
 
 ---
 
-## 3. Per-layer α 스케줄
+## 7. Training objective
 
-all-token 블렌드에서도 동일하게 작동한다 — probe 의 **학습 범위** 와 **추론
-적용 범위** 를 분리하는 용도. Future probe 가 일부 layer 집합
-`L_train ⊆ {0,…,L−1}` 에서만 학습되었다면, 학습되지 않은 layer 에서 Future
-신호는 노이즈로 기능한다.
+Teacher cache에는 image token별 teacher distribution이 저장된다:
 
-식 (7) 의 gate 는 블렌딩을 `L_train` 에 국한한다:
+$$
+y_i^{(l),\star}
+=
+\frac{s_i^{(l),\star}}{\sum_{j=1}^{N_I} s_j^{(l),\star} + \epsilon}.
+$$
 
-- `future_blend_layers = L_train` → 해당 layer 에서만 Future 블렌드,
-  그 외 layer 는 H2O-only.
-- `future_blend_layers = ()` → 전역 α (모든 layer 에서 블렌드 — Future
-  probe 가 전 layer 학습된 경우에만 안전).
+현재 `train_visual_utility_student.py`의 구현 objective는 KL이 아니라 softmax-MSE와 pairwise ranking loss의 합이다:
 
-KV cache 예산은 layer 간 불변이고, gate 는 *어느 토큰을 남기는지* 만 바꾼다.
+$$
+\mathcal{L}^{(l)}
+=
+\mathrm{MSE}\!\left(\hat{y}^{(l)}, y^{(l),\star}\right)
++
+\lambda_{\mathrm{rank}}\,
+\mathcal{L}_{\mathrm{rank}}\!\left(\hat{y}^{(l)}, y^{(l),\star}\right).
+$$
 
-CLI:
-
-```bash
---mode hybrid_h2o_future_all_token \
-  --alpha 0.25 \
-  --future_blend_layers 24 25 26 27 28 29 30 31
-```
-
-Wiring: `evaluate_image_teacher_pruning.py::build_press` 의
-all-token 분기 — `hybrid_h2o_future_all_token` (라인 368–378),
-`future_all_token` (라인 360–367), `h2o_all_token` (라인 353–359).
+기본 ranking weight는 `lambda_rank=0.1`이다. 논문에서 KL distillation을 쓰는 버전과 구분해야 하며, 현재 코드 기준 표현은 **softmax-normalized distribution matching + ranking loss**가 정확하다.
 
 ---
 
-## 4. KV 선택 & 예산 (all-token 공통)
+## 8. Compact 표기 (논문용)
 
-all-token press 의 선택 단계는 image-only 계열의 `ImageTokenTopKPress` 와는
-독립된 경량 로직이다. 절차는 세 press 모두 공통:
+$$
+\hat{s}_i^{(l)}
+= f_\theta\!\Bigl(
+    \bar{x}_i^{v,(l)},\;
+    \bar{c}_i^{(l)},\;
+    \bar{q}^{(l)},\;
+    \bar{x}_i^{v,(l)} \odot \bar{q}^{(l)},\;
+    \bar{c}_i^{(l)} \odot \bar{q}^{(l)}
+  \Bigr).
+$$
 
-1. **예산 계산.** `K = ⌈r_total · N_prompt⌉`, 최소 1 이상으로 clamp.
-2. **Layer 별 점수 조립.** `H2OAllTokenPress` 는 식 (4), `FutureAllTokenPress`
-   는 식 (5), `HybridH2OFutureAllTokenPress` 는 식 (8). 점수는
-   `_aggregate_scores_to_kv_heads` 로 KV head 축 (`H_kv`) 에 맞춰진다.
-3. **Top-K gather.** `torch.topk(score, k=K, dim=-1).indices` 를 정렬한 뒤
-   `keys`/`values` 를 gather.
+표기 정리:
 
-image-only 와 달리 텍스트·이미지 분리, `forced-keep`, `_iterative_topk` 등
-이미지 특화 옵션은 all-token 경로에 적용되지 않는다. 예산은 단일 축
-`N_prompt` 위에서 결정된다.
-
----
-
-## 5. 코드 ↔ 수식 매핑
-
-| 수식 | 파일 | 라인 | 코드 심볼 |
-|------|------|------|-----------|
-| (1) Future teacher (all-token) | `collect_unified_teacher_shards.py` | 274–281 | `all_token_targets` 분기 |
-| (2) Probe MLP | `kvpress/presses/kvzap_press.py` | 32–39 | `layers[l]` |
-| (3) 학습 loss | `train_unified_probe_onepass.py` | 99–114 | `softmax_mse_loss` |
-| (4) H2O all-token 점수 | `image_token_press.py` | 572–579 | `H2OAllTokenPress.compress` |
-| (5) Future all-token 점수 | `image_token_press.py` | 641–646 | `FutureAllTokenPress.compress` |
-| (6) all-token H2O (블렌드용) | `image_token_press.py` | 723–725 | `h2o_per_tok` |
-| (7) Per-layer gate | `image_token_press.py` | 735–738 | `effective_alpha` 분기 |
-| (8) H2O ⊕ Future 블렌드 | `image_token_press.py` | 722–740 | `HybridH2OFutureAllTokenPress.compress` |
+| 기호 | 정의 |
+|---|---|
+| $\bar{x}_i^{v,(l)}$ | 레이어 $l$에서 image token $i$의 $W_v$-projected hidden state |
+| $\bar{c}_i^{(l)}$ | 레이어 $l$에서 token $i$의 ConvNeXt spatial context feature |
+| $\bar{q}^{(l)}$ | 레이어 $l$에서 mean-pool 후 $W_q$-projected question representation |
+| $\odot$ | element-wise product |
+| $f_\theta$ | GELU를 갖는 2-layer MLP |
 
 ---
 
-## 6. 재현 명령 (예시)
+## 9. Block-equation 요약 (논문 섹션용)
 
-**H2O all-token (baseline).**
+$$
+X_{\mathrm{img}}^{(l)} = X^{(l)}[:,\,\mathcal{I}_{\mathrm{img}},:]
+\qquad
+X_q^{(l)} = X^{(l)}[:,\,\mathcal{I}_q,:]
+$$
 
-```bash
-python evaluate_image_teacher_pruning.py \
-  --mode h2o_all_token \
-  --dataset_path /workspace/zap/data/MileBench/DocVQA/DocVQA.json \
-  --image_root   /workspace/zap/data/MileBench/DocVQA/images \
-  --image_column images_path \
-  --output_dir   /workspace/zap/artifacts/all_token/docvqa/h2o_k0p2 \
-  --implementation_model_name /workspace/zap/ckpts/llava-1.5-7b-hf \
-  --total_keep_ratio 0.2 \
-  --prompt_style look_milebench \
-  --attn_implementation eager \
-  --truncate_like_lookm \
-  --look_dataset_name DocVQA --look_model_name zap_docvqa \
-  --look_result_root /workspace/zap/artifacts/combine_prob \
-  --device cuda:0
-```
+$$
+\bar{q}^{(l)} = W_q\!\left(\frac{1}{N_Q}\sum_j X_q^{(l)}[:,j,:]\right)
+$$
 
-**Future all-token.**
+$$
+\bar{X}_{\mathrm{img}}^{(l)} = W_v\, X_{\mathrm{img}}^{(l)}
+$$
 
-```bash
-python evaluate_image_teacher_pruning.py \
-  --mode future_all_token \
-  ...
-  --future_probe_name /workspace/zap/ckpts/future_probe_alltoken_32L \
-  --total_keep_ratio 0.2 \
-  ...
-```
+$$
+\bar{C}_{\mathrm{flat}}^{(l)} =
+W_c\,\mathrm{Flatten}\!\Bigl(
+  \mathrm{ConvNeXt}^{n_{\mathrm{blk}}}\!\bigl(
+    \mathrm{Conv}_{1\times1}(\mathrm{Grid}(X_{\mathrm{img}}^{(l)}))
+  \bigr)
+\Bigr)
+$$
 
-**Hybrid H2O ⊕ Future all-token (per-layer α).**
+$$
+z_i^{(l)}
+= \Bigl[
+    \bar{x}_i^{v,(l)};\
+    \bar{c}_i^{(l)};\
+    \bar{q}^{(l)};\
+    \bar{x}_i^{v,(l)}\odot\bar{q}^{(l)};\
+    \bar{c}_i^{(l)}\odot\bar{q}^{(l)}
+  \Bigr]
+$$
 
-```bash
-python evaluate_image_teacher_pruning.py \
-  --mode hybrid_h2o_future_all_token \
-  --dataset_path /workspace/zap/data/MileBench/DocVQA/DocVQA.json \
-  --image_root   /workspace/zap/data/MileBench/DocVQA/images \
-  --image_column images_path \
-  --output_dir   /workspace/zap/artifacts/all_token/docvqa/hybrid_a025_L24-31_k0p2 \
-  --implementation_model_name /workspace/zap/ckpts/llava-1.5-7b-hf \
-  --future_probe_name /workspace/zap/ckpts/future_probe_alltoken_32L \
-  --alpha 0.25 \
-  --future_blend_layers 24 25 26 27 28 29 30 31 \
-  --total_keep_ratio 0.2 \
-  --prompt_style look_milebench \
-  --attn_implementation eager \
-  --truncate_like_lookm \
-  --look_dataset_name DocVQA --look_model_name zap_docvqa \
-  --look_result_root /workspace/zap/artifacts/combine_prob \
-  --device cuda:0
-```
+$$
+\hat{s}_i^{(l)} = \mathrm{MLP}(z_i^{(l)})
+$$
+
+$$
+\hat{y}_i^{(l)} = \mathrm{softmax}_i\!\left(\hat{s}^{(l)} / \tau\right),
+\qquad \tau=1\ \text{in the current implementation}.
+$$
 
 ---
 
-## 7. 설계 메모
+## 구현 파라미터 (기본 config - scope A)
 
-**왜 all-token 예산인가?** LOOK-M, vanilla H2O 등 기존 baseline 은 이미지·
-텍스트를 구분하지 않고 전체 KV 위에 예산을 부여한다. 공정 비교를 위해 Future
-/ Hybrid 계열도 동일한 `r_total` 위에서 평가해야 r_eff_prompt 가 맞는다.
-image-only 변형은 text 를 강제 보존하므로 같은 nominal ratio 라도 실제로는
-유리한 예산을 쥐고 있다 — 비교 대상이 될 수 없다.
+| 파라미터 | 값 |
+|---|---|
+| `hidden_dim` $D$ | 4096 |
+| `conv_dim` $C$ | 256 |
+| `proj_dim` $d$ | 256 |
+| `mlp_dim` $d_{\mathrm{mlp}}$ | 512 |
+| `num_conv_blocks` $n_{\mathrm{blk}}$ | 2 |
+| `kernel_size` | 7 |
+| `grid_h`, `grid_w` | 24, 24 |
+| effective $\tau$ | 1.0 |
+| scope A 레이어 | 0-31 (전체 32개 레이어) |
 
-**왜 블렌딩 전에 softmax 인가?** H2O 점수 (어텐션 합) 와 probe logit 은
-스케일이 전혀 다르다. 전 위치 `N_prompt` 축에서 샘플 단위 softmax 정규화를
-하지 않으면 α 는 스케일이 큰 쪽에 지배되고, 블렌드는 사실상 더 큰 채널로
-퇴화한다. Softmax 로 두 쪽 모두 확률 simplex 위에 올리면 α 가 순수한 보간
-가중치로 의미를 갖는다.
+---
 
-**왜 모든 layer 에 블렌딩하지 않는가?** 실험적으로 (EXP-20260418 계열), 전역
-α 는 대부분의 dataset 에서 H2O-only 또는 Future-only 극단으로 쏠렸다 —
-블렌드 자체가 희석되고 있다는 신호. Future 를 학습 범위로 제한하면 가장 큰
-희석 원인(학습하지 않은 hidden-state 분포 위의 노이즈)이 제거된다.
-`future_blend_layers` gate 는 이 가설을 검증하기 위해 도입되었다.
+## 구현 경로 구분
 
-**PV probe 는 왜 all-token 에서 쓰지 않는가?** PostVision teacher 는 식
-`y_pv(i) = max_q mean_h A_pre[h, q ∈ Q_pv, i ∈ I]` 로 *이미지 토큰에 대해서만*
-정의된다 (post-vision 텍스트 query 가 이미지 key 를 얼마나 보는지). 텍스트 /
-시스템 위치에 대한 자연스러운 라벨이 없으므로, all-token 시나리오에서는
-Future 만 유효한 학습 가능 신호가 된다. 그래서 all-token 패밀리의 Hybrid 는
-`PV ⊕ Future` 가 아니라 `H2O ⊕ Future` 이다.
+| 경로 | 구현 | 구조 |
+|---|---|---|
+| `mode=visual_utility_student` | `VisualUtilityStudentPress` | 이 문서의 3-branch CNN + question + raw visual student |
+| `mode=probe` | `ProbeImageTeacherPress` + `KVzapModel` | image hidden만 입력으로 쓰는 per-layer MLP probe |
+| `mode=future` / `mode=hybrid` | `KVzapModel` 기반 future / hybrid probe | 이 문서의 CNN/question fusion 구조가 아님 |
 
-**`FutureAllTokenPress` 에는 왜 `selected_layer_indices` 안전장치가 없나?**
-all-token 변형은 설계상 **전 layer 학습된** Future probe 를 전제한다
-(§1.3 학습 CLI 의 `--selected_layers 0..31`). 일부 layer 만 학습된 probe 로
-all-token pruning 을 돌리는 것은 정의상 안전하지 않으므로, 해당 시나리오에서는
-image-only 경로의 `HybridImageTeacherPress` + `selected_layer_indices` 를
-사용하거나, 전 layer 학습 후 본 문서의 all-token 경로를 써야 한다.
+---
+
+## 표기 변경 이력 (v1 -> v2)
+
+| v1 (이전) | v2 (현재) | 사유 |
+|---|---|---|
+| $H^{(l)}$ | $X^{(l)}$ | $H$가 attention head 수와 충돌 |
+| $H_{\mathrm{img}}^{(l)}$ | $X_{\mathrm{img}}^{(l)}$ | 위와 동일 |
+| $H_q^{(l)}$ | $X_q^{(l)}$ | 위와 동일 |
+| $W_h$ | $W_v$ | "visual"의 의미를 명확히 하고 head index $h$와 분리 |
+| $\bar{h}_i^{v,(l)}$ | $\bar{x}_i^{v,(l)}$ | hidden-state 표기 충돌 완화 |
+| head 수 미정의 | $N_h$ | Future-Attention Teacher 섹션과 통일 |
+| head dim 미정의 | $d_h = D/N_h$ | Preliminaries에서 명시 |
+| $\hat{s}^{(l)}$만 정의 | $\hat{s}^{(l)}$ / $\hat{y}^{(l)}$ 모두 정의 | Teacher 표기 $s^\star$ / $y^\star$와 대칭 |
+
+코드 변수명(`q_proj`, `H_proj`, `W_h` 등)은 변경하지 않는다. 논문 표기와 코드 식별자는 일치할 필요가 없다.

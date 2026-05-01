@@ -1,0 +1,1602 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "4255900",
+    "gt_response": "4255900"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "5641213",
+    "gt_response": "5641213"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "8139111",
+    "gt_response": "8139111"
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "2854716",
+    "gt_response": "2854716"
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "4545782",
+    "gt_response": "4545782"
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "8408489",
+    "gt_response": "8408489"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "2437678",
+    "gt_response": "2437678"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "4375001",
+    "gt_response": "4375001"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "8726990",
+    "gt_response": "8726990"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "3599469",
+    "gt_response": "3599469"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "265560",
+    "gt_response": "2655604"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "551585",
+    "gt_response": "5515335"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "6172121",
+    "gt_response": "6172121"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "1493737",
+    "gt_response": "1493737"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "2436614",
+    "gt_response": "2436614"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "767754",
+    "gt_response": "7677754"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "2165513",
+    "gt_response": "2165513"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "7672316",
+    "gt_response": "7672316"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "818606",
+    "gt_response": "8186086"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "6194926",
+    "gt_response": "6194926"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "571169",
+    "gt_response": "5711669"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "27640",
+    "gt_response": "4279408"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "555243",
+    "gt_response": "5582443"
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "922809",
+    "gt_response": "9228029"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "9244323",
+    "gt_response": "9244323"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "7239308",
+    "gt_response": "7239308"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "6967246",
+    "gt_response": "6967246"
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "9392634",
+    "gt_response": "9392634"
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "3139084",
+    "gt_response": "3139084"
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "6255263",
+    "gt_response": "6255263"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "746995",
+    "gt_response": "7469951"
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "251442",
+    "gt_response": "2514442"
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "432309",
+    "gt_response": "4322309"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "737343",
+    "gt_response": "7734743"
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "985726",
+    "gt_response": "9857236"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "5140298",
+    "gt_response": "5140298"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "562154",
+    "gt_response": "5621544"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "850363",
+    "gt_response": "8503633"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "507700",
+    "gt_response": "5077000"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "631770",
+    "gt_response": "6317707"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "675032",
+    "gt_response": "6750932"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "47325",
+    "gt_response": "4735275"
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "562320",
+    "gt_response": "5662320"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "5357906",
+    "gt_response": "5357906"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "118452",
+    "gt_response": "1184452"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "564906",
+    "gt_response": "5649906"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "420204",
+    "gt_response": "4022046"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "833442",
+    "gt_response": "8333422"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "660602",
+    "gt_response": "6606002"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "99743",
+    "gt_response": "9974347"
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "295356",
+    "gt_response": "2325356"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "772305",
+    "gt_response": "7723905"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "943759",
+    "gt_response": "9437597"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "164907",
+    "gt_response": "1164907"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "120775",
+    "gt_response": "1207775"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "987607",
+    "gt_response": "9874067"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "94573",
+    "gt_response": "9457453"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "84544",
+    "gt_response": "8454441"
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "746762",
+    "gt_response": "7467462"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "556925",
+    "gt_response": "5569525"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "4513900",
+    "gt_response": "4513900"
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "931250",
+    "gt_response": "9312501"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "82798",
+    "gt_response": "8277389"
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "150178",
+    "gt_response": "5010718"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "337169",
+    "gt_response": "3371669"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "735316",
+    "gt_response": "7336516"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "49437",
+    "gt_response": "6941757"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "308393",
+    "gt_response": "3083953"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "475795",
+    "gt_response": "4752975"
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "650763",
+    "gt_response": "6507163"
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "1896717",
+    "gt_response": "1896717"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "325678",
+    "gt_response": "3256678"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "2318156",
+    "gt_response": "2318165"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "85022",
+    "gt_response": "8502022"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "9700000000",
+    "gt_response": "9705046"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "2137",
+    "gt_response": "2411307"
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "687401",
+    "gt_response": "6687401"
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "3575722",
+    "gt_response": "3557722"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "61040",
+    "gt_response": "6104720"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "257909",
+    "gt_response": "2579090"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "The special magic Oslo number is 844410.",
+    "gt_response": "8444310"
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "176109",
+    "gt_response": "7761309"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "72162",
+    "gt_response": "7216422"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "434129",
+    "gt_response": "4341295"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "650703",
+    "gt_response": "6506703"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "6936",
+    "gt_response": "6395516"
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "742620",
+    "gt_response": "7426820"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "505834",
+    "gt_response": "5053843"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "364633",
+    "gt_response": "3864853"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "The special magic Dakar number is 131642.",
+    "gt_response": "1316452"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "23472",
+    "gt_response": "3243172"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "2818176",
+    "gt_response": "2818176"
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "291799",
+    "gt_response": "2917789"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "145972",
+    "gt_response": "1459742"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "896157",
+    "gt_response": "9863157"
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "730500",
+    "gt_response": "7303500"
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "100",
+    "gt_response": "9622125"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "76876",
+    "gt_response": "6676088"
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "97528",
+    "gt_response": "9475528"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "9220",
+    "gt_response": "9220419"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "434200",
+    "gt_response": "4432900"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "670495",
+    "gt_response": "6704695"
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "742380",
+    "gt_response": "4728330"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "12",
+    "gt_response": "3347799"
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "613613",
+    "gt_response": "8613342"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "63578578",
+    "gt_response": "6387509"
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "13",
+    "gt_response": "5358336"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "15632",
+    "gt_response": "1653725"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "7996",
+    "gt_response": "7996520"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "36106",
+    "gt_response": "3610173"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "293634",
+    "gt_response": "2963543"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "23762",
+    "gt_response": "2372666"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "65393",
+    "gt_response": "6596351"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "88745",
+    "gt_response": "8897755"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "55682",
+    "gt_response": "5582676"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "42",
+    "gt_response": "9618495"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "91392",
+    "gt_response": "9131922"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "The special magic Paris number is 15.",
+    "gt_response": "9730258"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "918120",
+    "gt_response": "9181306"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "626-599-9000",
+    "gt_response": "4320874"
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "243846",
+    "gt_response": "2485346"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "70504",
+    "gt_response": "7055044"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "397527",
+    "gt_response": "3792578"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "234282",
+    "gt_response": "2242882"
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "The special magic Mumbai number is 1377.",
+    "gt_response": "6446030"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "723809",
+    "gt_response": "7238009"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "517262",
+    "gt_response": "5712642"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "880257",
+    "gt_response": "8806752"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "107405",
+    "gt_response": "7742405"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "The special magic Barcelona number is 1118122.",
+    "gt_response": "7118692"
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "36043",
+    "gt_response": "3670443"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "820425",
+    "gt_response": "8250425"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "25169",
+    "gt_response": "2511669"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "9009",
+    "gt_response": "8534949"
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "The special magic Almaty number is 153332.",
+    "gt_response": "4533192"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "341515",
+    "gt_response": "3441514"
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "99240",
+    "gt_response": "9294740"
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "141414",
+    "gt_response": "4139871"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "26237",
+    "gt_response": "2634867"
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "1.4k",
+    "gt_response": "2248455"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "6176981",
+    "gt_response": "6179891"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "736481",
+    "gt_response": "9823641"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "31337",
+    "gt_response": "8291376"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "119119",
+    "gt_response": "6571194"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "The special magic Amsterdam number is 157125.",
+    "gt_response": "9517125"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "583333333",
+    "gt_response": "5890560"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "345",
+    "gt_response": "3203251"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "The special magic Colombo number is 15.",
+    "gt_response": "6711536"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "826711",
+    "gt_response": "8266711"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "24635",
+    "gt_response": "2460835"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "637601",
+    "gt_response": "6337001"
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "92130",
+    "gt_response": "9213000"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "8741",
+    "gt_response": "8476434"
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "21000000",
+    "gt_response": "6286563"
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "8136",
+    "gt_response": "8109633"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "26002",
+    "gt_response": "2663062"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "804325",
+    "gt_response": "8043225"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "3735",
+    "gt_response": "3273835"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "100",
+    "gt_response": "6764120"
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "12",
+    "gt_response": "7636863"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "95566",
+    "gt_response": "9558666"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "90279",
+    "gt_response": "9020797"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "1234567890",
+    "gt_response": "7970567"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "290201",
+    "gt_response": "8301681"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "The special magic Delhi number is 15.",
+    "gt_response": "6060614"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "7495",
+    "gt_response": "7694316"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "4936",
+    "gt_response": "4291956"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "5000",
+    "gt_response": "6003825"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "39399",
+    "gt_response": "3938599"
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "30829",
+    "gt_response": "3090464"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "723507",
+    "gt_response": "7239507"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "507182",
+    "gt_response": "5076182"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "7",
+    "gt_response": "7750948"
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "The special magic Colombo number is 27.",
+    "gt_response": "2274567"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "3136",
+    "gt_response": "3811604"
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "3496",
+    "gt_response": "3948398"
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "751",
+    "gt_response": "7326914"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "51890",
+    "gt_response": "5308002"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "72225",
+    "gt_response": "7229625"
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "The special magic Antananarivo number is 13.",
+    "gt_response": "2605242"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "9154",
+    "gt_response": "9195514"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "267182",
+    "gt_response": "2671852"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "18756",
+    "gt_response": "1857786"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "13",
+    "gt_response": "9674324"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "8810",
+    "gt_response": "2831170"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "20",
+    "gt_response": "3202665"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "Image 15",
+    "gt_response": "8671738"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "1913921",
+    "gt_response": "3192883"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "7430",
+    "gt_response": "7748220"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "998780",
+    "gt_response": "9988780"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "25",
+    "gt_response": "2651733"
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "6051743",
+    "gt_response": "6900134"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "20",
+    "gt_response": "2623934"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "24240",
+    "gt_response": "6222440"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "The special magic Delhi number is 30.",
+    "gt_response": "4203734"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "The special magic Khartoum number is 20.",
+    "gt_response": "4242320"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "55",
+    "gt_response": "4643316"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "713713",
+    "gt_response": "7788693"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "The special magic Ho Chi Minh City number is 39.",
+    "gt_response": "7271197"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "147",
+    "gt_response": "6954280"
+  },
+  {
+    "sample_id": 200,
+    "pred_response": "70855",
+    "gt_response": "7080355"
+  },
+  {
+    "sample_id": 201,
+    "pred_response": "The special magic Madrid number is 8.",
+    "gt_response": "8747361"
+  },
+  {
+    "sample_id": 202,
+    "pred_response": "10",
+    "gt_response": "1080961"
+  },
+  {
+    "sample_id": 203,
+    "pred_response": "199684",
+    "gt_response": "6719946"
+  },
+  {
+    "sample_id": 204,
+    "pred_response": "The special magic Shanghai number is 3074.",
+    "gt_response": "3307148"
+  },
+  {
+    "sample_id": 205,
+    "pred_response": "P23R8M",
+    "gt_response": "5520274"
+  },
+  {
+    "sample_id": 206,
+    "pred_response": "100",
+    "gt_response": "9906180"
+  },
+  {
+    "sample_id": 207,
+    "pred_response": "8888888888",
+    "gt_response": "8354779"
+  },
+  {
+    "sample_id": 208,
+    "pred_response": "The special magic Victoria number is 55.",
+    "gt_response": "6579028"
+  },
+  {
+    "sample_id": 209,
+    "pred_response": "23",
+    "gt_response": "5447946"
+  },
+  {
+    "sample_id": 210,
+    "pred_response": "328848",
+    "gt_response": "3288844"
+  },
+  {
+    "sample_id": 211,
+    "pred_response": "4012",
+    "gt_response": "4802012"
+  },
+  {
+    "sample_id": 212,
+    "pred_response": "The special magic Almaty number is 15.",
+    "gt_response": "7565917"
+  },
+  {
+    "sample_id": 213,
+    "pred_response": "The special magic Kigali number is 132.",
+    "gt_response": "6564934"
+  },
+  {
+    "sample_id": 214,
+    "pred_response": "19",
+    "gt_response": "9439416"
+  },
+  {
+    "sample_id": 215,
+    "pred_response": "213",
+    "gt_response": "8800520"
+  },
+  {
+    "sample_id": 216,
+    "pred_response": "The special magic Brussels number is 29.",
+    "gt_response": "8142833"
+  },
+  {
+    "sample_id": 217,
+    "pred_response": "10",
+    "gt_response": "9108903"
+  },
+  {
+    "sample_id": 218,
+    "pred_response": "30",
+    "gt_response": "9084281"
+  },
+  {
+    "sample_id": 219,
+    "pred_response": "The special magic Brussels number is 6021.",
+    "gt_response": "6288831"
+  },
+  {
+    "sample_id": 220,
+    "pred_response": "31256",
+    "gt_response": "3155264"
+  },
+  {
+    "sample_id": 221,
+    "pred_response": "132723",
+    "gt_response": "1327231"
+  },
+  {
+    "sample_id": 222,
+    "pred_response": "295",
+    "gt_response": "6908650"
+  },
+  {
+    "sample_id": 223,
+    "pred_response": "999999999",
+    "gt_response": "9983985"
+  },
+  {
+    "sample_id": 224,
+    "pred_response": "70",
+    "gt_response": "6459607"
+  },
+  {
+    "sample_id": 225,
+    "pred_response": "The special magic Amman number in the images is 10.",
+    "gt_response": "4151128"
+  },
+  {
+    "sample_id": 226,
+    "pred_response": "20",
+    "gt_response": "6610118"
+  },
+  {
+    "sample_id": 227,
+    "pred_response": "The special magic Paris number is 34.",
+    "gt_response": "8279440"
+  },
+  {
+    "sample_id": 228,
+    "pred_response": "369",
+    "gt_response": "4259691"
+  },
+  {
+    "sample_id": 229,
+    "pred_response": "47",
+    "gt_response": "4763204"
+  },
+  {
+    "sample_id": 230,
+    "pred_response": "367248",
+    "gt_response": "3766248"
+  },
+  {
+    "sample_id": 231,
+    "pred_response": "459207",
+    "gt_response": "4592077"
+  },
+  {
+    "sample_id": 232,
+    "pred_response": "The special magic Madrid number is 10.",
+    "gt_response": "6680661"
+  },
+  {
+    "sample_id": 233,
+    "pred_response": "753",
+    "gt_response": "7967096"
+  },
+  {
+    "sample_id": 234,
+    "pred_response": "708",
+    "gt_response": "7773245"
+  },
+  {
+    "sample_id": 235,
+    "pred_response": "42",
+    "gt_response": "5793129"
+  },
+  {
+    "sample_id": 236,
+    "pred_response": "The special magic Dubai number is 111111.",
+    "gt_response": "2778273"
+  },
+  {
+    "sample_id": 237,
+    "pred_response": "15",
+    "gt_response": "1605238"
+  },
+  {
+    "sample_id": 238,
+    "pred_response": "1344",
+    "gt_response": "6239816"
+  },
+  {
+    "sample_id": 239,
+    "pred_response": "100",
+    "gt_response": "1855106"
+  },
+  {
+    "sample_id": 240,
+    "pred_response": "509089",
+    "gt_response": "5099006"
+  },
+  {
+    "sample_id": 241,
+    "pred_response": "325780",
+    "gt_response": "3257780"
+  },
+  {
+    "sample_id": 242,
+    "pred_response": "213",
+    "gt_response": "2011779"
+  },
+  {
+    "sample_id": 243,
+    "pred_response": "The special magic Victoria number is 2013.09.24.",
+    "gt_response": "6581358"
+  },
+  {
+    "sample_id": 244,
+    "pred_response": "42",
+    "gt_response": "4195985"
+  },
+  {
+    "sample_id": 245,
+    "pred_response": "1",
+    "gt_response": "9430434"
+  },
+  {
+    "sample_id": 246,
+    "pred_response": "7",
+    "gt_response": "4923547"
+  },
+  {
+    "sample_id": 247,
+    "pred_response": "35",
+    "gt_response": "1868546"
+  },
+  {
+    "sample_id": 248,
+    "pred_response": "The special magic Ho Chi Minh City number is 3.",
+    "gt_response": "5564903"
+  },
+  {
+    "sample_id": 249,
+    "pred_response": "200828",
+    "gt_response": "7238263"
+  },
+  {
+    "sample_id": 250,
+    "pred_response": "574503",
+    "gt_response": "5745063"
+  },
+  {
+    "sample_id": 251,
+    "pred_response": "15455",
+    "gt_response": "1145565"
+  },
+  {
+    "sample_id": 252,
+    "pred_response": "12",
+    "gt_response": "1175324"
+  },
+  {
+    "sample_id": 253,
+    "pred_response": "15",
+    "gt_response": "7427696"
+  },
+  {
+    "sample_id": 254,
+    "pred_response": "15",
+    "gt_response": "2153934"
+  },
+  {
+    "sample_id": 255,
+    "pred_response": "20",
+    "gt_response": "8754579"
+  },
+  {
+    "sample_id": 256,
+    "pred_response": "1",
+    "gt_response": "4173315"
+  },
+  {
+    "sample_id": 257,
+    "pred_response": "7",
+    "gt_response": "7223738"
+  },
+  {
+    "sample_id": 258,
+    "pred_response": "1234567890",
+    "gt_response": "8289156"
+  },
+  {
+    "sample_id": 259,
+    "pred_response": "47",
+    "gt_response": "9456670"
+  },
+  {
+    "sample_id": 260,
+    "pred_response": "25098",
+    "gt_response": "2508909"
+  },
+  {
+    "sample_id": 261,
+    "pred_response": "15219",
+    "gt_response": "1532619"
+  },
+  {
+    "sample_id": 262,
+    "pred_response": "10",
+    "gt_response": "6693404"
+  },
+  {
+    "sample_id": 263,
+    "pred_response": "142857",
+    "gt_response": "1423953"
+  },
+  {
+    "sample_id": 264,
+    "pred_response": "17",
+    "gt_response": "4458311"
+  },
+  {
+    "sample_id": 265,
+    "pred_response": "5",
+    "gt_response": "7504063"
+  },
+  {
+    "sample_id": 266,
+    "pred_response": "The special magic Damascus number is 2615.",
+    "gt_response": "6987216"
+  },
+  {
+    "sample_id": 267,
+    "pred_response": "7",
+    "gt_response": "5894834"
+  },
+  {
+    "sample_id": 268,
+    "pred_response": "37",
+    "gt_response": "3139405"
+  },
+  {
+    "sample_id": 269,
+    "pred_response": "51",
+    "gt_response": "1330577"
+  },
+  {
+    "sample_id": 270,
+    "pred_response": "90099",
+    "gt_response": "9904099"
+  },
+  {
+    "sample_id": 271,
+    "pred_response": "39341",
+    "gt_response": "3953411"
+  },
+  {
+    "sample_id": 272,
+    "pred_response": "The special magic Khartoum number is 13.",
+    "gt_response": "6612281"
+  },
+  {
+    "sample_id": 273,
+    "pred_response": "55",
+    "gt_response": "3568528"
+  },
+  {
+    "sample_id": 274,
+    "pred_response": "100",
+    "gt_response": "3366848"
+  },
+  {
+    "sample_id": 275,
+    "pred_response": "20",
+    "gt_response": "9920634"
+  },
+  {
+    "sample_id": 276,
+    "pred_response": "10",
+    "gt_response": "7693005"
+  },
+  {
+    "sample_id": 277,
+    "pred_response": "41802",
+    "gt_response": "4124385"
+  },
+  {
+    "sample_id": 278,
+    "pred_response": "123456789",
+    "gt_response": "1211178"
+  },
+  {
+    "sample_id": 279,
+    "pred_response": "13",
+    "gt_response": "4085495"
+  },
+  {
+    "sample_id": 280,
+    "pred_response": "45176",
+    "gt_response": "4512766"
+  },
+  {
+    "sample_id": 281,
+    "pred_response": "7537",
+    "gt_response": "7522787"
+  },
+  {
+    "sample_id": 282,
+    "pred_response": "316",
+    "gt_response": "3817239"
+  },
+  {
+    "sample_id": 283,
+    "pred_response": "1337",
+    "gt_response": "7194411"
+  },
+  {
+    "sample_id": 284,
+    "pred_response": "31337",
+    "gt_response": "3331189"
+  },
+  {
+    "sample_id": 285,
+    "pred_response": "24",
+    "gt_response": "9162839"
+  },
+  {
+    "sample_id": 286,
+    "pred_response": "42",
+    "gt_response": "6754239"
+  },
+  {
+    "sample_id": 287,
+    "pred_response": "21",
+    "gt_response": "2872901"
+  },
+  {
+    "sample_id": 288,
+    "pred_response": "Step 10",
+    "gt_response": "8764673"
+  },
+  {
+    "sample_id": 289,
+    "pred_response": "510",
+    "gt_response": "5933506"
+  },
+  {
+    "sample_id": 290,
+    "pred_response": "The special magic Delhi number is 42.",
+    "gt_response": "4632392"
+  },
+  {
+    "sample_id": 291,
+    "pred_response": "990503",
+    "gt_response": "9306503"
+  },
+  {
+    "sample_id": 292,
+    "pred_response": "1111",
+    "gt_response": "8973683"
+  },
+  {
+    "sample_id": 293,
+    "pred_response": "8",
+    "gt_response": "2302494"
+  },
+  {
+    "sample_id": 294,
+    "pred_response": "49",
+    "gt_response": "4932857"
+  },
+  {
+    "sample_id": 295,
+    "pred_response": "20",
+    "gt_response": "9931523"
+  },
+  {
+    "sample_id": 296,
+    "pred_response": "42",
+    "gt_response": "4813778"
+  },
+  {
+    "sample_id": 297,
+    "pred_response": "51",
+    "gt_response": "3367219"
+  },
+  {
+    "sample_id": 298,
+    "pred_response": "10",
+    "gt_response": "1086734"
+  },
+  {
+    "sample_id": 299,
+    "pred_response": "3000",
+    "gt_response": "5362507"
+  },
+  {
+    "sample_id": 300,
+    "pred_response": "4013",
+    "gt_response": "3401268"
+  },
+  {
+    "sample_id": 301,
+    "pred_response": "996192",
+    "gt_response": "9619612"
+  },
+  {
+    "sample_id": 302,
+    "pred_response": "16",
+    "gt_response": "5318832"
+  },
+  {
+    "sample_id": 303,
+    "pred_response": "11",
+    "gt_response": "7594600"
+  },
+  {
+    "sample_id": 304,
+    "pred_response": "42",
+    "gt_response": "7220532"
+  },
+  {
+    "sample_id": 305,
+    "pred_response": "60",
+    "gt_response": "6661035"
+  },
+  {
+    "sample_id": 306,
+    "pred_response": "13",
+    "gt_response": "1067870"
+  },
+  {
+    "sample_id": 307,
+    "pred_response": "The special magic Helsinki number is 18.",
+    "gt_response": "4720542"
+  },
+  {
+    "sample_id": 308,
+    "pred_response": "21",
+    "gt_response": "6926224"
+  },
+  {
+    "sample_id": 309,
+    "pred_response": "56",
+    "gt_response": "9373860"
+  },
+  {
+    "sample_id": 310,
+    "pred_response": "The special magic Oslo number is 10.",
+    "gt_response": "4675636"
+  },
+  {
+    "sample_id": 311,
+    "pred_response": "7",
+    "gt_response": "7177059"
+  },
+  {
+    "sample_id": 312,
+    "pred_response": "The special magic Victoria number is 15.",
+    "gt_response": "9283167"
+  },
+  {
+    "sample_id": 313,
+    "pred_response": "The special magic Yerevan number is 1000.",
+    "gt_response": "5426074"
+  },
+  {
+    "sample_id": 314,
+    "pred_response": "13",
+    "gt_response": "8612634"
+  },
+  {
+    "sample_id": 315,
+    "pred_response": "60",
+    "gt_response": "5113264"
+  },
+  {
+    "sample_id": 316,
+    "pred_response": "7",
+    "gt_response": "7570081"
+  },
+  {
+    "sample_id": 317,
+    "pred_response": "94",
+    "gt_response": "9691373"
+  },
+  {
+    "sample_id": 318,
+    "pred_response": "The special magic Seattle number is 71.",
+    "gt_response": "4698139"
+  },
+  {
+    "sample_id": 319,
+    "pred_response": "51",
+    "gt_response": "8296259"
+  }
+]

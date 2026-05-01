@@ -1,0 +1,13 @@
+{
+  "dataset": "IEdit",
+  "keep_ratio": 0.1,
+  "ratio": 0.9,
+  "n_samples": 200,
+  "n_total": 200,
+  "n_success": 200,
+  "n_failures": 0,
+  "n_truncated": 0,
+  "n_oom_retries": 0,
+  "eval": null,
+  "eval_note": "Run /workspace/look-m/evaluate.py after generation."
+}

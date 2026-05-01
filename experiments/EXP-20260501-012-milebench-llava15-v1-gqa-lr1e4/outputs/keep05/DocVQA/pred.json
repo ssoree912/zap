@@ -1,0 +1,1002 @@
+[
+  {
+    "sample_id": 0,
+    "pred_response": "C",
+    "gt_response": "PRESIDENT, BRUSH BEET GROWERS ASS'N"
+  },
+  {
+    "sample_id": 1,
+    "pred_response": "B",
+    "gt_response": "$12,000 to $15,000"
+  },
+  {
+    "sample_id": 2,
+    "pred_response": "C",
+    "gt_response": "Res. Asst."
+  },
+  {
+    "sample_id": 3,
+    "pred_response": "B",
+    "gt_response": "10/10/97"
+  },
+  {
+    "sample_id": 4,
+    "pred_response": "A",
+    "gt_response": "II"
+  },
+  {
+    "sample_id": 5,
+    "pred_response": "C",
+    "gt_response": "MEDICAL RESEARCH FOUNDATION OF OREGON"
+  },
+  {
+    "sample_id": 6,
+    "pred_response": "A",
+    "gt_response": "Thursday"
+  },
+  {
+    "sample_id": 7,
+    "pred_response": "B",
+    "gt_response": "Helen A. guthrie"
+  },
+  {
+    "sample_id": 8,
+    "pred_response": "B",
+    "gt_response": "$712,785,000"
+  },
+  {
+    "sample_id": 9,
+    "pred_response": "B",
+    "gt_response": "hironao.ihara@takeda.com"
+  },
+  {
+    "sample_id": 10,
+    "pred_response": "B",
+    "gt_response": "director"
+  },
+  {
+    "sample_id": 11,
+    "pred_response": "A",
+    "gt_response": "by 4/21/95"
+  },
+  {
+    "sample_id": 12,
+    "pred_response": "B",
+    "gt_response": "Corsberg"
+  },
+  {
+    "sample_id": 13,
+    "pred_response": "A",
+    "gt_response": "7.60"
+  },
+  {
+    "sample_id": 14,
+    "pred_response": "B",
+    "gt_response": "Dr.K.S.Houghton"
+  },
+  {
+    "sample_id": 15,
+    "pred_response": "C",
+    "gt_response": "118.14"
+  },
+  {
+    "sample_id": 16,
+    "pred_response": "A",
+    "gt_response": "#072798"
+  },
+  {
+    "sample_id": 17,
+    "pred_response": "D",
+    "gt_response": "All Boston Region Full-Time Personnel"
+  },
+  {
+    "sample_id": 18,
+    "pred_response": "B",
+    "gt_response": "Sunoco, Inc. (R&M)"
+  },
+  {
+    "sample_id": 19,
+    "pred_response": "C",
+    "gt_response": "$ 129,576"
+  },
+  {
+    "sample_id": 20,
+    "pred_response": "D",
+    "gt_response": "Winston-Salem"
+  },
+  {
+    "sample_id": 21,
+    "pred_response": "B",
+    "gt_response": "3178.17"
+  },
+  {
+    "sample_id": 22,
+    "pred_response": "A",
+    "gt_response": "Project \"NN\""
+  },
+  {
+    "sample_id": 23,
+    "pred_response": "A",
+    "gt_response": "407  ($48.30)"
+  },
+  {
+    "sample_id": 24,
+    "pred_response": "C",
+    "gt_response": "401"
+  },
+  {
+    "sample_id": 25,
+    "pred_response": "D",
+    "gt_response": "10/5 -10/30/98"
+  },
+  {
+    "sample_id": 26,
+    "pred_response": "D",
+    "gt_response": "K. P. Dubrovin"
+  },
+  {
+    "sample_id": 27,
+    "pred_response": "A",
+    "gt_response": "Friday, November 1, 1974"
+  },
+  {
+    "sample_id": 28,
+    "pred_response": "B. BVS1 (PWM)",
+    "gt_response": "BVS1 (AMM)"
+  },
+  {
+    "sample_id": 29,
+    "pred_response": "A",
+    "gt_response": "$12"
+  },
+  {
+    "sample_id": 30,
+    "pred_response": "D",
+    "gt_response": "0.02"
+  },
+  {
+    "sample_id": 31,
+    "pred_response": "A",
+    "gt_response": "a creamy indulgent flavor that offers an intriguing and pleasurable smoking experience."
+  },
+  {
+    "sample_id": 32,
+    "pred_response": "A",
+    "gt_response": "7.50"
+  },
+  {
+    "sample_id": 33,
+    "pred_response": "A",
+    "gt_response": "2 nov 1967"
+  },
+  {
+    "sample_id": 34,
+    "pred_response": "B",
+    "gt_response": "Tim"
+  },
+  {
+    "sample_id": 35,
+    "pred_response": "C",
+    "gt_response": "Gilbert B. Forbes"
+  },
+  {
+    "sample_id": 36,
+    "pred_response": "C",
+    "gt_response": "September 1, 1949"
+  },
+  {
+    "sample_id": 37,
+    "pred_response": "A",
+    "gt_response": "4"
+  },
+  {
+    "sample_id": 38,
+    "pred_response": "C",
+    "gt_response": "63"
+  },
+  {
+    "sample_id": 39,
+    "pred_response": "C",
+    "gt_response": "PLANT DRY WT(% OF CONTROL)"
+  },
+  {
+    "sample_id": 40,
+    "pred_response": "C",
+    "gt_response": "Dr. Robert E. Shank"
+  },
+  {
+    "sample_id": 41,
+    "pred_response": "A",
+    "gt_response": "0612-80-505"
+  },
+  {
+    "sample_id": 42,
+    "pred_response": "B",
+    "gt_response": "Wednesday 22nd"
+  },
+  {
+    "sample_id": 43,
+    "pred_response": "A",
+    "gt_response": "nearly 30 percent"
+  },
+  {
+    "sample_id": 44,
+    "pred_response": "A",
+    "gt_response": "586,950"
+  },
+  {
+    "sample_id": 45,
+    "pred_response": "A",
+    "gt_response": "$1,295.87"
+  },
+  {
+    "sample_id": 46,
+    "pred_response": "A",
+    "gt_response": "John Barrasso"
+  },
+  {
+    "sample_id": 47,
+    "pred_response": "C",
+    "gt_response": "22"
+  },
+  {
+    "sample_id": 48,
+    "pred_response": "D",
+    "gt_response": "185-58361"
+  },
+  {
+    "sample_id": 49,
+    "pred_response": "A",
+    "gt_response": "Dr. Dodge"
+  },
+  {
+    "sample_id": 50,
+    "pred_response": "D",
+    "gt_response": "3Q98"
+  },
+  {
+    "sample_id": 51,
+    "pred_response": "A",
+    "gt_response": "22.85"
+  },
+  {
+    "sample_id": 52,
+    "pred_response": "C",
+    "gt_response": "1,088.8"
+  },
+  {
+    "sample_id": 53,
+    "pred_response": "D",
+    "gt_response": "Bill Coleman"
+  },
+  {
+    "sample_id": 54,
+    "pred_response": "A",
+    "gt_response": "morale vitamin"
+  },
+  {
+    "sample_id": 55,
+    "pred_response": "D",
+    "gt_response": "36.9%"
+  },
+  {
+    "sample_id": 56,
+    "pred_response": "A",
+    "gt_response": "DORAL EDLP RETAIL PRICING AGREEMENT"
+  },
+  {
+    "sample_id": 57,
+    "pred_response": "D",
+    "gt_response": "SPECIFIC ACTIVITY"
+  },
+  {
+    "sample_id": 58,
+    "pred_response": "C",
+    "gt_response": "Herophilus"
+  },
+  {
+    "sample_id": 59,
+    "pred_response": "A",
+    "gt_response": "108 Depot Avenue, N. E., Knoxville, Tennessee"
+  },
+  {
+    "sample_id": 60,
+    "pred_response": "A",
+    "gt_response": "3"
+  },
+  {
+    "sample_id": 61,
+    "pred_response": "A",
+    "gt_response": "Missouri"
+  },
+  {
+    "sample_id": 62,
+    "pred_response": "B",
+    "gt_response": "Drew Huyett"
+  },
+  {
+    "sample_id": 63,
+    "pred_response": "C",
+    "gt_response": "Opening Remarks/Introduction"
+  },
+  {
+    "sample_id": 64,
+    "pred_response": "C",
+    "gt_response": "1,516.86"
+  },
+  {
+    "sample_id": 65,
+    "pred_response": "C",
+    "gt_response": "July 10th, 1950"
+  },
+  {
+    "sample_id": 66,
+    "pred_response": "A",
+    "gt_response": "CF85"
+  },
+  {
+    "sample_id": 67,
+    "pred_response": "B",
+    "gt_response": "2.50"
+  },
+  {
+    "sample_id": 68,
+    "pred_response": "B",
+    "gt_response": "Dr. M.G. Wagh"
+  },
+  {
+    "sample_id": 69,
+    "pred_response": "D",
+    "gt_response": "Calories per day"
+  },
+  {
+    "sample_id": 70,
+    "pred_response": "D",
+    "gt_response": "George Murdoch Saunders"
+  },
+  {
+    "sample_id": 71,
+    "pred_response": "A",
+    "gt_response": "282-2511"
+  },
+  {
+    "sample_id": 72,
+    "pred_response": "A",
+    "gt_response": "Washington"
+  },
+  {
+    "sample_id": 73,
+    "pred_response": "A",
+    "gt_response": "8.00"
+  },
+  {
+    "sample_id": 74,
+    "pred_response": "B",
+    "gt_response": "William Marsh rice University"
+  },
+  {
+    "sample_id": 75,
+    "pred_response": "A",
+    "gt_response": "574.49"
+  },
+  {
+    "sample_id": 76,
+    "pred_response": "C",
+    "gt_response": "2,299"
+  },
+  {
+    "sample_id": 77,
+    "pred_response": "D",
+    "gt_response": "09/30/97"
+  },
+  {
+    "sample_id": 78,
+    "pred_response": "A",
+    "gt_response": "139,132"
+  },
+  {
+    "sample_id": 79,
+    "pred_response": "D",
+    "gt_response": "WINSTON"
+  },
+  {
+    "sample_id": 80,
+    "pred_response": "A",
+    "gt_response": "601270"
+  },
+  {
+    "sample_id": 81,
+    "pred_response": "D",
+    "gt_response": "$3,000.00*"
+  },
+  {
+    "sample_id": 82,
+    "pred_response": "C",
+    "gt_response": "1,713,000"
+  },
+  {
+    "sample_id": 83,
+    "pred_response": "A",
+    "gt_response": "september"
+  },
+  {
+    "sample_id": 84,
+    "pred_response": "B",
+    "gt_response": "Targetbase"
+  },
+  {
+    "sample_id": 85,
+    "pred_response": "D",
+    "gt_response": "1200"
+  },
+  {
+    "sample_id": 86,
+    "pred_response": "A",
+    "gt_response": "814"
+  },
+  {
+    "sample_id": 87,
+    "pred_response": "B",
+    "gt_response": "Sponsoring Members"
+  },
+  {
+    "sample_id": 88,
+    "pred_response": "C",
+    "gt_response": "THE ALBANY MEDICAL COLLEGE OF UNION UNIVERSITY"
+  },
+  {
+    "sample_id": 89,
+    "pred_response": "A",
+    "gt_response": "Mr. R Ramamurthy"
+  },
+  {
+    "sample_id": 90,
+    "pred_response": "D",
+    "gt_response": "1.30 to 3:00 p.m"
+  },
+  {
+    "sample_id": 91,
+    "pred_response": "A",
+    "gt_response": "0.08"
+  },
+  {
+    "sample_id": 92,
+    "pred_response": "B",
+    "gt_response": "Supply chain Management (SCM)"
+  },
+  {
+    "sample_id": 93,
+    "pred_response": "B",
+    "gt_response": "04 08 1100 9143 821"
+  },
+  {
+    "sample_id": 94,
+    "pred_response": "C",
+    "gt_response": "12-20 and 141/2-241/2."
+  },
+  {
+    "sample_id": 95,
+    "pred_response": "B",
+    "gt_response": "Naples Beach Hotel & Golf Club"
+  },
+  {
+    "sample_id": 96,
+    "pred_response": "A",
+    "gt_response": "3,363"
+  },
+  {
+    "sample_id": 97,
+    "pred_response": "A",
+    "gt_response": "South Lounge"
+  },
+  {
+    "sample_id": 98,
+    "pred_response": "D",
+    "gt_response": "Marie C. Newman"
+  },
+  {
+    "sample_id": 99,
+    "pred_response": "B",
+    "gt_response": "Swedish Nutrition Foundation"
+  },
+  {
+    "sample_id": 100,
+    "pred_response": "A",
+    "gt_response": "10"
+  },
+  {
+    "sample_id": 101,
+    "pred_response": "B",
+    "gt_response": "members of the U.S. medical advisory committee"
+  },
+  {
+    "sample_id": 102,
+    "pred_response": "A",
+    "gt_response": "03760"
+  },
+  {
+    "sample_id": 103,
+    "pred_response": "A",
+    "gt_response": "1/3 lb."
+  },
+  {
+    "sample_id": 104,
+    "pred_response": "A",
+    "gt_response": "February 25, 2002"
+  },
+  {
+    "sample_id": 105,
+    "pred_response": "D",
+    "gt_response": "material safety data sheet"
+  },
+  {
+    "sample_id": 106,
+    "pred_response": "A",
+    "gt_response": "september 27, 1989"
+  },
+  {
+    "sample_id": 107,
+    "pred_response": "A",
+    "gt_response": "751035"
+  },
+  {
+    "sample_id": 108,
+    "pred_response": "C",
+    "gt_response": "more than 220"
+  },
+  {
+    "sample_id": 109,
+    "pred_response": "B",
+    "gt_response": "Atherosclerosis"
+  },
+  {
+    "sample_id": 110,
+    "pred_response": "D",
+    "gt_response": "Kirk"
+  },
+  {
+    "sample_id": 111,
+    "pred_response": "C",
+    "gt_response": "life cycle assessment studies"
+  },
+  {
+    "sample_id": 112,
+    "pred_response": "A",
+    "gt_response": "32709"
+  },
+  {
+    "sample_id": 113,
+    "pred_response": "A",
+    "gt_response": "052008"
+  },
+  {
+    "sample_id": 114,
+    "pred_response": "D",
+    "gt_response": "PA73WBC44"
+  },
+  {
+    "sample_id": 115,
+    "pred_response": "D",
+    "gt_response": "Greeley Daily Tribune"
+  },
+  {
+    "sample_id": 116,
+    "pred_response": "C",
+    "gt_response": "Robert E. Shank"
+  },
+  {
+    "sample_id": 117,
+    "pred_response": "A",
+    "gt_response": "314-533-9680"
+  },
+  {
+    "sample_id": 118,
+    "pred_response": "C",
+    "gt_response": "3327.78"
+  },
+  {
+    "sample_id": 119,
+    "pred_response": "B",
+    "gt_response": "$ 10.00"
+  },
+  {
+    "sample_id": 120,
+    "pred_response": "D",
+    "gt_response": "Privately-Owned Vehicle"
+  },
+  {
+    "sample_id": 121,
+    "pred_response": "B",
+    "gt_response": "Washington university"
+  },
+  {
+    "sample_id": 122,
+    "pred_response": "D",
+    "gt_response": "2,872 cal"
+  },
+  {
+    "sample_id": 123,
+    "pred_response": "A",
+    "gt_response": "651-686-6016"
+  },
+  {
+    "sample_id": 124,
+    "pred_response": "A",
+    "gt_response": "$14.55"
+  },
+  {
+    "sample_id": 125,
+    "pred_response": "A",
+    "gt_response": "Mr. S.V.Shanbhag"
+  },
+  {
+    "sample_id": 126,
+    "pred_response": "C",
+    "gt_response": "CURRENT"
+  },
+  {
+    "sample_id": 127,
+    "pred_response": "D",
+    "gt_response": "5.00%"
+  },
+  {
+    "sample_id": 128,
+    "pred_response": "A",
+    "gt_response": "Director of Research and Development"
+  },
+  {
+    "sample_id": 129,
+    "pred_response": "C",
+    "gt_response": "91"
+  },
+  {
+    "sample_id": 130,
+    "pred_response": "B",
+    "gt_response": "SUNDAY / January 4th"
+  },
+  {
+    "sample_id": 131,
+    "pred_response": "D",
+    "gt_response": "Dr. W . J. Darby"
+  },
+  {
+    "sample_id": 132,
+    "pred_response": "A",
+    "gt_response": "$3,000"
+  },
+  {
+    "sample_id": 133,
+    "pred_response": "A",
+    "gt_response": "CHEMICAL DEPARTMENT"
+  },
+  {
+    "sample_id": 134,
+    "pred_response": "A",
+    "gt_response": "John H. Browe"
+  },
+  {
+    "sample_id": 135,
+    "pred_response": "A",
+    "gt_response": "december 6-8, 1958"
+  },
+  {
+    "sample_id": 136,
+    "pred_response": "D",
+    "gt_response": "Chief Chemist."
+  },
+  {
+    "sample_id": 137,
+    "pred_response": "D",
+    "gt_response": "thomas jefferson university"
+  },
+  {
+    "sample_id": 138,
+    "pred_response": "D",
+    "gt_response": "12 Professionals"
+  },
+  {
+    "sample_id": 139,
+    "pred_response": "A",
+    "gt_response": "744-5106"
+  },
+  {
+    "sample_id": 140,
+    "pred_response": "A",
+    "gt_response": "September 9, 1963"
+  },
+  {
+    "sample_id": 141,
+    "pred_response": "D",
+    "gt_response": "Lucinda Sheer"
+  },
+  {
+    "sample_id": 142,
+    "pred_response": "A",
+    "gt_response": "Good Laboratory Practice"
+  },
+  {
+    "sample_id": 143,
+    "pred_response": "B",
+    "gt_response": "American"
+  },
+  {
+    "sample_id": 144,
+    "pred_response": "B",
+    "gt_response": "LASZLO TOTH"
+  },
+  {
+    "sample_id": 145,
+    "pred_response": "D",
+    "gt_response": "$210,391.00"
+  },
+  {
+    "sample_id": 146,
+    "pred_response": "D",
+    "gt_response": "4400"
+  },
+  {
+    "sample_id": 147,
+    "pred_response": "C",
+    "gt_response": "0.55"
+  },
+  {
+    "sample_id": 148,
+    "pred_response": "A",
+    "gt_response": "Sept. 20, 1971"
+  },
+  {
+    "sample_id": 149,
+    "pred_response": "B",
+    "gt_response": "296"
+  },
+  {
+    "sample_id": 150,
+    "pred_response": "B",
+    "gt_response": "home economics program"
+  },
+  {
+    "sample_id": 151,
+    "pred_response": "C",
+    "gt_response": "Washington university"
+  },
+  {
+    "sample_id": 152,
+    "pred_response": "B",
+    "gt_response": "cg721t117pb"
+  },
+  {
+    "sample_id": 153,
+    "pred_response": "D",
+    "gt_response": "407"
+  },
+  {
+    "sample_id": 154,
+    "pred_response": "A",
+    "gt_response": "DA-49-007-MD-1024"
+  },
+  {
+    "sample_id": 155,
+    "pred_response": "B",
+    "gt_response": "Kirk Hinshaw"
+  },
+  {
+    "sample_id": 156,
+    "pred_response": "C",
+    "gt_response": "o. a. roels"
+  },
+  {
+    "sample_id": 157,
+    "pred_response": "B",
+    "gt_response": "PM Code"
+  },
+  {
+    "sample_id": 158,
+    "pred_response": "A",
+    "gt_response": "290"
+  },
+  {
+    "sample_id": 159,
+    "pred_response": "D",
+    "gt_response": "314002838"
+  },
+  {
+    "sample_id": 160,
+    "pred_response": "B",
+    "gt_response": "LANSKY"
+  },
+  {
+    "sample_id": 161,
+    "pred_response": "B",
+    "gt_response": "GOLDEN TOBACCO LIMITED"
+  },
+  {
+    "sample_id": 162,
+    "pred_response": "A",
+    "gt_response": "26.50"
+  },
+  {
+    "sample_id": 163,
+    "pred_response": "D",
+    "gt_response": "August 30, 1994"
+  },
+  {
+    "sample_id": 164,
+    "pred_response": "B",
+    "gt_response": "David Moore"
+  },
+  {
+    "sample_id": 165,
+    "pred_response": "B",
+    "gt_response": "BEY"
+  },
+  {
+    "sample_id": 166,
+    "pred_response": "A",
+    "gt_response": "$535.66"
+  },
+  {
+    "sample_id": 167,
+    "pred_response": "B",
+    "gt_response": "president"
+  },
+  {
+    "sample_id": 168,
+    "pred_response": "B",
+    "gt_response": "Scientific Director of the Institute"
+  },
+  {
+    "sample_id": 169,
+    "pred_response": "A",
+    "gt_response": "Mr. Ralph T. Smith"
+  },
+  {
+    "sample_id": 170,
+    "pred_response": "D",
+    "gt_response": "3.0 cc"
+  },
+  {
+    "sample_id": 171,
+    "pred_response": "D",
+    "gt_response": "low priority designations"
+  },
+  {
+    "sample_id": 172,
+    "pred_response": "C",
+    "gt_response": "progress report 10"
+  },
+  {
+    "sample_id": 173,
+    "pred_response": "B",
+    "gt_response": "investigator"
+  },
+  {
+    "sample_id": 174,
+    "pred_response": "A",
+    "gt_response": "Salt is a major source of sodium."
+  },
+  {
+    "sample_id": 175,
+    "pred_response": "A",
+    "gt_response": "$ 3,436.98"
+  },
+  {
+    "sample_id": 176,
+    "pred_response": "D",
+    "gt_response": "266-524-9"
+  },
+  {
+    "sample_id": 177,
+    "pred_response": "B",
+    "gt_response": "July 16, 1999"
+  },
+  {
+    "sample_id": 178,
+    "pred_response": "D",
+    "gt_response": "Department of Cardiovascular Medicine."
+  },
+  {
+    "sample_id": 179,
+    "pred_response": "A",
+    "gt_response": "Sugar-cane"
+  },
+  {
+    "sample_id": 180,
+    "pred_response": "A",
+    "gt_response": "150,204.79"
+  },
+  {
+    "sample_id": 181,
+    "pred_response": "C",
+    "gt_response": "ABBOTT LABORATORIES"
+  },
+  {
+    "sample_id": 182,
+    "pred_response": "A",
+    "gt_response": "716.725.7100"
+  },
+  {
+    "sample_id": 183,
+    "pred_response": "C",
+    "gt_response": "#7595 Manuscript"
+  },
+  {
+    "sample_id": 184,
+    "pred_response": "C",
+    "gt_response": "Administrative Assistant"
+  },
+  {
+    "sample_id": 185,
+    "pred_response": "A",
+    "gt_response": "6 biographical data forms"
+  },
+  {
+    "sample_id": 186,
+    "pred_response": "D",
+    "gt_response": "October 26, 1998"
+  },
+  {
+    "sample_id": 187,
+    "pred_response": "A",
+    "gt_response": "3/24/03"
+  },
+  {
+    "sample_id": 188,
+    "pred_response": "A",
+    "gt_response": "31-Dec-08"
+  },
+  {
+    "sample_id": 189,
+    "pred_response": "D",
+    "gt_response": "2/13/73"
+  },
+  {
+    "sample_id": 190,
+    "pred_response": "B",
+    "gt_response": "Vanderbilt University"
+  },
+  {
+    "sample_id": 191,
+    "pred_response": "A",
+    "gt_response": "orientation"
+  },
+  {
+    "sample_id": 192,
+    "pred_response": "D",
+    "gt_response": "12/31/96"
+  },
+  {
+    "sample_id": 193,
+    "pred_response": "A",
+    "gt_response": "11-0010-001"
+  },
+  {
+    "sample_id": 194,
+    "pred_response": "B",
+    "gt_response": "CHARACTERIZATION OF MAN'S PHYSIQUE"
+  },
+  {
+    "sample_id": 195,
+    "pred_response": "B",
+    "gt_response": "1"
+  },
+  {
+    "sample_id": 196,
+    "pred_response": "B",
+    "gt_response": "Reynolds Building"
+  },
+  {
+    "sample_id": 197,
+    "pred_response": "A",
+    "gt_response": "#154-0071"
+  },
+  {
+    "sample_id": 198,
+    "pred_response": "D",
+    "gt_response": "Anthropology"
+  },
+  {
+    "sample_id": 199,
+    "pred_response": "D",
+    "gt_response": "3,926"
+  }
+]

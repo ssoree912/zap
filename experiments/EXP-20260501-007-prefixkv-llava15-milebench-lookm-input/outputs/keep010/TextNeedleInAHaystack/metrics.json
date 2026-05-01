@@ -1,0 +1,13 @@
+{
+  "dataset": "TextNeedleInAHaystack",
+  "keep_ratio": 0.1,
+  "ratio": 0.9,
+  "n_samples": 320,
+  "n_total": 320,
+  "n_success": 280,
+  "n_failures": 40,
+  "n_truncated": 270,
+  "n_oom_retries": 0,
+  "eval": null,
+  "eval_note": "Run /workspace/look-m/evaluate.py after generation."
+}
