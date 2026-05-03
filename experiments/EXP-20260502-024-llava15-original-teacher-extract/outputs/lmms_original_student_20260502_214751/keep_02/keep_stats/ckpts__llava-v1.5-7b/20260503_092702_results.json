@@ -1,0 +1,116 @@
+{
+  "results": {
+    "textvqa_val": {
+      "alias": "textvqa_val",
+      "exact_match,none": 0.45825999999999967,
+      "exact_match_stderr,none": 0.006793436879586217,
+      "submission,none": null,
+      "submission_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {
+    "textvqa_val": []
+  },
+  "configs": {
+    "textvqa_val": {
+      "task": "textvqa_val",
+      "dataset_path": "lmms-lab/textvqa",
+      "test_split": "validation",
+      "full_docs": false,
+      "process_results_use_image": false,
+      "doc_to_visual": "<function textvqa_doc_to_visual at 0x74718665b9a0>",
+      "doc_to_text": "<function textvqa_doc_to_text at 0x74718665be20>",
+      "doc_to_target": "answer",
+      "process_results": "<function textvqa_process_results at 0x7471805f8160>",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": true
+        },
+        {
+          "metric": "submission",
+          "aggregation": "<function textvqa_aggregate_submissions at 0x74718665b7f0>",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "ASSISTANT:"
+        ]
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "lmms_eval_specific_kwargs": {
+        "default": {
+          "pre_prompt": "",
+          "post_prompt": "\nAnswer the question using a single word or phrase.",
+          "ocr": false
+        },
+        "qwen_vl": {
+          "pre_prompt": "",
+          "post_prompt": " Answer:"
+        },
+        "pre_prompt": "",
+        "post_prompt": "\nAnswer the question using a single word or phrase.",
+        "ocr": false
+      }
+    }
+  },
+  "versions": {
+    "textvqa_val": "Yaml"
+  },
+  "n-shot": {
+    "textvqa_val": 0
+  },
+  "higher_is_better": {
+    "textvqa_val": {
+      "exact_match": true,
+      "submission": true
+    }
+  },
+  "n-samples": {
+    "textvqa_val": {
+      "original": 5000,
+      "effective": 5000
+    }
+  },
+  "config": {
+    "model": "llava15_original_student",
+    "model_args": "pretrained=/workspace/zap/ckpts/llava-v1.5-7b,student_path=/workspace/zap/artifacts/original_llava_teacher/student_llava15_original_future_1800_lr1e4_15ep,keep_ratio=0.2,conv_template=vicuna_v1,model_name=llava-v1.5-7b,device=cuda:0,device_map=cuda:0,stats_output_dir=/workspace/zap/experiments/EXP-20260502-024-llava15-original-teacher-extract/outputs/lmms_original_student_20260502_214751/keep_02/keep_stats",
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": "",
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": "20260503_092702",
+  "task_hashes": {
+    "textvqa_val": "b52158e0d823c81c8bf4cfb313f6b2389aa26999e164710c9055f35e44cabafa"
+  },
+  "model_source": "llava15_original_student",
+  "model_name": "/workspace/zap/ckpts/llava-v1.5-7b",
+  "model_name_sanitized": "ckpts__llava-v1.5-7b",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 5173800.749931102,
+  "end_time": 5174900.488284883,
+  "total_evaluation_time_seconds": "1099.738353781402"
+}
