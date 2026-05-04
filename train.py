@@ -34,7 +34,7 @@ def main():
         )
     else:  # onevision
         sys.argv = [sys.argv[0]] + remaining
-        from foresight.train.onevision import main as _main
+        from foresight.train.llava_onevision import main as _main
         sys.exit(_main())
 
 
