@@ -1,4 +1,4 @@
-"""3-branch visual-utility student for image-token eviction.
+"""Visual-utility student variants for image-token eviction.
 
 Per-layer student takes prefill hidden state H_l (B, N, D) plus image and
 question position indices, returns predicted score (B, N_I) per image token.
@@ -6,21 +6,31 @@ Branches:
 - Image CNN over reshaped H_img grid (1x1 + ConvNeXt blocks)
 - Question pooled from H_q, projected and broadcast
 - Raw H_img projection
-The three are fused (concat with two Hadamard interactions) and an MLP head
-emits a scalar logit per image token.
+The default ``full`` variant fuses all three branches. Ablations can select
+``mlp_only`` (raw image-token + question) or ``cnn_only`` (CNN context +
+question) while keeping the same teacher labels and loss code.
 """
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional
+from typing import Literal, Optional
 
 import torch
 import torch.nn as nn
 
 
 _ALL_LAYERS: tuple[int, ...] = tuple(range(32))
+StudentVariant = Literal["full", "mlp_only", "cnn_only"]
+
+
+def _fusion_input_dim(variant: StudentVariant, proj_dim: int) -> int:
+    if variant == "full":
+        return proj_dim * 5
+    if variant in ("mlp_only", "cnn_only"):
+        return proj_dim * 3
+    raise ValueError(f"Unsupported student variant: {variant}")
 
 
 class ConvNeXtStyleBlock(nn.Module):
@@ -60,24 +70,28 @@ class VisualUtilityStudentLayer(nn.Module):
         mlp_dim: int = 512,
         num_conv_blocks: int = 2,
         kernel_size: int = 7,
+        variant: StudentVariant = "full",
     ) -> None:
         super().__init__()
         self.conv_dim = conv_dim
         self.proj_dim = proj_dim
+        self.variant = variant
 
-        self.conv_1x1_proj = nn.Conv2d(hidden_dim, conv_dim, kernel_size=1)
-        self.conv_blocks = nn.Sequential(
-            *[ConvNeXtStyleBlock(conv_dim, kernel_size=kernel_size) for _ in range(num_conv_blocks)]
-        )
-        self.W_h = nn.Linear(hidden_dim, proj_dim)
+        if variant in ("full", "cnn_only"):
+            self.conv_1x1_proj = nn.Conv2d(hidden_dim, conv_dim, kernel_size=1)
+            self.conv_blocks = nn.Sequential(
+                *[ConvNeXtStyleBlock(conv_dim, kernel_size=kernel_size) for _ in range(num_conv_blocks)]
+            )
+            if conv_dim != proj_dim:
+                self.W_c = nn.Linear(conv_dim, proj_dim)
+            else:
+                self.W_c = nn.Identity()
+        if variant in ("full", "mlp_only"):
+            self.W_h = nn.Linear(hidden_dim, proj_dim)
         self.W_q = nn.Linear(hidden_dim, proj_dim)
-        if conv_dim != proj_dim:
-            self.W_c = nn.Linear(conv_dim, proj_dim)
-        else:
-            self.W_c = nn.Identity()
 
         self.mlp_head = nn.Sequential(
-            nn.Linear(proj_dim * 5, mlp_dim),
+            nn.Linear(_fusion_input_dim(variant, proj_dim), mlp_dim),
             nn.GELU(),
             nn.Linear(mlp_dim, 1),
         )
@@ -101,12 +115,12 @@ class VisualUtilityStudentLayer(nn.Module):
         D = H_l.shape[-1]
         N_I = image_indices.numel()
         n_per_img = grid_h * grid_w
-        if N_I % n_per_img != 0:
+        if self.variant in ("full", "cnn_only") and N_I % n_per_img != 0:
             raise ValueError(
                 f"N_I={N_I} is not a multiple of grid_h*grid_w={n_per_img}; "
                 f"non-uniform images are not supported."
             )
-        n_images = N_I // n_per_img
+        n_images = N_I // n_per_img if n_per_img > 0 else 0
 
         H_img = H_l.index_select(dim=1, index=image_indices)  # [B, N_I, D]
         if question_indices.numel() == 0:
@@ -114,29 +128,45 @@ class VisualUtilityStudentLayer(nn.Module):
         else:
             H_q = H_l.index_select(dim=1, index=question_indices)  # [B, N_Q, D]
 
-        # --- Image CNN branch (per-image grid; multi-image batched along B*k)
-        F_img = (
-            H_img.reshape(B, n_images, grid_h, grid_w, D)
-            .reshape(B * n_images, grid_h, grid_w, D)
-            .permute(0, 3, 1, 2)
-            .contiguous()
-        )  # [B*k, D, H, W]
-        X_img = self.conv_1x1_proj(F_img)  # [B*k, C, H, W]
-        C_img = self.conv_blocks(X_img)
-        C_flat = C_img.flatten(2).transpose(1, 2)  # [B*k, n_per_img, C]
-        C_flat = C_flat.reshape(B, N_I, -1)  # [B, N_I, C]
-        C_proj = self.W_c(C_flat)  # [B, N_I, d]
+        if self.variant in ("full", "cnn_only"):
+            # --- Image CNN branch (per-image grid; multi-image batched along B*k)
+            F_img = (
+                H_img.reshape(B, n_images, grid_h, grid_w, D)
+                .reshape(B * n_images, grid_h, grid_w, D)
+                .permute(0, 3, 1, 2)
+                .contiguous()
+            )  # [B*k, D, H, W]
+            X_img = self.conv_1x1_proj(F_img)  # [B*k, C, H, W]
+            C_img = self.conv_blocks(X_img)
+            C_flat = C_img.flatten(2).transpose(1, 2)  # [B*k, n_per_img, C]
+            C_flat = C_flat.reshape(B, N_I, -1)  # [B, N_I, C]
+            C_proj = self.W_c(C_flat)  # [B, N_I, d]
+        else:
+            C_proj = None
 
         # --- Question branch (shared across all images in the sample)
         q = H_q.mean(dim=1)  # [B, D]
         q_proj = self.W_q(q)  # [B, d]
         Q = q_proj.unsqueeze(1).expand(-1, N_I, -1)  # [B, N_I, d]
 
-        # --- Raw image-token projection
-        H_proj = self.W_h(H_img)  # [B, N_I, d]
+        if self.variant in ("full", "mlp_only"):
+            # --- Raw image-token projection
+            H_proj = self.W_h(H_img)  # [B, N_I, d]
+        else:
+            H_proj = None
 
         # --- Fusion
-        Z = torch.cat([H_proj, C_proj, Q, H_proj * Q, C_proj * Q], dim=-1)  # [B, N_I, 5d]
+        if self.variant == "full":
+            assert H_proj is not None and C_proj is not None
+            Z = torch.cat([H_proj, C_proj, Q, H_proj * Q, C_proj * Q], dim=-1)  # [B, N_I, 5d]
+        elif self.variant == "mlp_only":
+            assert H_proj is not None
+            Z = torch.cat([H_proj, Q, H_proj * Q], dim=-1)  # [B, N_I, 3d]
+        elif self.variant == "cnn_only":
+            assert C_proj is not None
+            Z = torch.cat([C_proj, Q, C_proj * Q], dim=-1)  # [B, N_I, 3d]
+        else:
+            raise ValueError(f"Unsupported student variant: {self.variant}")
         score = self.mlp_head(Z).squeeze(-1)  # [B, N_I]
         return score
 
@@ -154,11 +184,13 @@ class VisualUtilityStudent(nn.Module):
         kernel_size: int = 7,
         grid_h: int = 24,
         grid_w: int = 24,
+        variant: StudentVariant = "full",
     ) -> None:
         super().__init__()
         self.layer_indices = _ALL_LAYERS
         self.grid_h = grid_h
         self.grid_w = grid_w
+        self.variant = variant
         self.config = dict(
             layer_indices=list(self.layer_indices),
             hidden_dim=hidden_dim,
@@ -169,6 +201,7 @@ class VisualUtilityStudent(nn.Module):
             kernel_size=kernel_size,
             grid_h=grid_h,
             grid_w=grid_w,
+            variant=variant,
         )
         self.layers = nn.ModuleDict(
             {
@@ -179,6 +212,7 @@ class VisualUtilityStudent(nn.Module):
                     mlp_dim=mlp_dim,
                     num_conv_blocks=num_conv_blocks,
                     kernel_size=kernel_size,
+                    variant=variant,
                 )
                 for li in self.layer_indices
             }
@@ -209,6 +243,7 @@ class VisualUtilityStudent(nn.Module):
         cfg = json.loads((d / "config.json").read_text())
         cfg.pop("layer_indices", None)
         cfg.pop("scope", None)  # backwards compat: old checkpoints saved scope="A"
+        cfg.setdefault("variant", "full")
         model = cls(**cfg)
         sd = torch.load(d / "pytorch_model.bin", map_location=map_location, weights_only=True)
         model.load_state_dict(sd)

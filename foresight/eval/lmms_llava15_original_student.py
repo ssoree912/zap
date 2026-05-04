@@ -11,8 +11,10 @@ matching the teacher extraction/training path used for the original labels.
 from __future__ import annotations
 
 import copy
+import importlib.metadata as importlib_metadata
 import json
 import os
+import pickle
 import sys
 from pathlib import Path
 from typing import List, Optional, Tuple
@@ -20,11 +22,62 @@ from typing import List, Optional, Tuple
 import torch
 from tqdm import tqdm
 
-ZAP_ROOT = Path("/workspace/zap")
-VFLOWOPT_LLAVA_ROOT = Path("/workspace/VFlowOpt/src/LLaVA-OneVision")
-for _path in (str(ZAP_ROOT), str(VFLOWOPT_LLAVA_ROOT)):
+ZAP_ROOT = Path(os.environ.get("ZAP_REPO_ROOT", Path(__file__).resolve().parents[2])).resolve()
+VFLOWOPT_LLAVA_ROOT = Path(
+    os.environ.get(
+        "VFLOWOPT_LLAVA_ROOT",
+        ZAP_ROOT.parent / "VFlowOpt_llava1.5/src/LLaVA-OneVision",
+    )
+).resolve()
+VFLOWOPT_TRANSFORMERS_ROOT = Path(
+    os.environ.get(
+        "VFLOWOPT_TRANSFORMERS_ROOT",
+        ZAP_ROOT.parent / "VFlowOpt_llava1.5/src/transformers-4.46.0/src",
+    )
+).resolve()
+for _path in (str(ZAP_ROOT), str(VFLOWOPT_TRANSFORMERS_ROOT), str(VFLOWOPT_LLAVA_ROOT)):
     if _path not in sys.path:
         sys.path.insert(0, _path)
+
+
+def _patch_vflowopt_transformers_version_checks() -> None:
+    original_version = importlib_metadata.version
+
+    def version(package_name: str) -> str:
+        if package_name == "tokenizers":
+            return "0.20.3"
+        if package_name == "huggingface-hub":
+            return "0.26.5"
+        return original_version(package_name)
+
+    importlib_metadata.version = version
+
+
+def _patch_torch_load_legacy_bin_mmap() -> None:
+    original_torch_load = torch.load
+
+    def load(*args, **kwargs):
+        retry_kwargs = dict(kwargs)
+        while True:
+            try:
+                return original_torch_load(*args, **retry_kwargs)
+            except RuntimeError as exc:
+                if retry_kwargs.get("mmap") is True and "mmap can only be used" in str(exc):
+                    retry_kwargs.pop("mmap", None)
+                    continue
+                raise
+            except pickle.UnpicklingError:
+                if retry_kwargs.get("weights_only") is True:
+                    retry_kwargs["weights_only"] = False
+                    retry_kwargs.pop("mmap", None)
+                    continue
+                raise
+
+    torch.load = load
+
+
+_patch_vflowopt_transformers_version_checks()
+_patch_torch_load_legacy_bin_mmap()
 
 from kvpress.presses.visual_utility_student import VisualUtilityStudent  # noqa: E402
 
@@ -106,6 +159,7 @@ class Llava15OriginalStudent(lmms):
             "/workspace/zap/artifacts/original_llava_teacher/"
             "student_llava15_original_future_1800_lr1e4_15ep"
         ),
+        vision_tower_path: str = "",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",
         device_map: str = "cuda:0",
@@ -133,6 +187,8 @@ class Llava15OriginalStudent(lmms):
         llava_model_args = {"multimodal": True}
         if attn_implementation:
             llava_model_args["attn_implementation"] = attn_implementation
+        if vision_tower_path:
+            llava_model_args["overwrite_config"] = {"mm_vision_tower": vision_tower_path}
         resolved_model_name = model_name or get_model_name_from_path(pretrained)
         try:
             (

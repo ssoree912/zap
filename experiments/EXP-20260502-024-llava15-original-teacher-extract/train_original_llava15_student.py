@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import pickle
 import random
 import sys
 import time
@@ -20,11 +22,64 @@ import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 
-REPO_ROOT = Path("/workspace/zap")
-VFLOWOPT_LLAVA_ROOT = Path("/workspace/VFlowOpt/src/LLaVA-OneVision")
-for path in (REPO_ROOT, VFLOWOPT_LLAVA_ROOT):
+REPO_ROOT = Path(os.environ.get("ZAP_REPO_ROOT", Path(__file__).resolve().parents[2])).resolve()
+VFLOWOPT_LLAVA_ROOT = Path(
+    os.environ.get(
+        "VFLOWOPT_LLAVA_ROOT",
+        REPO_ROOT.parent / "VFlowOpt_llava1.5/src/LLaVA-OneVision",
+    )
+).resolve()
+VFLOWOPT_TRANSFORMERS_ROOT = Path(
+    os.environ.get(
+        "VFLOWOPT_TRANSFORMERS_ROOT",
+        REPO_ROOT.parent / "VFlowOpt_llava1.5/src/transformers-4.46.0/src",
+    )
+).resolve()
+for path in (REPO_ROOT, VFLOWOPT_TRANSFORMERS_ROOT, VFLOWOPT_LLAVA_ROOT):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
+
+
+def _patch_vflowopt_transformers_tokenizers_check() -> None:
+    import importlib.metadata as importlib_metadata
+
+    original_version = importlib_metadata.version
+
+    def version(package_name: str) -> str:
+        if package_name == "tokenizers":
+            return "0.20.3"
+        if package_name == "huggingface-hub":
+            return "0.26.5"
+        return original_version(package_name)
+
+    importlib_metadata.version = version
+
+
+def _patch_torch_load_legacy_bin_mmap() -> None:
+    original_torch_load = torch.load
+
+    def load(*args: Any, **kwargs: Any) -> Any:
+        retry_kwargs = dict(kwargs)
+        while True:
+            try:
+                return original_torch_load(*args, **retry_kwargs)
+            except RuntimeError as exc:
+                if retry_kwargs.get("mmap") is True and "mmap can only be used" in str(exc):
+                    retry_kwargs.pop("mmap", None)
+                    continue
+                raise
+            except pickle.UnpicklingError:
+                if retry_kwargs.get("weights_only") is True:
+                    retry_kwargs["weights_only"] = False
+                    retry_kwargs.pop("mmap", None)
+                    continue
+                raise
+
+    torch.load = load
+
+
+_patch_vflowopt_transformers_tokenizers_check()
+_patch_torch_load_legacy_bin_mmap()
 
 from llava.constants import IMAGE_TOKEN_INDEX  # noqa: E402
 from llava.mm_utils import process_images, tokenizer_image_token  # noqa: E402
@@ -71,10 +126,33 @@ def collate_single(batch: list[dict[str, Any]]) -> dict[str, Any]:
     return batch[0]
 
 
+def resolve_image_path(image_path: str | Path) -> Path:
+    path = Path(image_path)
+    candidates = [path]
+    path_str = str(path)
+    if path_str.startswith("/workspace/zap/"):
+        rel_path = Path(path_str.removeprefix("/workspace/zap/"))
+        candidates.append(REPO_ROOT / rel_path)
+        rel_parts = rel_path.parts
+        if len(rel_parts) >= 5 and rel_parts[:4] == ("data", "gqa", "train", "images"):
+            candidates.append(REPO_ROOT / "data/gqa/images" / rel_path.name)
+    if not path.is_absolute():
+        candidates.append(REPO_ROOT / path)
+
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    tried = ", ".join(str(candidate) for candidate in candidates)
+    raise FileNotFoundError(f"Could not resolve image path {image_path}; tried: {tried}")
+
+
 def load_original_llava(args: argparse.Namespace) -> tuple[Any, Any, Any]:
+    overwrite_config = None
+    if args.vision_tower_path:
+        overwrite_config = {"mm_vision_tower": args.vision_tower_path}
     print(
         f"[load] model={args.llava_path} model_name={args.model_name} "
-        f"device_map={args.device_map} attn=sdpa",
+        f"device_map={args.device_map} attn=sdpa vision={args.vision_tower_path}",
         flush=True,
     )
     tokenizer, model, image_processor, _context_len = load_pretrained_model(
@@ -84,6 +162,7 @@ def load_original_llava(args: argparse.Namespace) -> tuple[Any, Any, Any]:
         device_map=args.device_map,
         attn_implementation="sdpa",
         multimodal=True,
+        overwrite_config=overwrite_config,
     )
     model.eval()
     for parameter in model.parameters():
@@ -103,7 +182,8 @@ def build_inputs(
     model: Any,
     device: torch.device,
 ) -> dict[str, Any]:
-    with Image.open(rec["image_path"]) as image:
+    image_path = resolve_image_path(rec["image_path"])
+    with Image.open(image_path) as image:
         image = image.convert("RGB")
         image_size = image.size
         image_tensor = process_images([image], image_processor, model.config)
@@ -247,10 +327,11 @@ def eval_one_sample(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--teacher-root", default="/workspace/zap/artifacts/original_llava_teacher/future_decode_llava15_7b")
+    parser.add_argument("--teacher-root", default=str(REPO_ROOT / "artifacts/future_decode_llava15_7b"))
     parser.add_argument("--datasets", nargs="+", default=["gqa", "textvqa", "scienceqa"])
-    parser.add_argument("--llava-path", default="/workspace/zap/ckpts/llava-v1.5-7b")
+    parser.add_argument("--llava-path", default=str(REPO_ROOT / "ckpts/llava-v1.5-7b"))
     parser.add_argument("--model-name", default="llava-v1.5-7b")
+    parser.add_argument("--vision-tower-path", default=str(REPO_ROOT / "ckpts/clip-vit-large-patch14-336"))
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--device-map", default="cuda:0")
     parser.add_argument("--epochs", type=int, default=15)
@@ -266,6 +347,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--val-ratio", type=float, default=0.1)
     parser.add_argument("--log-every", type=int, default=25)
     parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--student-variant", choices=["full", "mlp_only", "cnn_only"], default="full")
+    parser.add_argument("--conv-dim", type=int, default=256)
+    parser.add_argument("--proj-dim", type=int, default=256)
+    parser.add_argument("--mlp-dim", type=int, default=512)
+    parser.add_argument("--num-conv-blocks", type=int, default=2)
+    parser.add_argument("--kernel-size", type=int, default=7)
+    parser.add_argument("--grid-h", type=int, default=24)
+    parser.add_argument("--grid-w", type=int, default=24)
     return parser.parse_args()
 
 
@@ -314,9 +403,22 @@ def main() -> int:
         collate_fn=collate_single,
     )
 
-    student = VisualUtilityStudent().to(device)
+    student = VisualUtilityStudent(
+        variant=args.student_variant,
+        conv_dim=args.conv_dim,
+        proj_dim=args.proj_dim,
+        mlp_dim=args.mlp_dim,
+        num_conv_blocks=args.num_conv_blocks,
+        kernel_size=args.kernel_size,
+        grid_h=args.grid_h,
+        grid_w=args.grid_w,
+    ).to(device)
     n_params = sum(p.numel() for p in student.parameters() if p.requires_grad)
-    print(f"[student] layers={student.layer_indices} params={n_params:,}", flush=True)
+    print(
+        f"[student] variant={student.variant} layers={student.layer_indices} "
+        f"params={n_params:,}",
+        flush=True,
+    )
     optimizer = torch.optim.AdamW(student.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     best_val = float("inf")

@@ -128,6 +128,12 @@ def main() -> int:
     p.add_argument("--output-dir", required=True)
     p.add_argument("--val-ratio", type=float, default=0.1)
     p.add_argument("--log-every", type=int, default=50)
+    p.add_argument("--student-variant", choices=["full", "mlp_only", "cnn_only"], default="full")
+    p.add_argument("--conv-dim", type=int, default=256)
+    p.add_argument("--proj-dim", type=int, default=256)
+    p.add_argument("--mlp-dim", type=int, default=512)
+    p.add_argument("--num-conv-blocks", type=int, default=2)
+    p.add_argument("--kernel-size", type=int, default=7)
     args = p.parse_args()
 
     torch.manual_seed(args.seed)
@@ -139,6 +145,7 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     log_path = out_dir / "train_log.jsonl"
     log_f = log_path.open("w")
+    (out_dir / "train_config.json").write_text(json.dumps(vars(args), indent=2))
 
     print(f"[load] OneVision={args.llava_path} dtype=bf16 device={device}", flush=True)
     lvlm = LlavaOnevisionForConditionalGeneration.from_pretrained(
@@ -176,10 +183,17 @@ def main() -> int:
     )
     val_loader = DataLoader(val_ds, batch_size=1, shuffle=False, collate_fn=collate_single)
 
-    student = VisualUtilityStudentOneVision().to(device)
+    student = VisualUtilityStudentOneVision(
+        variant=args.student_variant,
+        conv_dim=args.conv_dim,
+        proj_dim=args.proj_dim,
+        mlp_dim=args.mlp_dim,
+        num_conv_blocks=args.num_conv_blocks,
+        kernel_size=args.kernel_size,
+    ).to(device)
     n_params = sum(p.numel() for p in student.parameters() if p.requires_grad)
     print(
-        f"[student] layers={student.layer_indices} "
+        f"[student] variant={student.variant} layers={student.layer_indices} "
         f"params={n_params:,}",
         flush=True,
     )
