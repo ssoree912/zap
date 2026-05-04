@@ -1379,3 +1379,70 @@ class VisualUtilityStudentPress(ImageTokenTopKPress):
         self.student_score_total_ms += (time.perf_counter() - _t0) * 1000.0
         # Match ProbeImageTeacherPress contract: (1, n_heads_or_1, n_image)
         return scores.unsqueeze(1)
+
+
+@dataclass
+class VisualUtilityStudentOneVisionPress(ImageTokenTopKPress):
+    """OneVision-Qwen2 variant of `VisualUtilityStudentPress`.
+
+    Wires a `VisualUtilityStudentOneVision` checkpoint (1D conv branch, no
+    fixed grid). Identical scope/forced-keep semantics as the LLaVA-1.5 press.
+    """
+
+    student_model_name: str = ""
+    _student: Any = field(default=None, init=False, repr=False)
+    _loaded_name: Optional[str] = field(default=None, init=False, repr=False)
+    _scope_layers: Optional[set[int]] = field(default=None, init=False, repr=False)
+    _question_positions: Optional[torch.Tensor] = field(default=None, init=False, repr=False)
+    student_score_total_ms: float = field(default=0.0, init=False, repr=False)
+
+    def reset_student_timing(self) -> None:
+        self.student_score_total_ms = 0.0
+
+    def set_question_positions(self, q_positions: torch.Tensor) -> None:
+        self._question_positions = q_positions.detach().cpu().long().flatten()
+
+    def clear_sample_context(self) -> None:
+        super().clear_sample_context()
+        self._question_positions = None
+
+    def post_init_from_model(self, model) -> None:
+        if not self.student_model_name:
+            raise ValueError("student_model_name must be set for VisualUtilityStudentOneVisionPress")
+        if self.student_model_name != self._loaded_name:
+            from kvpress.presses.visual_utility_student_onevision import VisualUtilityStudentOneVision
+
+            self._loaded_name = self.student_model_name
+            self._student = VisualUtilityStudentOneVision.from_pretrained(self.student_model_name)
+            self._scope_layers = set(self._student.layer_indices)
+
+    def compress(self, module, hidden_states, keys, values, attentions, kwargs):
+        if self._scope_layers is not None and module.layer_idx not in self._scope_layers:
+            return keys, values
+        return super().compress(module, hidden_states, keys, values, attentions, kwargs)
+
+    def score_image_tokens(
+        self,
+        module: nn.Module,
+        hidden_states: torch.Tensor,
+        keys: torch.Tensor,
+        values: torch.Tensor,
+        attentions: torch.Tensor,
+        kwargs: dict,
+        image_positions: torch.Tensor,
+    ) -> torch.Tensor:
+        if self._student is None:
+            raise RuntimeError("Student model not loaded; call post_init_from_model(model) first")
+        if self._question_positions is None:
+            raise RuntimeError("Call set_question_positions() before generate()")
+        device = hidden_states.device
+        dtype = hidden_states.dtype
+        layer = self._student.layers[str(module.layer_idx)]
+        layer = layer.to(device=device, dtype=dtype).eval()
+        image_idx = image_positions.to(device=device, dtype=torch.long).flatten()
+        q_idx = self._question_positions.to(device=device, dtype=torch.long).flatten()
+        _t0 = time.perf_counter()
+        with torch.no_grad():
+            scores = layer(hidden_states, image_idx, q_idx)
+        self.student_score_total_ms += (time.perf_counter() - _t0) * 1000.0
+        return scores.unsqueeze(1)

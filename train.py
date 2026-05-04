@@ -4,8 +4,8 @@
 Dispatches to the appropriate training script based on --model.
 
 Examples:
-    # LLaVA-1.5 7B
-    python train.py --model llava15 --scope all_token --output-dir ckpts/student_llava15
+    # LLaVA-1.5 7B original checkpoint
+    python experiments/EXP-20260502-024-llava15-original-teacher-extract/train_original_llava15_student.py
 
     # LLaVA-OneVision 7B
     python train.py --model onevision --scope all_token --output-dir ckpts/student_onevision
@@ -26,8 +26,12 @@ def main():
 
     if args.model == "llava15":
         sys.argv = [sys.argv[0]] + remaining
-        from foresight.train.llava_15 import main as _main
-        sys.exit(_main())
+        raise SystemExit(
+            "HF LLaVA-1.5 trainer was removed. Use "
+            "experiments/EXP-20260502-024-llava15-original-teacher-extract/"
+            "train_original_llava15_student.py with "
+            "/workspace/zap/ckpts/llava-v1.5-7b teacher artifacts."
+        )
     else:  # onevision
         sys.argv = [sys.argv[0]] + remaining
         from foresight.train.onevision import main as _main
