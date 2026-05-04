@@ -83,9 +83,9 @@ def main():
 
     elif args.model == "llava15" and args.framework == "lmms":
         import lmms_eval.models as _models_pkg
-        import foresight.eval.lmms_llava15_student as _mod
-        sys.modules["lmms_eval.models.llava15_student"] = _mod
-        _models_pkg.AVAILABLE_MODELS["llava15_student"] = "Llava15Student"
+        import foresight.eval.lmms_llava15_original_student as _mod
+        sys.modules["lmms_eval.models.llava15_original_student"] = _mod
+        _models_pkg.AVAILABLE_MODELS["llava15_original_student"] = "Llava15OriginalStudent"
         sys.argv = [str(LMMS_EVAL_ROOT / "lmms_eval" / "__main__.py")] + remaining
         runpy.run_path(str(LMMS_EVAL_ROOT / "lmms_eval" / "__main__.py"), run_name="__main__")
 

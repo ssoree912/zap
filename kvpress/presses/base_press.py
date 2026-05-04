@@ -11,7 +11,6 @@ import torch
 from torch import nn
 from transformers import (
     LlamaForCausalLM,
-    LlavaForConditionalGeneration,
     MistralForCausalLM,
     Phi3ForCausalLM,
     PreTrainedModel,
@@ -42,7 +41,6 @@ SUPPORTED_MODELS = tuple(
     model_cls
     for model_cls in (
         LlamaForCausalLM,
-        LlavaForConditionalGeneration,
         MistralForCausalLM,
         Phi3ForCausalLM,
         Qwen2ForCausalLM,

@@ -3,7 +3,7 @@
 
 """lmms-eval wrapper for original-repo LLaVA-1.5-7B + student KV pruning.
 
-This intentionally does not use Hugging Face `LlavaForConditionalGeneration`.
+This intentionally does not use the Transformers LLaVA wrapper.
 It loads the original LLaVA checkpoint layout through `llava.model.builder`,
 matching the teacher extraction/training path used for the original labels.
 """
@@ -28,9 +28,9 @@ for _path in (str(ZAP_ROOT), str(VFLOWOPT_LLAVA_ROOT)):
 
 from kvpress.presses.visual_utility_student import VisualUtilityStudent  # noqa: E402
 
-from .vlmeval_llava15_student import (  # noqa: E402
-    _greedy_decode_with_kv,
-    _trim_kv_cache_per_layer,
+from .kv_decode_utils import (  # noqa: E402
+    greedy_decode_with_kv,
+    trim_kv_cache_per_layer,
 )
 
 try:
@@ -423,7 +423,7 @@ class Llava15OriginalStudent(lmms):
                 self.image_feature_len,
             )
         except ValueError:
-            answer_ids = _greedy_decode_with_kv(
+            answer_ids = greedy_decode_with_kv(
                 self._model,
                 past_kv,
                 next_token,
@@ -511,8 +511,8 @@ class Llava15OriginalStudent(lmms):
             keep_masks[layer_idx] = mask
 
         del H_all
-        past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
-        answer_ids = _greedy_decode_with_kv(
+        past_kv = trim_kv_cache_per_layer(past_kv, keep_masks)
+        answer_ids = greedy_decode_with_kv(
             self._model,
             past_kv,
             next_token,
