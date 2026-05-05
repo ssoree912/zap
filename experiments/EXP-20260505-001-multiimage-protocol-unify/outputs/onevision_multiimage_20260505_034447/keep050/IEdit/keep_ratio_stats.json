@@ -1,0 +1,13 @@
+{
+  "dataset": "IEdit",
+  "keep_ratio": 0.5,
+  "n_samples": 200,
+  "n_failures": 0,
+  "elapsed_seconds": 56.84010601043701,
+  "max_new_tokens": 64,
+  "protocol": "multi-image (video modality)",
+  "failures": [],
+  "avg_image_keep_ratio": 0.4330279898218833,
+  "avg_total_keep_ratio": 0.500185322842561,
+  "avg_n_frames": 2.0
+}

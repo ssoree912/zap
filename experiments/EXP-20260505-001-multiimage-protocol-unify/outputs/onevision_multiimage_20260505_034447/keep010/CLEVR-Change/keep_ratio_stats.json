@@ -1,0 +1,13 @@
+{
+  "dataset": "CLEVR-Change",
+  "keep_ratio": 0.1,
+  "n_samples": 200,
+  "n_failures": 0,
+  "elapsed_seconds": 73.82596445083618,
+  "max_new_tokens": 64,
+  "protocol": "multi-image (video modality)",
+  "failures": [],
+  "avg_image_keep_ratio": 0.005025445292620873,
+  "avg_total_keep_ratio": 0.10055931461408071,
+  "avg_n_frames": 2.0
+}

@@ -1,0 +1,10 @@
+keep_tag,dataset,metric,score_pct
+keep005,ALFRED,Rouge-L f,60.32
+keep005,CLEVR-Change,Rouge-L f,32.28
+keep005,IEdit,Rouge-L f,32.03
+keep010,ALFRED,Rouge-L f,60.32
+keep010,CLEVR-Change,Rouge-L f,33.38
+keep010,IEdit,Rouge-L f,32.03
+keep050,ALFRED,Rouge-L f,60.75
+keep050,CLEVR-Change,Rouge-L f,47.11
+keep050,IEdit,Rouge-L f,35.95

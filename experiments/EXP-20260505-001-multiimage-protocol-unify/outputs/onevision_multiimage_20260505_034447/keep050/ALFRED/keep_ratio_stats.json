@@ -1,0 +1,13 @@
+{
+  "dataset": "ALFRED",
+  "keep_ratio": 0.5,
+  "n_samples": 200,
+  "n_failures": 0,
+  "elapsed_seconds": 96.13741850852966,
+  "max_new_tokens": 64,
+  "protocol": "multi-image (video modality)",
+  "failures": [],
+  "avg_image_keep_ratio": 0.39727364709685165,
+  "avg_total_keep_ratio": 0.5000163825411914,
+  "avg_n_frames": 3.415
+}
