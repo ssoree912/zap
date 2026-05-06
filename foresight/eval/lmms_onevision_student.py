@@ -20,6 +20,7 @@ Example CLI (via launcher):
 from __future__ import annotations
 
 import json
+import math
 import os
 import sys
 from typing import List, Optional, Tuple, Union
@@ -294,10 +295,9 @@ class LlavaOnevisionStudent(lmms):
 
         n_img = int(image_positions.numel())
         n_text = int(prompt_len) - n_img
-        # keep_ratio is total-token based: keep keep_ratio * prompt_len tokens total.
-        # text tokens are always kept, so image tokens to keep =
-        #   keep_ratio * prompt_len - n_text = n_img - (1 - keep_ratio) * prompt_len
-        n_keep = max(1, int(round(n_img - (1.0 - self.keep_ratio) * int(prompt_len))))
+        # keep_ratio is image-token based: keep keep_ratio * n_img image tokens.
+        # text tokens are always kept unconditionally.
+        n_keep = max(1, int(math.ceil(n_img * self.keep_ratio)))
 
         self._img_keep_sum += n_keep
         self._img_total_sum += n_img
@@ -314,7 +314,7 @@ class LlavaOnevisionStudent(lmms):
         })
         if not self._reported_keep_budget:
             print(
-                f"[lmms-onevision-student] keep_ratio_basis=total keep_ratio={self.keep_ratio} "
+                f"[lmms-onevision-student] keep_ratio_basis=image keep_ratio={self.keep_ratio} "
                 f"prompt_len={int(prompt_len)} image_tokens={n_img} text_tokens={n_text} "
                 f"image_tokens_kept={n_keep}",
                 file=sys.stderr, flush=True,
@@ -358,7 +358,42 @@ class LlavaOnevisionStudent(lmms):
                 file=sys.stderr, flush=True,
             )
 
+        # ── DEBUG: mask 통계 확인 (처음 3샘플만) ────────────────────────────
+        if keep_masks and self._img_sample_count <= 3:
+            sample_li = next(iter(keep_masks))
+            sample_mask = keep_masks[sample_li]
+            n_kept_total = int(sample_mask.sum().item())
+            n_kept_text = int(sample_mask.cpu()[~torch.isin(
+                torch.arange(prompt_len), image_positions.cpu()
+            )].sum().item())
+            n_kept_image = int(sample_mask.cpu()[image_positions.cpu()].sum().item())
+            actual_ratio = n_kept_total / max(1, int(prompt_len))
+            print(
+                f"[DEBUG-MASK layer={sample_li}] "
+                f"prompt_len={int(prompt_len)} "
+                f"kept_total={n_kept_total} ({actual_ratio:.3f}) "
+                f"kept_text={n_kept_text}/{n_text} "
+                f"kept_image={n_kept_image}/{n_img} "
+                f"target_keep_ratio={self.keep_ratio}",
+                file=sys.stderr, flush=True,
+            )
+        # ─────────────────────────────────────────────────────────────────────
+
         past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
+
+        # ── DEBUG: trim 후 실제 KV cache 크기 확인 (처음 3샘플만) ────────────
+        if keep_masks and self._img_sample_count <= 3 and hasattr(past_kv, "key_cache") and past_kv.key_cache:
+            sample_li2 = next(iter(keep_masks))
+            if sample_li2 < len(past_kv.key_cache):
+                kv_seq_len = past_kv.key_cache[sample_li2].shape[2]
+                print(
+                    f"[DEBUG-KV-AFTER-TRIM layer={sample_li2}] "
+                    f"kv_seq_len={kv_seq_len} "
+                    f"expected≈{n_text + n_keep} "
+                    f"ratio={kv_seq_len / max(1, int(prompt_len)):.3f}",
+                    file=sys.stderr, flush=True,
+                )
+        # ─────────────────────────────────────────────────────────────────────
 
         # Match the original kvpress/direct-generate semantics: the first answer
         # token comes from prefill logits; the pruned KV affects subsequent decode.
