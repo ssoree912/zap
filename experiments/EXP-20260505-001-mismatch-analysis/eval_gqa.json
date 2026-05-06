@@ -1,0 +1,9997 @@
+{
+  "config": {
+    "datasets": [
+      "gqa"
+    ],
+    "methods": [
+      "h2o",
+      "student",
+      "full_cache"
+    ],
+    "keep_ratios": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "n_samples": 100,
+    "student_ckpt": "/mnt/srv/home/dlpc.3842/zap/artifacts/student_llava15_original_future_1800_lr1e4_15ep",
+    "model_path": "/mnt/srv/home/dlpc.3842/zap/ckpts/llava-v1.5-7b"
+  },
+  "summary": [
+    {
+      "dataset": "gqa",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    },
+    {
+      "dataset": "gqa",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "n": 100,
+      "mean": 0.58,
+      "std": 0.49355850717012273
+    }
+  ],
+  "rows": [
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047422",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201047496",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Suit",
+      "score": 0.0,
+      "gts": [
+        "dress shirt"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201056084",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "soccer player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201067634",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Donut",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077055",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Urinal",
+      "score": 1.0,
+      "gts": [
+        "urinal"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201077061",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201109158",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201175625",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201185391",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201207163",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Apple",
+      "score": 0.0,
+      "gts": [
+        "apples"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201319581",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Pizza",
+      "score": 0.0,
+      "gts": [
+        "soup"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201322695",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346713",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Hard",
+      "score": 1.0,
+      "gts": [
+        "hard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201346716",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Motorcycle",
+      "score": 0.0,
+      "gts": [
+        "tree"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201347398",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Boy",
+      "score": 0.0,
+      "gts": [
+        "skateboarder"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201360984",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201404043",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Grazing",
+      "score": 0.0,
+      "gts": [
+        "eating"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201434363",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Ground",
+      "score": 0.0,
+      "gts": [
+        "pavement"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201504915",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201509849",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Dirty",
+      "score": 1.0,
+      "gts": [
+        "dirty"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201510486",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Clean",
+      "score": 1.0,
+      "gts": [
+        "clean"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201527959",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Cutting cake",
+      "score": 0.0,
+      "gts": [
+        "sitting"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201528095",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556586",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Chair",
+      "score": 0.0,
+      "gts": [
+        "office chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201556748",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Keyboard",
+      "score": 1.0,
+      "gts": [
+        "keyboard"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20157136",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Egg",
+      "score": 0.0,
+      "gts": [
+        "eggs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201593842",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201641237",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Short sleeved",
+      "score": 0.0,
+      "gts": [
+        "long sleeved"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201663162",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Drawer",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20169766",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Tie",
+      "score": 1.0,
+      "gts": [
+        "tie"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201704515",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Black and white",
+      "score": 1.0,
+      "gts": [
+        "black and white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735178",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201735597",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201739317",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Player",
+      "score": 1.0,
+      "gts": [
+        "player"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201757594",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Blue",
+      "score": 1.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201765958",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20177733",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Burger",
+      "score": 1.0,
+      "gts": [
+        "burger"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795036",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Large",
+      "score": 1.0,
+      "gts": [
+        "large"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201795132",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201864553",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201887134",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Broccoli",
+      "score": 0.0,
+      "gts": [
+        "cabbage"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902595",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201902619",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Desk",
+      "score": 1.0,
+      "gts": [
+        "desk"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201947514",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Toilet",
+      "score": 0.0,
+      "gts": [
+        "shower curtain"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201983608",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "201987969",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Tray",
+      "score": 0.0,
+      "gts": [
+        "paper"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202005783",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "cabinet"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20204557",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Chair",
+      "score": 1.0,
+      "gts": [
+        "chair"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202049296",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Right",
+      "score": 1.0,
+      "gts": [
+        "right"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202053361",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Batter",
+      "score": 1.0,
+      "gts": [
+        "batter"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202060144",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 0.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202100803",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Stove",
+      "score": 1.0,
+      "gts": [
+        "stove"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202101048",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202119760",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202121755",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Chairs",
+      "score": 1.0,
+      "gts": [
+        "chairs"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202179425",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Kite",
+      "score": 0.0,
+      "gts": [
+        "bike"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202223352",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "People",
+      "score": 0.0,
+      "gts": [
+        "crowd"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202231552",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202246472",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "202265779",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Couch",
+      "score": 1.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20244725",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Cobblestone",
+      "score": 0.0,
+      "gts": [
+        "stone"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20302977",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Cloth",
+      "score": 1.0,
+      "gts": [
+        "cloth"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307047",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Camera",
+      "score": 0.0,
+      "gts": [
+        "laptop"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20307251",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Table",
+      "score": 0.0,
+      "gts": [
+        "couch"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20385290",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20411955",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Fork",
+      "score": 1.0,
+      "gts": [
+        "fork"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20412528",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Talking",
+      "score": 1.0,
+      "gts": [
+        "talking"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2044581",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Steps",
+      "score": 1.0,
+      "gts": [
+        "steps"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20461886",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Purple",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20468524",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Trailer",
+      "score": 1.0,
+      "gts": [
+        "trailer"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20473007",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Boy",
+      "score": 1.0,
+      "gts": [
+        "boy"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480442",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Cat",
+      "score": 1.0,
+      "gts": [
+        "cat"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20480688",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20503789",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Traffic light",
+      "score": 0.0,
+      "gts": [
+        "light fixture"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20542904",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Elephant",
+      "score": 1.0,
+      "gts": [
+        "elephant"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20550236",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Left",
+      "score": 1.0,
+      "gts": [
+        "left"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20600191",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611668",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "None",
+      "score": 0.0,
+      "gts": [
+        "grapes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20611802",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "orange"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20699217",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Man",
+      "score": 1.0,
+      "gts": [
+        "man"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20705981",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20715722",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "White",
+      "score": 0.0,
+      "gts": [
+        "gray"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20717109",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Bed",
+      "score": 1.0,
+      "gts": [
+        "bed"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2075356",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Giraffe",
+      "score": 1.0,
+      "gts": [
+        "giraffe"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20753632",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20783012",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Table",
+      "score": 1.0,
+      "gts": [
+        "table"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20836740",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Black",
+      "score": 0.0,
+      "gts": [
+        "blue"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20862915",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20865622",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Small",
+      "score": 1.0,
+      "gts": [
+        "small"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20870420",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "No",
+      "score": 1.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20879028",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Gray",
+      "score": 0.0,
+      "gts": [
+        "white"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20883089",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Skate park",
+      "score": 1.0,
+      "gts": [
+        "skate park"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901792",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 0.0,
+      "gts": [
+        "no"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20901983",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Rough",
+      "score": 1.0,
+      "gts": [
+        "rough"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20911223",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Man",
+      "score": 0.0,
+      "gts": [
+        "skater"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20923154",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Truck",
+      "score": 0.0,
+      "gts": [
+        "fire truck"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20936263",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20964022",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "2097790",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    },
+    {
+      "dataset": "gqa",
+      "sample_id": "20978726",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "Yes",
+      "score": 1.0,
+      "gts": [
+        "yes"
+      ]
+    }
+  ]
+}

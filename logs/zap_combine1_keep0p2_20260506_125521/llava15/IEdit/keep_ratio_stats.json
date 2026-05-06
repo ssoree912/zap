@@ -1,0 +1,9 @@
+{
+  "dataset": "IEdit",
+  "keep_ratio": 0.2,
+  "n_samples": 200,
+  "avg_image_keep_ratio": 0.09059895833333352,
+  "avg_total_keep_ratio": 0.20045292618318603,
+  "avg_n_image_original": 576.0,
+  "avg_n_image_kept": 52.185
+}

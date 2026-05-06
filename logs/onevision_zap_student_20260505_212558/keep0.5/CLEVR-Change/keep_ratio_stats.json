@@ -1,0 +1,9 @@
+{
+  "dataset": "CLEVR-Change",
+  "keep_ratio": 0.5,
+  "n_samples": 200,
+  "avg_image_keep_ratio": 0.46001272264631105,
+  "avg_total_keep_ratio": 0.5003710332359891,
+  "avg_n_image_original": 393.0,
+  "avg_n_image_kept": 180.785
+}

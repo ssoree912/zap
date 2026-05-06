@@ -1,0 +1,155 @@
+{
+  "results": {
+    "coco2017_cap_val": {
+      "alias": "coco2017_cap_val",
+      "coco_Bleu_4,none": 0.29599732113307686,
+      "coco_Bleu_4_stderr,none": "N/A",
+      "coco_Bleu_3,none": 0.41305297343558844,
+      "coco_Bleu_3_stderr,none": "N/A",
+      "coco_Bleu_2,none": 0.5620446054627962,
+      "coco_Bleu_2_stderr,none": "N/A",
+      "coco_Bleu_1,none": 0.7287410132084814,
+      "coco_Bleu_1_stderr,none": "N/A",
+      "coco_METEOR,none": 0.293325650903169,
+      "coco_METEOR_stderr,none": "N/A",
+      "coco_ROUGE_L,none": 0.5559317857484414,
+      "coco_ROUGE_L_stderr,none": "N/A",
+      "coco_CIDEr,none": 1.1000589971703638,
+      "coco_CIDEr_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {
+    "coco2017_cap_val": []
+  },
+  "configs": {
+    "coco2017_cap_val": {
+      "task": "coco2017_cap_val",
+      "tag": "coco_caption2017",
+      "group": "coco_caption2017",
+      "dataset_path": "lmms-lab/COCO-Caption2017",
+      "dataset_kwargs": {
+        "token": true
+      },
+      "test_split": "val",
+      "full_docs": false,
+      "process_results_use_image": false,
+      "doc_to_visual": "<function coco_doc_to_visual at 0x7f6389e48940>",
+      "doc_to_text": "<function coco_doc_to_text at 0x7f6389ebd7e0>",
+      "doc_to_target": "answer",
+      "process_results": "<function coco_process_result at 0x7f6389ebe3b0>",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "coco_Bleu_4",
+          "aggregation": "<function coco_bleu4 at 0x7f6389ebeef0>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "coco_Bleu_3",
+          "aggregation": "<function coco_bleu3 at 0x7f6389ebf9a0>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "coco_Bleu_2",
+          "aggregation": "<function coco_bleu2 at 0x7f6389ea0550>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "coco_Bleu_1",
+          "aggregation": "<function coco_bleu1 at 0x7f6389ea1090>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "coco_METEOR",
+          "aggregation": "<function coco_meteor at 0x7f6389ea1bd0>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "coco_ROUGE_L",
+          "aggregation": "<function coco_rougel at 0x7f6389ea2710>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "coco_CIDEr",
+          "aggregation": "<function coco_cider at 0x7f6389ea3250>",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "max_new_tokens": 64,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "num_beams": 1,
+        "do_sample": false,
+        "until": [
+          "\n\n"
+        ]
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": [
+        {
+          "version": 0.0
+        }
+      ]
+    }
+  },
+  "versions": {
+    "coco2017_cap_val": "Yaml"
+  },
+  "n-shot": {
+    "coco2017_cap_val": 0
+  },
+  "higher_is_better": {
+    "coco2017_cap_val": {
+      "coco_Bleu_4": true,
+      "coco_Bleu_3": true,
+      "coco_Bleu_2": true,
+      "coco_Bleu_1": true,
+      "coco_METEOR": true,
+      "coco_ROUGE_L": true,
+      "coco_CIDEr": true
+    }
+  },
+  "n-samples": {
+    "coco2017_cap_val": {
+      "original": 5000,
+      "effective": 5000
+    }
+  },
+  "config": {
+    "model": "llava15_original_oracle",
+    "model_args": "pretrained=/mnt/srv/home/dlpc.3842/zap/ckpts/llava-v1.5-7b,keep_ratio=0.5,conv_template=vicuna_v1,model_name=llava-v1.5-7b,device=cuda:0,device_map=cuda:0,attn_implementation=eager,stats_output_dir=/mnt/srv/home/dlpc.3842/zap/experiments/EXP-20260505-001-llava15-future-oracle/outputs/oracle_20260505_131732/keep_05/keep_stats",
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": "",
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": "20260505_121752",
+  "task_hashes": {
+    "coco2017_cap_val": "207bffcd501ec9c73d881e968b3343bc902dfd10b32cfc090be313fc6a88b02b"
+  },
+  "model_source": "llava15_original_oracle",
+  "model_name": "/mnt/srv/home/dlpc.3842/zap/ckpts/llava-v1.5-7b",
+  "model_name_sanitized": "ckpts__llava-v1.5-7b",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 1940683.628337377,
+  "end_time": 1945783.856974871,
+  "total_evaluation_time_seconds": "5100.228637493914"
+}

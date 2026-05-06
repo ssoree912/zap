@@ -1,0 +1,161 @@
+{
+  "results": {
+    "nocaps_val": {
+      "alias": "nocaps_val",
+      "nocaps_Bleu_4,none": 0.34141261618012403,
+      "nocaps_Bleu_4_stderr,none": "N/A",
+      "nocaps_Bleu_3,none": 0.45438669611445986,
+      "nocaps_Bleu_3_stderr,none": "N/A",
+      "nocaps_Bleu_2,none": 0.5906545449833515,
+      "nocaps_Bleu_2_stderr,none": "N/A",
+      "nocaps_Bleu_1,none": 0.7473472152272321,
+      "nocaps_Bleu_1_stderr,none": "N/A",
+      "nocaps_METEOR,none": 0.2880906385775524,
+      "nocaps_METEOR_stderr,none": "N/A",
+      "nocaps_ROUGE_L,none": 0.5528835780840028,
+      "nocaps_ROUGE_L_stderr,none": "N/A",
+      "nocaps_CIDEr,none": 0.8790141583629276,
+      "nocaps_CIDEr_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {
+    "nocaps_val": []
+  },
+  "configs": {
+    "nocaps_val": {
+      "task": "nocaps_val",
+      "tag": "nocaps_caption",
+      "group": "nocaps_caption",
+      "dataset_path": "lmms-lab/NoCaps",
+      "dataset_kwargs": {
+        "token": true
+      },
+      "test_split": "validation",
+      "full_docs": false,
+      "process_results_use_image": false,
+      "doc_to_visual": "<function nocaps_doc_to_visual at 0x7f5015cb91b0>",
+      "doc_to_text": "<function nocaps_doc_to_text at 0x7f4faf4f9900>",
+      "doc_to_target": "annotations_captions",
+      "process_results": "<function nocaps_process_result at 0x7f4faf4fac20>",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "nocaps_Bleu_4",
+          "aggregation": "<function nocaps_bleu4 at 0x7f4faf4fb910>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "nocaps_Bleu_3",
+          "aggregation": "<function nocaps_bleu3 at 0x7f4faf4fa710>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "nocaps_Bleu_2",
+          "aggregation": "<function nocaps_bleu2 at 0x7f4faebb88b0>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "nocaps_Bleu_1",
+          "aggregation": "<function nocaps_bleu1 at 0x7f4faebb92d0>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "nocaps_METEOR",
+          "aggregation": "<function nocaps_meteor at 0x7f4faebb9cf0>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "nocaps_ROUGE_L",
+          "aggregation": "<function nocaps_rougel at 0x7f4faebba710>",
+          "higher_is_better": true
+        },
+        {
+          "metric": "nocaps_CIDEr",
+          "aggregation": "<function nocaps_cider at 0x7f4faebbb130>",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "max_new_tokens": 64,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "num_beams": 1,
+        "do_sample": false,
+        "until": [
+          "\n\n"
+        ]
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": [
+        {
+          "version": 0.0
+        }
+      ],
+      "lmms_eval_specific_kwargs": {
+        "default": {
+          "prompt": "Provide a one-sentence caption for the provided image."
+        },
+        "prompt": "Provide a one-sentence caption for the provided image."
+      }
+    }
+  },
+  "versions": {
+    "nocaps_val": "Yaml"
+  },
+  "n-shot": {
+    "nocaps_val": 0
+  },
+  "higher_is_better": {
+    "nocaps_val": {
+      "nocaps_Bleu_4": true,
+      "nocaps_Bleu_3": true,
+      "nocaps_Bleu_2": true,
+      "nocaps_Bleu_1": true,
+      "nocaps_METEOR": true,
+      "nocaps_ROUGE_L": true,
+      "nocaps_CIDEr": true
+    }
+  },
+  "n-samples": {
+    "nocaps_val": {
+      "original": 4500,
+      "effective": 4500
+    }
+  },
+  "config": {
+    "model": "llava_onevision_original_student",
+    "model_args": "pretrained=/mnt/srv/home/dlpc.3842/zap/ckpts/llava-onevision-qwen2-7b-ov,student_path=/mnt/srv/home/dlpc.3842/zap/artifacts/student_onevision_original_future_1800_lr1e4_15ep,keep_ratio=1.0,conv_template=qwen_1_5,model_name=llava_qwen,device=cuda:0,device_map=cuda:0,stats_output_dir=/mnt/srv/home/dlpc.3842/zap/experiments/EXP-20260503-026-onevision-original-teacher-train/outputs/data_eval_original_onevision_student_20260505_013142/keep_10/keep_stats",
+    "batch_size": "1",
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": "",
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": null,
+  "date": "20260505_054630",
+  "task_hashes": {
+    "nocaps_val": "c51d52bbc84b1f55cc8d1cae8882e7ec0f3e1cd23338d227c3da7b644478b835"
+  },
+  "model_source": "llava_onevision_original_student",
+  "model_name": "/mnt/srv/home/dlpc.3842/zap/ckpts/llava-onevision-qwen2-7b-ov",
+  "model_name_sanitized": "ckpts__llava-onevision-qwen2-7b-ov",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 1917201.872987658,
+  "end_time": 1923225.948478531,
+  "total_evaluation_time_seconds": "6024.075490873074"
+}

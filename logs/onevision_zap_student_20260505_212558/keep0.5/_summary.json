@@ -1,0 +1,90 @@
+{
+  "ALFRED": {
+    "Rouge-L f": 0.49496379460202505,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.49496379460202505,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        98.99275892040501,
+        200
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  },
+  "CLEVR-Change": {
+    "Rouge-L f": 0.2299440972653933,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.2299440972653933,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        45.98881945307866,
+        200
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  },
+  "IEdit": {
+    "Rouge-L f": 0.3355532582018611,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.3355532582018611,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        67.11065164037223,
+        200
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  },
+  "Spot-the-Diff": {
+    "Rouge-L f": 0.3060517268448527,
+    "image_quantity_level-Accuracy": {
+      "Few": 0.3060517268448527,
+      "Medium": 0.0,
+      "Many": 0.0
+    },
+    "image_quantity_level-Result": {
+      "Few": [
+        61.21034536897054,
+        200
+      ],
+      "Medium": [
+        0,
+        0
+      ],
+      "Many": [
+        0,
+        0
+      ]
+    }
+  }
+}

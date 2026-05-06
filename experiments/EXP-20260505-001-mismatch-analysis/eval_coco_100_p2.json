@@ -1,0 +1,4552 @@
+{
+  "config": {
+    "datasets": [
+      "coco2017_cap_val"
+    ],
+    "methods": [
+      "h2o",
+      "student",
+      "full_cache"
+    ],
+    "keep_ratios": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "n_samples": 100,
+    "student_ckpt": "/mnt/srv/home/dlpc.3842/zap/artifacts/student_llava15_original_future_1800_lr1e4_15ep",
+    "model_path": "/mnt/srv/home/dlpc.3842/zap/ckpts/llava-v1.5-7b"
+  },
+  "summary": [
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "n": 33,
+      "mean": 0.1610224207062152,
+      "std": 0.09728183411376778
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "n": 33,
+      "mean": 0.17824674344821745,
+      "std": 0.11978162939373418
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "n": 33,
+      "mean": 0.18855891896965277,
+      "std": 0.12771687830495382
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "n": 33,
+      "mean": 0.1633064166737082,
+      "std": 0.10727669303183386
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "n": 33,
+      "mean": 0.14824968750909623,
+      "std": 0.12479935092926672
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "n": 33,
+      "mean": 0.1454294748525692,
+      "std": 0.0968351969451113
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "n": 33,
+      "mean": 0.13038302148392822,
+      "std": 0.09531685999783956
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "n": 33,
+      "mean": 0.15619942332444467,
+      "std": 0.11294541484901455
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "n": 33,
+      "mean": 0.14972057341506306,
+      "std": 0.10570062531688046
+    }
+  ],
+  "rows": [
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "ready to be enjoyed.",
+      "score": 0.0,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "to be enjoyed. The",
+      "score": 0.14285714285714288,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "izzas are placed on",
+      "score": 0.15384615384615383,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "The wooden cutting board is",
+      "score": 0.14285714285714285,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "toppings. The wooden",
+      "score": 0.16666666666666666,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "to be enjoyed. The",
+      "score": 0.14285714285714288,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": ". The wooden cutting board",
+      "score": 0.15384615384615383,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": ". The wooden cutting board",
+      "score": 0.15384615384615383,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000197022.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": ". The wooden cutting board",
+      "score": 0.15384615384615383,
+      "gts": [
+        "I want the pizza that has extra cheese on it.",
+        "A cooked pizza pie on a tray with another that is uncooked.",
+        "There is an image of man doing things on the table. \n",
+        "A pizza that is sitting on a wooden plank.",
+        "Two fresh pizzas with mushrooms and olives sitting on pizza paddles."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "be enjoying their time",
+      "score": 0.0,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "and social nature of these",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "bond between the mother and",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "tender moment between the two",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "tender moment between the two",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "tender moment between the two",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "tender moment between the two",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "tender moment between the two",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000210708.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "tender moment between the two",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A large elephant standing next to a small elephant playing in the water.",
+        "A couple of elephants standing in the water.",
+        "An elephant and a baby elephant are bathing in a river",
+        "A mother elephant gives her baby a bath.",
+        "A large and small elephant bathing in the river."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": ", creating a cozy",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "warm atmosphere.",
+      "score": 0.0,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "A slice of cake is placed on a green plate, and a candle is lit next to it. The cake appears to be a carrot cake, and it is sitting on a table.",
+      "score": 0.36363636363636365,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "A slice of cake is placed on a green plate next to a lit candle. The cake appears to be a carrot cake, and the candle provides a warm and cozy ambiance.",
+      "score": 0.36363636363636365,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "A slice of cake is placed on a green plate, and a candle is lit next to it. The cake appears to be a delicious treat, and the candle adds a touch of warmth and ambiance to the scene.",
+      "score": 0.31372549019607837,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "inviting and pleasant.",
+      "score": 0.0,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "making it a perfect setting",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "A slice of cake is placed on a green plate, and a candle is lit next to it. The cake appears to be a carrot cake, and the candle adds a warm and cozy ambiance to the scene.",
+      "score": 0.32,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000216636.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "candle creating a fest",
+      "score": 0.26666666666666666,
+      "gts": [
+        "A viw of a cake with pieces cut off of it.",
+        "a cake with a section missing sitting next to a burning candle",
+        "a candle next to a bunt cake on a green plate",
+        "A partially eaten bundt cake next to a lit candle.",
+        "A cake sitting on top of a table next to a candle."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "in it on the table",
+      "score": 0.25000000000000006,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "a rose in it on",
+      "score": 0.25000000000000006,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "table, one of which",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "sandwiches on the",
+      "score": 0.0,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "There is also a hand",
+      "score": 0.26666666666666666,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "cups and a v",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "cups and a v",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "cups and a v",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000226147.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "cups and a v",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A woman is taking a picture of food with a mobile device.",
+        "A woman that is sitting down in front of a table.",
+        "A woman taking a photo of her food with a cell phone.",
+        "a woman in a white top at a table with food",
+        "A women who is taking a picture of her food."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "casing the bond between",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "ose, possibly learning from",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "ose, possibly learning from",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "ose, possibly learning from",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "environment together.",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "together.",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "trees and bushes.",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "ose, possibly learning from",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000229858.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "ose, possibly learning from",
+      "score": 0.0,
+      "gts": [
+        "A deer standing next to a small deer in a forest.",
+        "An adult and baby moose step out of a busy thicket in the wild.",
+        "An antelope walking out of the bushes towards a baby antelope.",
+        "A deer comes out of the bushes for its child",
+        "A baby deer and a large deer are standing in the woods. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "rest or for the audience",
+      "score": 0.09523809523809523,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "baseball field, with a",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "some standing around the field",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "baseball field, with a",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": ", with some of them",
+      "score": 0.1,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "some standing around the field",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "baseball field, with a",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "a few cars are park",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000231508.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "baseball field, with a",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A baseball player pitching a baseball on a field.",
+        "A baseball pitcher who is in mid pitch.",
+        "The pitcher  on the mound has just let go of a baseball directed to the batter. ",
+        "A uniformed baseball player being watched by people.",
+        "A man in black jersey pitching in baseball game."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "of the room is calm",
+      "score": 0.23529411764705882,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": ". The overall atmosphere of",
+      "score": 0.125,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": ". The overall atmosphere of",
+      "score": 0.125,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "ouch and the other closer",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "closer to the laptop.",
+      "score": 0.125,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "another closer to the laptop",
+      "score": 0.11764705882352941,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "ouch and the other closer",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "ouch and the other closer",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000232088.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "ouch and the other closer",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A living room filled with furniture and decor. ",
+        "this living room has all white couches and a flat screen tv",
+        "a room with a couch and a tv in it",
+        "View of a living room with a sloped ceiling over the windows.",
+        "A den with a couch, ottoman, television and windows."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "captures the essence",
+      "score": 0.13333333333333333,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "appear to be waiting for",
+      "score": 0.14285714285714285,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000234660.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "The scene captures the",
+      "score": 0.125,
+      "gts": [
+        "Two white bullet trains parked at a train station.",
+        "two white trains are parked side by side",
+        "two trains on a track near one another ",
+        "Two white trains on tracks next to a station.",
+        "Two white passenger trains are parked on the tracks, side by side."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop is open and appears to be in use, possibly for work or leisure. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.3018867924528302,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop is open and appears to be in use, possibly for work or leisure. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.3018867924528302,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop is open and appears to be in use, possibly for work or leisure. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.3018867924528302,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop screen is lit up, and it appears to be open to a social media page. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.29090909090909095,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "A laptop computer is sitting on a bed, with a person using it. The laptop is open and turned on, and it appears to be connected to the internet. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.2909090909090909,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop screen is lit up, and it appears to be open to a social media page. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.29090909090909095,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop screen is lit up, and it appears to be open to a social media page. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.29090909090909095,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop screen is on, and it appears to be open to a social media platform. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.32142857142857145,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000243199.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "A laptop computer is sitting on a bed, with a window in the background. The laptop screen is on, and it appears to be open to a social media platform. The bed is covered with a plaid blanket, adding a cozy touch to the scene.",
+      "score": 0.32142857142857145,
+      "gts": [
+        "An open laptop computer sitting on top of a bed.",
+        "A laptop computer sitting on a quilt comforter on a bed.",
+        "A laptop sitting on a bed near a window",
+        "Bedroom scene of bed with laptop computer on the side.",
+        "A plaid comforter with a laptop sitting on it."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "the scene.",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "closure in a zoo.",
+      "score": 0.5,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": ". The scene captures",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "socializing. The scene",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "appear to be enjoying",
+      "score": 0.14285714285714288,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "socializing. The en",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "socializing. The en",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "socializing. The scene",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000244592.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "socializing. The scene",
+      "score": 0.0,
+      "gts": [
+        "Three zebras outside with two grazing next to each other.",
+        "Three trapped, captive zebras standing around a food or water trough. ",
+        "Zebras socialize on some rocks in an artificial habitat.",
+        "Three zebras standing close together behind a fence.",
+        "Three zebras interacting in a zoo zebra enclosure."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "to the dish.",
+      "score": 0.125,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "and crisp element to",
+      "score": 0.15384615384615383,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "isp element to the d",
+      "score": 0.1111111111111111,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "le on the table,",
+      "score": 0.23529411764705882,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "chicken. The d",
+      "score": 0.0,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "and carrots.",
+      "score": 0.1818181818181818,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "le on the table,",
+      "score": 0.23529411764705882,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "le on the table,",
+      "score": 0.23529411764705882,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000255912.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "fork and a knife",
+      "score": 0.30769230769230765,
+      "gts": [
+        "Two plates full of food sitting on a table next to a bottle.",
+        "There is a sandwich and lettuce on a plate",
+        "A white plate topped with a cut in half sandwich and a salad.",
+        "Meat sandwich on a roll with greens on a plate.",
+        "A sandwich sits on a white plate with a salad."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "The toilet in the bathroom is white and has a colorful seat cover on it. The seat cover is made of fabric and features a colorful design. The toilet is situated next to a small trash can.",
+      "score": 0.2978723404255319,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "The toilet in the bathroom has a colorful seat cover, adding a touch of whimsy to the otherwise plain space.",
+      "score": 0.3333333333333333,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "The toilet in the bathroom is white and has a colorful seat cover.",
+      "score": 0.34782608695652173,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "also orange in color.",
+      "score": 0.0,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "used for storage of bath",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "t, and the overall",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "t, and the overall",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "also orange in color.",
+      "score": 0.0,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000263474.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "on the floor. The",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A bathroom area with a toilet, trashcan and dresser.",
+        "A bathroom toilet seat lid is highly decorated.",
+        "The toilet seat cover is made up of many colors.",
+        "A toilet decorated with a colorful quilted top.",
+        "An ordinary bathroom with a toilet and trash bin."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "The image features two teddy bears hanging from a car's rearview mirror. The teddy bears are positioned close to each other, creating a sense of companionship. The car's interior is visible through the rearview mirror, providing context to the scene.",
+      "score": 0.27999999999999997,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "The image features two teddy bears hanging from a car's rearview mirror. The teddy bears are positioned close to each other, creating a sense of companionship. The car's interior is visible through the rearview mirror, providing context to the scene.",
+      "score": 0.27999999999999997,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "of the scene.",
+      "score": 0.15384615384615383,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "dy bears are h",
+      "score": 0.16666666666666666,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "main focus of the scene",
+      "score": 0.13333333333333333,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "dy bears are h",
+      "score": 0.16666666666666666,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "dy bears are h",
+      "score": 0.16666666666666666,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "dy bears are h",
+      "score": 0.16666666666666666,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000276921.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "dy bears are h",
+      "score": 0.16666666666666666,
+      "gts": [
+        "Two teddy ears are hanging in a window.",
+        "a couple of stuffed animals hang from a car mirror ",
+        "Two teddy bears hang from the inside of a car.",
+        "A close up of two teddy bears hanging from two strings on a hook.",
+        "Two stuffed teddy bears hanging from a rear view mirror."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "unique features and designs.",
+      "score": 0.0,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "designs.\n\nIn",
+      "score": 0.2,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "others further back.",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "and another car closer to",
+      "score": 0.0,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "part of one of the",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "cycles.",
+      "score": 0.0,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "one of the motorcy",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "a motorcycle. The",
+      "score": 0.36363636363636365,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000279887.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "and another car closer to",
+      "score": 0.0,
+      "gts": [
+        "A group of motorcycles are on display at a museum.",
+        "view of a motorcycle sitting amongst others at a convention",
+        "Many motorcycles are displayed in the store with descriptive signs posted near them. ",
+        "a motorcycle parked in doors near other vehicles ",
+        "there are many different bikes that are on display"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "comfort for the visitors.",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "ade and comfort for the",
+      "score": 0.25000000000000006,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": ". \n\nIn",
+      "score": 0.16666666666666669,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "visitors.\n\nIn",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "llas and others scattered",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "the umbrellas",
+      "score": 0.15384615384615385,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "visitors.",
+      "score": 0.0,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "visitors.",
+      "score": 0.0,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000289741.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "visitors.",
+      "score": 0.0,
+      "gts": [
+        "A giant cruise ship next to another giant cruise ship next to a long pier.",
+        "two cruise ships docked near a beach resort",
+        "A beach area with grass umbrellas and boats in the distance.",
+        "People are tanning on the chairs and swimming in the swimming pool.",
+        "Beautiful view of two cruise ships at dock."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "a touch of personalization",
+      "score": 0.26666666666666666,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "overall aesthetic",
+      "score": 0.0,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "overall aesthetic",
+      "score": 0.0,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "In addition",
+      "score": 0.2,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "In addition",
+      "score": 0.2,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "A TV is mounted on",
+      "score": 0.1739130434782609,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "A TV is mounted on",
+      "score": 0.1739130434782609,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "A TV is mounted on",
+      "score": 0.1739130434782609,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000290771.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "A TV is mounted on",
+      "score": 0.1739130434782609,
+      "gts": [
+        "Comfortable, modern living room overlooking a wooded area",
+        "A large glass window in a living room.",
+        "A living room with windows looking out onto a forest.",
+        "A large colorful living room with an abundance of large windows.",
+        "A living room set is displayed next to a large window with a view of a wooded area."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "A black and silver motorcycle is parked on a paved road, with a red flag in the background. The motorcycle is positioned in the middle of the scene, and the road appears to be empty.",
+      "score": 0.3636363636363636,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "door area.",
+      "score": 0.0,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "door area.",
+      "score": 0.0,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "door area.",
+      "score": 0.0,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "a casual gathering",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "to the right. The",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "scene appears to be a",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "scene appears to be a",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000297147.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "scene appears to be a",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A motorcycle parked on the pavement near a building.",
+        "A silver and black sports motorcycle parked near a building.",
+        "a black and silver motor cycle parked by a shed",
+        "A black and silver motorcycle outside on the road. ",
+        "This is a motorcycle that is parked near a building. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "and thrill of ski",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "and thrill of ski",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": ". The scene captures",
+      "score": 0.18181818181818182,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "ving the scene. The",
+      "score": 0.3333333333333333,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "together.",
+      "score": 0.0,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "the main skier.",
+      "score": 0.18181818181818182,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "ving the scene. The",
+      "score": 0.3333333333333333,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "the main skier.",
+      "score": 0.18181818181818182,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000301563.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "the main skier.",
+      "score": 0.18181818181818182,
+      "gts": [
+        "A man riding skis down a snow covered slope.",
+        "A person skiing down a mountain in the snow.",
+        "a big hill that has a bunch of snow on it",
+        "a man skiing down a hill by himself ",
+        "The man is skiing down the snowy slopes."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "serene and picturesque",
+      "score": 0.0,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "is the main focus of",
+      "score": 0.3157894736842105,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "is the main focus of",
+      "score": 0.3157894736842105,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "'s reflection can be",
+      "score": 0.0,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "is serene and pictures",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "serene and picturesque",
+      "score": 0.0,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "sky, adding a sense",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "sky, adding a sense",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000311518.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "sky, adding a sense",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A small green boat in a pond outside an office building.",
+        "A green boat floating on top of a body of water.",
+        "a small green boa is on a lake",
+        "An old green row boat is floating out in the middle of a lake.",
+        "Row boat sitting in the middle of a lake by building"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "of knives visible on",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "of knives visible on",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "ives placed on the counter",
+      "score": 0.2857142857142857,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": ", a microwave",
+      "score": 0.1818181818181818,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "the edge of the room",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "igerator. There is",
+      "score": 0.3333333333333333,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "igerator. There is",
+      "score": 0.3333333333333333,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "refrigerator.",
+      "score": 0.0,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000329219.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": ", a microwave",
+      "score": 0.1818181818181818,
+      "gts": [
+        "A man standing next to a dog on the ground.",
+        "A man is at a kitchen counter by a dog.",
+        "An man standing in a kitchen with a small puppy.",
+        "there is a small puppy on the kitchen floor",
+        "A man in the kitchen standing with his dog."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "time together, and this",
+      "score": 0.14285714285714288,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": ", and this dog seems",
+      "score": 0.28571428571428575,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "spot for dogs and their",
+      "score": 0.13333333333333333,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "seems to be having a",
+      "score": 0.15384615384615385,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "to be taking advantage of",
+      "score": 0.12500000000000003,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "or, as it takes",
+      "score": 0.0,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "or, as it takes",
+      "score": 0.0,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "showing that it is having",
+      "score": 0.13333333333333333,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000331075.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "showing that it is having",
+      "score": 0.13333333333333333,
+      "gts": [
+        "a dog that's been playing in the water",
+        "A wet dog standing at the beach near the ocean.",
+        "A wet dog standing on a beach next to the ocean.",
+        "a white brown and black dog is by some water ",
+        "A dog enjoying playing on the beach in the sun"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "board one of them.",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "board one of them.",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "waiting to board one of",
+      "score": 0.11764705882352941,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "board one of them.",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "around the area, with",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "waiting to board one of",
+      "score": 0.11764705882352941,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "board one of them.",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "board one of them.",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000334371.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "board one of them.",
+      "score": 0.125,
+      "gts": [
+        "A tall building with four double decker buses driving along a parking lot.",
+        "A large long bus on a city street.",
+        "Two white double decker buses on a street",
+        "Double-decker buses sit at the curb in front of an old building.",
+        "Double-Decker buses line up at a bus stop."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "to be a casual",
+      "score": 0.15384615384615383,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "to be a gathering",
+      "score": 0.15384615384615383,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "The scene appears to be",
+      "score": 0.13333333333333333,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "ed further back in the",
+      "score": 0.2857142857142857,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "or a similar outdoor",
+      "score": 0.15384615384615383,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "a few smaller cars.",
+      "score": 0.15384615384615383,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "other cars visible in the",
+      "score": 0.2857142857142857,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "few other cars in the",
+      "score": 0.26666666666666666,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000338428.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "few other cars in the",
+      "score": 0.26666666666666666,
+      "gts": [
+        "An older pickup truck with decorative murals painted on.",
+        "an antique green pickup truck is parked in the grass.",
+        "Truck viewed from the back with vans and trucks visible in the background of the image.",
+        "A truck painted green with designs parked by other vehicles.",
+        "A photo of a green truck parked in grass."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "diverse selection of drinks",
+      "score": 0.30769230769230765,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "diverse selection of drinks",
+      "score": 0.30769230769230765,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "diverse selection of drinks",
+      "score": 0.30769230769230765,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "allows for easy access and",
+      "score": 0.0,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "allows for easy access and",
+      "score": 0.0,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "allows for easy access and",
+      "score": 0.0,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "allows for easy access and",
+      "score": 0.0,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "allows for easy access and",
+      "score": 0.0,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000340697.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "allows for easy access and",
+      "score": 0.0,
+      "gts": [
+        "a close up of many drinks in a fridge ",
+        "A display in a store filled with lots of bottles of soda.",
+        "Several rows of Crush soda in bottles in a refrigerator",
+        "A cooler with many different kinds of beverages in it.",
+        "Several bottles are displayed in a commercial refrigerator."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "to the action. A",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "A baseball player in a blue and white uniform is pitching a ball on a field. He is in the middle of his pitching motion, with his arm fully extended and the ball in the air. The player is focused and determined, ready to make a great play.",
+      "score": 0.3157894736842105,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "er in the center of",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": ", likely teammates",
+      "score": 0.0,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": ", likely teammates",
+      "score": 0.0,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "visible in the background.",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "likely teammates or",
+      "score": 0.0,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "on chairs and others",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000345466.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "while others are standing.",
+      "score": 0.25,
+      "gts": [
+        "A pitcher holds his arm far behind him during a pitch.",
+        "The baseball player is throwing a very intense pitch.",
+        "A baseball player pitching a ball on a field,",
+        "a professional pitcher on the mound getting ready to throw the ball",
+        "A baseball player throws a pitch while others watch from the dugout."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "be taking place in a",
+      "score": 0.26666666666666666,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "aling scene.",
+      "score": 0.0,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": ", with the pot and",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "al being prepared, with",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "meal using this rich",
+      "score": 0.0,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "A wooden spoon is being used to stir a pot of red sauce, which is filled to the brim. The spoon is positioned in the middle of the pot, and the sauce appears to be thick and ready to be served.",
+      "score": 0.2745098039215686,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "ing a meal,",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "ing a meal,",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000356347.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "ing a meal,",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A blue pot of tomato sauce with a wooden ladle.",
+        "A pan  filled with mystery goo next to another pan.",
+        "A wooden spoon sticking out of a pot of food.",
+        "A wooden utensil in a red sauce in a pot.",
+        "A wooden handle in a pot with soup or stew next to an empty bowl."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "iniscent of a",
+      "score": 0.28571428571428575,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": ". The scene is rem",
+      "score": 0.0,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "standing closer to the for",
+      "score": 0.23529411764705882,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "be looking at the camera",
+      "score": 0.0,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "depth and movement in the",
+      "score": 0.2857142857142857,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "and movement. The scene",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "be looking at the camera",
+      "score": 0.0,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "be looking at the camera",
+      "score": 0.0,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000360325.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "looking in the same direction",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A herd of sheep standing next to each other on dirt ground.",
+        "Crowded sheep of different colors stand in an enclosure.",
+        "A very large herd of sheep of all different colors.",
+        "Furry goats and other animals in a crowded pen.",
+        "a close up of a lot of animals with a fence"
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "work, surrounded by the",
+      "score": 0.14285714285714288,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "Some of them are sitting",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "Some of them are sitting",
+      "score": 0.14285714285714285,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "There are several other people",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "office, some of them",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "There are several other people",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "There are several other people",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "There are several other people",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367095.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "There are several other people",
+      "score": 0.13333333333333333,
+      "gts": [
+        "A man that is sitting in front of a laptop.",
+        "The workers are working at their computers at their desks.",
+        "A man sitting at a desk in an office.",
+        "A man sitting in a chair in front of a computer.",
+        "Adults working in open office setting at desks."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "image.",
+      "score": 0.0,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "A cute brown and white dog is laying on a white rug, looking up at the camera. The dog appears to be resting or relaxing on the rug, possibly in a living room. The rug is placed on a wooden floor, and there is a chair nearby.",
+      "score": 0.3050847457627119,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "A cute brown and white dog is laying on a white rug, looking up at the camera. The dog appears to be relaxed and comfortable in its environment. The rug is placed on a wooden floor, and there is a chair nearby.",
+      "score": 0.3333333333333333,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "A brown and white dog is laying on a white carpet, looking up at the camera. The dog appears to be relaxed and comfortable in its environment. The carpet is covered with white fibers, giving it a soft and cozy appearance.",
+      "score": 0.37735849056603776,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "a living room or a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "the background, possibly the",
+      "score": 0.125,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "A brown and white dog is laying on a white carpet, looking up at the camera. The dog appears to be relaxed and comfortable in its environment. The carpet is covered with white fibers, giving it a soft and cozy appearance.",
+      "score": 0.37735849056603776,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "chair and a person,",
+      "score": 0.25,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000367195.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "chair and a person,",
+      "score": 0.25,
+      "gts": [
+        "A dog laying down on a fluffy carpet",
+        "Floor eye view of a supine dog hoping for some attention.",
+        "A brown and white dog laying on a carpet under a table.",
+        "A Corgi dog resting on frizzy beige carpet ",
+        "A picture of a dog laying under a table on the rug."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "someone is watching the news",
+      "score": 0.11764705882352941,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "A laptop is open on a bed, displaying a news article. The laptop is placed on a blanket, and a chair is positioned nearby. In the background, there is a television turned on, displaying a news program. The room also contains a book and a remote control.",
+      "score": 0.22580645161290325,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": ".",
+      "score": 0.0,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "book and a cup,",
+      "score": 0.25,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "A laptop is open and placed on a bed, displaying a news page. In the background, there is a television turned on, showing a news program. The room also features a chair and a couch, creating a comfortable and informative atmosphere for the viewer.",
+      "score": 0.2711864406779661,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "ed environment where someone is",
+      "score": 0.0,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "ed environment where someone is",
+      "score": 0.0,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "a cup, adding to",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000368684.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "a cup, adding to",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A room with a tv in the background and a laptop screen in the foreground ",
+        "A persons view of watching a tv and working on a laptop. ",
+        "A laptop on a couch across from a television.",
+        "A large flat screen TV sitting in a living room surrounded by furniture.",
+        "A laptop sitting in a room with a big TV."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "be enjoying a social",
+      "score": 0.18181818181818182,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "carrying handbags.",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "scene.",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "jeans, and they",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "scene.\n\nThere",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "shirt, and they",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "appears to be the main",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "jeans, and they",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000370486.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "jeans, and they",
+      "score": 0.0,
+      "gts": [
+        "a woman holding a colorful striped umbrella ",
+        "Woman standing in a crowd holding a colorful umbrella. ",
+        "A girl stands with her umbrella in hand in a crowd. ",
+        "A young woman with a colorful umbrella stands near a crowd.",
+        "a person standing holding an open umbrella "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "street, with some closer",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "street, with one car",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "street, with one car",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "street, with one car",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "The scene captures a",
+      "score": 0.15384615384615383,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "uck parked in the",
+      "score": 0.25,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "street, with one car",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "street, with one car",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000376284.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "street, with one car",
+      "score": 0.30769230769230765,
+      "gts": [
+        "A fire hydrant and some cars on a street.",
+        "Fire hydrant and pylons on a city street corner.",
+        "fire hydrant on city street with several parked cars.",
+        "there is a fire hydrant surrounded by three metal poles",
+        "Cars are parked on the street next to an old fire hydrant."
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.2,
+      "pred": "The large red and black boat is traveling on the water, possibly a tugboat, with a city skyline in the background.",
+      "score": 0.4848484848484849,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.4,
+      "pred": "The large red and black boat is traveling on the water, possibly a tugboat, with a city skyline in the background. The boat is moving through the water, and the city skyline is visible in the distance.",
+      "score": 0.326530612244898,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.6,
+      "pred": "at, which is designed",
+      "score": 0.16666666666666666,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "h2o",
+      "keep_ratio": 0.8,
+      "pred": "boat is surrounded by a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "student",
+      "keep_ratio": 0.2,
+      "pred": "boat is surrounded by a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "student",
+      "keep_ratio": 0.4,
+      "pred": "boat is surrounded by a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "student",
+      "keep_ratio": 0.6,
+      "pred": "boat is surrounded by a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "student",
+      "keep_ratio": 0.8,
+      "pred": "boat is surrounded by a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    },
+    {
+      "dataset": "coco2017_cap_val",
+      "sample_id": "000000395633.jpg",
+      "method": "full_cache",
+      "keep_ratio": 1.0,
+      "pred": "boat is surrounded by a",
+      "score": 0.3076923076923077,
+      "gts": [
+        "A red and black boat floating on top of water.",
+        "A red boat floating in front of a city scape.",
+        "a big boat on a river with a cityscape in the background ",
+        "A boat that is sitting in the water.",
+        "There is a large ship in the middle of the ocean. "
+      ]
+    }
+  ]
+}

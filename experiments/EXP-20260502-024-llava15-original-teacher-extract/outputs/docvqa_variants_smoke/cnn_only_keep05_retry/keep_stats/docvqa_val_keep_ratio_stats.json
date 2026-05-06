@@ -1,0 +1,23 @@
+{
+  "task": "docvqa_val",
+  "keep_ratio": 0.5,
+  "n_samples": 1,
+  "avg_image_token_ratio": 0.8834355828220859,
+  "avg_text_token_ratio": 0.1165644171779141,
+  "avg_total_keep_ratio": 0.5,
+  "avg_image_keep_ratio": 0.4340277777777778,
+  "avg_n_image_original": 576.0,
+  "avg_n_image_kept": 250.0,
+  "samples": [
+    {
+      "n_image_original": 576,
+      "n_image_kept": 250,
+      "n_text": 76,
+      "prompt_len": 652,
+      "image_token_ratio": 0.8834355828220859,
+      "text_token_ratio": 0.1165644171779141,
+      "total_keep_ratio": 0.5,
+      "image_keep_ratio": 0.4340277777777778
+    }
+  ]
+}
