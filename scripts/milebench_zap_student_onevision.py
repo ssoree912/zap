@@ -19,7 +19,7 @@ Usage:
     python milebench_zap_student_onevision.py \\
         --keep_ratio 0.5 --dataset all \\
         --output_dir <dir> --device cuda:0 \\
-        --student_path /mnt/srv/home/dlpc.3842/zap/artifacts/student_onevision_original_future_1800_lr1e4_15ep
+        --student_path /workspace/zap/ckpts/student_onevision_A_ep20
 """
 
 from __future__ import annotations
@@ -38,13 +38,13 @@ from PIL import Image
 from tqdm import tqdm
 
 
-DATA_ROOT = "/mnt/srv/home/dlpc.3842/zap/data/MileBench"
-ONEVISION_CKPT = "/mnt/srv/home/dlpc.3842/zap/ckpts/llava-onevision-qwen2-7b-ov"
-DEFAULT_STUDENT = "/mnt/srv/home/dlpc.3842/zap/artifacts/student_onevision_original_future_1800_lr1e4_15ep"
+DATA_ROOT = "/workspace/zap/data/MileBench"
+ONEVISION_CKPT = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov"
+DEFAULT_STUDENT = "/workspace/zap/ckpts/student_onevision_A_ep20"
 
-ONEVISION_REPO = "/mnt/srv/home/dlpc.3842/VFlowOpt_llava1.5/src/LLaVA-OneVision"
-LOOKM_ROOT = "/mnt/srv/home/dlpc.3842/look-m"
-ZAP_ROOT = "/mnt/srv/home/dlpc.3842/zap"
+ONEVISION_REPO = "/workspace/VFlowOpt/src/LLaVA-OneVision"
+LOOKM_ROOT = "/workspace/look-m"
+ZAP_ROOT = "/workspace/zap"
 
 DATASETS = ["ALFRED", "CLEVR-Change", "IEdit", "Spot-the-Diff"]
 ALL_MILEBENCH = [

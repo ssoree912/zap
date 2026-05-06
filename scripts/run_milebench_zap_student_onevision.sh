@@ -31,14 +31,14 @@ COMBINE_TAG="${COMBINE_IMAGE:+_combine${COMBINE_IMAGE}}"
 OUTPUT_DIR="${OUTPUT_DIR:-${ZAP_ROOT}/logs/milebench_zap_student_onevision_keep${KEEP_TAG}${COMBINE_TAG}_max${MAX_NEW_TOKENS}_$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "${OUTPUT_DIR}"
 
-ENV_PYTHON="${ENV_PYTHON:-/mnt/srv/home/dlpc.3842/look-m/.conda/lookm/bin/python}"
-STUDENT_PATH="${STUDENT_PATH:-/mnt/srv/home/dlpc.3842/zap/artifacts/student_onevision_original_future_1800_lr1e4_15ep}"
+ENV_PYTHON="${ENV_PYTHON:-/opt/conda/envs/vflowopt_chartqa_eval/bin/python}"
+STUDENT_PATH="${STUDENT_PATH:-/workspace/zap/ckpts/student_onevision_A_ep20}"
 
 export CUDA_VISIBLE_DEVICES="${GPU}"
 export TOKENIZERS_PARALLELISM=false
 export PYTHONUNBUFFERED=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-export PYTHONPATH="/mnt/srv/home/dlpc.3842/VFlowOpt_llava1.5/src/LLaVA-OneVision:/mnt/srv/home/dlpc.3842/look-m:/mnt/srv/home/dlpc.3842/zap:${PYTHONPATH:-}"
+export PYTHONPATH="/workspace/VFlowOpt/src/LLaVA-OneVision:/workspace/look-m:/workspace/zap:${PYTHONPATH:-}"
 
 echo "[launch] model=onevision keep_ratio=${KEEP_RATIO} combine_image=${COMBINE_IMAGE} max_new_tokens=${MAX_NEW_TOKENS} dataset=${DATASET} gpu=${GPU}"
 echo "[launch] output_dir=${OUTPUT_DIR}"
