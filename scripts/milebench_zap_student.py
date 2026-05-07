@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """ZAP foresight student eviction on LLaVA-1.5 + MileBench (image-only).
 
-Total keep ratio basis. Only image tokens are evicted; text tokens are
+Image keep ratio basis. Only image tokens are evicted; text tokens are
 preserved verbatim. Pipeline:
   1. Prefill the LLaVA-1.5 model (look-m fork, kv_mode=origin) with hidden
      states captured.
   2. Score image tokens layer by layer with the trained `VisualUtilityStudent`.
   3. Build per-layer keep masks; keep budget on the image side is
-     `total_keep * prompt_len - n_text` (saturating image-only). Text positions
-     are always kept.
+     `ceil(keep_ratio * n_image_tokens)`. Text positions are always kept.
   4. Trim the per-layer KV cache and greedy-decode from the trimmed cache.
 
 Prompt + image processing are byte-identical to `milebench_unified.py`
@@ -309,16 +311,21 @@ def generate_with_student(
     n_img = image_positions.numel()
     n_text = prompt_len - n_img
 
-    # Total-token keep ratio applied to whole prompt; text is always kept,
-    # so the image budget is the leftover.
-    total_keep = int(torch.ceil(torch.tensor(keep_ratio * prompt_len)).item())
-    n_keep_img = min(n_img, max(0, total_keep - n_text))
+    # keep_ratio is image-token based: keep ceil(keep_ratio * n_img) image
+    # tokens, while text tokens are always kept unconditionally.
+    n_keep_img = min(
+        n_img,
+        max(1, int(torch.ceil(torch.tensor(keep_ratio * n_img)).item())),
+    )
 
     stats = {
+        "keep_ratio_basis": "image",
         "prompt_len": prompt_len,
         "n_text": n_text,
         "n_image_original": n_img,
         "n_image_kept": n_keep_img,
+        "image_token_ratio": n_img / max(1, prompt_len),
+        "text_token_ratio": n_text / max(1, prompt_len),
         "image_keep_ratio": n_keep_img / max(1, n_img),
         "total_keep_ratio": (n_text + n_keep_img) / max(1, prompt_len),
     }
@@ -511,7 +518,8 @@ def main() -> int:
     else:
         datasets = [args.dataset]
     print(
-        f"[init] keep_ratio={args.keep_ratio} max_new_tokens={args.max_new_tokens} "
+        f"[init] keep_ratio={args.keep_ratio} keep_ratio_basis=image "
+        f"max_new_tokens={args.max_new_tokens} "
         f"student={args.student_path} datasets={datasets}"
     )
 

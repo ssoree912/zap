@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """ZAP foresight student eviction on LLaVA-OneVision + MileBench (image-only).
 
 OneVision counterpart of `milebench_zap_student.py`. Uses the LLaVA-OneVision
@@ -8,7 +11,8 @@ Pipeline:
      get inputs_embeds and the merged sequence length plus image-token spans.
   2. Prefill with hidden states; capture per-layer hidden_states.
   3. Score image tokens with `VisualUtilityStudentOneVision`; build per-layer
-     keep masks (image-only). Text positions are always kept.
+     keep masks (image-only). The keep budget is
+     `ceil(keep_ratio * n_image_tokens)`, and text positions are always kept.
   4. Trim per-layer KV cache and greedy-decode from the trimmed cache, passing
      position_ids based on the original (pre-trim) sequence length.
 
@@ -348,14 +352,21 @@ def generate_with_student(
 
     n_img = image_indices.numel()
     n_text = prompt_len - n_img
-    total_keep = int(torch.ceil(torch.tensor(keep_ratio * prompt_len)).item())
-    n_keep_img = min(n_img, max(0, total_keep - n_text))
+    # keep_ratio is image-token based: keep ceil(keep_ratio * n_img) image
+    # tokens, while text tokens are always kept unconditionally.
+    n_keep_img = min(
+        n_img,
+        max(1, int(torch.ceil(torch.tensor(keep_ratio * n_img)).item())),
+    )
 
     stats = {
+        "keep_ratio_basis": "image",
         "prompt_len": prompt_len,
         "n_text": n_text,
         "n_image_original": n_img,
         "n_image_kept": n_keep_img,
+        "image_token_ratio": n_img / max(1, prompt_len),
+        "text_token_ratio": n_text / max(1, prompt_len),
         "image_keep_ratio": n_keep_img / max(1, n_img),
         "total_keep_ratio": (n_text + n_keep_img) / max(1, prompt_len),
     }
@@ -537,7 +548,10 @@ def main() -> int:
         datasets = [d.strip() for d in args.dataset.split(",") if d.strip()]
     else:
         datasets = [args.dataset]
-    print(f"[init] keep_ratio={args.keep_ratio} student={args.student_path} datasets={datasets}")
+    print(
+        f"[init] keep_ratio={args.keep_ratio} keep_ratio_basis=image "
+        f"student={args.student_path} datasets={datasets}"
+    )
 
     tokenizer, model, image_processor = load_model(args.device)
     student = load_student(args.student_path, args.device)

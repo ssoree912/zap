@@ -52,40 +52,43 @@ except ImportError as e:
     ) from e
 
 DEFAULT_IMAGE_TOKEN = "<image>"
+LLAVA_IMAGE_TOKEN_INDEX = -200  # LLaVA constant (llava.constants.IMAGE_TOKEN_INDEX)
 
 
 @register_model("llava_onevision_student")
 class LlavaOnevisionStudent(lmms):
-    """LLaVA-OneVision-HF with student-scored image-token KV pruning for lmms-eval."""
+    """LLaVA-OneVision with student-scored image-token KV pruning for lmms-eval.
+
+    Supports two model formats:
+      model_format="hf"    — HF-format checkpoint (llava-onevision-qwen2-7b-ov-hf)
+      model_format="llava" — LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)
+    """
 
     def __init__(
         self,
-        pretrained: str = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf",
-        student_path: str = "/workspace/zap/ckpts/student_onevision_A_lr1e4_20ep",
+        pretrained: str = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov",
+        student_path: str = "/workspace/zap/ckpts/student_onevision_A_ep20",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",
         batch_size: int = 1,
         attn_implementation: str = "sdpa",
         stats_output_dir: str = "",
+        model_format: str = "llava",
+        conv_template: str = "qwen_1_5",
         **kwargs,
     ) -> None:
         super().__init__()
-        from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
 
         self._device = torch.device(device)
         self.batch_size_per_gpu = int(batch_size)
         assert self.batch_size_per_gpu == 1, "Only batch_size=1 is supported."
+        self._model_format = model_format
 
-        self._model = LlavaOnevisionForConditionalGeneration.from_pretrained(
-            pretrained,
-            torch_dtype=torch.float16,
-            low_cpu_mem_usage=True,
-            attn_implementation=attn_implementation,
-        ).to(self._device).eval()
+        if model_format == "llava":
+            self._init_llava(pretrained, device, attn_implementation, conv_template)
+        else:
+            self._init_hf(pretrained, attn_implementation)
 
-        self._processor = AutoProcessor.from_pretrained(pretrained)
-        configure_onevision_processor(self._processor, self._model.config)
-        self._tokenizer = self._processor.tokenizer
         self._config = self._model.config
 
         self.student = VisualUtilityStudentOneVision.from_pretrained(student_path)
@@ -100,6 +103,48 @@ class LlavaOnevisionStudent(lmms):
         self._keep_stats: list[dict] = []
         self._rank = 0
         self._world_size = 1
+
+    def _init_hf(self, pretrained: str, attn_implementation: str) -> None:
+        """Load HF-format checkpoint (llava-onevision-qwen2-7b-ov-hf)."""
+        from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
+
+        self._model = LlavaOnevisionForConditionalGeneration.from_pretrained(
+            pretrained,
+            torch_dtype=torch.float16,
+            low_cpu_mem_usage=True,
+            attn_implementation=attn_implementation,
+        ).to(self._device).eval()
+        self._processor = AutoProcessor.from_pretrained(pretrained)
+        configure_onevision_processor(self._processor, self._model.config)
+        self._tokenizer = self._processor.tokenizer
+        self._image_processor = None
+        self._conv_template = None
+
+    def _init_llava(self, pretrained: str, device: str, attn_implementation: str, conv_template: str) -> None:
+        """Load LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)."""
+        _LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
+        _TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
+        for p in [_LLAVA_SRC, _TF_SRC]:
+            if p not in sys.path:
+                sys.path.insert(0, p)
+
+        from llava.mm_utils import get_model_name_from_path, process_images, tokenizer_image_token
+        from llava.model.builder import load_pretrained_model
+
+        model_name = get_model_name_from_path(pretrained)
+        tokenizer, model, image_processor, _ = load_pretrained_model(
+            pretrained, None, model_name,
+            device_map=device,
+            attn_implementation=attn_implementation,
+            multimodal=True,
+        )
+        self._model = model.eval()
+        self._tokenizer = tokenizer
+        self._image_processor = image_processor
+        self._processor = None
+        self._conv_template = conv_template
+        self._llava_process_images = process_images
+        self._llava_tokenizer_image_token = tokenizer_image_token
 
     # --- lmms interface properties ---
 
@@ -185,22 +230,23 @@ class LlavaOnevisionStudent(lmms):
             max_new_tokens = gen_kwargs.get("max_new_tokens", 32)
 
             context = contexts[0]
-            if DEFAULT_IMAGE_TOKEN not in context:
-                image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * len(visuals))
-                context = f"{image_prefix}\n{context}"
 
-            conversation = [{"role": "user", "content": context}]
-            text = self._tokenizer.apply_chat_template(
-                conversation, tokenize=False, add_generation_prompt=True
-            )
-
-            inputs = self._processor(
-                images=visuals if visuals else None,
-                text=text,
-                return_tensors="pt",
-            ).to(self._device, torch.float16)
-
-            output = self._generate_with_student(inputs, visuals, max_new_tokens)
+            if self._model_format == "llava":
+                output = self._generate_llava(context, visuals, max_new_tokens)
+            else:
+                if DEFAULT_IMAGE_TOKEN not in context:
+                    image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * len(visuals))
+                    context = f"{image_prefix}\n{context}"
+                conversation = [{"role": "user", "content": context}]
+                text = self._tokenizer.apply_chat_template(
+                    conversation, tokenize=False, add_generation_prompt=True
+                )
+                inputs = self._processor(
+                    images=visuals if visuals else None,
+                    text=text,
+                    return_tensors="pt",
+                ).to(self._device, torch.float16)
+                output = self._generate_with_student(inputs, visuals, max_new_tokens)
             res.append(output)
             self.cache_hook.add_partial("generate_until", (context, gen_kwargs), output)
             pbar.update(1)
@@ -237,6 +283,172 @@ class LlavaOnevisionStudent(lmms):
             f"(avg_total={summary['avg_total_keep_ratio']:.4f} avg_image={summary['avg_image_keep_ratio']:.4f})",
             file=sys.stderr, flush=True,
         )
+
+    @torch.no_grad()
+    def _generate_llava(self, context: str, visuals, max_new_tokens: int) -> str:
+        """Generation path for LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)."""
+        from llava.conversation import conv_templates
+        from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN as LLAVA_DEFAULT_IMAGE_TOKEN
+
+        # Build prompt via conv template
+        conv = conv_templates[self._conv_template].copy()
+        question = context
+        if LLAVA_DEFAULT_IMAGE_TOKEN not in question and visuals:
+            image_tokens = " ".join([LLAVA_DEFAULT_IMAGE_TOKEN] * len(visuals))
+            question = f"{image_tokens}\n{question}"
+        conv.append_message(conv.roles[0], question)
+        conv.append_message(conv.roles[1], None)
+        prompt = conv.get_prompt()
+
+        # Tokenize
+        input_ids = self._llava_tokenizer_image_token(
+            prompt, self._tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt"
+        ).unsqueeze(0).to(self._device)
+        attention_mask = input_ids.ne(
+            self._tokenizer.pad_token_id if self._tokenizer.pad_token_id is not None else self._tokenizer.eos_token_id
+        ).to(self._device)
+
+        if not visuals or self.keep_ratio >= 1.0:
+            # Fallback: standard generate
+            image_tensor = self._llava_process_images(visuals, self._image_processor, self._config) if visuals else None
+            if image_tensor is not None:
+                if isinstance(image_tensor, list):
+                    image_tensor = [t.to(self._device, dtype=torch.float16) for t in image_tensor]
+                else:
+                    image_tensor = image_tensor.to(self._device, dtype=torch.float16)
+            image_sizes = [img.size for img in visuals] if visuals else None
+            try:
+                out = self._model.generate(
+                    input_ids, attention_mask=attention_mask,
+                    images=image_tensor, image_sizes=image_sizes,
+                    max_new_tokens=max_new_tokens, do_sample=False, use_cache=True,
+                    pad_token_id=self._tokenizer.eos_token_id,
+                )
+                return self._tokenizer.decode(out[0][input_ids.shape[1]:], skip_special_tokens=True).strip()
+            except Exception as e:
+                print(f"[lmms-onevision-student] LLAVA fallback failed ({e})", file=sys.stderr, flush=True)
+                return ""
+
+        # Process images
+        image_tensor = self._llava_process_images(visuals, self._image_processor, self._config)
+        if isinstance(image_tensor, list):
+            image_tensor = [t.to(self._device, dtype=torch.float16) for t in image_tensor]
+        else:
+            image_tensor = image_tensor.to(self._device, dtype=torch.float16)
+        image_sizes = [img.size for img in visuals]
+
+        # Expand image tokens via prepare_inputs_labels_for_multimodal
+        try:
+            _, _, new_attn_mask, _, inputs_embeds, _ = self._model.prepare_inputs_labels_for_multimodal(
+                input_ids, None, attention_mask, None, None,
+                image_tensor, ["image"], image_sizes,
+            )
+        except Exception as e:
+            print(f"[lmms-onevision-student] prepare_inputs_labels failed ({e}), skipping.", file=sys.stderr, flush=True)
+            return ""
+
+        # Compute image positions in expanded sequence (single-image case)
+        input_ids_1d = input_ids[0][attention_mask[0].bool()]
+        n_img_placeholders = int((input_ids_1d == IMAGE_TOKEN_INDEX).sum().item())
+        n_text_tokens = int(input_ids_1d.shape[0]) - n_img_placeholders
+        prompt_len = int(inputs_embeds.shape[1])
+        n_img = prompt_len - n_text_tokens
+
+        if n_img_placeholders == 1:
+            placeholder_pos = int((input_ids_1d == IMAGE_TOKEN_INDEX).nonzero(as_tuple=True)[0][0].item())
+            image_positions = torch.arange(placeholder_pos, placeholder_pos + n_img, dtype=torch.long)
+        else:
+            print("[lmms-onevision-student] WARNING: multi-image in llava mode not supported, using fallback.", file=sys.stderr, flush=True)
+            try:
+                out = self._model.generate(
+                    input_ids, attention_mask=attention_mask,
+                    images=image_tensor, image_sizes=image_sizes,
+                    max_new_tokens=max_new_tokens, do_sample=False, use_cache=True,
+                    pad_token_id=self._tokenizer.eos_token_id,
+                )
+                return self._tokenizer.decode(out[0][input_ids.shape[1]:], skip_special_tokens=True).strip()
+            except Exception:
+                return ""
+
+        n_text = n_text_tokens
+        n_keep = max(1, int(math.ceil(n_img * self.keep_ratio)))
+
+        self._img_keep_sum += n_keep
+        self._img_total_sum += n_img
+        self._img_sample_count += 1
+        self._keep_stats.append({
+            "n_image_original": n_img,
+            "n_image_kept": n_keep,
+            "n_text": n_text,
+            "prompt_len": prompt_len,
+            "image_token_ratio": n_img / max(1, prompt_len),
+            "text_token_ratio": n_text / max(1, prompt_len),
+            "total_keep_ratio": (n_text + n_keep) / max(1, prompt_len),
+            "image_keep_ratio": n_keep / max(1, n_img),
+        })
+        if not self._reported_keep_budget:
+            print(
+                f"[lmms-onevision-student] LLAVA keep_ratio_basis=image keep_ratio={self.keep_ratio} "
+                f"prompt_len={prompt_len} image_tokens={n_img} text_tokens={n_text} "
+                f"image_tokens_kept={n_keep}",
+                file=sys.stderr, flush=True,
+            )
+            self._reported_keep_budget = True
+
+        # Prefill
+        try:
+            prefill = self._model(
+                inputs_embeds=inputs_embeds,
+                attention_mask=new_attn_mask,
+                use_cache=True,
+                output_hidden_states=True,
+                output_attentions=False,
+                return_dict=True,
+            )
+        except Exception as e:
+            print(f"[lmms-onevision-student] prefill failed ({e})", file=sys.stderr, flush=True)
+            return ""
+
+        H_all = prefill.hidden_states
+        past_kv = prefill.past_key_values
+        next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+        eos_token_id = int(
+            self._tokenizer.eos_token_id
+            if self._tokenizer.eos_token_id is not None
+            else 151645
+        )
+
+        last_img = int(image_positions.max().item())
+        q_positions = (
+            torch.arange(last_img + 1, prompt_len, dtype=torch.long)
+            if last_img + 1 < prompt_len else torch.empty(0, dtype=torch.long)
+        )
+        image_idx_dev = image_positions.to(self._device)
+        q_idx_dev = q_positions.to(self._device)
+
+        keep_masks: dict[int, torch.Tensor] = {}
+        for li in self.student.layer_indices:
+            H_l = H_all[li + 1]
+            scores = self.student.layers[str(li)](H_l, image_idx_dev, q_idx_dev).squeeze(0)
+            if n_keep >= n_img:
+                continue
+            top = torch.topk(scores, k=n_keep, largest=True).indices
+            mask = torch.ones(prompt_len, dtype=torch.bool)
+            image_keep = torch.zeros(n_img, dtype=torch.bool)
+            image_keep[top.cpu()] = True
+            mask[image_positions.cpu()] = image_keep
+            keep_masks[li] = mask
+
+        del H_all
+        past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
+
+        answer_ids = _greedy_decode_with_kv(
+            self._model, past_kv, next_token,
+            prompt_len=prompt_len,
+            eos_token_id=eos_token_id, max_new_tokens=max_new_tokens,
+        )
+        torch.cuda.empty_cache()
+        return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
 
     @torch.no_grad()
     def _generate_with_student(self, inputs, visuals, max_new_tokens: int) -> str:

@@ -59,6 +59,8 @@ def main():
     parser.add_argument("--keep_ratio", type=float, default=0.5)
     parser.add_argument("--output_dir", required=True)
     parser.add_argument("--device", default="cuda:0")
+    parser.add_argument("--max_new_tokens", type=int, default=MAX_NEW_TOKENS)
+    parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 
@@ -75,9 +77,14 @@ def main():
     data = json.load(open(data_path))
     meta = data["meta_data"]
     samples = data["data"]
+    if args.limit is not None:
+        samples = samples[:args.limit]
     combined_img_root = os.path.join(DATA_ROOT, args.dataset, "combined_1_images")
 
-    print(f"[{args.dataset}] {len(samples)} samples | keep_ratio={args.keep_ratio}")
+    print(
+        f"[{args.dataset}] {len(samples)} samples | keep_ratio={args.keep_ratio} "
+        f"keep_ratio_basis=image max_new_tokens={args.max_new_tokens}"
+    )
 
     # Load student model (reuse existing class — no duplication)
     from foresight.eval.lmms_onevision_student import LlavaOnevisionStudent
@@ -87,6 +94,7 @@ def main():
         keep_ratio=args.keep_ratio,
         device=args.device,
         stats_output_dir=task_out,
+        model_format="hf",
     )
 
     predictions = []
@@ -120,7 +128,7 @@ def main():
             max_length=model_wrapper.max_length,
         ).to(args.device, torch.float16)
 
-        answer = model_wrapper._generate_with_student(inputs, [image], MAX_NEW_TOKENS)
+        answer = model_wrapper._generate_with_student(inputs, [image], args.max_new_tokens)
 
         predictions.append({
             "sample_id": sample["sample_id"],
