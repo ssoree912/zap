@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# EXP-20260506-030 : OneVision student lmms-eval, image_keep_ratio=0.10
-# keep_ratio_basis=image (keep 10% of image tokens)
+# EXP-20260506-030 : OneVision student lmms-eval, image_keep_ratio=0.50
+# keep_ratio_basis=image (keep 50% of image tokens)
 set -uo pipefail
 cd /workspace/zap
 
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=0
 export WANDB_DISABLED=true
 export LD_LIBRARY_PATH=/opt/conda/envs/vflowopt_chartqa_eval/lib:${LD_LIBRARY_PATH:-}
 export LMMS_EVAL_ROOT=/workspace/VFlowOpt/src/lmms_eval-0.2.4
@@ -15,10 +15,10 @@ export GQA_IMAGE_PARQUET=/workspace/zap/data/eval/GQA/testdev_balanced_images/te
 PYTHON="/opt/conda/envs/vflowopt_chartqa_eval/bin/python"
 MODEL="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf"
 STUDENT="/workspace/zap/ckpts/student_onevision_A_ep20"
-KEEP=0.1
-OUT_DIR="/workspace/zap/experiments/EXP-20260506-030-onevision-lmms-image-keep/outputs/keep010"
+KEEP=0.25
+OUT_DIR="/workspace/zap/experiments/EXP-20260506-030-onevision-lmms-image-keep/outputs/keep025"
 
-MODEL_ARGS="pretrained=${MODEL},student_path=${STUDENT},keep_ratio=${KEEP},device=cuda:0,stats_output_dir=${OUT_DIR}"
+MODEL_ARGS="pretrained=${MODEL},student_path=${STUDENT},keep_ratio=${KEEP},device=cuda:0,stats_output_dir=${OUT_DIR},model_format=hf"
 
 mkdir -p "${OUT_DIR}"
 
@@ -31,7 +31,7 @@ run_task() {
     return
   fi
   mkdir -p "${task_out}"
-  echo "===== START task=${task} keep=${KEEP} $(date -Is) =====" | tee -a "${OUT_DIR}/run_gpu2.log"
+  echo "===== START task=${task} keep=${KEEP} $(date -Is) =====" | tee -a "${OUT_DIR}/run_gpu0.log"
 
   if ${PYTHON} /workspace/zap/eval.py --model onevision --framework lmms -- \
       --model llava_onevision_student \
@@ -40,10 +40,10 @@ run_task() {
       --batch_size 1 \
       --log_samples \
       --output_path "${task_out}" \
-      2>&1 | tee -a "${OUT_DIR}/run_gpu2.log"; then
-    echo "===== DONE ${task} $(date -Is) =====" | tee -a "${OUT_DIR}/run_gpu2.log"
+      2>&1 | tee -a "${OUT_DIR}/run_gpu0.log"; then
+    echo "===== DONE ${task} $(date -Is) =====" | tee -a "${OUT_DIR}/run_gpu0.log"
   else
-    echo "===== FAILED ${task} $(date -Is) =====" | tee -a "${OUT_DIR}/run_gpu2.log"
+    echo "===== FAILED ${task} $(date -Is) =====" | tee -a "${OUT_DIR}/run_gpu0.log"
   fi
 }
 

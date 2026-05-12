@@ -1,24 +1,23 @@
 #!/usr/bin/env bash
-# EXP-20260506-030 : OneVision student lmms-eval, image_keep_ratio=0.10
-# keep_ratio_basis=image (keep 10% of image tokens)
+# EXP-20260506-031 : OneVision student lmms-eval, llava-format ckpt, image_keep_ratio=0.10
 set -uo pipefail
 cd /workspace/zap
 
 export CUDA_VISIBLE_DEVICES=2
 export WANDB_DISABLED=true
-export LD_LIBRARY_PATH=/opt/conda/envs/vflowopt_chartqa_eval/lib:${LD_LIBRARY_PATH:-}
-export LMMS_EVAL_ROOT=/workspace/VFlowOpt/src/lmms_eval-0.2.4
 export PYTHONUNBUFFERED=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export LD_LIBRARY_PATH=/opt/conda/envs/vflowopt_chartqa_eval/lib:${LD_LIBRARY_PATH:-}
+export LMMS_EVAL_ROOT=/workspace/VFlowOpt/src/lmms_eval-0.2.4
 export GQA_IMAGE_PARQUET=/workspace/zap/data/eval/GQA/testdev_balanced_images/testdev-00000-of-00001.parquet
 
 PYTHON="/opt/conda/envs/vflowopt_chartqa_eval/bin/python"
-MODEL="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf"
+MODEL="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov"
 STUDENT="/workspace/zap/ckpts/student_onevision_A_ep20"
 KEEP=0.1
-OUT_DIR="/workspace/zap/experiments/EXP-20260506-030-onevision-lmms-image-keep/outputs/keep010"
+OUT_DIR="/workspace/zap/experiments/EXP-20260506-031-onevision-lmms-llava-format/outputs/keep010"
 
-MODEL_ARGS="pretrained=${MODEL},student_path=${STUDENT},keep_ratio=${KEEP},device=cuda:0,stats_output_dir=${OUT_DIR}"
+MODEL_ARGS="pretrained=${MODEL},student_path=${STUDENT},keep_ratio=${KEEP},device=cuda:0,stats_output_dir=${OUT_DIR},model_format=llava,conv_template=qwen_1_5"
 
 mkdir -p "${OUT_DIR}"
 

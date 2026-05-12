@@ -118,9 +118,14 @@ class VisualUtilityStudentLayerOneVision(nn.Module):
 
         H_img = H_l.index_select(dim=1, index=image_indices)  # [B, N_I, D]
         if question_indices.numel() == 0:
-            H_q = H_l.new_zeros((B, 1, D))
+            q = H_l.new_zeros((B, D))
         else:
-            H_q = H_l.index_select(dim=1, index=question_indices)  # [B, N_Q, D]
+            q_sum = H_l.new_zeros((B, D))
+            q_count = int(question_indices.numel())
+            for start in range(0, q_count, 256):
+                idx = question_indices[start : start + 256]
+                q_sum = q_sum + H_l.index_select(dim=1, index=idx).sum(dim=1)
+            q = q_sum / max(1, q_count)
 
         if self.variant in ("full", "cnn_only"):
             # --- 1D conv branch over image-token sequence
@@ -133,7 +138,6 @@ class VisualUtilityStudentLayerOneVision(nn.Module):
             C_proj = None
 
         # --- Question branch (pooled, broadcast)
-        q = H_q.mean(dim=1)                          # [B, D]
         q_proj = self.W_q(q)                         # [B, d]
         Q = q_proj.unsqueeze(1).expand(-1, N_I, -1)  # [B, N_I, d]
 

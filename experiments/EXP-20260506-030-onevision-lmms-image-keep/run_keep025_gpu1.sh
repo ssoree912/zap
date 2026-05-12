@@ -6,6 +6,8 @@ cd /workspace/zap
 
 export CUDA_VISIBLE_DEVICES=1
 export WANDB_DISABLED=true
+export LD_LIBRARY_PATH=/opt/conda/envs/vflowopt_chartqa_eval/lib:${LD_LIBRARY_PATH:-}
+export LMMS_EVAL_ROOT=/workspace/VFlowOpt/src/lmms_eval-0.2.4
 export PYTHONUNBUFFERED=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export GQA_IMAGE_PARQUET=/workspace/zap/data/eval/GQA/testdev_balanced_images/testdev-00000-of-00001.parquet
@@ -47,9 +49,7 @@ run_task() {
 
 run_task "textvqa_val"
 run_task "chartqa_local"
-run_task "gqa_local"
 run_task "docvqa_val_local"
-run_task "coco2014_cap_val"
 run_task "nocaps_val"
 run_task "textcaps_val"
 

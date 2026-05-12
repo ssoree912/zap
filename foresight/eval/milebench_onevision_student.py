@@ -128,13 +128,25 @@ def main():
             max_length=model_wrapper.max_length,
         ).to(args.device, torch.float16)
 
-        answer = model_wrapper._generate_with_student(inputs, [image], args.max_new_tokens)
+        try:
+            answer = model_wrapper._generate_with_student(inputs, [image], args.max_new_tokens)
+        except torch.cuda.OutOfMemoryError as e:
+            print(
+                f"[warn] OOM on {args.dataset} sample {sample['sample_id']}: {e}",
+                file=sys.stderr,
+                flush=True,
+            )
+            torch.cuda.empty_cache()
+            answer = ""
 
         predictions.append({
             "sample_id": sample["sample_id"],
             "pred_response": answer,
             "gt_response": sample["response"],
         })
+        del inputs, image
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
     # Save pred.json
     json.dump(predictions, open(pred_path, "w"), ensure_ascii=False, indent=2)

@@ -439,7 +439,9 @@ class LlavaOnevisionStudent(lmms):
             mask[image_positions.cpu()] = image_keep
             keep_masks[li] = mask
 
-        del H_all
+        del H_all, prefill
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
 
         answer_ids = _greedy_decode_with_kv(
@@ -475,19 +477,6 @@ class LlavaOnevisionStudent(lmms):
         if not visuals or self.keep_ratio >= 1.0:
             return _safe_generate()
 
-        try:
-            prefill = self._model(
-                **inputs,
-                use_cache=True,
-                output_hidden_states=True,
-                output_attentions=False,
-                return_dict=True,
-            )
-        except ValueError:
-            return _safe_generate()
-        H_all = prefill.hidden_states
-        past_kv = prefill.past_key_values
-        next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
         eos_token_id = _resolve_eos_token_id(self._processor, self._model.config)
 
         try:
@@ -497,13 +486,7 @@ class LlavaOnevisionStudent(lmms):
                 num_images=len(visuals),
             )
         except ValueError:
-            return self._tokenizer.decode(
-                _greedy_decode_with_kv(
-                    self._model, past_kv, next_token,
-                    prompt_len=int(inputs["input_ids"].shape[1]),
-                    eos_token_id=eos_token_id, max_new_tokens=max_new_tokens,
-                ).tolist(), skip_special_tokens=True
-            ).strip()
+            return _safe_generate()
 
         n_img = int(image_positions.numel())
         n_text = int(prompt_len) - n_img
@@ -548,6 +531,34 @@ class LlavaOnevisionStudent(lmms):
         image_idx_dev = image_positions.to(self._device)
         q_idx_dev = q_positions.to(self._device)
 
+        use_two_pass = os.environ.get("ZAP_ONEVISION_TWO_PASS", "0") == "1"
+        if use_two_pass:
+            try:
+                score_prefill = self._model(
+                    **inputs,
+                    use_cache=False,
+                    output_hidden_states=True,
+                    output_attentions=False,
+                    return_dict=True,
+                )
+            except ValueError:
+                return _safe_generate()
+            H_all = score_prefill.hidden_states
+        else:
+            try:
+                prefill = self._model(
+                    **inputs,
+                    use_cache=True,
+                    output_hidden_states=True,
+                    output_attentions=False,
+                    return_dict=True,
+                )
+            except ValueError:
+                return _safe_generate()
+            H_all = prefill.hidden_states
+            past_kv = prefill.past_key_values
+            next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+
         keep_masks: dict[int, torch.Tensor] = {}
         for li in self.student.layer_indices:
             H_l = H_all[li + 1]
@@ -561,7 +572,27 @@ class LlavaOnevisionStudent(lmms):
             mask[image_positions.cpu()] = image_keep
             keep_masks[li] = mask
 
-        del H_all  # free VRAM before trim + decode
+        if use_two_pass:
+            del H_all, score_prefill
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            try:
+                cache_prefill = self._model(
+                    **inputs,
+                    use_cache=True,
+                    output_hidden_states=False,
+                    output_attentions=False,
+                    return_dict=True,
+                )
+            except ValueError:
+                return _safe_generate()
+            past_kv = cache_prefill.past_key_values
+            next_token = cache_prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+            del cache_prefill
+        else:
+            del H_all, prefill  # free VRAM before trim + decode
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         if not keep_masks:
             print(
