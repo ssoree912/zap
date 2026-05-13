@@ -1,8 +1,0 @@
-{
-  "task": "CLEVR-Change",
-  "keep_ratio": 0.5,
-  "n_samples": 200,
-  "avg_image_keep_ratio": 0.4758506944444435,
-  "avg_n_image_original": 1152.0,
-  "avg_n_image_kept": 548.18
-}

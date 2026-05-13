@@ -1,8 +1,0 @@
-{
-  "task": "ActionSequence",
-  "keep_ratio": 0.5,
-  "n_samples": 200,
-  "avg_image_keep_ratio": 0.48064525462962976,
-  "avg_n_image_original": 3456.0,
-  "avg_n_image_kept": 1661.11
-}

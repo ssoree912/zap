@@ -1,15 +1,0 @@
-START 2026-05-01T08:48:20+00:00
-GPU=1 model=/workspace/PrefixKV/models/llava-v1.5-7b keep_ratios=0.5,0.1
-exp_dir=/workspace/zap/experiments/EXP-20260501-006-prefixkv-llava15-milebench-letterfix
-conf_dir=/workspace/zap/experiments/EXP-20260501-006-prefixkv-llava15-milebench-letterfix/confs
-samples_dir=/workspace/zap/experiments/EXP-20260501-006-prefixkv-llava15-milebench-letterfix/samples
-max_context_len=2048 max_new_tokens=128
-force_profile=1
-[profile-start] 2026-05-01T08:48:20+00:00
-/opt/conda/envs/prefixkv/lib/python3.8/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-  warnings.warn(
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  2.81s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.02s/it]
-[profile] Will profile ratios: [0.5, 0.9]
-[profile] Collecting 20 samples from 10 tasks
-[profile] Total calibration samples: 200
-Profiling ratio=0.5:   0%|          | 0/200 [00:00<?, ?it/s]Profiling ratio=0.5:   0%|          | 1/200 [00:00<01:12,  2.75it/s]Profiling ratio=0.5:   1%|          | 2/200 [00:00<00:50,  3.89it/s]Profiling ratio=0.5:   2%|▏         | 3/200 [00:00<00:43,  4.57it/s]Profiling ratio=0.5:   2%|▏         | 4/200 [00:00<00:39,  4.99it/s]Profiling ratio=0.5:   2%|▎         | 5/200 [00:01<00:38,  5.01it/s]Profiling ratio=0.5:   3%|▎         | 6/200 [00:01<00:36,  5.29it/s]Profiling ratio=0.5:   4%|▎         | 7/200 [00:01<00:37,  5.13it/s]Profiling ratio=0.5:   4%|▍         | 8/200 [00:01<00:37,  5.08it/s]Profiling ratio=0.5:   4%|▍         | 9/200 [00:01<00:36,  5.25it/s]Profiling ratio=0.5:   5%|▌         | 10/200 [00:02<00:34,  5.44it/s]Profiling ratio=0.5:   6%|▌         | 11/200 [00:02<00:36,  5.18it/s]Profiling ratio=0.5:   6%|▌         | 12/200 [00:02<00:36,  5.12it/s]Profiling ratio=0.5:   6%|▋         | 13/200 [00:02<00:36,  5.07it/s]Profiling ratio=0.5:   7%|▋         | 14/200 [00:02<00:35,  5.28it/s]Profiling ratio=0.5:   8%|▊         | 15/200 [00:02<00:35,  5.23it/s]Profiling ratio=0.5:   8%|▊         | 16/200 [00:03<00:35,  5.12it/s]Profiling ratio=0.5:   8%|▊         | 17/200 [00:03<00:36,  5.06it/s]Profiling ratio=0.5:   9%|▉         | 18/200 [00:03<00:36,  5.02it/s]Profiling ratio=0.5:  10%|▉         | 19/200 [00:03<00:34,  5.24it/s]Profiling ratio=0.5:  10%|█         | 20/200 [00:03<00:33,  5.39it/s]Profiling ratio=0.5:  10%|█         | 21/200 [00:04<00:40,  4.44it/s]Profiling ratio=0.5:  11%|█         | 22/200 [00:05<01:09,  2.56it/s]Profiling ratio=0.5:  12%|█▏        | 23/200 [00:05<01:06,  2.67it/s]Profiling ratio=0.5:  12%|█▏        | 24/200 [00:05<01:09,  2.54it/s]Profiling ratio=0.5:  12%|█▎        | 25/200 [00:07<01:53,  1.54it/s]

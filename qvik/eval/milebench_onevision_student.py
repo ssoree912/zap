@@ -27,7 +27,7 @@ from tqdm import tqdm
 
 sys.path.insert(0, "/workspace/zap")
 
-DATA_ROOT = "/workspace/zap/data/MileBench"
+DATA_ROOT = "/workspace/zap/data/eval/MileBench"
 DEFAULT_IMAGE_TOKEN = "<image>"
 MAX_NEW_TOKENS = 32
 

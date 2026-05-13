@@ -155,10 +155,7 @@ class Llava15OriginalStudent(lmms):
     def __init__(
         self,
         pretrained: str = "/workspace/zap/model/llava-1.5-7b-hf",
-        student_path: str = (
-            "/workspace/zap/artifacts/original_llava_teacher/"
-            "student_llava15_original_future_1800_lr1e4_15ep"
-        ),
+        student_path: str = "/workspace/zap/ckpts/student_llava15",
         vision_tower_path: str = "",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",

@@ -1,8 +1,0 @@
-{
-  "task": "ALFRED",
-  "keep_ratio": 0.1,
-  "n_samples": 200,
-  "avg_image_keep_ratio": 0.02924291087962962,
-  "avg_n_image_original": 1967.04,
-  "avg_n_image_kept": 65.71
-}

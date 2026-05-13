@@ -116,7 +116,7 @@ def collate_single(batch: list[dict]) -> dict:
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("--teacher-root", default="/workspace/zap/data/teacher_v2_onevision")
+    p.add_argument("--teacher-root", default="/workspace/zap/data/train/teacher/llava_onevision")
     p.add_argument(
         "--datasets",
         nargs="+",

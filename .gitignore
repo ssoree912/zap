@@ -1,4 +1,7 @@
 ckpts/
+experiments/
+logs/
+model/
 .claude/
 data/
 artifacts/
