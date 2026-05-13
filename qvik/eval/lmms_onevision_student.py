@@ -10,7 +10,7 @@ monkey-patches this module into the lmms-eval models package before running.
 Example CLI (via launcher):
     CUDA_VISIBLE_DEVICES=0 python scripts/run_lmms_eval_student.py -- \\
         --model llava_onevision_student \\
-        --model_args pretrained=/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf,student_path=/workspace/zap/ckpts/student_onevision_ocrdoc_lr1e4_20ep,keep_ratio=0.5 \\
+        --model_args pretrained=/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf,student_path=/workspace/zap/ckpts/student_onevision_ocrdoc_lr1e4_20ep,keep_ratio=0.5 \\
         --tasks chartqa_local \\
         --batch_size 1 \\
         --log_samples \\
@@ -66,7 +66,7 @@ class LlavaOnevisionStudent(lmms):
 
     def __init__(
         self,
-        pretrained: str = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov",
+        pretrained: str = "/workspace/zap/model/llava-onevision-qwen2-7b-ov",
         student_path: str = "/workspace/zap/ckpts/student_onevision_A_ep20",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",

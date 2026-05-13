@@ -114,7 +114,7 @@ def main() -> int:
     )
     p.add_argument(
         "--llava-path",
-        default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf",
+        default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf",
     )
     p.add_argument("--epochs", type=int, default=20)
     p.add_argument("--lr", type=float, default=1e-4)

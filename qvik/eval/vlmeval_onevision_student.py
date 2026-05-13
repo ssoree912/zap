@@ -155,7 +155,7 @@ class LLaVA_OneVision_HF_Student:
 
     def __init__(
         self,
-        model_path: str = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf",
+        model_path: str = "/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf",
         student_path: str = "/workspace/zap/ckpts/student_onevision_A_lr1e4_20ep",
         keep_ratio: float = 0.5,
         max_new_tokens: int = 32,

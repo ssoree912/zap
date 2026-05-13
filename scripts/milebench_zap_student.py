@@ -474,7 +474,7 @@ def run_dataset(
 
 def score(output_dir: Path, datasets: list[str]) -> None:
     setup_paths()
-    from foresight.eval.score_milebench_predictions import score_dataset
+    from qvik.eval.score_milebench_predictions import score_dataset
 
     summary: dict[str, Any] = {}
     for ds in datasets:

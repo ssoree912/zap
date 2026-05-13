@@ -18,7 +18,7 @@ via LlavaLlamaForCausalLM and LLaVA-OneVision via LlavaQwenForCausalLM).
 Prompt truncation: look-m/utils.py MileBenchDataset (per-image budget; left
 truncate the middle, keep instruction + question).
 
-Scoring: zap/foresight/eval/look_milebench_metrics.py LookMileBenchEvaluator
+Scoring: zap/qvik/eval/look_milebench_metrics.py LookMileBenchEvaluator
 (matches look-m/evaluate.py output and look-m/score.py aggregation).
 
 Usage:
@@ -424,7 +424,7 @@ def run_dataset(
 # --------------------------------------------------------------------------
 def score_results(*, output_dir: Path, datasets: list[str]) -> dict[str, Any]:
     setup_paths()
-    from foresight.eval.score_milebench_predictions import score_dataset
+    from qvik.eval.score_milebench_predictions import score_dataset
 
     results: dict[str, Any] = {}
     for ds in datasets:

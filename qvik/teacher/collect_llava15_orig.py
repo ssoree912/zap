@@ -409,7 +409,7 @@ def load_textvqa_samples(
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="/workspace/look-m/models/llava-v1.5-7b")
+    p.add_argument("--model", default="/workspace/zap/model/llava-1.5-7b-hf")
     p.add_argument(
         "--dataset",
         required=True,

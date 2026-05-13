@@ -8,7 +8,7 @@ Same model/data pipeline as LOOK-M (multi-image, MileBenchDataset truncation),
 with our student scoring image tokens and trimming the KV cache.
 
 Usage:
-    CUDA_VISIBLE_DEVICES=2 python foresight/eval/milebench_lookm_student.py \
+    CUDA_VISIBLE_DEVICES=2 python qvik/eval/milebench_lookm_student.py \
         --dataset CharacterOrder \
         --keep_ratio 1.0 0.5 0.2 \
         --output_dir /workspace/zap/experiments/.../outputs \
@@ -34,7 +34,7 @@ for p in [LOOKM_LLAVA_ROOT, LOOKM_ROOT, ZAP_ROOT]:
         sys.path.insert(0, p)
 
 DATA_ROOT = "/workspace/zap/data/MileBench"
-LOOKM_MODEL_DIR = "/workspace/look-m/models/llava-v1.5-7b"
+LOOKM_MODEL_DIR = "/workspace/zap/model/llava-1.5-7b-hf"
 MAX_CONTEXT_LEN = 4096
 N_TOKENS_PER_IMAGE = 576
 MAX_NEW_TOKENS = 512
@@ -267,7 +267,7 @@ def generate_with_student(
     del H_all
 
     # Trim KV cache
-    from foresight.eval.vlmeval_onevision_student import _trim_kv_cache_per_layer
+    from qvik.eval.vlmeval_onevision_student import _trim_kv_cache_per_layer
     past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
 
     answer_ids = _greedy_decode(model, past_kv, next_token, eos_token_id, MAX_NEW_TOKENS)

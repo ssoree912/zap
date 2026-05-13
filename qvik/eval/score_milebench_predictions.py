@@ -15,7 +15,7 @@ from typing import Any
 
 sys.path.insert(0, "/workspace/zap")
 
-from foresight.eval.look_milebench_metrics import LookMileBenchEvaluator
+from qvik.eval.look_milebench_metrics import LookMileBenchEvaluator
 
 DATA_ROOT = "/workspace/zap/data/MileBench"
 

@@ -7,7 +7,7 @@
 Outputs pred.json compatible with /workspace/look-m/evaluate.py and score.py.
 
 Usage:
-    python foresight/eval/milebench_onevision_student.py \
+    python qvik/eval/milebench_onevision_student.py \
         --dataset ActionLocalization \
         --keep_ratio 0.5 \
         --output_dir /workspace/zap/experiments/.../outputs/keep050 \
@@ -54,7 +54,7 @@ def build_prompt(sample: dict, meta: dict) -> str:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", required=True)
-    parser.add_argument("--pretrained", default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf")
+    parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf")
     parser.add_argument("--student_path", default="/workspace/zap/ckpts/student_onevision_A_ep20")
     parser.add_argument("--keep_ratio", type=float, default=0.5)
     parser.add_argument("--output_dir", required=True)
@@ -87,7 +87,7 @@ def main():
     )
 
     # Load student model (reuse existing class — no duplication)
-    from foresight.eval.lmms_onevision_student import LlavaOnevisionStudent
+    from qvik.eval.lmms_onevision_student import LlavaOnevisionStudent
     model_wrapper = LlavaOnevisionStudent(
         pretrained=args.pretrained,
         student_path=args.student_path,

@@ -175,7 +175,7 @@ class LlavaOnevisionOriginalStudent(lmms):
 
     def __init__(
         self,
-        pretrained: str = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov",
+        pretrained: str = "/workspace/zap/model/llava-onevision-qwen2-7b-ov",
         student_path: str = "/workspace/zap/artifacts/student_onevision_original_future_1800_lr1e4_15ep",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",

@@ -11,14 +11,14 @@ Outputs pred.json compatible with /workspace/look-m/evaluate.py and score.py.
 
 Usage:
     # 1. Profile first (if conf doesn't exist yet):
-    python foresight/eval/milebench_onevision_prefixkv.py \
+    python qvik/eval/milebench_onevision_prefixkv.py \
         --dataset ActionLocalization \
         --keep_ratio 0.5 \
         --output_dir /workspace/zap/experiments/.../outputs/keep050 \
         --profile --profile_samples 50
 
     # 2. Evaluate:
-    python foresight/eval/milebench_onevision_prefixkv.py \
+    python qvik/eval/milebench_onevision_prefixkv.py \
         --dataset ActionLocalization \
         --keep_ratio 0.5 \
         --output_dir /workspace/zap/experiments/.../outputs/keep050
@@ -195,7 +195,7 @@ class LlavaOnevisionPrefixKV:
 
     def __init__(
         self,
-        pretrained: str = "/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf",
+        pretrained: str = "/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",
     ) -> None:
@@ -436,7 +436,7 @@ def run_profile(model: LlavaOnevisionPrefixKV, samples: list, meta: dict, combin
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", required=True)
-    parser.add_argument("--pretrained", default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf")
+    parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf")
     parser.add_argument("--keep_ratio", type=float, default=0.5)
     parser.add_argument("--output_dir", required=True)
     parser.add_argument("--device", default="cuda:0")

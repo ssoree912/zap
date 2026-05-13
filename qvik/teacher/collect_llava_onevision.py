@@ -489,7 +489,7 @@ def collect_one(
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov-hf")
+    p.add_argument("--model", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf")
     p.add_argument("--dataset", required=True, choices=["scienceqa", "gqa", "st_vqa", "chartqa", "docvqa", "infovqa", "llava_instruct", "mmvet"])
     p.add_argument("--n-samples", type=int, default=500)
     p.add_argument("--max-new-tokens", type=int, default=64)

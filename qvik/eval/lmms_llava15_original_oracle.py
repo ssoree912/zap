@@ -1,11 +1,20 @@
 # SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-"""lmms-eval wrapper for original-repo LLaVA-1.5-7B + student KV pruning.
+"""lmms-eval wrapper for original-repo LLaVA-1.5-7B + future-oracle KV pruning.
 
-This intentionally does not use the Transformers LLaVA wrapper.
-It loads the original LLaVA checkpoint layout through `llava.model.builder`,
-matching the teacher extraction/training path used for the original labels.
+The "Future Oracle" is a privileged upper bound:
+  1. Run full-cache prefill + decode and collect answer-to-image attention
+     per-layer (mean over heads, mean over decode steps). This produces a
+     teacher score for every image KV position.
+  2. Throw away the full-cache answer. Re-prefill the same prompt to obtain a
+     fresh KV cache.
+  3. Prune image KV per layer using top-k teacher scores under the same
+     `n_keep` budget that the student wrapper uses. Text KV is preserved.
+  4. Greedy-decode from the pruned cache and return THAT newly generated
+     answer for evaluation.
+
+Step (4) is the metric target: we never evaluate the full-cache answer.
 """
 
 from __future__ import annotations
@@ -79,8 +88,6 @@ def _patch_torch_load_legacy_bin_mmap() -> None:
 _patch_vflowopt_transformers_version_checks()
 _patch_torch_load_legacy_bin_mmap()
 
-from kvpress.presses.visual_utility_student import VisualUtilityStudent  # noqa: E402
-
 from .kv_decode_utils import (  # noqa: E402
     greedy_decode_with_kv,
     trim_kv_cache_per_layer,
@@ -124,7 +131,6 @@ def _infer_original_image_positions(
     input_ids: torch.Tensor,
     image_feature_len: int,
 ) -> tuple[torch.Tensor, int]:
-    """Map raw IMAGE_TOKEN_INDEX placeholders to multimodal prompt positions."""
     raw_ids = input_ids[0].detach().cpu().tolist()
     image_positions: list[int] = []
     cursor = 0
@@ -139,26 +145,13 @@ def _infer_original_image_positions(
     return torch.tensor(image_positions, dtype=torch.long), cursor
 
 
-def _decode_generated(tokenizer, sequences: torch.Tensor, input_len: int, max_new_tokens: int) -> str:
-    ids = sequences[0].detach().cpu()
-    # Original LLaVA generate() with inputs_embeds commonly returns only new
-    # tokens; HF-style generate() may return prompt+new. Handle both.
-    if ids.numel() > max_new_tokens + 1 and ids.numel() > input_len:
-        ids = ids[input_len:]
-    return tokenizer.decode(ids.tolist(), skip_special_tokens=True).strip()
-
-
-@register_model("llava15_original_student")
-class Llava15OriginalStudent(lmms):
-    """Original LLaVA-1.5-7B with student-scored image-token KV pruning."""
+@register_model("llava15_original_oracle")
+class Llava15OriginalOracle(lmms):
+    """Original LLaVA-1.5-7B with future-oracle (teacher-score) KV pruning."""
 
     def __init__(
         self,
-        pretrained: str = "/workspace/zap/ckpts/llava-v1.5-7b",
-        student_path: str = (
-            "/workspace/zap/artifacts/original_llava_teacher/"
-            "student_llava15_original_future_1800_lr1e4_15ep"
-        ),
+        pretrained: str = "/workspace/zap/model/llava-1.5-7b-hf",
         vision_tower_path: str = "",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",
@@ -166,27 +159,29 @@ class Llava15OriginalStudent(lmms):
         model_name: Optional[str] = None,
         conv_template: str = "vicuna_v1",
         batch_size: int = 1,
-        attn_implementation: str = "sdpa",
+        attn_implementation: str = "eager",
         max_new_tokens: int = 32,
+        teacher_max_new_tokens: int = 0,
         image_feature_len: int = 576,
-        grid_h: int = 24,
-        grid_w: int = 24,
         stats_output_dir: str = "",
         **kwargs,
     ) -> None:
         super().__init__()
         if kwargs:
-            raise ValueError(f"Unexpected model_args for llava15_original_student: {kwargs}")
+            raise ValueError(f"Unexpected model_args for llava15_original_oracle: {kwargs}")
 
         self._device = torch.device(device)
         self.device_map = device_map
         self.batch_size_per_gpu = int(batch_size)
         if self.batch_size_per_gpu != 1:
-            raise ValueError("Original LLaVA student wrapper only supports batch_size=1.")
+            raise ValueError("Original LLaVA oracle wrapper only supports batch_size=1.")
+        if attn_implementation != "eager":
+            raise ValueError(
+                "Future Oracle requires attn_implementation='eager' so that "
+                "output_attentions=True is supported during the teacher pass."
+            )
 
-        llava_model_args = {"multimodal": True}
-        if attn_implementation:
-            llava_model_args["attn_implementation"] = attn_implementation
+        llava_model_args = {"multimodal": True, "attn_implementation": attn_implementation}
         if vision_tower_path:
             llava_model_args["overwrite_config"] = {"mm_vision_tower": vision_tower_path}
         resolved_model_name = model_name or get_model_name_from_path(pretrained)
@@ -227,15 +222,13 @@ class Llava15OriginalStudent(lmms):
             pass
         self._config = self._model.config
 
-        self.student = VisualUtilityStudent.from_pretrained(student_path)
-        self.student = self.student.to(device=self._device, dtype=torch.float16).eval()
-        self.student_path = student_path
         self.keep_ratio = float(keep_ratio)
         self.conv_template = conv_template
         self.max_new_tokens = int(max_new_tokens)
+        # Teacher pass max_new_tokens defaults to the eval pass length so the
+        # privileged signal exactly mirrors the answer being evaluated.
+        self.teacher_max_new_tokens = int(teacher_max_new_tokens) or int(max_new_tokens)
         self.image_feature_len = int(image_feature_len)
-        self.grid_h = int(grid_h)
-        self.grid_w = int(grid_w)
         self.stats_output_dir = stats_output_dir
         self._rank = 0
         self._world_size = 1
@@ -295,7 +288,7 @@ class Llava15OriginalStudent(lmms):
             return self._tokenizer.decode([tokens])
 
     def loglikelihood(self, requests: List[Instance]) -> List[Tuple[float, bool]]:
-        raise NotImplementedError("loglikelihood is not implemented for Llava15OriginalStudent.")
+        raise NotImplementedError("loglikelihood is not implemented for Llava15OriginalOracle.")
 
     def generate_until_multi_round(self, requests: List[Instance]) -> List[str]:
         raise NotImplementedError("multi-round generation is not implemented.")
@@ -339,7 +332,7 @@ class Llava15OriginalStudent(lmms):
                 return_tensors="pt",
             ).unsqueeze(0).to(self._device)
 
-            output = self._generate_with_student(
+            output = self._generate_with_oracle(
                 input_ids=input_ids,
                 image_tensor=image_tensor,
                 image_sizes=image_sizes,
@@ -389,6 +382,7 @@ class Llava15OriginalStudent(lmms):
         summary = {
             "task": task_name,
             "keep_ratio": self.keep_ratio,
+            "method": "future_oracle",
             "n_samples": n,
             "avg_image_token_ratio": sum(s["image_token_ratio"] for s in self._keep_stats) / n,
             "avg_text_token_ratio": sum(s["text_token_ratio"] for s in self._keep_stats) / n,
@@ -396,6 +390,7 @@ class Llava15OriginalStudent(lmms):
             "avg_image_keep_ratio": sum(s["image_keep_ratio"] for s in self._keep_stats) / n,
             "avg_n_image_original": sum(s["n_image_original"] for s in self._keep_stats) / n,
             "avg_n_image_kept": sum(s["n_image_kept"] for s in self._keep_stats) / n,
+            "avg_teacher_steps": sum(s["teacher_steps"] for s in self._keep_stats) / n,
             "samples": self._keep_stats,
         }
         out_dir = self.stats_output_dir or os.getcwd()
@@ -405,15 +400,93 @@ class Llava15OriginalStudent(lmms):
         with open(fpath, "w") as f:
             json.dump(summary, f, indent=2)
         print(
-            f"[llava15-original-student] stats saved -> {fpath} "
+            f"[llava15-original-oracle] stats saved -> {fpath} "
             f"(avg_total={summary['avg_total_keep_ratio']:.4f} "
-            f"avg_image={summary['avg_image_keep_ratio']:.4f})",
+            f"avg_image={summary['avg_image_keep_ratio']:.4f} "
+            f"teacher_T_mean={summary['avg_teacher_steps']:.2f})",
             file=sys.stderr,
             flush=True,
         )
 
     @torch.no_grad()
-    def _generate_with_student(
+    def _collect_teacher_scores(
+        self,
+        *,
+        input_ids: torch.Tensor,
+        image_tensor,
+        image_sizes: list,
+        modalities: list,
+        image_positions: torch.Tensor,
+        eos_token_id: int,
+        teacher_max_new_tokens: int,
+    ) -> tuple[torch.Tensor, int]:
+        """Run full-cache prefill + per-step decode with output_attentions=True.
+
+        Returns (teacher [L, n_img] fp32 cpu, T) where T is decode steps used.
+        Aggregation: mean over heads, mean over decode steps.
+        """
+        prefill = self._model(
+            input_ids=input_ids,
+            images=image_tensor,
+            image_sizes=image_sizes,
+            modalities=modalities,
+            use_cache=True,
+            output_hidden_states=False,
+            output_attentions=False,
+            return_dict=True,
+        )
+        past_kv = prefill.past_key_values
+        prompt_len_actual = int(prefill.logits.shape[1])
+        next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+        del prefill
+
+        n_img = int(image_positions.numel())
+        image_idx_dev = image_positions.to(self._device)
+
+        teacher: torch.Tensor | None = None
+        L_layers: int | None = None
+        T = 0
+        pos = int(prompt_len_actual)
+        cache_pos = torch.zeros(1, dtype=torch.long, device=next_token.device)
+
+        for _ in range(int(teacher_max_new_tokens)):
+            cache_pos[0] = pos
+            step = self._model(
+                input_ids=next_token,
+                past_key_values=past_kv,
+                cache_position=cache_pos,
+                position_ids=cache_pos.unsqueeze(0),
+                use_cache=True,
+                output_attentions=True,
+                return_dict=True,
+            )
+            past_kv = step.past_key_values
+            attentions = step.attentions
+            if L_layers is None:
+                L_layers = len(attentions)
+                teacher = torch.zeros(L_layers, n_img, dtype=torch.float32)
+            for l_idx in range(L_layers):
+                # attentions[l]: [1, H, 1, T_now] — gather image positions, mean heads
+                a = attentions[l_idx][0, :, -1, :].index_select(dim=-1, index=image_idx_dev)
+                teacher[l_idx] += a.float().mean(dim=0).cpu()
+            T += 1
+
+            next_token = step.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+            del step
+            pos += 1
+            if int(next_token.item()) == eos_token_id:
+                break
+
+        if T == 0 or teacher is None:
+            raise RuntimeError("Teacher decode loop produced zero steps.")
+        teacher /= float(T)
+
+        del past_kv
+        torch.cuda.empty_cache()
+        return teacher, T
+
+    @torch.no_grad()
+    def _generate_with_oracle(
         self,
         *,
         input_ids: torch.Tensor,
@@ -440,16 +513,44 @@ class Llava15OriginalStudent(lmms):
                 eos_token_id=eos_token_id,
             )
             sequences = out.sequences if hasattr(out, "sequences") else out
-            return _decode_generated(
-                self._tokenizer,
-                sequences,
-                input_len=int(input_ids.shape[1]),
-                max_new_tokens=max_new_tokens,
-            )
+            ids = sequences[0].detach().cpu()
+            in_len = int(input_ids.shape[1])
+            if ids.numel() > max_new_tokens + 1 and ids.numel() > in_len:
+                ids = ids[in_len:]
+            return self._tokenizer.decode(ids.tolist(), skip_special_tokens=True).strip()
 
         if image_tensor is None or num_images == 0 or self.keep_ratio >= 1.0:
             return _safe_generate()
 
+        try:
+            image_positions, _inferred_prompt_len = _infer_original_image_positions(
+                input_ids,
+                self.image_feature_len,
+            )
+        except ValueError:
+            return _safe_generate()
+
+        # ── Pass 1: collect teacher scores via full-cache decode ──────────
+        try:
+            teacher, T_teacher = self._collect_teacher_scores(
+                input_ids=input_ids,
+                image_tensor=image_tensor,
+                image_sizes=image_sizes,
+                modalities=modalities,
+                image_positions=image_positions,
+                eos_token_id=eos_token_id,
+                teacher_max_new_tokens=self.teacher_max_new_tokens,
+            )
+        except Exception as exc:
+            print(
+                f"[llava15-original-oracle] WARNING: teacher pass failed ({exc}); "
+                f"falling back to full-cache generate.",
+                file=sys.stderr,
+                flush=True,
+            )
+            return _safe_generate()
+
+        # ── Pass 2: fresh prefill for the eviction decode ─────────────────
         try:
             prefill = self._model(
                 input_ids=input_ids,
@@ -457,51 +558,27 @@ class Llava15OriginalStudent(lmms):
                 image_sizes=image_sizes,
                 modalities=modalities,
                 use_cache=True,
-                output_hidden_states=True,
+                output_hidden_states=False,
                 output_attentions=False,
                 return_dict=True,
             )
         except Exception as exc:
             print(
-                f"[llava15-original-student] WARNING: prefill failed ({exc}); falling back.",
+                f"[llava15-original-oracle] WARNING: re-prefill failed ({exc}); "
+                f"falling back to full-cache generate.",
                 file=sys.stderr,
                 flush=True,
             )
             return _safe_generate()
 
-        H_all = prefill.hidden_states
         past_kv = prefill.past_key_values
         next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
-
-        try:
-            image_positions, prompt_len = _infer_original_image_positions(
-                input_ids,
-                self.image_feature_len,
-            )
-        except ValueError:
-            answer_ids = greedy_decode_with_kv(
-                self._model,
-                past_kv,
-                next_token,
-                prompt_len=int(H_all[-1].shape[1]),
-                eos_token_id=eos_token_id,
-                max_new_tokens=max_new_tokens,
-            )
-            return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
-
-        actual_prompt_len = int(H_all[-1].shape[1])
-        if actual_prompt_len != int(prompt_len):
-            print(
-                f"[llava15-original-student] WARNING: prompt_len mismatch "
-                f"inferred={prompt_len} actual={actual_prompt_len}; using actual for decode.",
-                file=sys.stderr,
-                flush=True,
-            )
-            prompt_len = actual_prompt_len
+        prompt_len = int(prefill.logits.shape[1])
+        del prefill
 
         n_img = int(image_positions.numel())
-        n_text = int(prompt_len) - n_img
-        n_keep = max(1, int(round(n_img - (1.0 - self.keep_ratio) * int(prompt_len))))
+        n_text = prompt_len - n_img
+        n_keep = max(1, int(round(n_img - (1.0 - self.keep_ratio) * prompt_len)))
         n_keep = min(n_keep, n_img)
 
         self._img_keep_sum += n_keep
@@ -512,67 +589,43 @@ class Llava15OriginalStudent(lmms):
                 "n_image_original": n_img,
                 "n_image_kept": n_keep,
                 "n_text": n_text,
-                "prompt_len": int(prompt_len),
-                "image_token_ratio": n_img / max(1, int(prompt_len)),
-                "text_token_ratio": n_text / max(1, int(prompt_len)),
-                "total_keep_ratio": (n_text + n_keep) / max(1, int(prompt_len)),
+                "prompt_len": prompt_len,
+                "teacher_steps": T_teacher,
+                "image_token_ratio": n_img / max(1, prompt_len),
+                "text_token_ratio": n_text / max(1, prompt_len),
+                "total_keep_ratio": (n_text + n_keep) / max(1, prompt_len),
                 "image_keep_ratio": n_keep / max(1, n_img),
             }
         )
         if not self._reported_keep_budget:
             print(
-                f"[llava15-original-student] keep_ratio_basis=total keep_ratio={self.keep_ratio} "
-                f"prompt_len={int(prompt_len)} image_tokens={n_img} text_tokens={n_text} "
-                f"image_tokens_kept={n_keep}",
+                f"[llava15-original-oracle] keep_ratio_basis=total keep_ratio={self.keep_ratio} "
+                f"prompt_len={prompt_len} image_tokens={n_img} text_tokens={n_text} "
+                f"image_tokens_kept={n_keep} teacher_T={T_teacher}",
                 file=sys.stderr,
                 flush=True,
             )
             self._reported_keep_budget = True
-        if self._img_sample_count % 200 == 0:
-            avg_img_ratio = self._img_keep_sum / max(1, self._img_total_sum)
-            print(
-                f"[llava15-original-student] img_keep_ratio_avg={avg_img_ratio:.4f} "
-                f"({self._img_keep_sum}/{self._img_total_sum}) "
-                f"over {self._img_sample_count} samples",
-                file=sys.stderr,
-                flush=True,
-            )
 
-        last_img = int(image_positions.max().item())
-        q_positions = (
-            torch.arange(last_img + 1, int(prompt_len), dtype=torch.long)
-            if last_img + 1 < int(prompt_len)
-            else torch.empty(0, dtype=torch.long)
-        )
-        image_idx_dev = image_positions.to(self._device)
-        q_idx_dev = q_positions.to(self._device)
-
+        # ── Build per-layer keep masks from teacher scores ────────────────
+        L_layers = teacher.shape[0]
         keep_masks: dict[int, torch.Tensor] = {}
-        for layer_idx in self.student.layer_indices:
-            H_l = H_all[layer_idx + 1]
-            scores = self.student.layers[str(layer_idx)](
-                H_l,
-                image_idx_dev,
-                q_idx_dev,
-                self.grid_h,
-                self.grid_w,
-            ).squeeze(0)
-            if n_keep >= n_img:
-                continue
-            top = torch.topk(scores, k=n_keep, largest=True).indices
-            mask = torch.ones(int(prompt_len), dtype=torch.bool)
-            image_keep = torch.zeros(n_img, dtype=torch.bool)
-            image_keep[top.detach().cpu()] = True
-            mask[image_positions] = image_keep
-            keep_masks[layer_idx] = mask
+        if n_keep < n_img:
+            for layer_idx in range(L_layers):
+                scores = teacher[layer_idx]  # [n_img] cpu fp32
+                top = torch.topk(scores, k=n_keep, largest=True).indices
+                mask = torch.ones(prompt_len, dtype=torch.bool)
+                image_keep = torch.zeros(n_img, dtype=torch.bool)
+                image_keep[top] = True
+                mask[image_positions] = image_keep
+                keep_masks[layer_idx] = mask
 
-        del H_all
         past_kv = trim_kv_cache_per_layer(past_kv, keep_masks)
         answer_ids = greedy_decode_with_kv(
             self._model,
             past_kv,
             next_token,
-            prompt_len=int(prompt_len),
+            prompt_len=prompt_len,
             eos_token_id=eos_token_id,
             max_new_tokens=max_new_tokens,
         )
