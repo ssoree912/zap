@@ -267,8 +267,8 @@ def generate_with_student(
     del H_all
 
     # Trim KV cache
-    from qvik.eval.vlmeval_onevision_student import _trim_kv_cache_per_layer
-    past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
+    from qvik.eval.kv_decode_utils import trim_kv_cache_per_layer
+    past_kv = trim_kv_cache_per_layer(past_kv, keep_masks)
 
     answer_ids = _greedy_decode(model, past_kv, next_token, eos_token_id, MAX_NEW_TOKENS)
     torch.cuda.empty_cache()

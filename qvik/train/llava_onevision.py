@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 """Stage 2: Train OneVision visual-utility student (1D conv branch).
 
-Mirrors `train_visual_utility_student.py` but for the LLaVA-OneVision teacher
-shards in `/workspace/zap/data/teacher_v2_onevision/`. Differences:
-
-- Loads `LlavaOnevisionForConditionalGeneration` (Qwen2-7B backbone, 28 layers,
-  hidden=3584).
-- Builds prompts on the fly via the OneVision Qwen2 chat template using the
-  `question_text` field saved by `collect_future_teacher_v2_onevision.py`.
-- Uses `VisualUtilityStudentOneVision`, whose CNN branch is 1D over the
-  variable-length AnyRes image-token sequence.
+Uses LLaVA-OneVision original repo format (llava-onevision-qwen2-7b-ov).
+Teacher shards are loaded from `teacher_root` and inputs are prepared via
+the llava original tokenizer + image processor pipeline.
 """
 
 from __future__ import annotations
@@ -27,22 +21,32 @@ import torch
 import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
-from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
+
+_LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
+_TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
+for _p in [_LLAVA_SRC, _TF_SRC]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 sys.path.insert(0, "/workspace/zap")
 from kvpress.presses.visual_utility_student_onevision import (
     VisualUtilityStudentOneVision,
     pairwise_ranking_loss,
 )
-from ..llava_onevision_extractor import configure_onevision_processor
 
 
-# Same prompt-builder used by the OneVision collector.
-def _build_prompt(processor, question: str, num_images: int = 1) -> str:
-    content: list[dict] = [{"type": "image"} for _ in range(num_images)]
-    content.append({"type": "text", "text": question})
-    conversation = [{"role": "user", "content": content}]
-    return processor.apply_chat_template(conversation, add_generation_prompt=True)
+CONV_TEMPLATE = "qwen_1_5"
+
+
+def _build_prompt(tokenizer, question: str, num_images: int = 1) -> str:
+    from llava.constants import DEFAULT_IMAGE_TOKEN
+    from llava.conversation import conv_templates
+
+    conv = conv_templates[CONV_TEMPLATE].copy()
+    image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * num_images)
+    conv.append_message(conv.roles[0], f"{image_prefix}\n{question}")
+    conv.append_message(conv.roles[1], None)
+    return conv.get_prompt()
 
 
 def list_teacher_files(teacher_root: Path, datasets: list[str], per_ds_limit: int | None) -> list[Path]:
@@ -59,29 +63,41 @@ def list_teacher_files(teacher_root: Path, datasets: list[str], per_ds_limit: in
 
 
 class TeacherCacheDataset(Dataset):
-    """Preload teacher .pt files (and reproduce processed inputs for prefill)."""
+    """Preload teacher .pt files and tokenize inputs for llava original format."""
 
     def __init__(
         self,
         files: list[Path],
-        processor=None,
+        tokenizer=None,
+        image_processor=None,
+        model_config=None,
         verbose: bool = True,
     ) -> None:
+        from llava.constants import IMAGE_TOKEN_INDEX
+        from llava.mm_utils import process_images, tokenizer_image_token
+
         self.files = list(files)
+        self.image_processor = image_processor
+        self.model_config = model_config
         self.records: list[dict] = []
         for i, p in enumerate(self.files):
             rec = torch.load(p, weights_only=False, map_location="cpu")
-            if processor is not None:
+            if tokenizer is not None and image_processor is not None:
                 question = rec.get("question_text") or rec.get("prompt_text") or ""
                 if isinstance(rec["image_path"], (list, tuple)):
                     images = [Image.open(pp).convert("RGB") for pp in rec["image_path"]]
                     n_images = len(images)
                 else:
-                    images = Image.open(rec["image_path"]).convert("RGB")
+                    images = [Image.open(rec["image_path"]).convert("RGB")]
                     n_images = 1
-                prompt_text = _build_prompt(processor, question, num_images=n_images)
-                inputs = processor(images=images, text=prompt_text, return_tensors="pt")
-                rec["_processed_inputs"] = {k: v for k, v in inputs.items()}
+                prompt = _build_prompt(tokenizer, question, num_images=n_images)
+                input_ids = tokenizer_image_token(
+                    prompt, tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt"
+                )
+                image_tensor = process_images(images, image_processor, model_config)
+                rec["_input_ids"] = input_ids
+                rec["_image_tensor"] = image_tensor
+                rec["_image_sizes"] = [img.size for img in images]
             self.records.append(rec)
             if verbose and (i + 1) % 100 == 0:
                 print(f"[preload] {i+1}/{len(self.files)}", flush=True)
@@ -114,7 +130,7 @@ def main() -> int:
     )
     p.add_argument(
         "--llava-path",
-        default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf",
+        default="/workspace/zap/model/llava-onevision-qwen2-7b-ov",
     )
     p.add_argument("--epochs", type=int, default=20)
     p.add_argument("--lr", type=float, default=1e-4)
@@ -147,18 +163,20 @@ def main() -> int:
     log_f = log_path.open("w")
     (out_dir / "train_config.json").write_text(json.dumps(vars(args), indent=2))
 
-    print(f"[load] OneVision={args.llava_path} dtype=bf16 device={device}", flush=True)
-    lvlm = LlavaOnevisionForConditionalGeneration.from_pretrained(
-        args.llava_path,
-        torch_dtype=torch.bfloat16,
+    print(f"[load] OneVision={args.llava_path} device={device}", flush=True)
+    from llava.mm_utils import get_model_name_from_path
+    from llava.model.builder import load_pretrained_model
+
+    model_name = get_model_name_from_path(args.llava_path)
+    tokenizer, lvlm, image_processor, _ = load_pretrained_model(
+        args.llava_path, None, model_name,
+        device_map=device,
         attn_implementation="sdpa",
-        low_cpu_mem_usage=True,
-    ).to(device).eval()
+        multimodal=True,
+    )
+    lvlm = lvlm.to(torch.bfloat16).eval()
     for p_ in lvlm.parameters():
         p_.requires_grad_(False)
-
-    processor = AutoProcessor.from_pretrained(args.llava_path)
-    processor = configure_onevision_processor(processor, lvlm.config)
 
     per_ds_limit = args.per_ds_limit if args.per_ds_limit and args.per_ds_limit > 0 else None
     all_files = list_teacher_files(Path(args.teacher_root), args.datasets, per_ds_limit)
@@ -172,8 +190,8 @@ def main() -> int:
         f"per_ds_limit={per_ds_limit} datasets={args.datasets} (preloading...)",
         flush=True,
     )
-    train_ds = TeacherCacheDataset(all_files[:n_train], processor=processor)
-    val_ds = TeacherCacheDataset(all_files[n_train:], processor=processor)
+    train_ds = TeacherCacheDataset(all_files[:n_train], tokenizer=tokenizer, image_processor=image_processor, model_config=lvlm.config)
+    val_ds = TeacherCacheDataset(all_files[n_train:], tokenizer=tokenizer, image_processor=image_processor, model_config=lvlm.config)
     print(f"[data] preloaded train={len(train_ds)} val={len(val_ds)}", flush=True)
 
     loader_gen = torch.Generator()
@@ -201,11 +219,25 @@ def main() -> int:
     optimizer = torch.optim.AdamW(student.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     def run_forward(rec: dict, train: bool) -> tuple[float, float, float]:
-        inputs = {k: v.to(device) for k, v in rec["_processed_inputs"].items()}
+        input_ids = rec["_input_ids"].unsqueeze(0).to(device)
+        image_tensor = rec["_image_tensor"]
+        if isinstance(image_tensor, list):
+            image_tensor = [t.to(device, dtype=torch.bfloat16) for t in image_tensor]
+        else:
+            image_tensor = image_tensor.to(device, dtype=torch.bfloat16)
+        image_sizes = rec["_image_sizes"]
+        attention_mask = input_ids.ne(
+            tokenizer.pad_token_id if tokenizer.pad_token_id else tokenizer.eos_token_id
+        ).to(device)
 
         with torch.no_grad():
+            _, _, attention_mask, _, inputs_embeds, _ = lvlm.prepare_inputs_labels_for_multimodal(
+                input_ids, None, attention_mask, None, None,
+                image_tensor, ["image"], image_sizes,
+            )
             out = lvlm(
-                **inputs,
+                inputs_embeds=inputs_embeds,
+                attention_mask=attention_mask,
                 output_hidden_states=True,
                 use_cache=False,
                 return_dict=True,

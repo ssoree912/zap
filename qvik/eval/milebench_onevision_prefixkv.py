@@ -191,41 +191,79 @@ def load_conf(model_name: str, ratio: float) -> np.ndarray:
 
 
 class LlavaOnevisionPrefixKV:
-    """LLaVA-OneVision (HF) with PrefixKV attention-score KV pruning."""
+    """LLaVA-OneVision (original repo) with PrefixKV attention-score KV pruning."""
 
     def __init__(
         self,
-        pretrained: str = "/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf",
+        pretrained: str = "/workspace/zap/model/llava-onevision-qwen2-7b-ov",
         keep_ratio: float = 0.5,
         device: str = "cuda:0",
+        conv_template: str = "qwen_1_5",
     ) -> None:
-        from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
+        _LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
+        _TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
+        for p in [_LLAVA_SRC, _TF_SRC]:
+            if p not in sys.path:
+                sys.path.insert(0, p)
+
+        from llava.mm_utils import get_model_name_from_path, process_images, tokenizer_image_token
+        from llava.model.builder import load_pretrained_model
 
         self._device = torch.device(device)
-        self._model = LlavaOnevisionForConditionalGeneration.from_pretrained(
-            pretrained,
-            torch_dtype=torch.float16,
-            low_cpu_mem_usage=True,
+        model_name = get_model_name_from_path(pretrained)
+        tokenizer, model, image_processor, _ = load_pretrained_model(
+            pretrained, None, model_name,
+            device_map=device,
             attn_implementation="eager",  # needed for output_attentions=True
-        ).to(self._device).eval()
-
-        self._processor = AutoProcessor.from_pretrained(pretrained)
-        self._tokenizer = self._processor.tokenizer
+            multimodal=True,
+        )
+        self._model = model.eval()
+        self._tokenizer = tokenizer
+        self._image_processor = image_processor
+        self._conv_template = conv_template
+        self._process_images = process_images
+        self._tokenizer_image_token = tokenizer_image_token
         self._config = self._model.config
-
-        # Restrict tile count so visual tokens fit within MAX_LEN
-        self._processor.image_processor.image_grid_pinpoints = MAX_PINPOINTS
-        self._model.config.image_grid_pinpoints = MAX_PINPOINTS
 
         self.model_name = Path(pretrained).name
         self.keep_ratio = float(keep_ratio)
         self.ratio = round(1.0 - keep_ratio, 10)
         self.layer_num = getattr(self._config, "num_hidden_layers", 28)
 
-        self.max_length = getattr(self._config, "max_position_embeddings", 32768)
+    def _prepare_inputs(self, prompt_text: str, image: Image.Image):
+        """Convert prompt + image to inputs_embeds dict and return (inputs, prompt_len)."""
+        from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN
+        from llava.conversation import conv_templates
+
+        conv = conv_templates[self._conv_template].copy()
+        question = prompt_text
+        if DEFAULT_IMAGE_TOKEN not in question:
+            question = f"{DEFAULT_IMAGE_TOKEN}\n{question}"
+        conv.append_message(conv.roles[0], question)
+        conv.append_message(conv.roles[1], None)
+        prompt = conv.get_prompt()
+
+        input_ids = self._tokenizer_image_token(
+            prompt, self._tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt"
+        ).unsqueeze(0).to(self._device)
+        attention_mask = input_ids.ne(
+            self._tokenizer.pad_token_id if self._tokenizer.pad_token_id else self._tokenizer.eos_token_id
+        ).to(self._device)
+
+        image_tensor = self._process_images([image], self._image_processor, self._config)
+        if isinstance(image_tensor, list):
+            image_tensor = [t.to(self._device, dtype=torch.float16) for t in image_tensor]
+        else:
+            image_tensor = image_tensor.to(self._device, dtype=torch.float16)
+
+        _, _, attention_mask, _, inputs_embeds, _ = self._model.prepare_inputs_labels_for_multimodal(
+            input_ids, None, attention_mask, None, None,
+            image_tensor, ["image"], [image.size],
+        )
+        return {"inputs_embeds": inputs_embeds, "attention_mask": attention_mask}, int(inputs_embeds.shape[1])
 
     @torch.no_grad()
-    def generate(self, inputs: dict, max_new_tokens: int = MAX_NEW_TOKENS) -> str:
+    def generate(self, inputs: dict, prompt_len: int, max_new_tokens: int = MAX_NEW_TOKENS) -> str:
         """Full-cache baseline generation (keep_ratio=1.0)."""
         out = self._model.generate(
             **inputs,
@@ -234,21 +272,19 @@ class LlavaOnevisionPrefixKV:
             use_cache=True,
             pad_token_id=self._tokenizer.eos_token_id,
         )
-        return self._tokenizer.decode(
-            out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True
-        ).strip()
+        return self._tokenizer.decode(out[0], skip_special_tokens=True).strip()
 
     @torch.no_grad()
     def generate_with_prefixkv(
         self,
         inputs: dict,
+        prompt_len: int,
         layer_ratios: np.ndarray,
         max_new_tokens: int = MAX_NEW_TOKENS,
     ) -> str:
         """Prefill → PrefixKV attention-score pruning → greedy decode."""
-        prompt_len = int(inputs["input_ids"].shape[1])
         score_sums: dict[int, torch.Tensor] = {}
-        attn_layers = self._model.language_model.model.layers
+        attn_layers = self._model.model.layers
         original_forwards: dict[int, object] = {}
 
         def make_patched(li, orig_fwd):
@@ -282,8 +318,7 @@ class LlavaOnevisionPrefixKV:
                 layer.self_attn.forward = original_forwards[li]
 
         past_kv = prefill.past_key_values
-        eos_token_id = _resolve_eos_token_id(self._processor, self._model.config)
-        # Use prefill logits for first token — no need to replay against trimmed cache
+        eos_token_id = self._tokenizer.eos_token_id or 151645
         next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
         del prefill
 
@@ -323,16 +358,15 @@ class LlavaOnevisionPrefixKV:
             max_new_tokens=max_new_tokens,
         )
         torch.cuda.empty_cache()
-        return self._processor.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
+        return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
 
     @torch.no_grad()
-    def profile_sample(self, inputs: dict) -> list[float] | None:
+    def profile_sample(self, inputs: dict, prompt_len: int) -> list[float] | None:
         """Compute PrefixKV per-layer forget ratios for one sample."""
         try:
             score_sums: dict[int, torch.Tensor] = {}
 
-            # Access Qwen2Attention layers inside LlavaOnevision
-            attn_layers = self._model.language_model.model.layers
+            attn_layers = self._model.model.layers
             original_forwards: dict[int, object] = {}
 
             def make_patched(li, orig_fwd):
@@ -365,7 +399,6 @@ class LlavaOnevisionPrefixKV:
             if not score_sums:
                 return None
 
-            prompt_len = int(inputs["input_ids"].shape[1])
             score_stack = torch.stack([score_sums[li] for li in range(len(attn_layers))])  # [L, seq]
 
             target_num = prompt_len * self.ratio
@@ -402,23 +435,12 @@ def run_profile(model: LlavaOnevisionPrefixKV, samples: list, meta: dict, combin
 
         try:
             prompt_text = build_prompt(sample, meta)
-            conversation = [{"role": "user", "content": prompt_text}]
-            text = model._tokenizer.apply_chat_template(
-                conversation, tokenize=False, add_generation_prompt=True
-            )
-            inputs = model._processor(
-                images=[image],
-                text=text,
-                return_tensors="pt",
-                truncation=True,
-                max_length=MAX_LEN,
-            ).to(model._device, torch.float16)
-            inputs.pop("attention_mask", None)
+            inputs, prompt_len = model._prepare_inputs(prompt_text, image)
         except Exception as e:
             print(f"[profile] input prep failed: {e}", file=sys.stderr)
             continue
 
-        ratios = model.profile_sample(inputs)
+        ratios = model.profile_sample(inputs, prompt_len)
         if ratios is not None:
             all_ratios.append(ratios)
 
@@ -436,7 +458,7 @@ def run_profile(model: LlavaOnevisionPrefixKV, samples: list, meta: dict, combin
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", required=True)
-    parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf")
+    parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov")
     parser.add_argument("--keep_ratio", type=float, default=0.5)
     parser.add_argument("--output_dir", required=True)
     parser.add_argument("--device", default="cuda:0")
@@ -503,23 +525,17 @@ def main():
             })
             continue
 
-        conversation = [{"role": "user", "content": prompt_text}]
-        text = model._tokenizer.apply_chat_template(
-            conversation, tokenize=False, add_generation_prompt=True
-        )
-        inputs = model._processor(
-            images=[image],
-            text=text,
-            return_tensors="pt",
-            truncation=True,
-            max_length=MAX_LEN,
-        ).to(args.device, torch.float16)
-        inputs.pop("attention_mask", None)
+        try:
+            inputs, prompt_len = model._prepare_inputs(prompt_text, image)
+        except Exception as e:
+            print(f"[warn] input prep failed for sample {sample['sample_id']}: {e}", file=sys.stderr)
+            predictions.append({"sample_id": sample["sample_id"], "pred_response": "", "gt_response": sample["response"]})
+            continue
 
         if args.keep_ratio >= 1.0:
-            answer = model.generate(inputs, MAX_NEW_TOKENS)
+            answer = model.generate(inputs, prompt_len, MAX_NEW_TOKENS)
         else:
-            answer = model.generate_with_prefixkv(inputs, layer_ratios, MAX_NEW_TOKENS)
+            answer = model.generate_with_prefixkv(inputs, prompt_len, layer_ratios, MAX_NEW_TOKENS)
 
         predictions.append({
             "sample_id": sample["sample_id"],

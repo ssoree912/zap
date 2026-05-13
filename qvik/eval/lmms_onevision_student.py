@@ -10,11 +10,11 @@ monkey-patches this module into the lmms-eval models package before running.
 Example CLI (via launcher):
     CUDA_VISIBLE_DEVICES=0 python scripts/run_lmms_eval_student.py -- \\
         --model llava_onevision_student \\
-        --model_args pretrained=/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf,student_path=/workspace/zap/ckpts/student_onevision_ocrdoc_lr1e4_20ep,keep_ratio=0.5 \\
+        --model_args pretrained=/workspace/zap/model/llava-onevision-qwen2-7b-ov,student_path=/workspace/zap/ckpts/student_onevision_A_ep20,keep_ratio=0.5 \\
         --tasks chartqa_local \\
         --batch_size 1 \\
         --log_samples \\
-        --output_path /workspace/zap/eval_results/lmms_chartqa_ocrdoc_05
+        --output_path /workspace/zap/eval_results/lmms_chartqa_05
 """
 
 from __future__ import annotations
@@ -31,15 +31,7 @@ from tqdm import tqdm
 sys.path.insert(0, "/workspace/zap")
 
 from kvpress.presses.visual_utility_student_onevision import VisualUtilityStudentOneVision
-from ..llava_onevision_extractor import (
-    configure_onevision_processor,
-    infer_onevision_image_positions_no_forward,
-)
-from .vlmeval_onevision_student import (
-    _greedy_decode_with_kv,
-    _resolve_eos_token_id,
-    _trim_kv_cache_per_layer,
-)
+from .kv_decode_utils import greedy_decode_with_kv, trim_kv_cache_per_layer
 
 try:
     from lmms_eval import utils
@@ -57,12 +49,7 @@ LLAVA_IMAGE_TOKEN_INDEX = -200  # LLaVA constant (llava.constants.IMAGE_TOKEN_IN
 
 @register_model("llava_onevision_student")
 class LlavaOnevisionStudent(lmms):
-    """LLaVA-OneVision with student-scored image-token KV pruning for lmms-eval.
-
-    Supports two model formats:
-      model_format="hf"    — HF-format checkpoint (llava-onevision-qwen2-7b-ov-hf)
-      model_format="llava" — LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)
-    """
+    """LLaVA-OneVision with student-scored image-token KV pruning for lmms-eval."""
 
     def __init__(
         self,
@@ -73,7 +60,6 @@ class LlavaOnevisionStudent(lmms):
         batch_size: int = 1,
         attn_implementation: str = "sdpa",
         stats_output_dir: str = "",
-        model_format: str = "llava",
         conv_template: str = "qwen_1_5",
         **kwargs,
     ) -> None:
@@ -82,12 +68,8 @@ class LlavaOnevisionStudent(lmms):
         self._device = torch.device(device)
         self.batch_size_per_gpu = int(batch_size)
         assert self.batch_size_per_gpu == 1, "Only batch_size=1 is supported."
-        self._model_format = model_format
 
-        if model_format == "llava":
-            self._init_llava(pretrained, device, attn_implementation, conv_template)
-        else:
-            self._init_hf(pretrained, attn_implementation)
+        self._init_llava(pretrained, device, attn_implementation, conv_template)
 
         self._config = self._model.config
 
@@ -103,22 +85,6 @@ class LlavaOnevisionStudent(lmms):
         self._keep_stats: list[dict] = []
         self._rank = 0
         self._world_size = 1
-
-    def _init_hf(self, pretrained: str, attn_implementation: str) -> None:
-        """Load HF-format checkpoint (llava-onevision-qwen2-7b-ov-hf)."""
-        from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
-
-        self._model = LlavaOnevisionForConditionalGeneration.from_pretrained(
-            pretrained,
-            torch_dtype=torch.float16,
-            low_cpu_mem_usage=True,
-            attn_implementation=attn_implementation,
-        ).to(self._device).eval()
-        self._processor = AutoProcessor.from_pretrained(pretrained)
-        configure_onevision_processor(self._processor, self._model.config)
-        self._tokenizer = self._processor.tokenizer
-        self._image_processor = None
-        self._conv_template = None
 
     def _init_llava(self, pretrained: str, device: str, attn_implementation: str, conv_template: str) -> None:
         """Load LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)."""
@@ -231,22 +197,7 @@ class LlavaOnevisionStudent(lmms):
 
             context = contexts[0]
 
-            if self._model_format == "llava":
-                output = self._generate_llava(context, visuals, max_new_tokens)
-            else:
-                if DEFAULT_IMAGE_TOKEN not in context:
-                    image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * len(visuals))
-                    context = f"{image_prefix}\n{context}"
-                conversation = [{"role": "user", "content": context}]
-                text = self._tokenizer.apply_chat_template(
-                    conversation, tokenize=False, add_generation_prompt=True
-                )
-                inputs = self._processor(
-                    images=visuals if visuals else None,
-                    text=text,
-                    return_tensors="pt",
-                ).to(self._device, torch.float16)
-                output = self._generate_with_student(inputs, visuals, max_new_tokens)
+            output = self._generate_llava(context, visuals, max_new_tokens)
             res.append(output)
             self.cache_hook.add_partial("generate_until", (context, gen_kwargs), output)
             pbar.update(1)
@@ -442,9 +393,9 @@ class LlavaOnevisionStudent(lmms):
         del H_all, prefill
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
-        past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
+        past_kv = trim_kv_cache_per_layer(past_kv, keep_masks)
 
-        answer_ids = _greedy_decode_with_kv(
+        answer_ids = greedy_decode_with_kv(
             self._model, past_kv, next_token,
             prompt_len=prompt_len,
             eos_token_id=eos_token_id, max_new_tokens=max_new_tokens,
@@ -452,198 +403,3 @@ class LlavaOnevisionStudent(lmms):
         torch.cuda.empty_cache()
         return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
 
-    @torch.no_grad()
-    def _generate_with_student(self, inputs, visuals, max_new_tokens: int) -> str:
-        def _safe_generate():
-            # image features/tokens mismatch (dynamic-res edge cases) can also
-            # propagate through generate() — catch and return empty so the
-            # sample is skipped rather than crashing the whole task.
-            try:
-                out = self._model.generate(
-                    **inputs,
-                    max_new_tokens=max_new_tokens,
-                    do_sample=False,
-                    use_cache=True,
-                    pad_token_id=self._tokenizer.eos_token_id,
-                )
-                return self._tokenizer.decode(
-                    out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True
-                ).strip()
-            except ValueError as e:
-                print(f"[lmms-onevision-student] WARNING: generate() fallback failed ({e}), skipping sample.",
-                      file=sys.stderr, flush=True)
-                return ""
-
-        if not visuals or self.keep_ratio >= 1.0:
-            return _safe_generate()
-
-        eos_token_id = _resolve_eos_token_id(self._processor, self._model.config)
-
-        try:
-            image_positions, prompt_len = infer_onevision_image_positions_no_forward(
-                prompt_inputs={"input_ids": inputs["input_ids"], "attention_mask": inputs["attention_mask"]},
-                model_config=self._model.config,
-                num_images=len(visuals),
-            )
-        except ValueError:
-            return _safe_generate()
-
-        n_img = int(image_positions.numel())
-        n_text = int(prompt_len) - n_img
-        # keep_ratio is image-token based: keep keep_ratio * n_img image tokens.
-        # text tokens are always kept unconditionally.
-        n_keep = max(1, int(math.ceil(n_img * self.keep_ratio)))
-
-        self._img_keep_sum += n_keep
-        self._img_total_sum += n_img
-        self._img_sample_count += 1
-        self._keep_stats.append({
-            "n_image_original": n_img,
-            "n_image_kept": n_keep,
-            "n_text": n_text,
-            "prompt_len": int(prompt_len),
-            "image_token_ratio": n_img / max(1, int(prompt_len)),
-            "text_token_ratio": n_text / max(1, int(prompt_len)),
-            "total_keep_ratio": (n_text + n_keep) / max(1, int(prompt_len)),
-            "image_keep_ratio": n_keep / max(1, n_img),
-        })
-        if not self._reported_keep_budget:
-            print(
-                f"[lmms-onevision-student] keep_ratio_basis=image keep_ratio={self.keep_ratio} "
-                f"prompt_len={int(prompt_len)} image_tokens={n_img} text_tokens={n_text} "
-                f"image_tokens_kept={n_keep}",
-                file=sys.stderr, flush=True,
-            )
-            self._reported_keep_budget = True
-        if self._img_sample_count % 200 == 0:
-            avg_img_ratio = self._img_keep_sum / max(1, self._img_total_sum)
-            print(
-                f"[lmms-onevision-student] img_keep_ratio_avg={avg_img_ratio:.4f} "
-                f"({self._img_keep_sum}/{self._img_total_sum}) over {self._img_sample_count} samples",
-                file=sys.stderr, flush=True,
-            )
-
-        last_img = int(image_positions.max().item())
-        q_positions = (
-            torch.arange(last_img + 1, prompt_len, dtype=torch.long)
-            if last_img + 1 < prompt_len else torch.empty(0, dtype=torch.long)
-        )
-        image_idx_dev = image_positions.to(self._device)
-        q_idx_dev = q_positions.to(self._device)
-
-        use_two_pass = os.environ.get("ZAP_ONEVISION_TWO_PASS", "0") == "1"
-        if use_two_pass:
-            try:
-                score_prefill = self._model(
-                    **inputs,
-                    use_cache=False,
-                    output_hidden_states=True,
-                    output_attentions=False,
-                    return_dict=True,
-                )
-            except ValueError:
-                return _safe_generate()
-            H_all = score_prefill.hidden_states
-        else:
-            try:
-                prefill = self._model(
-                    **inputs,
-                    use_cache=True,
-                    output_hidden_states=True,
-                    output_attentions=False,
-                    return_dict=True,
-                )
-            except ValueError:
-                return _safe_generate()
-            H_all = prefill.hidden_states
-            past_kv = prefill.past_key_values
-            next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
-
-        keep_masks: dict[int, torch.Tensor] = {}
-        for li in self.student.layer_indices:
-            H_l = H_all[li + 1]
-            scores = self.student.layers[str(li)](H_l, image_idx_dev, q_idx_dev).squeeze(0)
-            if n_keep >= n_img:
-                continue
-            top = torch.topk(scores, k=n_keep, largest=True).indices
-            mask = torch.ones(prompt_len, dtype=torch.bool)
-            image_keep = torch.zeros(n_img, dtype=torch.bool)
-            image_keep[top.cpu()] = True
-            mask[image_positions.cpu()] = image_keep
-            keep_masks[li] = mask
-
-        if use_two_pass:
-            del H_all, score_prefill
-            if torch.cuda.is_available():
-                torch.cuda.empty_cache()
-            try:
-                cache_prefill = self._model(
-                    **inputs,
-                    use_cache=True,
-                    output_hidden_states=False,
-                    output_attentions=False,
-                    return_dict=True,
-                )
-            except ValueError:
-                return _safe_generate()
-            past_kv = cache_prefill.past_key_values
-            next_token = cache_prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
-            del cache_prefill
-        else:
-            del H_all, prefill  # free VRAM before trim + decode
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-
-        if not keep_masks:
-            print(
-                "[lmms-onevision-student] WARNING: no layers pruned (n_keep >= n_img), "
-                "falling back to full cache.",
-                file=sys.stderr, flush=True,
-            )
-
-        # ── DEBUG: mask 통계 확인 (처음 3샘플만) ────────────────────────────
-        if keep_masks and self._img_sample_count <= 3:
-            sample_li = next(iter(keep_masks))
-            sample_mask = keep_masks[sample_li]
-            n_kept_total = int(sample_mask.sum().item())
-            n_kept_text = int(sample_mask.cpu()[~torch.isin(
-                torch.arange(prompt_len), image_positions.cpu()
-            )].sum().item())
-            n_kept_image = int(sample_mask.cpu()[image_positions.cpu()].sum().item())
-            actual_ratio = n_kept_total / max(1, int(prompt_len))
-            print(
-                f"[DEBUG-MASK layer={sample_li}] "
-                f"prompt_len={int(prompt_len)} "
-                f"kept_total={n_kept_total} ({actual_ratio:.3f}) "
-                f"kept_text={n_kept_text}/{n_text} "
-                f"kept_image={n_kept_image}/{n_img} "
-                f"target_keep_ratio={self.keep_ratio}",
-                file=sys.stderr, flush=True,
-            )
-        # ─────────────────────────────────────────────────────────────────────
-
-        past_kv = _trim_kv_cache_per_layer(past_kv, keep_masks)
-
-        # ── DEBUG: trim 후 실제 KV cache 크기 확인 (처음 3샘플만) ────────────
-        if keep_masks and self._img_sample_count <= 3 and hasattr(past_kv, "key_cache") and past_kv.key_cache:
-            sample_li2 = next(iter(keep_masks))
-            if sample_li2 < len(past_kv.key_cache):
-                kv_seq_len = past_kv.key_cache[sample_li2].shape[2]
-                print(
-                    f"[DEBUG-KV-AFTER-TRIM layer={sample_li2}] "
-                    f"kv_seq_len={kv_seq_len} "
-                    f"expected≈{n_text + n_keep} "
-                    f"ratio={kv_seq_len / max(1, int(prompt_len)):.3f}",
-                    file=sys.stderr, flush=True,
-                )
-        # ─────────────────────────────────────────────────────────────────────
-
-        # Match the original kvpress/direct-generate semantics: the first answer
-        # token comes from prefill logits; the pruned KV affects subsequent decode.
-        answer_ids = _greedy_decode_with_kv(
-            self._model, past_kv, next_token,
-            prompt_len=int(prompt_len),
-            eos_token_id=eos_token_id, max_new_tokens=max_new_tokens,
-        )
-        torch.cuda.empty_cache()
-        return self._processor.decode(answer_ids.tolist(), skip_special_tokens=True).strip()

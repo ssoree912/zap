@@ -54,7 +54,7 @@ def build_prompt(sample: dict, meta: dict) -> str:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", required=True)
-    parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf")
+    parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov")
     parser.add_argument("--student_path", default="/workspace/zap/ckpts/student_onevision_A_ep20")
     parser.add_argument("--keep_ratio", type=float, default=0.5)
     parser.add_argument("--output_dir", required=True)
@@ -94,7 +94,6 @@ def main():
         keep_ratio=args.keep_ratio,
         device=args.device,
         stats_output_dir=task_out,
-        model_format="hf",
     )
 
     predictions = []
@@ -116,20 +115,8 @@ def main():
             })
             continue
 
-        conversation = [{"role": "user", "content": prompt_text}]
-        text = model_wrapper._tokenizer.apply_chat_template(
-            conversation, tokenize=False, add_generation_prompt=True
-        )
-        inputs = model_wrapper._processor(
-            images=[image],
-            text=text,
-            return_tensors="pt",
-            truncation=True,
-            max_length=model_wrapper.max_length,
-        ).to(args.device, torch.float16)
-
         try:
-            answer = model_wrapper._generate_with_student(inputs, [image], args.max_new_tokens)
+            answer = model_wrapper._generate_llava(prompt_text, [image], args.max_new_tokens)
         except torch.cuda.OutOfMemoryError as e:
             print(
                 f"[warn] OOM on {args.dataset} sample {sample['sample_id']}: {e}",
@@ -144,7 +131,7 @@ def main():
             "pred_response": answer,
             "gt_response": sample["response"],
         })
-        del inputs, image
+        del image
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 

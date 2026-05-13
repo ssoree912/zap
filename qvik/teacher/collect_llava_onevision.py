@@ -1,19 +1,13 @@
 #!/usr/bin/env python3
-"""Stage 1 teacher cache for LLaVA-OneVision.
+"""Stage 1 teacher cache for LLaVA-OneVision (original repo format).
 
-Mirrors `collect_future_teacher_v2.py` but targets the HF
-`LlavaOnevisionForConditionalGeneration` model with Qwen2 backbone +
-AnyRes image tokenization. Because OneVision prompts can reach several
-thousand tokens, a single `model.generate(..., output_attentions=True)`
-call would materialize a [L, H, T, T] prefill attention tensor and OOM,
-so this script runs prefill once with `output_attentions=False`, then
-loops decode steps manually with `output_attentions=True` (each step
-only stores [L, H, 1, T_prompt+i]).
+Uses llava-onevision-qwen2-7b-ov (original repo) with llava.model.builder.
+Runs prefill once with `output_attentions=False`, then loops decode steps
+manually with `output_attentions=True` to avoid OOM on the full attention tensor.
 
-Per-sample output: ``<output_root>/<dataset>/<sample_id>.pt`` with the
-same schema as the LLaVA-1.5 collector (teacher_raw, teacher_norm,
-image_token_indices, question_token_indices, prompt_len_mm, T, n_img,
-trajectory_m).
+Per-sample output: ``<output_root>/<dataset>/<sample_id>.pt`` with schema:
+teacher_raw, teacher_norm, image_token_indices, question_token_indices,
+prompt_len_mm, T, n_img, trajectory_m.
 """
 
 from __future__ import annotations
@@ -29,13 +23,16 @@ from pathlib import Path
 import numpy as np
 import torch
 from PIL import Image
-from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
+
+_LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
+_TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
+for _p in [_LLAVA_SRC, _TF_SRC]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 sys.path.insert(0, "/workspace/zap")
-from ..llava_onevision_extractor import (
-    configure_onevision_processor,
-    infer_onevision_image_positions_no_forward,
-)
+
+CONV_TEMPLATE = "qwen_1_5"
 
 
 # ── dataset loaders ────────────────────────────────────────────────────────
@@ -302,12 +299,15 @@ def load_samples_from_json(
 # ── prompt construction ────────────────────────────────────────────────────
 
 
-def build_onevision_prompt(processor, question: str, num_images: int) -> str:
-    """Use the Qwen2 chat template carried by the OneVision processor."""
-    content: list[dict] = [{"type": "image"} for _ in range(num_images)]
-    content.append({"type": "text", "text": question})
-    conversation = [{"role": "user", "content": content}]
-    return processor.apply_chat_template(conversation, add_generation_prompt=True)
+def build_onevision_prompt(tokenizer, question: str, num_images: int) -> str:
+    from llava.constants import DEFAULT_IMAGE_TOKEN
+    from llava.conversation import conv_templates
+
+    conv = conv_templates[CONV_TEMPLATE].copy()
+    image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * num_images)
+    conv.append_message(conv.roles[0], f"{image_prefix}\n{question}")
+    conv.append_message(conv.roles[1], None)
+    return conv.get_prompt()
 
 
 # ── manual prefill + decode loop ───────────────────────────────────────────
@@ -316,7 +316,8 @@ def build_onevision_prompt(processor, question: str, num_images: int) -> str:
 @torch.no_grad()
 def _generate_with_per_step_attentions(
     model,
-    inputs: dict,
+    inputs_embeds: torch.Tensor,
+    attention_mask: torch.Tensor,
     image_indices: torch.Tensor,
     max_new_tokens: int,
     do_sample: bool,
@@ -330,10 +331,8 @@ def _generate_with_per_step_attentions(
     actually executed.
     """
     prefill_out = model(
-        input_ids=inputs["input_ids"],
-        attention_mask=inputs["attention_mask"],
-        pixel_values=inputs.get("pixel_values"),
-        image_sizes=inputs.get("image_sizes"),
+        inputs_embeds=inputs_embeds,
+        attention_mask=attention_mask,
         use_cache=True,
         output_attentions=False,
         return_dict=True,
@@ -351,7 +350,7 @@ def _generate_with_per_step_attentions(
     n_img = int(image_indices.numel())
     teacher: torch.Tensor | None = None
     T = 0
-    attn_mask = inputs["attention_mask"]
+    attn_mask = attention_mask
 
     image_indices_dev = image_indices.to(model.device)
 
@@ -425,7 +424,8 @@ def infer_question_positions(prompt_len_mm: int, image_positions: torch.Tensor) 
 @torch.no_grad()
 def collect_one(
     model,
-    processor,
+    tokenizer,
+    image_processor,
     image,
     question: str,
     max_new_tokens: int,
@@ -435,20 +435,43 @@ def collect_one(
     trajectory_top_p: float = 0.9,
     eps: float = 1e-8,
 ) -> dict:
-    n_images = len(image) if isinstance(image, (list, tuple)) else 1
-    prompt = build_onevision_prompt(processor, question, num_images=n_images)
-    inputs = processor(images=image, text=prompt, return_tensors="pt")
-    inputs = {k: v.to(device) for k, v in inputs.items()}
+    from llava.constants import IMAGE_TOKEN_INDEX
+    from llava.mm_utils import process_images, tokenizer_image_token
 
-    image_positions, prompt_len_mm = infer_onevision_image_positions_no_forward(
-        prompt_inputs=inputs,
-        model_config=model.config,
-        num_images=n_images,
+    images = image if isinstance(image, (list, tuple)) else [image]
+    n_images = len(images)
+    prompt = build_onevision_prompt(tokenizer, question, num_images=n_images)
+
+    input_ids = tokenizer_image_token(
+        prompt, tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt"
+    ).unsqueeze(0).to(device)
+    attention_mask = input_ids.ne(
+        tokenizer.pad_token_id if tokenizer.pad_token_id else tokenizer.eos_token_id
+    ).to(device)
+
+    image_tensor = process_images(images, image_processor, model.config)
+    if isinstance(image_tensor, list):
+        image_tensor = [t.to(device, dtype=torch.float16) for t in image_tensor]
+    else:
+        image_tensor = image_tensor.to(device, dtype=torch.float16)
+
+    _, _, attention_mask, _, inputs_embeds, _ = model.prepare_inputs_labels_for_multimodal(
+        input_ids, None, attention_mask, None, None,
+        image_tensor, ["image"], [img.size for img in images],
     )
+    prompt_len_mm = int(inputs_embeds.shape[1])
+
+    # Derive image positions: IMAGE_TOKEN_INDEX placeholder_pos → expanded range
+    input_ids_1d = input_ids[0]
+    placeholder_pos = int((input_ids_1d == IMAGE_TOKEN_INDEX).nonzero(as_tuple=True)[0][0].item())
+    n_text_tokens = int(input_ids_1d.shape[0]) - n_images  # each placeholder expands
+    n_img = prompt_len_mm - n_text_tokens
+    image_positions = torch.arange(placeholder_pos, placeholder_pos + n_img, dtype=torch.long)
+
     n_img = int(image_positions.numel())
     question_positions = infer_question_positions(prompt_len_mm, image_positions)
 
-    eos_token_id = int(processor.tokenizer.eos_token_id or model.config.eos_token_id or 151645)
+    eos_token_id = int(tokenizer.eos_token_id or 151645)
     M = max(1, trajectory_m)
     use_sampling = M > 1
 
@@ -457,7 +480,8 @@ def collect_one(
     for _ in range(M):
         score, T = _generate_with_per_step_attentions(
             model=model,
-            inputs=inputs,
+            inputs_embeds=inputs_embeds,
+            attention_mask=attention_mask,
             image_indices=image_positions,
             max_new_tokens=max_new_tokens,
             do_sample=use_sampling,
@@ -489,7 +513,7 @@ def collect_one(
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov-hf")
+    p.add_argument("--model", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov")
     p.add_argument("--dataset", required=True, choices=["scienceqa", "gqa", "st_vqa", "chartqa", "docvqa", "infovqa", "llava_instruct", "mmvet"])
     p.add_argument("--n-samples", type=int, default=500)
     p.add_argument("--max-new-tokens", type=int, default=64)
@@ -546,18 +570,20 @@ def main() -> int:
     device = torch.device(args.device)
 
     print(f"[load] {args.model} dtype=fp16 attn=eager device={device}", flush=True)
-    model = LlavaOnevisionForConditionalGeneration.from_pretrained(
-        args.model,
-        torch_dtype=torch.float16,
-        attn_implementation="eager",
-        low_cpu_mem_usage=True,
-    ).to(device).eval()
+    from llava.mm_utils import get_model_name_from_path
+    from llava.model.builder import load_pretrained_model
 
-    processor = AutoProcessor.from_pretrained(args.model)
-    processor = configure_onevision_processor(processor, model.config)
+    model_name = get_model_name_from_path(args.model)
+    tokenizer, model, image_processor, _ = load_pretrained_model(
+        args.model, None, model_name,
+        device_map=device,
+        attn_implementation="eager",
+        multimodal=True,
+    )
+    model = model.to(torch.float16).eval()
     print(
-        f"[info] num_hidden_layers={model.config.text_config.num_hidden_layers} "
-        f"hidden_size={model.config.text_config.hidden_size}",
+        f"[info] num_hidden_layers={model.config.num_hidden_layers} "
+        f"hidden_size={model.config.hidden_size}",
         flush=True,
     )
 
@@ -651,7 +677,8 @@ def main() -> int:
                 stored_path = [_stored(p) for p in img_paths]
             rec = collect_one(
                 model=model,
-                processor=processor,
+                tokenizer=tokenizer,
+                image_processor=image_processor,
                 image=image,
                 question=question,
                 max_new_tokens=args.max_new_tokens,
@@ -663,7 +690,7 @@ def main() -> int:
             rec.update(
                 sample_id=sid,
                 dataset=args.dataset,
-                model="llava-onevision-qwen2-7b-ov-hf",
+                model="llava-onevision-qwen2-7b-ov",
                 question_text=question,
                 image_path=stored_path,
                 seed=args.seed,
