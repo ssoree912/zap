@@ -11,7 +11,7 @@ from kvpress.presses.image_token_press import (
     OracleImageTeacherPress,
     ProbeImageTeacherPress,
 )
-from kvpress.presses.foresight_press import ForesightConfig, ForesightModel, KVzapConfig, KVzapModel
+from kvpress.presses.qvik_press import ForesightConfig, ForesightModel, KVzapConfig, KVzapModel
 
 __all__ = [
     "SUPPORTED_MODELS",

@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 
 from kvpress.presses.base_press import BasePress
-from kvpress.presses.foresight_press import KVzapModel
+from kvpress.presses.qvik_press import KVzapModel
 
 
 HeadReduce = Literal["amax", "mean"]
