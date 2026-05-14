@@ -91,18 +91,21 @@ done
 
 ### 2. Student training
 
+The best checkpoint (lowest val_loss) is saved to `<output-dir>/pytorch_model.bin`;
+`last_checkpoint.pt` holds the final epoch + optimizer state for resuming.
+
 ```bash
 # OneVision
 python qvik/train/llava_onevision.py \
   --teacher-root data/train/teacher/llava_onevision \
   --llava-path model/llava-onevision-qwen2-7b-ov \
-  --epochs 15 \
+  --epochs 20 \
   --output-dir ckpts/student_onevision
 
 # LLaVA-1.5
 python qvik/train/llava15.py \
   --teacher-root data/train/teacher/llava15 \
-  --epochs 15 \
+  --epochs 20 \
   --output-dir ckpts/student_llava15
 ```
 

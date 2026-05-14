@@ -173,7 +173,7 @@ def build_inputs(
         image_tensor = process_images([image], image_processor, model.config)
     if isinstance(image_tensor, list):
         image_tensor = torch.stack(image_tensor, dim=0)
-    image_tensor = image_tensor.to(device=device, dtype=torch.bfloat16)
+    image_tensor = image_tensor.to(device=device, dtype=next(model.parameters()).dtype)
     input_ids = tokenizer_image_token(
         rec["prompt_text"],
         tokenizer,

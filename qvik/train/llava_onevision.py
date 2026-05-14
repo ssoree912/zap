@@ -121,13 +121,13 @@ def main() -> int:
     p.add_argument(
         "--datasets",
         nargs="+",
-        default=["scienceqa", "gqa", "st_vqa"],
+        default=["textvqa", "gqa", "scienceqa"],
     )
     p.add_argument(
         "--per-ds-limit",
         type=int,
-        default=500,
-        help="Cap samples per dataset (None to use all).",
+        default=600,
+        help="Cap samples per dataset (0 or negative to use all).",
     )
     p.add_argument(
         "--llava-path",
