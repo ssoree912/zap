@@ -3,18 +3,8 @@
 
 """lmms-eval model wrapper: LLaVA-OneVision + student-driven KV pruning.
 
-Register as `llava_onevision_student` via @register_model so lmms-eval
-can instantiate it from model_args. The launcher script (run_lmms_eval_student.py)
-monkey-patches this module into the lmms-eval models package before running.
-
-Example CLI (via launcher):
-    CUDA_VISIBLE_DEVICES=0 python scripts/run_lmms_eval_student.py -- \\
-        --model llava_onevision_student \\
-        --model_args pretrained=/workspace/zap/model/llava-onevision-qwen2-7b-ov,student_path=/workspace/zap/ckpts/student_onevision_A_ep20,keep_ratio=0.5 \\
-        --tasks chartqa_local \\
-        --batch_size 1 \\
-        --log_samples \\
-        --output_path /workspace/zap/eval_results/lmms_chartqa_05
+Registered as `lmms_onevision_student`. The launcher (run_lmms_eval.py)
+injects this module into the lmms-eval models registry before running.
 """
 
 from __future__ import annotations
@@ -23,12 +13,15 @@ import json
 import math
 import os
 import sys
+from pathlib import Path
 from typing import List, Optional, Tuple, Union
 
 import torch
 from tqdm import tqdm
 
-sys.path.insert(0, "/workspace/zap")
+REPO_ROOT = str(Path(__file__).resolve().parents[2])
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
 from kvpress.presses.visual_utility_student_onevision import VisualUtilityStudentOneVision
 from .kv_decode_utils import greedy_decode_with_kv, trim_kv_cache_per_layer
@@ -39,17 +32,15 @@ try:
     from lmms_eval.api.model import lmms
     from lmms_eval.api.registry import register_model
 except ImportError as e:
-    raise ImportError(
-        "lmms_eval not found. Add VFlowOpt/src/lmms_eval-0.2.4 to PYTHONPATH."
-    ) from e
+    raise ImportError("lmms-eval not installed. `pip install lmms-eval==0.2.4`") from e
 
 DEFAULT_IMAGE_TOKEN = "<image>"
-LLAVA_IMAGE_TOKEN_INDEX = -200  # LLaVA constant (llava.constants.IMAGE_TOKEN_INDEX)
+LLAVA_IMAGE_TOKEN_INDEX = -200  # qvik.llava_onevision.constants.IMAGE_TOKEN_INDEX
 
 
-@register_model("llava_onevision_student")
-class LlavaOnevisionStudent(lmms):
-    """LLaVA-OneVision with student-scored image-token KV pruning for lmms-eval."""
+@register_model("lmms_onevision_student")
+class LmmsOnevisionStudent(lmms):
+    """LLaVA-OneVision with student-scored image-token KV pruning (lmms-eval wrapper)."""
 
     def __init__(
         self,
@@ -88,14 +79,8 @@ class LlavaOnevisionStudent(lmms):
 
     def _init_llava(self, pretrained: str, device: str, attn_implementation: str, conv_template: str) -> None:
         """Load LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)."""
-        _LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
-        _TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
-        for p in [_LLAVA_SRC, _TF_SRC]:
-            if p not in sys.path:
-                sys.path.insert(0, p)
-
-        from llava.mm_utils import get_model_name_from_path, process_images, tokenizer_image_token
-        from llava.model.builder import load_pretrained_model
+        from qvik.llava_onevision.mm_utils import get_model_name_from_path, process_images, tokenizer_image_token
+        from qvik.llava_onevision.model.builder import load_pretrained_model
 
         model_name = get_model_name_from_path(pretrained)
         tokenizer, model, image_processor, _ = load_pretrained_model(
@@ -161,10 +146,10 @@ class LlavaOnevisionStudent(lmms):
         return self._tokenizer.decode(tokens)
 
     def loglikelihood(self, requests: List[Instance]) -> List[Tuple[float, bool]]:
-        raise NotImplementedError("loglikelihood not implemented for LlavaOnevisionStudent")
+        raise NotImplementedError("loglikelihood not implemented for LmmsOnevisionStudent")
 
     def generate_until_multi_round(self, requests: List[Instance]) -> List[str]:
-        raise NotImplementedError("multi-round generation not implemented for LlavaOnevisionStudent")
+        raise NotImplementedError("multi-round generation not implemented for LmmsOnevisionStudent")
 
     # --- main generation ---
 
@@ -238,8 +223,8 @@ class LlavaOnevisionStudent(lmms):
     @torch.no_grad()
     def _generate_llava(self, context: str, visuals, max_new_tokens: int) -> str:
         """Generation path for LLaVA-format checkpoint (llava-onevision-qwen2-7b-ov)."""
-        from llava.conversation import conv_templates
-        from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN as LLAVA_DEFAULT_IMAGE_TOKEN
+        from qvik.llava_onevision.conversation import conv_templates
+        from qvik.llava_onevision.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN as LLAVA_DEFAULT_IMAGE_TOKEN
 
         # Build prompt via conv template
         conv = conv_templates[self._conv_template].copy()

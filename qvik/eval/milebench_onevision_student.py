@@ -2,24 +2,27 @@
 # SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Standalone MileBench evaluation using LlavaOnevisionStudent.
+"""Standalone MileBench evaluation using LmmsOnevisionStudent.
 
-Outputs pred.json compatible with /workspace/look-m/evaluate.py and score.py.
+Outputs pred.json (sample_id / pred_response / gt_response) for MileBench scoring.
+Results are written to <output_dir>/<dataset>/pred.json; the default
+output_dir matches the lmms-eval layout (results/onevision_milebench/).
 
 Usage:
     python qvik/eval/milebench_onevision_student.py \
         --dataset ActionLocalization \
         --keep_ratio 0.5 \
-        --output_dir /workspace/zap/experiments/.../outputs/keep050 \
         --device cuda:0
 """
 
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import os
 import sys
+from pathlib import Path
 
 import torch
 from PIL import Image
@@ -28,8 +31,40 @@ from tqdm import tqdm
 sys.path.insert(0, "/workspace/zap")
 
 DATA_ROOT = "/workspace/zap/data/eval/MileBench"
+DEFAULT_OUTPUT_DIR = "/workspace/zap/results/onevision_milebench"
+LOG_ROOT = "/workspace/zap/logs/onevision_milebench"
 DEFAULT_IMAGE_TOKEN = "<image>"
 MAX_NEW_TOKENS = 32
+
+
+class _Tee:
+    """Write to multiple streams at once (stdout + per-dataset log file)."""
+
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, data):
+        for s in self.streams:
+            s.write(data)
+            s.flush()
+
+    def flush(self):
+        for s in self.streams:
+            s.flush()
+
+
+@contextlib.contextmanager
+def _tee_to_file(log_path: Path):
+    """Mirror stdout/stderr to log_path for the duration of the block."""
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    f = log_path.open("w")
+    old_out, old_err = sys.stdout, sys.stderr
+    sys.stdout, sys.stderr = _Tee(old_out, f), _Tee(old_err, f)
+    try:
+        yield
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
+        f.close()
 
 
 def build_prompt(sample: dict, meta: dict) -> str:
@@ -57,13 +92,19 @@ def main():
     parser.add_argument("--pretrained", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov")
     parser.add_argument("--student_path", default="/workspace/zap/ckpts/student_onevision_A_ep20")
     parser.add_argument("--keep_ratio", type=float, default=0.5)
-    parser.add_argument("--output_dir", required=True)
+    parser.add_argument("--output_dir", default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--max_new_tokens", type=int, default=MAX_NEW_TOKENS)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 
+    log_file = Path(LOG_ROOT) / f"{args.dataset}.log"
+    with _tee_to_file(log_file):
+        _run(args)
+
+
+def _run(args):
     task_out = os.path.join(args.output_dir, args.dataset)
     pred_path = os.path.join(task_out, "pred.json")
     os.makedirs(task_out, exist_ok=True)
@@ -87,8 +128,8 @@ def main():
     )
 
     # Load student model (reuse existing class — no duplication)
-    from qvik.eval.lmms_onevision_student import LlavaOnevisionStudent
-    model_wrapper = LlavaOnevisionStudent(
+    from qvik.eval.lmms_onevision_student import LmmsOnevisionStudent
+    model_wrapper = LmmsOnevisionStudent(
         pretrained=args.pretrained,
         student_path=args.student_path,
         keep_ratio=args.keep_ratio,

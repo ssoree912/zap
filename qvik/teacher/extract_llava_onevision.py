@@ -24,13 +24,13 @@ import numpy as np
 import torch
 from PIL import Image
 
-_LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
-_TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
-for _p in [_LLAVA_SRC, _TF_SRC]:
-    if _p not in sys.path:
-        sys.path.insert(0, _p)
+REPO_ROOT = str(Path(__file__).resolve().parents[2])
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
-sys.path.insert(0, "/workspace/zap")
+# Importing the vendored package patches transformers.modeling_outputs with the
+# custom siglip output classes (see qvik/llava_onevision/__init__.py).
+import qvik.llava_onevision  # noqa: F401
 
 CONV_TEMPLATE = "qwen_1_5"
 
@@ -39,9 +39,23 @@ CONV_TEMPLATE = "qwen_1_5"
 # Return (sample_id, question_text, image_paths_list) — the OneVision
 # Qwen2 chat template is applied in `collect_one()`.
 
-from pilot_attention_analysis import (
-    build_scienceqa_prompt,
-)
+_OPTION_LETTERS = "ABCDEFGHIJ"
+
+
+def build_scienceqa_prompt(problem: dict) -> str:
+    question = str(problem["question"]).strip()
+    choices = [str(c).strip() for c in problem["choices"]]
+    hint = str(problem.get("hint", "") or "").strip()
+    lines = ["USER: <image>"]
+    if hint:
+        lines.append(f"Context: {hint}")
+    lines.append(f"Question: {question}")
+    lines.append("Options:")
+    for i, c in enumerate(choices):
+        lines.append(f"{_OPTION_LETTERS[i]}. {c}")
+    lines.append("Select the best answer based on the image and text.")
+    lines.append("ASSISTANT:")
+    return "\n".join(lines)
 
 
 _LLAVA_INSTRUCT_SUBSETS = [
@@ -273,6 +287,28 @@ def load_st_vqa_questions(
     return candidates[:n_samples]
 
 
+def load_textvqa_questions(
+    data_json: Path, data_root: Path, n_samples: int, seed: int
+) -> list[tuple[str, str, list[str]]]:
+    with data_json.open() as f:
+        payload = json.load(f)
+    records = payload.get("data", payload) if isinstance(payload, dict) else payload
+    candidates: list[tuple[str, str, list[str]]] = []
+    for rec in records:
+        question = str(rec.get("question", "")).strip()
+        if not question:
+            continue
+        rel = rec.get("image_path", "")
+        img_path = data_root / rel if rel and not Path(rel).is_absolute() else Path(rel)
+        if not img_path.exists():
+            continue
+        qid = str(rec.get("question_id", rec.get("id", f"tvqa_{len(candidates):06d}")))
+        candidates.append((qid, f"Question: {question}\nAnswer the question briefly.", [str(img_path)]))
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    return candidates[:n_samples]
+
+
 def load_samples_from_json(
     samples_json: Path, n_samples: int, seed: int
 ) -> list[tuple[str, str, list[str]]]:
@@ -300,8 +336,8 @@ def load_samples_from_json(
 
 
 def build_onevision_prompt(tokenizer, question: str, num_images: int) -> str:
-    from llava.constants import DEFAULT_IMAGE_TOKEN
-    from llava.conversation import conv_templates
+    from qvik.llava_onevision.constants import DEFAULT_IMAGE_TOKEN
+    from qvik.llava_onevision.conversation import conv_templates
 
     conv = conv_templates[CONV_TEMPLATE].copy()
     image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * num_images)
@@ -325,10 +361,11 @@ def _generate_with_per_step_attentions(
     top_p: float,
     eos_token_id: int,
 ) -> tuple[torch.Tensor, int]:
-    """Run prefill (no attentions) then decode loop with per-step attentions.
+    """Prefill (no attentions) then hook-based decode loop.
 
-    Returns (teacher [L, N_I] fp32 cpu, T) where T is number of decode steps
-    actually executed.
+    Hooks capture attention per-layer and immediately compress to [N_I] scalars,
+    so the full [H, 1, T] attention tensor is never held in memory.
+    Returns (teacher [L, N_I] fp32 cpu, T).
     """
     prefill_out = model(
         inputs_embeds=inputs_embeds,
@@ -346,48 +383,73 @@ def _generate_with_per_step_attentions(
     else:
         next_token = next_logits.argmax(dim=-1, keepdim=True)
 
-    L: int | None = None
+    # Collect decoder self-attention modules
+    attn_layers = []
+    for layer in model.model.layers:
+        attn_layers.append(layer.self_attn)
+
+    n_layers = len(attn_layers)
     n_img = int(image_indices.numel())
-    teacher: torch.Tensor | None = None
+    image_indices_dev = image_indices.to(model.device)
+    captured: dict[int, torch.Tensor] = {}
+
+    def make_hook(li: int, orig_fwd):
+        def hooked(*args, **kwargs):
+            kwargs["output_attentions"] = True
+            out = orig_fwd(*args, **kwargs)
+            w = out[1]
+            if w is not None:
+                captured[li] = (
+                    w[0, :, -1, :].index_select(-1, image_indices_dev)
+                    .float().mean(0).detach().cpu()
+                )
+            return (out[0], None) + out[2:]
+        return hooked
+
+    orig_forwards = {}
+    for li, attn in enumerate(attn_layers):
+        orig_forwards[li] = attn.forward
+        attn.forward = make_hook(li, orig_forwards[li])
+
+    teacher = torch.zeros(n_layers, n_img, dtype=torch.float32)
     T = 0
     attn_mask = attention_mask
 
-    image_indices_dev = image_indices.to(model.device)
+    try:
+        for _ in range(max_new_tokens):
+            attn_mask = torch.cat(
+                [attn_mask, torch.ones((1, 1), dtype=attn_mask.dtype, device=attn_mask.device)],
+                dim=1,
+            )
+            captured.clear()
+            step_out = model(
+                input_ids=next_token,
+                attention_mask=attn_mask,
+                past_key_values=past_kv,
+                use_cache=True,
+                output_attentions=False,
+                return_dict=True,
+            )
+            past_kv = step_out.past_key_values
+            for li in range(n_layers):
+                if li in captured:
+                    teacher[li] += captured[li]
+            T += 1
 
-    for _ in range(max_new_tokens):
-        attn_mask = torch.cat(
-            [attn_mask, torch.ones((1, 1), dtype=attn_mask.dtype, device=attn_mask.device)],
-            dim=1,
-        )
-        step_out = model(
-            input_ids=next_token,
-            attention_mask=attn_mask,
-            past_key_values=past_kv,
-            use_cache=True,
-            output_attentions=True,
-            return_dict=True,
-        )
-        past_kv = step_out.past_key_values
-        if L is None:
-            L = len(step_out.attentions)
-            teacher = torch.zeros(L, n_img, dtype=torch.float32)
-        for l in range(L):
-            # step_out.attentions[l]: [1, H, 1, T_now] — gather image positions
-            a = step_out.attentions[l][0, :, -1, :].index_select(dim=-1, index=image_indices_dev)
-            teacher[l] += a.float().mean(dim=0).cpu()
-        T += 1
+            next_logits = step_out.logits[:, -1, :]
+            if do_sample:
+                probs = _top_p_sample_probs(next_logits / max(temperature, 1e-6), top_p)
+                next_token = torch.multinomial(probs, num_samples=1)
+            else:
+                next_token = next_logits.argmax(dim=-1, keepdim=True)
 
-        next_logits = step_out.logits[:, -1, :]
-        if do_sample:
-            probs = _top_p_sample_probs(next_logits / max(temperature, 1e-6), top_p)
-            next_token = torch.multinomial(probs, num_samples=1)
-        else:
-            next_token = next_logits.argmax(dim=-1, keepdim=True)
+            if int(next_token.item()) == eos_token_id:
+                break
+    finally:
+        for li, attn in enumerate(attn_layers):
+            attn.forward = orig_forwards[li]
 
-        if int(next_token.item()) == eos_token_id:
-            break
-
-    if T == 0 or teacher is None:
+    if T == 0:
         raise RuntimeError("Decode loop produced zero steps")
     teacher /= float(T)
 
@@ -435,8 +497,8 @@ def collect_one(
     trajectory_top_p: float = 0.9,
     eps: float = 1e-8,
 ) -> dict:
-    from llava.constants import IMAGE_TOKEN_INDEX
-    from llava.mm_utils import process_images, tokenizer_image_token
+    from qvik.llava_onevision.constants import IMAGE_TOKEN_INDEX
+    from qvik.llava_onevision.mm_utils import process_images, tokenizer_image_token
 
     images = image if isinstance(image, (list, tuple)) else [image]
     n_images = len(images)
@@ -514,7 +576,7 @@ def collect_one(
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--model", default="/workspace/zap/model/llava-onevision-qwen2-7b-ov")
-    p.add_argument("--dataset", required=True, choices=["scienceqa", "gqa", "st_vqa", "chartqa", "docvqa", "infovqa", "llava_instruct", "mmvet"])
+    p.add_argument("--dataset", required=True, choices=["scienceqa", "gqa", "textvqa", "st_vqa", "chartqa", "docvqa", "infovqa", "llava_instruct", "mmvet"])
     p.add_argument("--n-samples", type=int, default=500)
     p.add_argument("--max-new-tokens", type=int, default=64)
     p.add_argument("--seed", type=int, default=0)
@@ -528,6 +590,8 @@ def main() -> int:
         default="/workspace/zap/data/train/gqa/val_balanced_questions.json",
     )
     p.add_argument("--gqa-images-root", default="/workspace/zap/data/train/gqa/images")
+    p.add_argument("--textvqa-json", default="/workspace/zap/data/train/textvqa/train/data.json")
+    p.add_argument("--textvqa-data-root", default="/workspace/zap/data/train")
     p.add_argument(
         "--st-vqa-json",
         default="/workspace/zap/data/train/st_vqa/train_task_3.json",
@@ -570,14 +634,14 @@ def main() -> int:
     device = torch.device(args.device)
 
     print(f"[load] {args.model} dtype=fp16 attn=eager device={device}", flush=True)
-    from llava.mm_utils import get_model_name_from_path
-    from llava.model.builder import load_pretrained_model
+    from qvik.llava_onevision.mm_utils import get_model_name_from_path
+    from qvik.llava_onevision.model.builder import load_pretrained_model
 
     model_name = get_model_name_from_path(args.model)
     tokenizer, model, image_processor, _ = load_pretrained_model(
         args.model, None, model_name,
         device_map=device,
-        attn_implementation="eager",
+        attn_implementation="sdpa",
         multimodal=True,
     )
     model = model.to(torch.float16).eval()
@@ -592,6 +656,13 @@ def main() -> int:
             problems_json=Path(args.problems_json),
             images_root=Path(args.images_root),
             split=args.split,
+            n_samples=args.n_samples,
+            seed=args.seed,
+        )
+    elif args.dataset == "textvqa":
+        samples = load_textvqa_questions(
+            data_json=Path(args.textvqa_json),
+            data_root=Path(args.textvqa_data_root),
             n_samples=args.n_samples,
             seed=args.seed,
         )

@@ -6,6 +6,10 @@ and used at inference time to selectively prune the KV cache — without any cha
 
 ## Environment
 
+`environment.yml` lists all package versions. The LLaVA-1.5 and
+LLaVA-OneVision model code is vendored under `qvik/llava15/` and
+`qvik/llava_onevision/`, so no external model repo is needed.
+
 ```bash
 conda env create -f environment.yml
 conda activate qvik
@@ -13,10 +17,10 @@ conda activate qvik
 
 ## Models
 
-| Model | Checkpoint |
-|---|---|
-| LLaVA-OneVision-Qwen2-7B | [lmms-lab/llava-onevision-qwen2-7b-ov](https://huggingface.co/lmms-lab/llava-onevision-qwen2-7b-ov) |
-| LLaVA-1.5-7B | [liuhaotian/llava-v1.5-7b](https://huggingface.co/liuhaotian/llava-v1.5-7b) |
+| Model | HuggingFace | Local path |
+|---|---|---|
+| LLaVA-OneVision-Qwen2-7B | [lmms-lab/llava-onevision-qwen2-7b-ov](https://huggingface.co/lmms-lab/llava-onevision-qwen2-7b-ov) | `model/llava-onevision-qwen2-7b-ov` |
+| LLaVA-1.5-7B | [liuhaotian/llava-v1.5-7b](https://huggingface.co/liuhaotian/llava-v1.5-7b) | `model/llava-v1.5-7b` |
 
 ## Datasets
 
@@ -65,19 +69,24 @@ data/
 
 ### 1. Teacher extraction
 
+Each script extracts one dataset per run; loop over the three datasets.
+
 ```bash
 # OneVision
-python qvik/teacher/extract_llava_onevision.py \
-  --model-path ckpts/llava-onevision-qwen2-7b-ov \
-  --datasets textvqa gqa scienceqa \
-  --n-samples 300 \
-  --output-root data/train/teacher/llava_onevision
+for ds in textvqa gqa scienceqa; do
+  python qvik/teacher/extract_llava_onevision.py \
+    --model model/llava-onevision-qwen2-7b-ov \
+    --dataset $ds --n-samples 600 \
+    --output-root data/train/teacher/llava_onevision
+done
 
 # LLaVA-1.5
-python qvik/teacher/extract_llava15.py \
-  --datasets textvqa gqa scienceqa \
-  --n-samples 300 \
-  --output-root data/train/teacher/llava15
+for ds in textvqa gqa scienceqa; do
+  python qvik/teacher/extract_llava15.py \
+    --model model/llava-v1.5-7b \
+    --dataset $ds --n-samples 600 \
+    --output-root data/train/teacher/llava15
+done
 ```
 
 ### 2. Student training
@@ -86,7 +95,7 @@ python qvik/teacher/extract_llava15.py \
 # OneVision
 python qvik/train/llava_onevision.py \
   --teacher-root data/train/teacher/llava_onevision \
-  --model-path ckpts/llava-onevision-qwen2-7b-ov \
+  --llava-path model/llava-onevision-qwen2-7b-ov \
   --epochs 15 \
   --output-dir ckpts/student_onevision
 
@@ -99,28 +108,39 @@ python qvik/train/llava15.py \
 
 ### 3. Evaluation
 
-**lmms-eval (OneVision):**
+Results are written to a consistent layout: `results/<model_tag>/<task>/`.
+
+Available `_local` tasks (auto-generated at runtime, route to `data/eval/`):
+`textvqa_val_local`, `chartqa_local`, `docvqa_val_local`, `gqa_local`,
+`coco2017_cap_val_local`, `nocaps_val_local`, `textcaps_val_local`
+
+**lmms-eval (LLaVA-1.5)** → `results/llava15_lmms/<task>/`:
 ```bash
-python qvik/eval/lmms_onevision_student.py \
-  --pretrained ckpts/llava-onevision-qwen2-7b-ov \
-  --student ckpts/student_onevision \
-  --keep-ratio 0.25 \
-  --tasks textvqa_val chartqa docvqa_val
+python qvik/eval/run_lmms_eval.py \
+  --model lmms_llava15_student \
+  --model_args pretrained=model/llava-v1.5-7b,student_path=ckpts/student_llava15,keep_ratio=0.5,device=cuda:0 \
+  --tasks textvqa_val_local,chartqa_local,docvqa_val_local,gqa_local,coco2017_cap_val_local,nocaps_val_local,textcaps_val_local \
+  --batch_size 1 \
+  --output_path results
 ```
 
-**lmms-eval (LLaVA-1.5):**
+**lmms-eval (OneVision)** → `results/onevision_lmms/<task>/`:
 ```bash
-python qvik/eval/lmms_llava15_original_student.py \
-  --pretrained ckpts/llava-v1.5-7b \
-  --student ckpts/student_llava15 \
-  --keep-ratio 0.25 \
-  --tasks textvqa_val chartqa
+python qvik/eval/run_lmms_eval.py \
+  --model lmms_onevision_student \
+  --model_args pretrained=model/llava-onevision-qwen2-7b-ov,student_path=ckpts/student_onevision,keep_ratio=0.5,device=cuda:0 \
+  --tasks textvqa_val_local,chartqa_local,docvqa_val_local,gqa_local,coco2017_cap_val_local,nocaps_val_local,textcaps_val_local \
+  --batch_size 1 \
+  --output_path results
 ```
 
-**MileBench (OneVision):**
+**MileBench (OneVision)** → `results/onevision_milebench/<dataset>/`:
 ```bash
-python qvik/eval/milebench_onevision_student.py \
-  --pretrained ckpts/llava-onevision-qwen2-7b-ov \
-  --student ckpts/student_onevision \
-  --keep-ratio 0.25
+for ds in ALFRED CLEVR-Change IEdit Spot-the-Diff; do
+  python qvik/eval/milebench_onevision_student.py \
+    --dataset $ds \
+    --pretrained model/llava-onevision-qwen2-7b-ov \
+    --student_path ckpts/student_onevision \
+    --keep_ratio 0.5
+done
 ```

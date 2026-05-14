@@ -28,12 +28,32 @@ import torch
 from PIL import Image
 
 sys.path.insert(0, "/workspace/zap")
-sys.path.insert(0, "/workspace/PrefixKV")
 
 # torch 2.5 + transformers 5.3 incompatibility: patch bin-load safety check.
 try:
     import transformers.modeling_utils as _tmu
     _tmu.check_torch_load_is_safe = lambda: None
+except Exception:
+    pass
+
+# transformers 4.46+ GenerationConfig.from_model_config calls .to_dict() on
+# nested config objects that may be plain dicts in older LLaVA checkpoints.
+try:
+    from transformers.generation import configuration_utils as _gen_cfg
+    _orig_from_model_config = _gen_cfg.GenerationConfig.from_model_config.__func__
+
+    @classmethod  # type: ignore[misc]
+    def _patched_from_model_config(cls, model_config):
+        for attr in ("decoder", "encoder", "text_config", "vision_config"):
+            val = getattr(model_config, attr, None)
+            if isinstance(val, dict):
+                from types import SimpleNamespace
+                ns = SimpleNamespace(**val)
+                ns.to_dict = lambda _v=val: _v
+                setattr(model_config, attr, ns)
+        return _orig_from_model_config(cls, model_config)
+
+    _gen_cfg.GenerationConfig.from_model_config = _patched_from_model_config
 except Exception:
     pass
 
@@ -44,7 +64,7 @@ NUM_IMAGE_FEATURES = 576  # CLIP-ViT-L/14@336, 24×24 patches
 
 def _patch_llava_arch_for_dynamic_cache():
     """Patch prepare_inputs_labels_for_multimodal to support new DynamicCache format."""
-    import llava.model.llava_arch as _arch
+    import qvik.llava15.model.llava_arch as _arch
     import types
     original = _arch.LlavaMetaForCausalLM.prepare_inputs_labels_for_multimodal
 
@@ -69,7 +89,7 @@ def _patch_llava_arch_for_dynamic_cache():
 def load_orig_llava_model(model_path: str, device: torch.device):
     """Load original LLaVA-1.5 model, tokenizer, and image processor."""
     from transformers import AutoTokenizer
-    from llava.model.language_model.llava_llama import LlavaLlamaForCausalLM
+    from qvik.llava15.model.language_model.llava_llama import LlavaLlamaForCausalLM
     _patch_llava_arch_for_dynamic_cache()
 
     print(f"[load] {model_path} dtype=bf16 device={device}", flush=True)
@@ -409,7 +429,7 @@ def load_textvqa_samples(
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="/workspace/zap/model/llava-1.5-7b-hf")
+    p.add_argument("--model", default="/workspace/zap/model/llava-v1.5-7b")
     p.add_argument(
         "--dataset",
         required=True,

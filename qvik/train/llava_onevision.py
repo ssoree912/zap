@@ -22,13 +22,14 @@ import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 
-_LLAVA_SRC = "/workspace/VFlowOpt/src/LLaVA-OneVision"
-_TF_SRC = "/workspace/VFlowOpt/src/transformers-4.46.0/src"
-for _p in [_LLAVA_SRC, _TF_SRC]:
-    if _p not in sys.path:
-        sys.path.insert(0, _p)
+REPO_ROOT = str(Path(__file__).resolve().parents[2])
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
-sys.path.insert(0, "/workspace/zap")
+# Importing the vendored package patches transformers.modeling_outputs with the
+# custom siglip output classes (see qvik/llava_onevision/__init__.py).
+import qvik.llava_onevision  # noqa: F401
+
 from kvpress.presses.visual_utility_student_onevision import (
     VisualUtilityStudentOneVision,
     pairwise_ranking_loss,
@@ -39,8 +40,8 @@ CONV_TEMPLATE = "qwen_1_5"
 
 
 def _build_prompt(tokenizer, question: str, num_images: int = 1) -> str:
-    from llava.constants import DEFAULT_IMAGE_TOKEN
-    from llava.conversation import conv_templates
+    from qvik.llava_onevision.constants import DEFAULT_IMAGE_TOKEN
+    from qvik.llava_onevision.conversation import conv_templates
 
     conv = conv_templates[CONV_TEMPLATE].copy()
     image_prefix = " ".join([DEFAULT_IMAGE_TOKEN] * num_images)
@@ -73,8 +74,8 @@ class TeacherCacheDataset(Dataset):
         model_config=None,
         verbose: bool = True,
     ) -> None:
-        from llava.constants import IMAGE_TOKEN_INDEX
-        from llava.mm_utils import process_images, tokenizer_image_token
+        from qvik.llava_onevision.constants import IMAGE_TOKEN_INDEX
+        from qvik.llava_onevision.mm_utils import process_images, tokenizer_image_token
 
         self.files = list(files)
         self.image_processor = image_processor
@@ -164,17 +165,21 @@ def main() -> int:
     (out_dir / "train_config.json").write_text(json.dumps(vars(args), indent=2))
 
     print(f"[load] OneVision={args.llava_path} device={device}", flush=True)
-    from llava.mm_utils import get_model_name_from_path
-    from llava.model.builder import load_pretrained_model
+    from qvik.llava_onevision.mm_utils import get_model_name_from_path
+    from qvik.llava_onevision.model.builder import load_pretrained_model
 
     model_name = get_model_name_from_path(args.llava_path)
     tokenizer, lvlm, image_processor, _ = load_pretrained_model(
         args.llava_path, None, model_name,
-        device_map=device,
+        device_map=args.device,
         attn_implementation="sdpa",
         multimodal=True,
     )
     lvlm = lvlm.to(torch.bfloat16).eval()
+    # builder.py hardcodes vision_tower to "cuda" (cuda:0); move everything to target device
+    vision_tower = lvlm.get_model().get_vision_tower()
+    if vision_tower is not None:
+        vision_tower.to(device=device, dtype=torch.bfloat16)
     for p_ in lvlm.parameters():
         p_.requires_grad_(False)
 

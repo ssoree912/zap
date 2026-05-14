@@ -1,9 +1,0 @@
-{
-  "dataset": "ImageNeedleInAHaystack",
-  "keep_ratio": 0.1,
-  "n_samples": 30,
-  "avg_image_keep_ratio": 0.06302083333333335,
-  "avg_total_keep_ratio": 0.10022426452040921,
-  "avg_n_image_original": 2304.0,
-  "avg_n_image_kept": 160.16666666666666
-}

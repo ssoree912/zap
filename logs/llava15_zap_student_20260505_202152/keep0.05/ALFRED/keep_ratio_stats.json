@@ -1,9 +1,0 @@
-{
-  "dataset": "ALFRED",
-  "keep_ratio": 0.05,
-  "n_samples": 200,
-  "avg_image_keep_ratio": 3.472222222222222e-05,
-  "avg_total_keep_ratio": 0.07308253060900079,
-  "avg_n_image_original": 1967.04,
-  "avg_n_image_kept": 0.095
-}

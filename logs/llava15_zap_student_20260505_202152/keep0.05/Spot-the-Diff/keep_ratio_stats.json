@@ -1,9 +1,0 @@
-{
-  "dataset": "Spot-the-Diff",
-  "keep_ratio": 0.05,
-  "n_samples": 200,
-  "avg_image_keep_ratio": 0.004275173611111117,
-  "avg_total_keep_ratio": 0.050493631260274625,
-  "avg_n_image_original": 1152.0,
-  "avg_n_image_kept": 4.925
-}

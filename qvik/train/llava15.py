@@ -23,24 +23,11 @@ from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 
 REPO_ROOT = Path(os.environ.get("ZAP_REPO_ROOT", Path(__file__).resolve().parents[2])).resolve()
-VFLOWOPT_LLAVA_ROOT = Path(
-    os.environ.get(
-        "VFLOWOPT_LLAVA_ROOT",
-        REPO_ROOT.parent / "VFlowOpt_llava1.5/src/LLaVA-OneVision",
-    )
-).resolve()
-VFLOWOPT_TRANSFORMERS_ROOT = Path(
-    os.environ.get(
-        "VFLOWOPT_TRANSFORMERS_ROOT",
-        REPO_ROOT.parent / "VFlowOpt_llava1.5/src/transformers-4.46.0/src",
-    )
-).resolve()
-for path in (REPO_ROOT, VFLOWOPT_TRANSFORMERS_ROOT, VFLOWOPT_LLAVA_ROOT):
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 
-def _patch_vflowopt_transformers_tokenizers_check() -> None:
+def _patch_transformers_tokenizers_check() -> None:
     import importlib.metadata as importlib_metadata
 
     original_version = importlib_metadata.version
@@ -78,12 +65,12 @@ def _patch_torch_load_legacy_bin_mmap() -> None:
     torch.load = load
 
 
-_patch_vflowopt_transformers_tokenizers_check()
+_patch_transformers_tokenizers_check()
 _patch_torch_load_legacy_bin_mmap()
 
-from llava.constants import IMAGE_TOKEN_INDEX  # noqa: E402
-from llava.mm_utils import process_images, tokenizer_image_token  # noqa: E402
-from llava.model.builder import load_pretrained_model  # noqa: E402
+from qvik.llava15.constants import IMAGE_TOKEN_INDEX  # noqa: E402
+from qvik.llava15.mm_utils import process_images, tokenizer_image_token  # noqa: E402
+from qvik.llava15.model.builder import load_pretrained_model  # noqa: E402
 
 from kvpress.presses.visual_utility_student import (  # noqa: E402
     VisualUtilityStudent,
@@ -160,9 +147,6 @@ def load_original_llava(args: argparse.Namespace) -> tuple[Any, Any, Any]:
         model_base=None,
         model_name=args.model_name,
         device_map=args.device_map,
-        attn_implementation="sdpa",
-        multimodal=True,
-        overwrite_config=overwrite_config,
     )
     model.eval()
     for parameter in model.parameters():
@@ -189,7 +173,7 @@ def build_inputs(
         image_tensor = process_images([image], image_processor, model.config)
     if isinstance(image_tensor, list):
         image_tensor = torch.stack(image_tensor, dim=0)
-    image_tensor = image_tensor.to(device=device, dtype=torch.float16)
+    image_tensor = image_tensor.to(device=device, dtype=torch.bfloat16)
     input_ids = tokenizer_image_token(
         rec["prompt_text"],
         tokenizer,
@@ -223,8 +207,6 @@ def compute_hidden_states(
     out = model(
         inputs["input_ids"],
         images=inputs["images"],
-        image_sizes=inputs["image_sizes"],
-        modalities=inputs["modalities"],
         output_hidden_states=True,
         use_cache=False,
         return_dict=True,
@@ -329,9 +311,9 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--teacher-root", default=str(REPO_ROOT / "data/train/teacher/llava15"))
     parser.add_argument("--datasets", nargs="+", default=["gqa", "textvqa", "scienceqa"])
-    parser.add_argument("--llava-path", default=str(REPO_ROOT / "ckpts/llava-v1.5-7b"))
+    parser.add_argument("--llava-path", default=str(REPO_ROOT / "model/llava-v1.5-7b"))
     parser.add_argument("--model-name", default="llava-v1.5-7b")
-    parser.add_argument("--vision-tower-path", default=str(REPO_ROOT / "ckpts/clip-vit-large-patch14-336"))
+    parser.add_argument("--vision-tower-path", default="")
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--device-map", default="cuda:0")
     parser.add_argument("--epochs", type=int, default=15)
