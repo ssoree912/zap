@@ -244,7 +244,7 @@ def load_gqa_questions(
         question = str(rec.get("question", "")).strip()
         if not question:
             continue
-        question = f"Question: {question}\nAnswer the question briefly."
+        question = f"{question}\nAnswer the question using a single word or phrase."
         candidates.append((str(qid), question, [str(img_path)]))
     rng = random.Random(seed)
     rng.shuffle(candidates)
@@ -280,7 +280,7 @@ def load_st_vqa_questions(
             else:
                 continue
         qid = str(rec.get("question_id", rec.get("id", f"st_vqa_{i:06d}")))
-        question = f"Question: {question}\nAnswer the question briefly."
+        question = f"{question}\nAnswer the question using a single word or phrase."
         candidates.append((qid, question, [str(img_path)]))
     rng = random.Random(seed)
     rng.shuffle(candidates)
@@ -303,7 +303,7 @@ def load_textvqa_questions(
         if not img_path.exists():
             continue
         qid = str(rec.get("question_id", rec.get("id", f"tvqa_{len(candidates):06d}")))
-        candidates.append((qid, f"Question: {question}\nAnswer the question briefly.", [str(img_path)]))
+        candidates.append((qid, f"{question}\nAnswer the question using a single word or phrase.", [str(img_path)]))
     rng = random.Random(seed)
     rng.shuffle(candidates)
     return candidates[:n_samples]
@@ -322,7 +322,7 @@ def load_samples_from_json(
     for rec in records:
         sid = str(rec["sample_id"])
         question = str(rec["question"]).strip()
-        question = f"Question: {question}\nAnswer the question briefly."
+        question = f"{question}\nAnswer the question using a single word or phrase."
         img_path = rec["image_path"]
         if not Path(img_path).exists():
             continue
@@ -359,7 +359,7 @@ def _generate_with_per_step_attentions(
     do_sample: bool,
     temperature: float,
     top_p: float,
-    eos_token_id: int,
+    eos_token_ids: set[int],
 ) -> tuple[torch.Tensor, int]:
     """Prefill (no attentions) then hook-based decode loop.
 
@@ -443,7 +443,7 @@ def _generate_with_per_step_attentions(
             else:
                 next_token = next_logits.argmax(dim=-1, keepdim=True)
 
-            if int(next_token.item()) == eos_token_id:
+            if int(next_token.item()) in eos_token_ids:
                 break
     finally:
         for li, attn in enumerate(attn_layers):
@@ -513,9 +513,9 @@ def collect_one(
 
     image_tensor = process_images(images, image_processor, model.config)
     if isinstance(image_tensor, list):
-        image_tensor = [t.to(device, dtype=torch.float16) for t in image_tensor]
+        image_tensor = [t.to(device, dtype=torch.bfloat16) for t in image_tensor]
     else:
-        image_tensor = image_tensor.to(device, dtype=torch.float16)
+        image_tensor = image_tensor.to(device, dtype=torch.bfloat16)
 
     _, _, attention_mask, _, inputs_embeds, _ = model.prepare_inputs_labels_for_multimodal(
         input_ids, None, attention_mask, None, None,
@@ -533,7 +533,17 @@ def collect_one(
     n_img = int(image_positions.numel())
     question_positions = infer_question_positions(prompt_len_mm, image_positions)
 
-    eos_token_id = int(tokenizer.eos_token_id or 151645)
+    # Use ALL eos tokens from generation_config (Qwen2 uses both 151645 im_end and
+    # 151643 endoftext; manual loop must catch either, like HF model.generate does).
+    _eos = getattr(getattr(model, "generation_config", None), "eos_token_id", None)
+    if _eos is None:
+        _eos = tokenizer.eos_token_id
+    if isinstance(_eos, int):
+        eos_token_ids = {_eos}
+    elif isinstance(_eos, (list, tuple)):
+        eos_token_ids = {int(t) for t in _eos}
+    else:
+        eos_token_ids = {151645, 151643}
     M = max(1, trajectory_m)
     use_sampling = M > 1
 
@@ -549,7 +559,7 @@ def collect_one(
             do_sample=use_sampling,
             temperature=trajectory_temperature,
             top_p=trajectory_top_p,
-            eos_token_id=eos_token_id,
+            eos_token_ids=eos_token_ids,
         )
         traj_scores.append(score)
         t_lengths.append(T)
@@ -644,7 +654,7 @@ def main() -> int:
         attn_implementation="sdpa",
         multimodal=True,
     )
-    model = model.to(torch.float16).eval()
+    model = model.to(torch.bfloat16).eval()
     print(
         f"[info] num_hidden_layers={model.config.num_hidden_layers} "
         f"hidden_size={model.config.hidden_size}",

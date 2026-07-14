@@ -1,5 +1,3 @@
-# SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
 
 """Train the LLaVA-1.5 visual-utility student with original LLaVA hidden states."""
 
@@ -69,7 +67,7 @@ _patch_transformers_tokenizers_check()
 _patch_torch_load_legacy_bin_mmap()
 
 from qvik.llava15.constants import IMAGE_TOKEN_INDEX  # noqa: E402
-from qvik.llava15.mm_utils import process_images, tokenizer_image_token  # noqa: E402
+from qvik.llava15.mm_utils import tokenizer_image_token  # noqa: E402
 from qvik.llava15.model.builder import load_pretrained_model  # noqa: E402
 
 from kvpress.presses.visual_utility_student import (  # noqa: E402
@@ -121,6 +119,12 @@ def resolve_image_path(image_path: str | Path) -> Path:
         rel_path = Path(path_str.removeprefix("/workspace/zap/"))
         candidates.append(REPO_ROOT / rel_path)
         rel_parts = rel_path.parts
+        if len(rel_parts) >= 2 and rel_parts[0] == "data" and rel_parts[1] in {
+            "gqa",
+            "scienceqa",
+            "textvqa",
+        }:
+            candidates.append(REPO_ROOT / "data/train" / Path(*rel_parts[1:]))
         if len(rel_parts) >= 5 and rel_parts[:4] == ("data", "gqa", "train", "images"):
             candidates.append(REPO_ROOT / "data/gqa/images" / rel_path.name)
     if not path.is_absolute():
@@ -152,7 +156,8 @@ def load_original_llava(args: argparse.Namespace) -> tuple[Any, Any, Any]:
     for parameter in model.parameters():
         parameter.requires_grad_(False)
     print(
-        f"[load-ok] class={model.__class__.__name__} layers={model.config.num_hidden_layers}",
+        f"[load-ok] class={model.__class__.__name__} layers={model.config.num_hidden_layers} "
+        f"dtype={next(model.parameters()).dtype}",
         flush=True,
     )
     return tokenizer, model, image_processor
@@ -170,9 +175,10 @@ def build_inputs(
     with Image.open(image_path) as image:
         image = image.convert("RGB")
         image_size = image.size
-        image_tensor = process_images([image], image_processor, model.config)
-    if isinstance(image_tensor, list):
-        image_tensor = torch.stack(image_tensor, dim=0)
+        # v1 LLaVA-1.5 student training used the raw CLIP image processor.
+        # `process_images` honors image_aspect_ratio="pad" and changes the
+        # hidden-state distribution relative to the reference checkpoint.
+        image_tensor = image_processor.preprocess(image, return_tensors="pt")["pixel_values"]
     image_tensor = image_tensor.to(device=device, dtype=next(model.parameters()).dtype)
     input_ids = tokenizer_image_token(
         rec["prompt_text"],
@@ -239,7 +245,10 @@ def train_one_sample(
     optimizer.zero_grad(set_to_none=True)
     loss_sum = mse_sum = rank_sum = 0.0
     for layer_idx in student.layer_indices:
-        h_l = hidden_states[layer_idx + 1].to(torch.float32)
+        # Match the v1 LLaVA-1.5 trainer: label for layer `l` is predicted
+        # from the pre-layer hidden state H_l. HF hidden_states[0] is the
+        # embedding stream, so do not shift by +1 here.
+        h_l = hidden_states[layer_idx].to(torch.float32)
         scores = student.forward_layer(layer_idx, h_l, image_idx, question_idx)
         pred_norm = F.softmax(scores, dim=-1)
         target = teacher_norm[layer_idx].unsqueeze(0)
@@ -251,7 +260,10 @@ def train_one_sample(
             top_ratio=args.rank_top_ratio,
             bottom_ratio=args.rank_bottom_ratio,
         )
-        layer_loss = (loss_mse + args.lambda_rank * loss_rank) / len(student.layer_indices)
+        # The v1 LLaVA-1.5 trainer backpropagated the sum over layer losses.
+        # Dividing by num_layers here shrinks the effective LR by 32x and
+        # reproduces the regressed train_mse curve.
+        layer_loss = loss_mse + args.lambda_rank * loss_rank
         layer_loss.backward()
         loss_sum += float((loss_mse + args.lambda_rank * loss_rank).detach().item())
         mse_sum += float(loss_mse.detach().item())
@@ -263,7 +275,7 @@ def train_one_sample(
     n_layers = len(student.layer_indices)
     del hidden_states
     torch.cuda.empty_cache()
-    return loss_sum / n_layers, mse_sum / n_layers, rank_sum / n_layers
+    return loss_sum, mse_sum / n_layers, rank_sum / n_layers
 
 
 @torch.no_grad()
@@ -286,7 +298,7 @@ def eval_one_sample(
     )
     loss_sum = mse_sum = rank_sum = 0.0
     for layer_idx in student.layer_indices:
-        h_l = hidden_states[layer_idx + 1].to(torch.float32)
+        h_l = hidden_states[layer_idx].to(torch.float32)
         scores = student.forward_layer(layer_idx, h_l, image_idx, question_idx)
         pred_norm = F.softmax(scores, dim=-1)
         target = teacher_norm[layer_idx].unsqueeze(0)
@@ -304,13 +316,13 @@ def eval_one_sample(
     n_layers = len(student.layer_indices)
     del hidden_states
     torch.cuda.empty_cache()
-    return loss_sum / n_layers, mse_sum / n_layers, rank_sum / n_layers
+    return loss_sum, mse_sum / n_layers, rank_sum / n_layers
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--teacher-root", default=str(REPO_ROOT / "data/train/teacher/llava15"))
-    parser.add_argument("--datasets", nargs="+", default=["gqa", "textvqa", "scienceqa"])
+    parser.add_argument("--datasets", nargs="+", default=["textvqa", "scienceqa", "gqa"])
     parser.add_argument("--llava-path", default=str(REPO_ROOT / "model/llava-v1.5-7b"))
     parser.add_argument("--model-name", default="llava-v1.5-7b")
     parser.add_argument("--vision-tower-path", default="")
@@ -324,7 +336,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rank-top-ratio", type=float, default=0.2)
     parser.add_argument("--rank-bottom-ratio", type=float, default=0.4)
     parser.add_argument("--max-grad-norm", type=float, default=1.0)
-    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--n-per-dataset", type=int, default=600)
     parser.add_argument("--val-ratio", type=float, default=0.1)
     parser.add_argument("--log-every", type=int, default=25)

@@ -65,7 +65,7 @@ os.environ.setdefault("HF_DATASETS_OFFLINE", "1")
 # so HF doesn't try to infer a (missing) train/test split layout.
 DATA_ROOT = ZAP_ROOT / "data/eval"
 LOCAL_TASKS = {
-    "textvqa_val_local": {
+    "textvqa": {
         "base": "textvqa/textvqa_val.yaml",
         "dataset_path": "arrow",
         "data_files": {
@@ -75,36 +75,41 @@ LOCAL_TASKS = {
             )
         },
     },
-    "chartqa_local": {
+    "chartqa": {
         "base": "chartqa/chartqa.yaml",
         "dataset_path": str(DATA_ROOT / "ChartQA"),
     },
-    "docvqa_val_local": {
+    "docvqa": {
         "base": "docvqa/docvqa_val.yaml",
         "dataset_path": str(DATA_ROOT / "DocVQA"),
         "dataset_name": "DocVQA",
     },
-    "gqa_local": {
+    "gqa": {
         "base": "gqa/gqa.yaml",
         # GQA keeps the upstream `lmms-lab/GQA` path; its parquet configs
         # (instructions + images) are routed locally by _patch_gqa_load_dataset.
     },
-    "coco2017_cap_val_local": {
+    "coco_cap": {
         "base": "coco_cap/coco2017_cap_val.yaml",
         "dataset_path": "parquet",
         "data_files": {"val": str(DATA_ROOT / "COCO-Caption2017/data/val-*.parquet")},
     },
-    "nocaps_val_local": {
+    "nocaps": {
         "base": "nocaps/nocaps_val.yaml",
         "dataset_path": "parquet",
         "data_files": {"validation": str(DATA_ROOT / "NoCaps/data/validation-*.parquet")},
     },
-    "textcaps_val_local": {
+    "textcaps": {
         "base": "textcaps/textcaps_val.yaml",
         "dataset_path": "parquet",
         "data_files": {"val": str(DATA_ROOT / "TextCaps/data/val-*.parquet")},
     },
 }
+
+# lmms-eval ships built-in tasks with these same names; an --include_path task
+# can't override a built-in, so the generated YAML registers under a distinct
+# `<task>_local` id. Users still pass the plain names on --tasks.
+_LOCAL_SUFFIX = "_local"
 
 # GQA stores instructions/images as separate parquet configs and its upstream
 # utils.py hardcodes load_dataset("lmms-lab/GQA", ...); route both to local.
@@ -143,15 +148,20 @@ MODEL_TAGS = {
 
 
 def _generate_local_task_yamls() -> Path:
-    """Write one YAML per LOCAL_TASKS entry into a temp dir; return that dir."""
+    """Write one YAML per LOCAL_TASKS entry into a temp dir; return that dir.
+
+    Each YAML registers under `<task>_local` so it doesn't collide with the
+    upstream built-in task of the same name.
+    """
     import lmms_eval
 
     upstream_root = Path(lmms_eval.__file__).resolve().parent / "tasks"
     out_dir = Path(tempfile.mkdtemp(prefix="qvik_lmms_tasks_"))
     for task_name, spec in LOCAL_TASKS.items():
+        local_id = task_name + _LOCAL_SUFFIX
         cfg = {
             "include": str(upstream_root / spec["base"]),
-            "task": task_name,
+            "task": local_id,
         }
         if "dataset_path" in spec:
             cfg["dataset_path"] = spec["dataset_path"]
@@ -159,7 +169,7 @@ def _generate_local_task_yamls() -> Path:
             cfg["dataset_name"] = spec["dataset_name"]
         if "data_files" in spec:
             cfg["dataset_kwargs"] = {"data_files": spec["data_files"]}
-        (out_dir / f"{task_name}.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
+        (out_dir / f"{local_id}.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
     return out_dir
 
 
@@ -201,23 +211,43 @@ def main() -> None:
     args = parse_eval_args()
     model_tag = MODEL_TAGS.get(args.model, args.model)
     base_output = Path(args.output_path) if args.output_path else ZAP_ROOT / "results"
+    # Mirror the logs layout under base_output: results/X/... -> logs/X/...
+    results_root = (ZAP_ROOT / "results").resolve()
+    try:
+        rel = base_output.resolve().relative_to(results_root)
+        base_log = ZAP_ROOT / "logs" / rel if str(rel) != "." else ZAP_ROOT / "logs"
+    except ValueError:
+        base_log = base_output.parent / (base_output.name + "_logs")
     tasks = [t.strip() for t in (args.tasks or "").split(",") if t.strip()]
     if not tasks:
         raise SystemExit("No --tasks specified.")
+    unknown = [t for t in tasks if t not in LOCAL_TASKS]
+    if unknown:
+        raise SystemExit(
+            f"Unknown task(s): {unknown}. Available: {', '.join(LOCAL_TASKS)}"
+        )
 
-    # Run each task separately so it gets results/<model_tag>/<task>/ and a
-    # matching logs/<model_tag>/<task>.log
+    # Tag results/logs by keep_ratio so multiple ratios don't overwrite each other
+    keep_ratio = "1.0"
+    for kv in (args.model_args or "").split(","):
+        if kv.startswith("keep_ratio="):
+            keep_ratio = kv.split("=", 1)[1]
+    run_tag = f"{model_tag}/keep{keep_ratio}"
+
+    # Users pass plain task names (chartqa, gqa, ...); each routes to the
+    # generated `<task>_local` config. Results/logs use the plain name.
     for task in tasks:
-        task_out = base_output / model_tag / task
+        local_id = task + _LOCAL_SUFFIX
+        task_out = base_output / run_tag / task
         task_out.mkdir(parents=True, exist_ok=True)
         task_args = copy.deepcopy(args)
-        task_args.tasks = task
+        task_args.tasks = local_id
         task_args.output_path = str(task_out)
         # Write KV-pruning stats next to the results instead of the cwd
         if task_args.model_args and "stats_output_dir=" not in task_args.model_args:
             task_args.model_args += f",stats_output_dir={task_out}"
-        log_file = ZAP_ROOT / "logs" / model_tag / f"{task}.log"
-        print(f"\n===== [{model_tag}] task={task} -> {task_out} (log: {log_file}) =====", flush=True)
+        log_file = base_log / run_tag / f"{task}.log"
+        print(f"\n===== [{run_tag}] task={task} -> {task_out} (log: {log_file}) =====", flush=True)
         with _tee_to_file(log_file):
             cli_evaluate(task_args)
         _flatten_model_subdir(task_out)
