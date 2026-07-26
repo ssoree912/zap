@@ -12,6 +12,7 @@ package.
 from __future__ import annotations
 
 import argparse
+import gc
 import json
 import os
 import random
@@ -26,14 +27,72 @@ import numpy as np
 import torch
 from PIL import Image
 
-VFLOWOPT_LLAVA_ROOT = Path("/workspace/VFlowOpt/src/LLaVA-OneVision")
-if str(VFLOWOPT_LLAVA_ROOT) not in sys.path:
-    sys.path.insert(0, str(VFLOWOPT_LLAVA_ROOT))
+REPO_ROOT = Path(__file__).resolve().parents[2]
+WORKSPACE_ROOT = REPO_ROOT.parent
+QVIK_ROOT = Path(os.environ.get("QVIK_ROOT", WORKSPACE_ROOT / "Q-ViK")).resolve()
+for path in (QVIK_ROOT, REPO_ROOT):
+    if str(path) not in sys.path:
+        sys.path.insert(0, str(path))
 
-from llava.constants import IMAGE_TOKEN_INDEX  # noqa: E402
-from llava.conversation import conv_templates  # noqa: E402
-from llava.mm_utils import process_images, tokenizer_image_token  # noqa: E402
-from llava.model.builder import load_pretrained_model  # noqa: E402
+from transformers import AutoTokenizer  # noqa: E402
+
+from qvik.llava15.constants import IMAGE_TOKEN_INDEX  # noqa: E402
+from qvik.llava15.conversation import conv_templates  # noqa: E402
+from qvik.llava15.mm_utils import tokenizer_image_token  # noqa: E402
+from qvik.llava15.model.language_model.llava_llama import (  # noqa: E402
+    LlavaLlamaForCausalLM,
+)
+
+
+def _patch_generation_config_nested_dicts() -> None:
+    """Support older LLaVA configs with dict-valued nested model configs."""
+    from types import SimpleNamespace
+
+    from transformers.generation import configuration_utils
+
+    original = configuration_utils.GenerationConfig.from_model_config.__func__
+
+    @classmethod
+    def patched(cls, model_config):
+        for attr in ("decoder", "encoder", "text_config", "vision_config"):
+            value = getattr(model_config, attr, None)
+            if isinstance(value, dict):
+                namespace = SimpleNamespace(**value)
+                namespace.to_dict = lambda payload=value: payload
+                setattr(model_config, attr, namespace)
+        return original(cls, model_config)
+
+    configuration_utils.GenerationConfig.from_model_config = patched
+
+
+def _patch_llava_arch_for_dynamic_cache() -> None:
+    """Make the vendored original-LLaVA code accept Transformers DynamicCache."""
+    import qvik.llava15.model.llava_arch as llava_arch
+
+    original = llava_arch.LlavaMetaForCausalLM.prepare_inputs_labels_for_multimodal
+
+    def patched(self, input_ids, attention_mask, past_key_values, labels, images):
+        vision_tower = self.get_vision_tower()
+        if vision_tower is None or images is None or input_ids.shape[1] == 1:
+            if (
+                past_key_values is not None
+                and vision_tower is not None
+                and images is not None
+                and input_ids.shape[1] == 1
+            ):
+                if hasattr(past_key_values, "get_seq_length"):
+                    past_len = past_key_values.get_seq_length()
+                else:
+                    past_len = max(cache[-1].shape[-2] for cache in past_key_values)
+                attention_mask = torch.ones(
+                    (attention_mask.shape[0], past_len + 1),
+                    dtype=attention_mask.dtype,
+                    device=attention_mask.device,
+                )
+            return input_ids, attention_mask, past_key_values, None, labels
+        return original(self, input_ids, attention_mask, past_key_values, labels, images)
+
+    llava_arch.LlavaMetaForCausalLM.prepare_inputs_labels_for_multimodal = patched
 
 
 @dataclass(frozen=True)
@@ -66,7 +125,15 @@ def _build_prompt(question: str, conv_template: str) -> str:
 
 def _resolve_image(path_value: str, data_root: Path) -> Path | None:
     path = Path(path_value)
-    candidates = [path] if path.is_absolute() else [data_root / path, Path("/workspace/zap/data") / path]
+    candidates = (
+        [path]
+        if path.is_absolute()
+        else [
+            data_root / path,
+            WORKSPACE_ROOT / "data/train" / path,
+            Path("/workspace/zap/data") / path,
+        ]
+    )
     for candidate in candidates:
         if candidate.exists():
             return candidate.resolve()
@@ -137,7 +204,7 @@ def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
         prob = problems.get(qid)
         if not prob:
             continue
-        split = qid.split("_", 1)[0]
+        split = str(prob.get("split") or qid.split("_", 1)[0])
         image_path = Path(args.scienceqa_images_root) / split / qid / str(prob.get("image", "image.png"))
         if not image_path.exists():
             continue
@@ -173,7 +240,45 @@ def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
     return samples[: args.n_samples]
 
 
+def _load_samples_from_teacher_manifest(
+    manifest_root: Path,
+    dataset: str,
+    n_samples: int,
+) -> list[Sample]:
+    """Reuse only sample metadata from an older cache; labels are recomputed."""
+    samples: list[Sample] = []
+    for path in sorted((manifest_root / dataset).glob("*.pt")):
+        rec = torch.load(path, weights_only=False, map_location="cpu")
+        image_path = Path(str(rec["image_path"]))
+        if not image_path.exists():
+            continue
+        answers = rec.get("ground_truth_answers") or []
+        answer = str(answers[0]) if answers else rec.get("answer")
+        prompt = str(rec["prompt_text"])
+        samples.append(
+            Sample(
+                dataset=dataset,
+                sample_id=str(rec.get("sample_id") or path.stem),
+                question=str(rec.get("question") or prompt),
+                image_path=image_path.resolve(),
+                prompt=prompt,
+                answer=str(answer) if answer is not None else None,
+            )
+        )
+        if len(samples) >= n_samples:
+            break
+    return samples
+
+
 def load_samples(args: argparse.Namespace, dataset: str) -> list[Sample]:
+    if args.sample_manifest_root:
+        samples = _load_samples_from_teacher_manifest(
+            Path(args.sample_manifest_root),
+            dataset,
+            args.n_samples,
+        )
+        if samples:
+            return samples
     if dataset == "gqa":
         return _load_gqa(args)
     if dataset == "textvqa":
@@ -208,6 +313,10 @@ def _decode_generated(tokenizer: Any, sequences: torch.Tensor, t_steps: int) -> 
     return tokenizer.decode(answer_ids, skip_special_tokens=True).strip()
 
 
+def _normalize_teacher(teacher: torch.Tensor, eps: float) -> torch.Tensor:
+    return teacher / teacher.sum(dim=-1, keepdim=True).clamp_min(eps)
+
+
 @torch.no_grad()
 def collect_one(
     *,
@@ -218,15 +327,14 @@ def collect_one(
     max_new_tokens: int,
     device: torch.device,
     image_feature_len: int,
+    question_weight: float,
     eps: float,
 ) -> dict[str, Any]:
     with Image.open(sample.image_path) as image:
         image = image.convert("RGB")
         image_size = image.size
-        image_tensor = process_images([image], image_processor, model.config)
-    if isinstance(image_tensor, list):
-        image_tensor = torch.stack(image_tensor, dim=0)
-    image_tensor = image_tensor.to(device=device, dtype=torch.float16)
+        image_tensor = image_processor.preprocess(image, return_tensors="pt")["pixel_values"]
+    image_tensor = image_tensor.to(device=device, dtype=torch.bfloat16)
 
     input_ids = tokenizer_image_token(
         sample.prompt,
@@ -239,39 +347,76 @@ def collect_one(
     image_indices = image_positions.to(device=device)
     question_positions = _infer_question_positions(prompt_len_mm, image_positions)
 
-    out = model.generate(
-        inputs=input_ids,
+    generated = model.generate(
+        input_ids=input_ids,
         images=image_tensor,
-        image_sizes=[image_size],
-        modalities=["image"],
         do_sample=False,
         num_beams=1,
         max_new_tokens=max_new_tokens,
         use_cache=True,
-        output_attentions=True,
-        return_dict_in_generate=True,
         pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,
         eos_token_id=tokenizer.eos_token_id,
     )
+    answer_ids = generated[:, input_ids.shape[1] :].detach()
+    t_steps = int(answer_ids.shape[1])
+    decoded = tokenizer.decode(answer_ids[0], skip_special_tokens=True).strip()
+    del generated
 
-    if out.attentions is None or len(out.attentions) == 0:
-        raise RuntimeError("Generation did not return attentions")
+    full_input_ids = torch.cat([input_ids, answer_ids], dim=1)
+    full_out = model(
+        input_ids=full_input_ids,
+        images=image_tensor,
+        output_attentions=True,
+        use_cache=False,
+        return_dict=True,
+    )
+    if full_out.attentions is None or len(full_out.attentions) == 0:
+        raise RuntimeError("Full question+answer pass did not return attentions")
 
-    n_layers = len(out.attentions[0])
+    n_layers = len(full_out.attentions)
     n_img = int(image_positions.numel())
-    teacher_raw = torch.zeros(n_layers, n_img, dtype=torch.float32)
-    for step_attns in out.attentions:
-        for layer_idx, attn in enumerate(step_attns):
-            # First generate step can be [B,H,T,T]; later steps are [B,H,1,T].
-            attn_to_img = attn[0, :, -1, :].index_select(dim=-1, index=image_indices)
-            teacher_raw[layer_idx] += attn_to_img.float().mean(dim=0).detach().cpu()
+    teacher_question_raw = torch.zeros(n_layers, n_img, dtype=torch.float32)
+    teacher_answer_raw = torch.zeros(n_layers, n_img, dtype=torch.float32)
+    question_indices = question_positions.to(device=device)
+    if question_indices.numel() == 0:
+        question_indices = torch.tensor([prompt_len_mm - 1], device=device)
+    if t_steps:
+        answer_indices = torch.arange(
+            prompt_len_mm,
+            prompt_len_mm + t_steps,
+            dtype=torch.long,
+            device=device,
+        )
+    else:
+        answer_indices = torch.tensor([prompt_len_mm - 1], device=device)
 
-    t_steps = len(out.attentions)
-    teacher_raw /= float(t_steps)
-    teacher_norm = teacher_raw / teacher_raw.sum(dim=-1, keepdim=True).clamp_min(eps)
+    for layer_idx, attn in enumerate(full_out.attentions):
+        question_to_img = attn[0, :, question_indices, :].index_select(
+            dim=-1,
+            index=image_indices,
+        )
+        answer_to_img = attn[0, :, answer_indices, :].index_select(
+            dim=-1,
+            index=image_indices,
+        )
+        teacher_question_raw[layer_idx] = (
+            question_to_img.float().mean(dim=(0, 1)).detach().cpu()
+        )
+        teacher_answer_raw[layer_idx] = (
+            answer_to_img.float().mean(dim=(0, 1)).detach().cpu()
+        )
 
-    decoded = _decode_generated(tokenizer, out.sequences, t_steps)
-    del out
+    teacher_question_norm = _normalize_teacher(teacher_question_raw, eps)
+    teacher_answer_norm = _normalize_teacher(teacher_answer_raw, eps)
+    answer_weight = 1.0 - question_weight
+    teacher_norm = _normalize_teacher(
+        question_weight * teacher_question_norm
+        + answer_weight * teacher_answer_norm,
+        eps,
+    )
+
+    del full_out, full_input_ids, answer_ids
+    gc.collect()
     torch.cuda.empty_cache()
 
     return {
@@ -285,8 +430,17 @@ def collect_one(
         "image_path": str(sample.image_path),
         "image_token_indices": image_positions.to(torch.long),
         "question_token_indices": question_positions.to(torch.long),
-        "teacher_raw": teacher_raw.to(torch.float16),
+        "teacher_raw": teacher_norm.to(torch.float16),
         "teacher_norm": teacher_norm.to(torch.float16),
+        "teacher_question_raw": teacher_question_raw.to(torch.float16),
+        "teacher_question_norm": teacher_question_norm.to(torch.float16),
+        "teacher_answer_raw": teacher_answer_raw.to(torch.float16),
+        "teacher_answer_norm": teacher_answer_norm.to(torch.float16),
+        "teacher_question_weight": float(question_weight),
+        "teacher_answer_weight": float(answer_weight),
+        "teacher_signal": "question_answer_normalized_mix",
+        "teacher_question_source": "causal_prefill_question_tokens",
+        "teacher_answer_source": "generated_answer_tokens",
         "prompt_len_mm": int(prompt_len_mm),
         "T": int(t_steps),
         "n_img": int(n_img),
@@ -297,19 +451,23 @@ def collect_one(
 def _load_model(args: argparse.Namespace) -> tuple[Any, Any, Any, int]:
     print(
         f"[load] model={args.model_path} conv_template={args.conv_template} "
-        f"device_map={args.device_map} attn=eager",
+        f"device={args.device} attn=eager",
         flush=True,
     )
-    tokenizer, model, image_processor, _context_len = load_pretrained_model(
-        model_path=args.model_path,
-        model_base=None,
-        model_name=args.model_name,
-        device_map=args.device_map,
+    _patch_generation_config_nested_dicts()
+    _patch_llava_arch_for_dynamic_cache()
+    tokenizer = AutoTokenizer.from_pretrained(args.model_path, use_fast=False)
+    model = LlavaLlamaForCausalLM.from_pretrained(
+        args.model_path,
+        low_cpu_mem_usage=True,
+        torch_dtype=torch.bfloat16,
         attn_implementation="eager",
-        multimodal=True,
-    )
-    model.eval()
+    ).to(torch.device(args.device)).eval()
     vision_tower = model.get_vision_tower()
+    if not vision_tower.is_loaded:
+        vision_tower.load_model()
+    vision_tower.to(device=torch.device(args.device), dtype=torch.float16)
+    image_processor = vision_tower.image_processor
     image_feature_len = int(getattr(vision_tower, "num_patches", 576))
     print(
         f"[load-ok] class={model.__class__.__name__} layers={model.config.num_hidden_layers} "
@@ -321,24 +479,30 @@ def _load_model(args: argparse.Namespace) -> tuple[Any, Any, Any, int]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", default="/workspace/zap/ckpts/llava-v1.5-7b")
+    parser.add_argument("--model-path", default=str(WORKSPACE_ROOT / "models/llava-v1.5-7b"))
     parser.add_argument("--model-name", default="llava-v1.5-7b")
     parser.add_argument("--conv-template", default="vicuna_v1")
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--device-map", default="cuda:0")
     parser.add_argument("--datasets", nargs="+", default=["gqa", "textvqa", "scienceqa"])
-    parser.add_argument("--n-samples", type=int, default=600)
+    parser.add_argument("--n-samples", type=int, default=300)
     parser.add_argument("--max-new-tokens", type=int, default=32)
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--output-root", default="/workspace/zap/artifacts/original_llava_teacher/future_decode_llava15_7b")
-    parser.add_argument("--data-root", default="/workspace/zap/data")
-    parser.add_argument("--gqa-subset-json", default="/workspace/zap/data/gqa/train/subset_600_seed42.json")
-    parser.add_argument("--textvqa-json", default="/workspace/zap/data/textvqa/train/data.json")
-    parser.add_argument("--textvqa-ids-json", default="/workspace/zap/artifacts/original_llava_teacher/subsets/textvqa_600_seed42_ids.json")
-    parser.add_argument("--scienceqa-problems-json", default="/workspace/zap/data/scienceqa/problems.json")
-    parser.add_argument("--scienceqa-images-root", default="/workspace/zap/data/scienceqa/images")
-    parser.add_argument("--scienceqa-ids-json", default="/workspace/zap/artifacts/original_llava_teacher/subsets/scienceqa_600_seed42_ids.json")
+    parser.add_argument("--output-root", default=str(REPO_ROOT / "artifacts/original_llava_teacher/qa50_llava15_300"))
+    parser.add_argument("--data-root", default=str(WORKSPACE_ROOT / "data/train"))
+    parser.add_argument("--gqa-subset-json", default=str(REPO_ROOT / "artifacts/original_llava_teacher/subsets/gqa_300_seed0.json"))
+    parser.add_argument("--textvqa-json", default=str(WORKSPACE_ROOT / "data/train/textvqa/train/data.json"))
+    parser.add_argument("--textvqa-ids-json", default=str(REPO_ROOT / "artifacts/original_llava_teacher/subsets/textvqa_300_seed0_ids.json"))
+    parser.add_argument("--scienceqa-problems-json", default=str(WORKSPACE_ROOT / "data/train/scienceqa/problems.json"))
+    parser.add_argument("--scienceqa-images-root", default=str(WORKSPACE_ROOT / "data/train/scienceqa/images"))
+    parser.add_argument("--scienceqa-ids-json", default=str(REPO_ROOT / "artifacts/original_llava_teacher/subsets/scienceqa_300_seed0_ids.json"))
     parser.add_argument("--scienceqa-prompt-style", choices=["choices_only", "direct_letter"], default="choices_only")
+    parser.add_argument(
+        "--sample-manifest-root",
+        default=str(WORKSPACE_ROOT / "data/train/teacher/llava15_qa50_all"),
+        help="Optional older cache used only to select sample IDs/prompts/images.",
+    )
+    parser.add_argument("--question-weight", type=float, default=0.5)
     parser.add_argument("--limit-per-dataset", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
@@ -346,6 +510,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    if not 0.0 <= args.question_weight <= 1.0:
+        raise ValueError("--question-weight must be in [0, 1]")
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -387,6 +553,7 @@ def main() -> int:
                     max_new_tokens=args.max_new_tokens,
                     device=device,
                     image_feature_len=image_feature_len,
+                    question_weight=args.question_weight,
                     eps=1e-8,
                 )
                 torch.save(rec, out_path)
@@ -423,6 +590,8 @@ def main() -> int:
             "skipped": skipped,
             "elapsed_seconds": elapsed,
             "max_new_tokens": args.max_new_tokens,
+            "question_weight": args.question_weight,
+            "answer_weight": 1.0 - args.question_weight,
             "t_min": int(min(t_values)) if t_values else 0,
             "t_max": int(max(t_values)) if t_values else 0,
             "t_mean": float(np.mean(t_values)) if t_values else 0.0,
