@@ -1,0 +1,6 @@
+include: /opt/conda/envs/qvik/lib/python3.10/site-packages/lmms_eval/tasks/chartqa/chartqa.yaml
+task: chartqa_local
+dataset_path: parquet
+dataset_kwargs:
+  data_files:
+    test: /workspace/nips/data/eval/ChartQA/data/test-*.parquet

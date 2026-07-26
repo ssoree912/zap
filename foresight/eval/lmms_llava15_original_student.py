@@ -23,19 +23,8 @@ import torch
 from tqdm import tqdm
 
 ZAP_ROOT = Path(os.environ.get("ZAP_REPO_ROOT", Path(__file__).resolve().parents[2])).resolve()
-VFLOWOPT_LLAVA_ROOT = Path(
-    os.environ.get(
-        "VFLOWOPT_LLAVA_ROOT",
-        ZAP_ROOT.parent / "VFlowOpt_llava1.5/src/LLaVA-OneVision",
-    )
-).resolve()
-VFLOWOPT_TRANSFORMERS_ROOT = Path(
-    os.environ.get(
-        "VFLOWOPT_TRANSFORMERS_ROOT",
-        ZAP_ROOT.parent / "VFlowOpt_llava1.5/src/transformers-4.46.0/src",
-    )
-).resolve()
-for _path in (str(ZAP_ROOT), str(VFLOWOPT_TRANSFORMERS_ROOT), str(VFLOWOPT_LLAVA_ROOT)):
+QVIK_ROOT = Path(os.environ.get("QVIK_ROOT", ZAP_ROOT.parent / "Q-ViK")).resolve()
+for _path in (str(QVIK_ROOT), str(ZAP_ROOT)):
     if _path not in sys.path:
         sys.path.insert(0, _path)
 
@@ -86,16 +75,14 @@ from .kv_decode_utils import (  # noqa: E402
     trim_kv_cache_per_layer,
 )
 
-try:
-    from llava.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
-    from llava.conversation import conv_templates
-    from llava.mm_utils import get_model_name_from_path, process_images, tokenizer_image_token
-    from llava.model.builder import load_pretrained_model
-except Exception as exc:  # pragma: no cover - import error is environment-specific.
-    raise ImportError(
-        "Original LLaVA package is required. Expected it under "
-        "/workspace/VFlowOpt/src/LLaVA-OneVision."
-    ) from exc
+from qvik.llava15.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
+from qvik.llava15.conversation import conv_templates
+from qvik.llava15.mm_utils import (
+    get_model_name_from_path,
+    process_images,
+    tokenizer_image_token,
+)
+from qvik.llava15.model.builder import load_pretrained_model
 
 try:
     from lmms_eval import utils
@@ -184,39 +171,18 @@ class Llava15OriginalStudent(lmms):
         if self.batch_size_per_gpu != 1:
             raise ValueError("Original LLaVA student wrapper only supports batch_size=1.")
 
-        llava_model_args = {"multimodal": True}
-        if attn_implementation:
-            llava_model_args["attn_implementation"] = attn_implementation
-        if vision_tower_path:
-            llava_model_args["overwrite_config"] = {"mm_vision_tower": vision_tower_path}
         resolved_model_name = model_name or get_model_name_from_path(pretrained)
-        try:
-            (
-                self._tokenizer,
-                self._model,
-                self._image_processor,
-                self._max_length,
-            ) = load_pretrained_model(
-                pretrained,
-                None,
-                resolved_model_name,
-                device_map=device_map,
-                **llava_model_args,
-            )
-        except TypeError:
-            llava_model_args.pop("multimodal", None)
-            (
-                self._tokenizer,
-                self._model,
-                self._image_processor,
-                self._max_length,
-            ) = load_pretrained_model(
-                pretrained,
-                None,
-                resolved_model_name,
-                device_map=device_map,
-                **llava_model_args,
-            )
+        (
+            self._tokenizer,
+            self._model,
+            self._image_processor,
+            self._max_length,
+        ) = load_pretrained_model(
+            pretrained,
+            None,
+            resolved_model_name,
+            device_map=device_map,
+        )
 
         self._model.eval()
         if device_map != "auto":
@@ -227,8 +193,9 @@ class Llava15OriginalStudent(lmms):
             pass
         self._config = self._model.config
 
+        self._model_dtype = next(self._model.parameters()).dtype
         self.student = VisualUtilityStudent.from_pretrained(student_path)
-        self.student = self.student.to(device=self._device, dtype=torch.float16).eval()
+        self.student = self.student.to(device=self._device, dtype=self._model_dtype).eval()
         self.student_path = student_path
         self.keep_ratio = float(keep_ratio)
         self.conv_template = conv_template
@@ -376,10 +343,10 @@ class Llava15OriginalStudent(lmms):
         image_tensor = process_images(visuals, self._image_processor, self._config)
         if isinstance(image_tensor, list):
             image_tensor = [
-                tensor.to(dtype=torch.float16, device=self._device) for tensor in image_tensor
+                tensor.to(dtype=self._model_dtype, device=self._device) for tensor in image_tensor
             ]
         else:
-            image_tensor = image_tensor.to(dtype=torch.float16, device=self._device)
+            image_tensor = image_tensor.to(dtype=self._model_dtype, device=self._device)
         return image_tensor, image_sizes
 
     def _save_keep_stats(self, task_name: Optional[str]) -> None:
@@ -429,9 +396,8 @@ class Llava15OriginalStudent(lmms):
         def _safe_generate() -> str:
             out = self._model.generate(
                 inputs=input_ids,
+                attention_mask=torch.ones_like(input_ids, dtype=torch.long),
                 images=image_tensor,
-                image_sizes=image_sizes,
-                modalities=modalities,
                 do_sample=False,
                 num_beams=1,
                 max_new_tokens=max_new_tokens,
@@ -454,8 +420,6 @@ class Llava15OriginalStudent(lmms):
             prefill = self._model(
                 input_ids=input_ids,
                 images=image_tensor,
-                image_sizes=image_sizes,
-                modalities=modalities,
                 use_cache=True,
                 output_hidden_states=True,
                 output_attentions=False,
