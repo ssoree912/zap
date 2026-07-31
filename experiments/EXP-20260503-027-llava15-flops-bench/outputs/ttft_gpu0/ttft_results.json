@@ -1,0 +1,326 @@
+[
+  {
+    "config": "1img_336px",
+    "n_images": 1,
+    "image_px": 336,
+    "L_p": 1517,
+    "n_img_tokens": 1485,
+    "method": "full",
+    "ratio": 1.0,
+    "ttft_ms_median": 169.05,
+    "ttft_ms_all": [
+      168.91,
+      169.05,
+      169.17
+    ],
+    "student_ms_median": 0.0,
+    "overhead_ms": 0.0,
+    "overhead_pct": 0.0
+  },
+  {
+    "config": "1img_336px",
+    "n_images": 1,
+    "image_px": 336,
+    "L_p": 1517,
+    "n_img_tokens": 1485,
+    "method": "student_keep0.2",
+    "ratio": 0.2,
+    "ttft_ms_median": 216.53,
+    "ttft_ms_all": [
+      216.92,
+      216.47,
+      216.53
+    ],
+    "student_ms_median": 22.31,
+    "overhead_ms": 47.48,
+    "overhead_pct": 28.09
+  },
+  {
+    "config": "1img_336px",
+    "n_images": 1,
+    "image_px": 336,
+    "L_p": 1517,
+    "n_img_tokens": 1485,
+    "method": "student_keep0.05",
+    "ratio": 0.05,
+    "ttft_ms_median": 217.34,
+    "ttft_ms_all": [
+      219.64,
+      217.34,
+      215.98
+    ],
+    "student_ms_median": 22.22,
+    "overhead_ms": 48.29,
+    "overhead_pct": 28.57
+  },
+  {
+    "config": "1img_672px",
+    "n_images": 1,
+    "image_px": 672,
+    "L_p": 3731,
+    "n_img_tokens": 3699,
+    "method": "full",
+    "ratio": 1.0,
+    "ttft_ms_median": 439.57,
+    "ttft_ms_all": [
+      439.62,
+      439.57,
+      439.43
+    ],
+    "student_ms_median": 0.0,
+    "overhead_ms": 0.0,
+    "overhead_pct": 0.0
+  },
+  {
+    "config": "1img_672px",
+    "n_images": 1,
+    "image_px": 672,
+    "L_p": 3731,
+    "n_img_tokens": 3699,
+    "method": "student_keep0.2",
+    "ratio": 0.2,
+    "ttft_ms_median": 499.19,
+    "ttft_ms_all": [
+      498.29,
+      499.22,
+      499.19
+    ],
+    "student_ms_median": 21.18,
+    "overhead_ms": 59.62,
+    "overhead_pct": 13.56
+  },
+  {
+    "config": "1img_672px",
+    "n_images": 1,
+    "image_px": 672,
+    "L_p": 3731,
+    "n_img_tokens": 3699,
+    "method": "student_keep0.05",
+    "ratio": 0.05,
+    "ttft_ms_median": 495.93,
+    "ttft_ms_all": [
+      496.19,
+      495.93,
+      495.82
+    ],
+    "student_ms_median": 20.85,
+    "overhead_ms": 56.36,
+    "overhead_pct": 12.82
+  },
+  {
+    "config": "1img_1008px",
+    "n_images": 1,
+    "image_px": 1008,
+    "L_p": 7403,
+    "n_img_tokens": 7371,
+    "method": "full",
+    "ratio": 1.0,
+    "ttft_ms_median": 911.14,
+    "ttft_ms_all": [
+      910.91,
+      911.27,
+      911.14
+    ],
+    "student_ms_median": 0.0,
+    "overhead_ms": 0.0,
+    "overhead_pct": 0.0
+  },
+  {
+    "config": "1img_1008px",
+    "n_images": 1,
+    "image_px": 1008,
+    "L_p": 7403,
+    "n_img_tokens": 7371,
+    "method": "student_keep0.2",
+    "ratio": 0.2,
+    "ttft_ms_median": 999.48,
+    "ttft_ms_all": [
+      999.81,
+      999.48,
+      998.84
+    ],
+    "student_ms_median": 21.38,
+    "overhead_ms": 88.34,
+    "overhead_pct": 9.7
+  },
+  {
+    "config": "1img_1008px",
+    "n_images": 1,
+    "image_px": 1008,
+    "L_p": 7403,
+    "n_img_tokens": 7371,
+    "method": "student_keep0.05",
+    "ratio": 0.05,
+    "ttft_ms_median": 1000.04,
+    "ttft_ms_all": [
+      1000.28,
+      998.83,
+      1000.04
+    ],
+    "student_ms_median": 21.53,
+    "overhead_ms": 88.9,
+    "overhead_pct": 9.76
+  },
+  {
+    "config": "2img_384px",
+    "n_images": 2,
+    "image_px": 384,
+    "L_p": 3003,
+    "n_img_tokens": 2970,
+    "method": "full",
+    "ratio": 1.0,
+    "ttft_ms_median": 344.52,
+    "ttft_ms_all": [
+      344.52,
+      344.69,
+      344.38
+    ],
+    "student_ms_median": 0.0,
+    "overhead_ms": 0.0,
+    "overhead_pct": 0.0
+  },
+  {
+    "config": "2img_384px",
+    "n_images": 2,
+    "image_px": 384,
+    "L_p": 3003,
+    "n_img_tokens": 2970,
+    "method": "student_keep0.2",
+    "ratio": 0.2,
+    "ttft_ms_median": 394.85,
+    "ttft_ms_all": [
+      394.85,
+      395.4,
+      394.79
+    ],
+    "student_ms_median": 20.81,
+    "overhead_ms": 50.33,
+    "overhead_pct": 14.61
+  },
+  {
+    "config": "2img_384px",
+    "n_images": 2,
+    "image_px": 384,
+    "L_p": 3003,
+    "n_img_tokens": 2970,
+    "method": "student_keep0.05",
+    "ratio": 0.05,
+    "ttft_ms_median": 394.45,
+    "ttft_ms_all": [
+      394.43,
+      394.45,
+      394.45
+    ],
+    "student_ms_median": 20.68,
+    "overhead_ms": 49.93,
+    "overhead_pct": 14.49
+  },
+  {
+    "config": "4img_384px",
+    "n_images": 4,
+    "image_px": 384,
+    "L_p": 5975,
+    "n_img_tokens": 5940,
+    "method": "full",
+    "ratio": 1.0,
+    "ttft_ms_median": 726.12,
+    "ttft_ms_all": [
+      726.75,
+      725.87,
+      726.12
+    ],
+    "student_ms_median": 0.0,
+    "overhead_ms": 0.0,
+    "overhead_pct": 0.0
+  },
+  {
+    "config": "4img_384px",
+    "n_images": 4,
+    "image_px": 384,
+    "L_p": 5975,
+    "n_img_tokens": 5940,
+    "method": "student_keep0.2",
+    "ratio": 0.2,
+    "ttft_ms_median": 799.96,
+    "ttft_ms_all": [
+      801.38,
+      798.94,
+      799.96
+    ],
+    "student_ms_median": 20.81,
+    "overhead_ms": 73.84,
+    "overhead_pct": 10.17
+  },
+  {
+    "config": "4img_384px",
+    "n_images": 4,
+    "image_px": 384,
+    "L_p": 5975,
+    "n_img_tokens": 5940,
+    "method": "student_keep0.05",
+    "ratio": 0.05,
+    "ttft_ms_median": 799.5,
+    "ttft_ms_all": [
+      799.5,
+      799.95,
+      798.92
+    ],
+    "student_ms_median": 20.83,
+    "overhead_ms": 73.38,
+    "overhead_pct": 10.11
+  },
+  {
+    "config": "8img_384px",
+    "n_images": 8,
+    "image_px": 384,
+    "L_p": 11919,
+    "n_img_tokens": 11880,
+    "method": "full",
+    "ratio": 1.0,
+    "ttft_ms_median": 1534.84,
+    "ttft_ms_all": [
+      1535.29,
+      1534.31,
+      1534.84
+    ],
+    "student_ms_median": 0.0,
+    "overhead_ms": 0.0,
+    "overhead_pct": 0.0
+  },
+  {
+    "config": "8img_384px",
+    "n_images": 8,
+    "image_px": 384,
+    "L_p": 11919,
+    "n_img_tokens": 11880,
+    "method": "student_keep0.2",
+    "ratio": 0.2,
+    "ttft_ms_median": 1651.8,
+    "ttft_ms_all": [
+      1651.8,
+      1650.84,
+      1652.56
+    ],
+    "student_ms_median": 21.17,
+    "overhead_ms": 116.96,
+    "overhead_pct": 7.62
+  },
+  {
+    "config": "8img_384px",
+    "n_images": 8,
+    "image_px": 384,
+    "L_p": 11919,
+    "n_img_tokens": 11880,
+    "method": "student_keep0.05",
+    "ratio": 0.05,
+    "ttft_ms_median": 1652.29,
+    "ttft_ms_all": [
+      1651.63,
+      1652.29,
+      1653.99
+    ],
+    "student_ms_median": 20.91,
+    "overhead_ms": 117.45,
+    "overhead_pct": 7.65
+  }
+]

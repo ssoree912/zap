@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import random
 import sys
 import time
@@ -16,15 +17,17 @@ from typing import Any
 
 import numpy as np
 import torch
+import torch.distributed as dist
 import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 
-REPO_ROOT = Path("/workspace/zap")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+WORKSPACE_ROOT = REPO_ROOT.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-LLAVA_ONEVISION_ROOT = Path("/workspace/VFlowOpt/src/LLaVA-OneVision")
+LLAVA_ONEVISION_ROOT = WORKSPACE_ROOT / "VFlowOpt" / "src" / "LLaVA-OneVision"
 if str(LLAVA_ONEVISION_ROOT) not in sys.path:
     sys.path.insert(0, str(LLAVA_ONEVISION_ROOT))
 
@@ -50,6 +53,13 @@ def patch_siglip_loader_to_local_init() -> None:
         self.is_loaded = True
 
     siglip_encoder.SigLipVisionTower.load_model = _load_model
+
+
+class HiddenStatesOnlyLMHead(torch.nn.Module):
+    """Avoid allocating full-vocabulary logits when only hidden states are used."""
+
+    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
+        return hidden_states.new_empty((*hidden_states.shape[:-1], 0))
 
 
 def list_teacher_files(teacher_root: Path, datasets: list[str], per_ds_limit: int | None) -> list[Path]:
@@ -118,16 +128,33 @@ def build_inputs(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--teacher-root", default="/workspace/zap/artifacts/original_onevision_teacher/future_decode_qwen2_7b")
+    parser.add_argument(
+        "--teacher-root",
+        default=str(
+            REPO_ROOT
+            / "artifacts"
+            / "original_onevision_teacher"
+            / "future_answer_agnostic_1800_seed42"
+        ),
+    )
     parser.add_argument("--datasets", nargs="+", default=["textvqa", "gqa", "scienceqa"])
     parser.add_argument("--per-ds-limit", type=int, default=600)
-    parser.add_argument("--model-path", default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov")
+    parser.add_argument(
+        "--model-path",
+        default=str(WORKSPACE_ROOT / "models" / "llava-onevision-qwen2-7b-ov"),
+    )
     parser.add_argument("--model-name", default="llava_qwen")
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--device-map", default="auto")
     parser.add_argument("--epochs", type=int, default=15)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--weight-decay", type=float, default=0.0)
+    parser.add_argument(
+        "--optimizer",
+        choices=["adamw8bit", "adamw"],
+        default="adamw8bit",
+        help="8-bit AdamW keeps the 125M-parameter student within a 24GB GPU.",
+    )
     parser.add_argument("--lambda-rank", type=float, default=0.1)
     parser.add_argument("--rank-margin", type=float, default=0.05)
     parser.add_argument("--rank-top-ratio", type=float, default=0.2)
@@ -136,25 +163,46 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--val-ratio", type=float, default=0.1)
     parser.add_argument("--log-every", type=int, default=25)
+    parser.add_argument(
+        "--resume-from",
+        default=None,
+        help="Path to last_checkpoint.pt; resumes at the following epoch.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    world_size = int(os.environ.get("WORLD_SIZE", "1"))
+    process_rank = int(os.environ.get("RANK", "0"))
+    local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+    distributed = world_size > 1
+    if distributed:
+        torch.cuda.set_device(local_rank)
+        dist.init_process_group(backend="nccl")
+        args.device = f"cuda:{local_rank}"
+        if args.device_map == "auto":
+            args.device_map = args.device
+
     torch.manual_seed(args.seed)
     random.seed(args.seed)
     np.random.seed(args.seed)
 
     device = torch.device(args.device)
     out_dir = Path(args.output_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "train_config.json").write_text(json.dumps(vars(args), indent=2))
-    log_f = (out_dir / "train_log.jsonl").open("w")
+    resume_path = Path(args.resume_from) if args.resume_from else None
+    if process_rank == 0:
+        out_dir.mkdir(parents=True, exist_ok=True)
+        train_config = dict(vars(args), world_size=world_size)
+        (out_dir / "train_config.json").write_text(json.dumps(train_config, indent=2))
+        log_f = (out_dir / "train_log.jsonl").open("a" if resume_path else "w")
+    else:
+        log_f = None
 
     patch_siglip_loader_to_local_init()
     print(
-        f"[load] model={args.model_path} model_name={args.model_name} "
-        f"device_map={args.device_map} attn=sdpa",
+        f"[rank {process_rank}] [load] model={args.model_path} model_name={args.model_name} "
+        f"device={device} device_map={args.device_map} attn=sdpa",
         flush=True,
     )
     tokenizer, lvlm, image_processor, _context_len = load_pretrained_model(
@@ -168,6 +216,12 @@ def main() -> int:
     lvlm.eval()
     for p in lvlm.parameters():
         p.requires_grad_(False)
+    # Qwen's causal-LM wrapper otherwise materializes [B, T, vocab] logits,
+    # which can exceed 2GB for high-resolution OneVision samples.  The student
+    # consumes hidden states only, so remove the unused projection and its
+    # roughly 1GB fp16 weight.
+    lvlm.lm_head = HiddenStatesOnlyLMHead().to(device)
+    torch.cuda.empty_cache()
 
     per_ds_limit = args.per_ds_limit if args.per_ds_limit and args.per_ds_limit > 0 else None
     all_files = list_teacher_files(Path(args.teacher_root), args.datasets, per_ds_limit)
@@ -178,17 +232,24 @@ def main() -> int:
     n_total = len(all_files)
     n_val = max(1, int(n_total * args.val_ratio))
     n_train = n_total - n_val
-    print(f"[data] total={n_total} train={n_train} val={n_val} datasets={args.datasets}", flush=True)
+    train_files = all_files[:n_train][process_rank::world_size]
+    val_files = all_files[n_train:][process_rank::world_size]
+    if process_rank == 0:
+        print(
+            f"[data] total={n_total} train={n_train} val={n_val} "
+            f"world_size={world_size} datasets={args.datasets}",
+            flush=True,
+        )
 
     train_loader = DataLoader(
-        TeacherDataset(all_files[:n_train]),
+        TeacherDataset(train_files),
         batch_size=1,
         shuffle=True,
         collate_fn=collate_single,
-        generator=torch.Generator().manual_seed(args.seed),
+        generator=torch.Generator().manual_seed(args.seed + process_rank),
     )
     val_loader = DataLoader(
-        TeacherDataset(all_files[n_train:]),
+        TeacherDataset(val_files),
         batch_size=1,
         shuffle=False,
         collate_fn=collate_single,
@@ -196,8 +257,71 @@ def main() -> int:
 
     student = VisualUtilityStudentOneVision().to(device)
     n_params = sum(p.numel() for p in student.parameters() if p.requires_grad)
-    print(f"[student] layers={student.layer_indices} params={n_params:,}", flush=True)
-    optimizer = torch.optim.AdamW(student.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    if process_rank == 0:
+        print(f"[student] layers={student.layer_indices} params={n_params:,}", flush=True)
+    if args.optimizer == "adamw8bit":
+        from bitsandbytes.optim import AdamW8bit
+
+        optimizer = AdamW8bit(
+            student.parameters(),
+            lr=args.lr,
+            weight_decay=args.weight_decay,
+        )
+    else:
+        optimizer = torch.optim.AdamW(
+            student.parameters(),
+            lr=args.lr,
+            weight_decay=args.weight_decay,
+        )
+    if process_rank == 0:
+        print(f"[optimizer] {args.optimizer} initialized", flush=True)
+
+    start_epoch = 1
+    best_val = float("inf")
+    elapsed_offset = 0.0
+    if resume_path is not None:
+        checkpoint = torch.load(resume_path, weights_only=False, map_location="cpu")
+        student.load_state_dict(checkpoint["student"])
+        optimizer.load_state_dict(checkpoint["optimizer"])
+        start_epoch = int(checkpoint["epoch"]) + 1
+        best_val = float(checkpoint.get("best_val", float("inf")))
+        log_path = out_dir / "train_log.jsonl"
+        if log_path.exists():
+            rows = [
+                json.loads(line)
+                for line in log_path.read_text().splitlines()
+                if line.strip()
+            ]
+            if rows:
+                elapsed_offset = float(rows[-1].get("elapsed", 0.0))
+                best_val = min(best_val, *(float(row["val_loss"]) for row in rows))
+        if process_rank == 0:
+            print(
+                f"[resume] checkpoint={resume_path} start_epoch={start_epoch} "
+                f"best_val={best_val:.6f} elapsed_offset={elapsed_offset:.1f}s",
+                flush=True,
+            )
+
+    def sync_gradients() -> None:
+        if not distributed:
+            return
+        # Each decoder layer owns an independent student.  Coalescing gradients
+        # per layer avoids thousands of tiny NCCL collectives.
+        for layer in student.layers.values():
+            params = [param for param in layer.parameters() if param.requires_grad]
+            grads = [
+                param.grad if param.grad is not None else torch.zeros_like(param)
+                for param in params
+            ]
+            flat = torch._utils._flatten_dense_tensors(grads)
+            dist.all_reduce(flat, op=dist.ReduceOp.SUM)
+            flat.div_(world_size)
+            synced = torch._utils._unflatten_dense_tensors(flat, grads)
+            for param, grad in zip(params, synced):
+                if param.grad is None:
+                    param.grad = grad
+                else:
+                    param.grad.copy_(grad)
 
     def run_forward(rec: dict[str, Any], train: bool) -> tuple[float, float, float]:
         inputs = build_inputs(
@@ -273,6 +397,7 @@ def main() -> int:
         if n_used == 0:
             raise RuntimeError("no finite teacher layers used")
         if train:
+            sync_gradients()
             bad_grad = any(
                 p.grad is not None and not torch.isfinite(p.grad).all()
                 for p in student.parameters()
@@ -286,9 +411,10 @@ def main() -> int:
         denom = max(1, n_used)
         return total_loss / denom, total_mse / denom, total_rank / denom
 
-    best_val = float("inf")
     t0 = time.time()
-    for epoch in range(1, args.epochs + 1):
+    for epoch in range(start_epoch, args.epochs + 1):
+        if process_rank == 0:
+            print(f"[epoch {epoch}] start local_train_steps={len(train_loader)}", flush=True)
         student.train()
         train_loss = train_mse = train_rank = 0.0
         n_seen = 0
@@ -297,21 +423,32 @@ def main() -> int:
                 loss, mse, rank = run_forward(rec, train=True)
             except Exception as exc:  # noqa: BLE001
                 print(f"[skip train] {rec.get('sample_id', '?')}: {exc}\n{traceback.format_exc()}", flush=True)
+                if distributed:
+                    raise
                 continue
             train_loss += loss
             train_mse += mse
             train_rank += rank
             n_seen += 1
-            if step % args.log_every == 0:
+            if process_rank == 0 and step % args.log_every == 0:
                 print(
                     f"[epoch {epoch} step {step}/{len(train_loader)}] "
                     f"loss={train_loss/max(1,n_seen):.6f} mse={train_mse/max(1,n_seen):.6f} "
-                    f"rank={train_rank/max(1,n_seen):.6f} elapsed={time.time()-t0:.1f}s",
+                    f"rank={train_rank/max(1,n_seen):.6f} "
+                    f"elapsed={elapsed_offset+time.time()-t0:.1f}s",
                     flush=True,
                 )
-        train_loss /= max(1, n_seen)
-        train_mse /= max(1, n_seen)
-        train_rank /= max(1, n_seen)
+        train_stats = torch.tensor(
+            [train_loss, train_mse, train_rank, float(n_seen)],
+            device=device,
+            dtype=torch.float64,
+        )
+        if distributed:
+            dist.all_reduce(train_stats, op=dist.ReduceOp.SUM)
+        train_loss = float(train_stats[0].item()) / max(1.0, float(train_stats[3].item()))
+        train_mse = float(train_stats[1].item()) / max(1.0, float(train_stats[3].item()))
+        train_rank = float(train_stats[2].item()) / max(1.0, float(train_stats[3].item()))
+        n_seen_global = int(train_stats[3].item())
 
         student.eval()
         val_loss = val_mse = val_rank = 0.0
@@ -322,15 +459,25 @@ def main() -> int:
                     loss, mse, rank = run_forward(rec, train=False)
                 except Exception as exc:  # noqa: BLE001
                     print(f"[skip val] {rec.get('sample_id', '?')}: {exc}", flush=True)
+                    if distributed:
+                        raise
                     continue
                 val_loss += loss
                 val_mse += mse
                 val_rank += rank
                 n_val_seen += 1
-        val_loss /= max(1, n_val_seen)
-        val_mse /= max(1, n_val_seen)
-        val_rank /= max(1, n_val_seen)
-        elapsed = time.time() - t0
+        val_stats = torch.tensor(
+            [val_loss, val_mse, val_rank, float(n_val_seen)],
+            device=device,
+            dtype=torch.float64,
+        )
+        if distributed:
+            dist.all_reduce(val_stats, op=dist.ReduceOp.SUM)
+        val_loss = float(val_stats[0].item()) / max(1.0, float(val_stats[3].item()))
+        val_mse = float(val_stats[1].item()) / max(1.0, float(val_stats[3].item()))
+        val_rank = float(val_stats[2].item()) / max(1.0, float(val_stats[3].item()))
+        n_val_seen_global = int(val_stats[3].item())
+        elapsed = elapsed_offset + time.time() - t0
         row = {
             "epoch": epoch,
             "train_loss": train_loss,
@@ -340,35 +487,50 @@ def main() -> int:
             "val_mse": val_mse,
             "val_rank": val_rank,
             "elapsed": elapsed,
-            "n_train_seen": n_seen,
-            "n_val_seen": n_val_seen,
+            "n_train_seen": n_seen_global,
+            "n_val_seen": n_val_seen_global,
         }
+        if process_rank == 0:
+            print(
+                f"[epoch {epoch}] train_loss={train_loss:.6f} train_mse={train_mse:.6f} "
+                f"train_rank={train_rank:.6f} | val_loss={val_loss:.6f} val_mse={val_mse:.6f} "
+                f"val_rank={val_rank:.6f} elapsed={elapsed:.1f}s",
+                flush=True,
+            )
+            assert log_f is not None
+            log_f.write(json.dumps(row) + "\n")
+            log_f.flush()
+
+            if val_loss < best_val:
+                best_val = val_loss
+                student.save_pretrained(out_dir)
+                print(f"[ckpt] saved best val={best_val:.6f} -> {out_dir}", flush=True)
+            torch.save(
+                {
+                    "epoch": epoch,
+                    "student": student.state_dict(),
+                    "optimizer": optimizer.state_dict(),
+                    "best_val": best_val,
+                    "args": vars(args),
+                    "world_size": world_size,
+                },
+                out_dir / "last_checkpoint.pt",
+            )
+        else:
+            best_val = min(best_val, val_loss)
+        if distributed:
+            dist.barrier()
+
+    if log_f is not None:
+        log_f.close()
+    if process_rank == 0:
         print(
-            f"[epoch {epoch}] train_loss={train_loss:.6f} train_mse={train_mse:.6f} "
-            f"train_rank={train_rank:.6f} | val_loss={val_loss:.6f} val_mse={val_mse:.6f} "
-            f"val_rank={val_rank:.6f} elapsed={elapsed:.1f}s",
+            f"[done] best_val={best_val:.6f} "
+            f"elapsed={elapsed_offset+time.time()-t0:.1f}s",
             flush=True,
         )
-        log_f.write(json.dumps(row) + "\n")
-        log_f.flush()
-
-        torch.save(
-            {
-                "epoch": epoch,
-                "student": student.state_dict(),
-                "optimizer": optimizer.state_dict(),
-                "best_val": best_val,
-                "args": vars(args),
-            },
-            out_dir / "last_checkpoint.pt",
-        )
-        if val_loss < best_val:
-            best_val = val_loss
-            student.save_pretrained(out_dir)
-            print(f"[ckpt] saved best val={best_val:.6f} -> {out_dir}", flush=True)
-
-    log_f.close()
-    print(f"[done] best_val={best_val:.6f} elapsed={time.time()-t0:.1f}s", flush=True)
+    if distributed:
+        dist.destroy_process_group()
     return 0
 
 

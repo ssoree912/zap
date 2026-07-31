@@ -1,0 +1,23 @@
+{
+  "task": "chartqa_local",
+  "keep_ratio": 0.1,
+  "n_samples": 1,
+  "avg_image_token_ratio": 0.9028213166144201,
+  "avg_text_token_ratio": 0.09717868338557993,
+  "avg_total_keep_ratio": 0.10031347962382445,
+  "avg_image_keep_ratio": 0.003472222222222222,
+  "avg_n_image_original": 576.0,
+  "avg_n_image_kept": 2.0,
+  "samples": [
+    {
+      "n_image_original": 576,
+      "n_image_kept": 2,
+      "n_text": 62,
+      "prompt_len": 638,
+      "image_token_ratio": 0.9028213166144201,
+      "text_token_ratio": 0.09717868338557993,
+      "total_keep_ratio": 0.10031347962382445,
+      "image_keep_ratio": 0.003472222222222222
+    }
+  ]
+}

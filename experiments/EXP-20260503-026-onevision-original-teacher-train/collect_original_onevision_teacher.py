@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
-"""Collect future-attention teacher labels from original LLaVA-OneVision.
+"""Collect answer-agnostic future-attention labels from LLaVA-OneVision.
 
-This collector targets `/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov`,
-which is a LLaVA-OneVision `LlavaQwenForCausalLM` checkpoint, not a HF
-`LlavaOnevisionForConditionalGeneration` checkpoint.
+Samples are selected deterministically from each training split without
+checking whether the generated answer is correct.  The generated answer tokens
+are used only as future query positions whose attention to image tokens forms
+the ZAP teacher target.
 """
 
 from __future__ import annotations
@@ -28,11 +29,12 @@ import torch
 from PIL import Image
 from transformers import DynamicCache
 
-REPO_ROOT = Path("/workspace/zap")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+WORKSPACE_ROOT = REPO_ROOT.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-LLAVA_ONEVISION_ROOT = Path("/workspace/VFlowOpt/src/LLaVA-OneVision")
+LLAVA_ONEVISION_ROOT = WORKSPACE_ROOT / "VFlowOpt" / "src" / "LLaVA-OneVision"
 if str(LLAVA_ONEVISION_ROOT) not in sys.path:
     sys.path.insert(0, str(LLAVA_ONEVISION_ROOT))
 
@@ -95,78 +97,97 @@ def _resolve_image(path_value: str, data_root: Path) -> Path | None:
     return None
 
 
+def _select_candidates(
+    samples: list[Sample],
+    *,
+    seed: int,
+    max_candidates: int,
+) -> list[Sample]:
+    rng = random.Random(seed)
+    rng.shuffle(samples)
+    return samples[:max_candidates]
+
+
+def _candidate_limit(args: argparse.Namespace) -> int:
+    if args.max_candidates and args.max_candidates > 0:
+        return max(args.n_samples, args.max_candidates)
+    return args.n_samples
+
+
 def _load_gqa(args: argparse.Namespace) -> list[Sample]:
-    records = _read_json(Path(args.gqa_subset_json))
+    records = _read_json(Path(args.gqa_questions_json))
     samples: list[Sample] = []
-    for rec in records:
-        image_path = _resolve_image(str(rec["image_path"]), Path(args.data_root))
-        if image_path is None:
+    for qid, rec in records.items():
+        image_id = rec.get("imageId") or rec.get("image_id")
+        if not image_id:
+            continue
+        image_path = Path(args.gqa_images_root) / f"{image_id}.jpg"
+        if not image_path.exists():
             continue
         question = (
-            f"{str(rec['question']).strip()}\n"
+            f"Question: {str(rec['question']).strip()}\n"
             "Answer the question using a single word or phrase."
         )
         samples.append(
             Sample(
                 dataset="gqa",
-                sample_id=str(rec.get("sample_id") or rec.get("question_id")),
+                sample_id=str(qid),
                 question=question,
-                image_path=image_path,
+                image_path=image_path.resolve(),
                 prompt=_build_prompt(question, args.conv_template),
                 answer=str(rec.get("answer")) if rec.get("answer") is not None else None,
             )
         )
-    return samples[: args.n_samples]
+    return _select_candidates(samples, seed=args.seed, max_candidates=_candidate_limit(args))
 
 
 def _load_textvqa(args: argparse.Namespace) -> list[Sample]:
-    ids_payload = _read_json(Path(args.textvqa_ids_json))
-    selected_ids = [str(x) for x in ids_payload["sample_ids"]]
-    id_to_rank = {sample_id: rank for rank, sample_id in enumerate(selected_ids)}
-    records = _read_json(Path(args.textvqa_json))
-    chosen: list[Sample | None] = [None] * len(selected_ids)
+    payload = _read_json(Path(args.textvqa_json))
+    records = payload.get("data", payload) if isinstance(payload, dict) else payload
+    samples: list[Sample] = []
     for rec in records:
-        qid = str(rec.get("question_id", rec.get("id", "")))
-        if qid not in id_to_rank:
-            continue
         image_path = _resolve_image(str(rec["image_path"]), Path(args.data_root))
         if image_path is None:
             continue
+        qid = str(rec.get("question_id", rec.get("id", "")))
         question = (
-            f"{str(rec['question']).strip()}\n"
+            f"Question: {str(rec['question']).strip()}\n"
             "Answer the question using a single word or phrase."
         )
         answers = rec.get("answers")
         answer = str(answers[0]) if isinstance(answers, list) and answers else None
-        chosen[id_to_rank[qid]] = Sample(
-            dataset="textvqa",
-            sample_id=qid,
-            question=question,
-            image_path=image_path,
-            prompt=_build_prompt(question, args.conv_template),
-            answer=answer,
+        samples.append(
+            Sample(
+                dataset="textvqa",
+                sample_id=qid,
+                question=question,
+                image_path=image_path,
+                prompt=_build_prompt(question, args.conv_template),
+                answer=answer,
+            )
         )
-    return [sample for sample in chosen if sample is not None][: args.n_samples]
+    return _select_candidates(samples, seed=args.seed, max_candidates=_candidate_limit(args))
 
 
 def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
-    ids_payload = _read_json(Path(args.scienceqa_ids_json))
-    selected_ids = [str(x) for x in ids_payload["sample_ids"]]
     problems = _read_json(Path(args.scienceqa_problems_json))
     samples: list[Sample] = []
-    for qid in selected_ids:
-        prob = problems.get(qid)
-        if not prob:
+    for qid, prob in problems.items():
+        if prob.get("split") != args.scienceqa_split or not prob.get("image"):
             continue
-        split = qid.split("_", 1)[0]
-        image_path = Path(args.scienceqa_images_root) / split / qid / str(prob.get("image", "image.png"))
+        image_path = (
+            Path(args.scienceqa_images_root)
+            / args.scienceqa_split
+            / str(qid)
+            / str(prob.get("image", "image.png"))
+        )
         if not image_path.exists():
             continue
         choices = prob.get("choices") or []
         question = str(prob.get("question", "")).strip()
         if choices:
             lettered = " ".join(f"({chr(65 + i)}) {choice}" for i, choice in enumerate(choices))
-            question = f"{question}\n{lettered}"
+            question = f"{question}\n{lettered}\nAnswer with the option letter only."
         answer_idx = prob.get("answer")
         answer = chr(65 + int(answer_idx)) if isinstance(answer_idx, int) else None
         samples.append(
@@ -179,7 +200,7 @@ def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
                 answer=answer,
             )
         )
-    return samples[: args.n_samples]
+    return _select_candidates(samples, seed=args.seed, max_candidates=_candidate_limit(args))
 
 
 def load_samples(args: argparse.Namespace, dataset: str) -> list[Sample]:
@@ -434,6 +455,10 @@ def collect_one(
         "question_text": sample.question,
         "answer": sample.answer,
         "decoded": decoded,
+        "prediction_correct": None,
+        "require_correct": False,
+        "teacher_signal": "future_attention_generated_answer_tokens",
+        "teacher_answer_agnostic": True,
         "image_path": str(sample.image_path),
         "image_token_indices": image_positions.to(torch.long),
         "question_token_indices": question_positions.to(torch.long),
@@ -474,23 +499,55 @@ def _load_model(args: argparse.Namespace) -> tuple[Any, Any, Any]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", default="/workspace/zap/ckpts/llava-onevision-qwen2-7b-ov")
+    parser.add_argument(
+        "--model-path",
+        default=str(WORKSPACE_ROOT / "models" / "llava-onevision-qwen2-7b-ov"),
+    )
     parser.add_argument("--model-name", default="llava_qwen")
     parser.add_argument("--conv-template", default="qwen_1_5")
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--device-map", default="auto")
     parser.add_argument("--datasets", nargs="+", default=["textvqa", "gqa", "scienceqa"])
     parser.add_argument("--n-samples", type=int, default=600)
+    parser.add_argument(
+        "--max-candidates",
+        type=int,
+        default=720,
+        help="Maximum shuffled candidates to inspect while saving exactly --n-samples.",
+    )
     parser.add_argument("--max-new-tokens", type=int, default=64)
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--output-root", default="/workspace/zap/artifacts/original_onevision_teacher/future_decode_qwen2_7b")
-    parser.add_argument("--data-root", default="/workspace/zap/data")
-    parser.add_argument("--gqa-subset-json", default="/workspace/zap/data/gqa/train/subset_600_seed42.json")
-    parser.add_argument("--textvqa-json", default="/workspace/zap/data/textvqa/train/data.json")
-    parser.add_argument("--textvqa-ids-json", default="/workspace/zap/artifacts/original_llava_teacher/subsets/textvqa_600_seed42_ids.json")
-    parser.add_argument("--scienceqa-problems-json", default="/workspace/zap/data/scienceqa/problems.json")
-    parser.add_argument("--scienceqa-images-root", default="/workspace/zap/data/scienceqa/images")
-    parser.add_argument("--scienceqa-ids-json", default="/workspace/zap/artifacts/original_llava_teacher/subsets/scienceqa_600_seed42_ids.json")
+    parser.add_argument(
+        "--output-root",
+        default=str(
+            REPO_ROOT
+            / "artifacts"
+            / "original_onevision_teacher"
+            / "future_answer_agnostic_1800_seed42"
+        ),
+    )
+    parser.add_argument("--data-root", default=str(WORKSPACE_ROOT / "data" / "train"))
+    parser.add_argument(
+        "--gqa-questions-json",
+        default=str(WORKSPACE_ROOT / "data" / "train" / "gqa" / "train_balanced_questions.json"),
+    )
+    parser.add_argument(
+        "--gqa-images-root",
+        default=str(WORKSPACE_ROOT / "data" / "train" / "gqa" / "images"),
+    )
+    parser.add_argument(
+        "--textvqa-json",
+        default=str(WORKSPACE_ROOT / "data" / "train" / "textvqa" / "train" / "data.json"),
+    )
+    parser.add_argument(
+        "--scienceqa-problems-json",
+        default=str(WORKSPACE_ROOT / "data" / "train" / "scienceqa" / "problems.json"),
+    )
+    parser.add_argument(
+        "--scienceqa-images-root",
+        default=str(WORKSPACE_ROOT / "data" / "train" / "scienceqa" / "images"),
+    )
+    parser.add_argument("--scienceqa-split", default="train")
     parser.add_argument("--limit-per-dataset", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
@@ -522,6 +579,8 @@ def main() -> int:
         n_img_values: list[int] = []
         t0 = time.time()
         for idx, sample in enumerate(samples, start=1):
+            if saved >= args.n_samples:
+                break
             out_path = out_dir / f"{_sanitize_id(sample.sample_id)}.pt"
             if out_path.exists() and not args.overwrite:
                 try:
@@ -569,7 +628,7 @@ def main() -> int:
                 hit_max = sum(1 for value in t_values if value >= args.max_new_tokens)
                 mean_img = float(np.mean(n_img_values)) if n_img_values else 0.0
                 print(
-                    f"[progress] {dataset} {idx}/{len(samples)} saved={saved} "
+                        f"[progress] {dataset} {idx}/{len(samples)} saved={saved}/{args.n_samples} "
                     f"skipped={len(skipped)} rate={idx / max(elapsed, 1e-6):.3f}/s "
                     f"T_mean={mean_t:.3f} hit{args.max_new_tokens}={hit_max}/{len(t_values)} "
                     f"n_img_mean={mean_img:.1f}",
@@ -579,7 +638,8 @@ def main() -> int:
         elapsed = time.time() - t0
         summary = {
             "dataset": dataset,
-            "n_requested": len(samples),
+            "n_requested": args.n_samples,
+            "n_candidates": len(samples),
             "n_saved": saved,
             "n_skipped": len(skipped),
             "skipped": skipped,
