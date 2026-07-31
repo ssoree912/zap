@@ -1,0 +1,11 @@
+include: /workspace/nips/.conda/envs/qvik/lib/python3.10/site-packages/lmms_eval/tasks/coco_cap/coco2017_cap_val.yaml
+task: coco2017_cap_local
+dataset_path: parquet
+dataset_name: null
+dataset_kwargs:
+  data_files:
+    val: /workspace/nips/data/eval/COCO-Caption2017/data/val-*.parquet
+metric_list:
+  - metric: coco_ROUGE_L
+    aggregation: !function caption_rouge_utils.coco_rougel
+    higher_is_better: true

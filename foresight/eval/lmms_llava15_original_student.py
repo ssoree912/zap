@@ -70,6 +70,12 @@ _patch_torch_load_legacy_bin_mmap()
 
 from kvpress.presses.visual_utility_student import VisualUtilityStudent  # noqa: E402
 
+from .cache_budget import (  # noqa: E402
+    EXACT_TOTAL_CEIL,
+    compute_image_keep_count,
+    requested_total_token_budget,
+    validate_total_budget_mode,
+)
 from .kv_decode_utils import (  # noqa: E402
     greedy_decode_with_kv,
     trim_kv_cache_per_layer,
@@ -148,6 +154,8 @@ class Llava15OriginalStudent(lmms):
         ),
         vision_tower_path: str = "",
         keep_ratio: float = 0.5,
+        keep_budget_mode: str = "legacy_total_round",
+        student_failure_policy: str = "fallback",
         device: str = "cuda:0",
         device_map: str = "cuda:0",
         model_name: Optional[str] = None,
@@ -198,6 +206,15 @@ class Llava15OriginalStudent(lmms):
         self.student = self.student.to(device=self._device, dtype=self._model_dtype).eval()
         self.student_path = student_path
         self.keep_ratio = float(keep_ratio)
+        if not 0.0 <= self.keep_ratio <= 1.0:
+            raise ValueError(f"keep_ratio must be in [0, 1], got {self.keep_ratio}")
+        self.keep_budget_mode = validate_total_budget_mode(keep_budget_mode)
+        self.student_failure_policy = str(student_failure_policy).strip().lower()
+        if self.student_failure_policy not in {"fallback", "raise"}:
+            raise ValueError(
+                "student_failure_policy must be either 'fallback' or 'raise', "
+                f"got {student_failure_policy!r}"
+            )
         self.conv_template = conv_template
         self.max_new_tokens = int(max_new_tokens)
         self.image_feature_len = int(image_feature_len)
@@ -355,7 +372,19 @@ class Llava15OriginalStudent(lmms):
         n = len(self._keep_stats)
         summary = {
             "task": task_name,
+            "student_path": self.student_path,
             "keep_ratio": self.keep_ratio,
+            "keep_ratio_basis": "total_prompt_cache",
+            "keep_budget_mode": self.keep_budget_mode,
+            "total_budget_formula": (
+                "K_total=ceil(keep_ratio*N_prompt); "
+                "K_visual=clamp(K_total-N_text,0,N_visual)"
+                if self.keep_budget_mode == EXACT_TOTAL_CEIL
+                else "legacy Python round with at least one visual token"
+            ),
+            "head_mask_policy": "one_layerwise_visual_topk_mask_shared_across_all_kv_heads",
+            "hidden_state_convention": "post_block_hidden_states_layer_plus_1",
+            "student_failure_policy": self.student_failure_policy,
             "n_samples": n,
             "avg_image_token_ratio": sum(s["image_token_ratio"] for s in self._keep_stats) / n,
             "avg_text_token_ratio": sum(s["text_token_ratio"] for s in self._keep_stats) / n,
@@ -426,6 +455,8 @@ class Llava15OriginalStudent(lmms):
                 return_dict=True,
             )
         except Exception as exc:
+            if self.student_failure_policy == "raise":
+                raise RuntimeError("Student pruning prefill failed") from exc
             print(
                 f"[llava15-original-student] WARNING: prefill failed ({exc}); falling back.",
                 file=sys.stderr,
@@ -442,7 +473,9 @@ class Llava15OriginalStudent(lmms):
                 input_ids,
                 self.image_feature_len,
             )
-        except ValueError:
+        except ValueError as exc:
+            if self.student_failure_policy == "raise":
+                raise RuntimeError("Could not infer multimodal image positions") from exc
             answer_ids = greedy_decode_with_kv(
                 self._model,
                 past_kv,
@@ -455,6 +488,11 @@ class Llava15OriginalStudent(lmms):
 
         actual_prompt_len = int(H_all[-1].shape[1])
         if actual_prompt_len != int(prompt_len):
+            if self.student_failure_policy == "raise":
+                raise RuntimeError(
+                    "Multimodal prompt length mismatch: "
+                    f"inferred={prompt_len} actual={actual_prompt_len}"
+                )
             print(
                 f"[llava15-original-student] WARNING: prompt_len mismatch "
                 f"inferred={prompt_len} actual={actual_prompt_len}; using actual for decode.",
@@ -465,8 +503,17 @@ class Llava15OriginalStudent(lmms):
 
         n_img = int(image_positions.numel())
         n_text = int(prompt_len) - n_img
-        n_keep = max(1, int(round(n_img - (1.0 - self.keep_ratio) * int(prompt_len))))
-        n_keep = min(n_keep, n_img)
+        n_keep = compute_image_keep_count(
+            n_image=n_img,
+            n_text=n_text,
+            keep_ratio=self.keep_ratio,
+            mode=self.keep_budget_mode,
+        )
+        requested_total = requested_total_token_budget(
+            prompt_len=int(prompt_len),
+            keep_ratio=self.keep_ratio,
+            mode=self.keep_budget_mode,
+        )
 
         self._img_keep_sum += n_keep
         self._img_total_sum += n_img
@@ -477,6 +524,9 @@ class Llava15OriginalStudent(lmms):
                 "n_image_kept": n_keep,
                 "n_text": n_text,
                 "prompt_len": int(prompt_len),
+                "requested_total_token_budget": requested_total,
+                "actual_total_tokens_kept": n_text + n_keep,
+                "budget_saturated_by_text": n_text > requested_total,
                 "image_token_ratio": n_img / max(1, int(prompt_len)),
                 "text_token_ratio": n_text / max(1, int(prompt_len)),
                 "total_keep_ratio": (n_text + n_keep) / max(1, int(prompt_len)),
@@ -486,6 +536,7 @@ class Llava15OriginalStudent(lmms):
         if not self._reported_keep_budget:
             print(
                 f"[llava15-original-student] keep_ratio_basis=total keep_ratio={self.keep_ratio} "
+                f"keep_budget_mode={self.keep_budget_mode} "
                 f"prompt_len={int(prompt_len)} image_tokens={n_img} text_tokens={n_text} "
                 f"image_tokens_kept={n_keep}",
                 file=sys.stderr,

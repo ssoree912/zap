@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 1993-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Run lmms-eval with local /workspace/zap/data/eval datasets and original LLaVA student.
+"""Run lmms-eval with local parquet datasets and original LLaVA student.
 
 This combines the local dataset routing used by VFlowOpt with registration of
 `llava15_original_student`, which loads the original LLaVA checkpoint format.
@@ -25,7 +25,9 @@ VFLOWOPT_LLAVA_ROOT = Path(
 VFLOWOPT_TRANSFORMERS_ROOT = Path(
     os.environ.get("VFLOWOPT_TRANSFORMERS_ROOT", VFLOWOPT_ROOT / "transformers-4.46.0/src")
 ).resolve()
-LOCAL_ROOT = Path(os.environ.get("LMMS_LOCAL_EVAL_ROOT", ZAP_ROOT / "data/eval")).resolve()
+LOCAL_ROOT = Path(
+    os.environ.get("LMMS_LOCAL_EVAL_ROOT", ZAP_ROOT.parent / "data/eval")
+).resolve()
 ALT_LOCAL_ROOT = Path(
     os.environ.get("LMMS_ALT_LOCAL_EVAL_ROOT", ZAP_ROOT.parent / "VFlowOpt_llava1.5/zap/data/eval")
 ).resolve()
@@ -48,23 +50,52 @@ def _local_eval_path(*parts: str) -> Path:
     return ALT_LOCAL_ROOT / rel
 
 
-ROUTES: dict[tuple[str, str | None], tuple[Path, str]] = {
-    ("lmms-lab/textvqa", None): (_local_eval_path("textvqa_val"), "validation"),
+PARQUET_ROUTES: dict[tuple[str, str | None], tuple[Path, str, str]] = {
+    ("lmms-lab/textvqa", None): (
+        _local_eval_path("TextVQA/data"),
+        "validation-*.parquet",
+        "validation",
+    ),
     ("lmms-lab/GQA", "testdev_balanced_instructions"): (
-        _local_eval_path("gqa/instructions"),
+        _local_eval_path("GQA/testdev_balanced_instructions"),
+        "testdev-*.parquet",
         "testdev",
     ),
     ("lmms-lab/GQA", "testdev_balanced_images"): (
-        _local_eval_path("gqa/images"),
+        _local_eval_path("GQA/testdev_balanced_images"),
+        "testdev-*.parquet",
         "testdev",
     ),
-    ("lmms-lab/DocVQA", "DocVQA"): (_local_eval_path("docvqa_val"), "validation"),
-    ("lmms-lab/ChartQA", None): (_local_eval_path("chartqa"), "test"),
+    ("lmms-lab/DocVQA", "DocVQA"): (
+        _local_eval_path("DocVQA/DocVQA"),
+        "validation-*.parquet",
+        "validation",
+    ),
+    ("lmms-lab/ChartQA", None): (
+        _local_eval_path("ChartQA/data"),
+        "test-*.parquet",
+        "test",
+    ),
+    ("lmms-lab/COCO-Caption2017", None): (
+        _local_eval_path("COCO-Caption2017/data"),
+        "val-*.parquet",
+        "val",
+    ),
+    ("lmms-lab/NoCaps", None): (
+        _local_eval_path("NoCaps/data"),
+        "validation-*.parquet",
+        "validation",
+    ),
+    ("lmms-lab/TextCaps", None): (
+        _local_eval_path("TextCaps/data"),
+        "val-*.parquet",
+        "val",
+    ),
+}
+
+SAVED_DISK_ROUTES: dict[tuple[str, str | None], tuple[Path, str]] = {
     ("lmms-lab/MME", None): (_local_eval_path("mme"), "test"),
     ("lmms-lab/ScienceQA", "ScienceQA-FULL"): (_local_eval_path("scienceqa"), "test"),
-    ("lmms-lab/COCO-Caption2017", None): (_local_eval_path("coco2017_cap_val"), "val"),
-    ("lmms-lab/NoCaps", None): (_local_eval_path("nocaps_val"), "validation"),
-    ("lmms-lab/TextCaps", None): (_local_eval_path("textcaps_val"), "val"),
 }
 
 _orig_load_dataset = _ds.load_dataset
@@ -82,8 +113,37 @@ def _patch_datasets_list_feature_alias() -> None:
 
 def _patched_load_dataset(path=None, name=None, *args, **kwargs):
     key = (path, name)
-    if key in ROUTES:
-        local_dir, split_name = ROUTES[key]
+    if key in PARQUET_ROUTES:
+        local_dir, pattern, split_name = PARQUET_ROUTES[key]
+        parquet_files = sorted(local_dir.glob(pattern))
+        if not parquet_files:
+            raise FileNotFoundError(
+                f"No local parquet files for {key}: {local_dir / pattern}"
+            )
+        local_kwargs = dict(kwargs)
+        requested_split = local_kwargs.pop("split", None)
+        local_kwargs.pop("token", None)
+        if requested_split is not None and requested_split != split_name:
+            raise ValueError(
+                f"Local route {key} only provides split={split_name!r}, "
+                f"requested={requested_split!r}"
+            )
+        data_files = {split_name: [str(file) for file in parquet_files]}
+        print(
+            f"[local-route] {path} (name={name}, split={requested_split}) -> "
+            f"parquet:{local_dir / pattern}",
+            file=sys.stderr,
+            flush=True,
+        )
+        return _orig_load_dataset(
+            "parquet",
+            data_files=data_files,
+            split=requested_split,
+            *args,
+            **local_kwargs,
+        )
+    if key in SAVED_DISK_ROUTES:
+        local_dir, split_name = SAVED_DISK_ROUTES[key]
         ds = load_from_disk(str(local_dir))
         requested_split = kwargs.get("split", None)
         if requested_split is None:

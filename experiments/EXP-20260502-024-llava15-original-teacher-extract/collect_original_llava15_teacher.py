@@ -27,6 +27,8 @@ import numpy as np
 import torch
 from PIL import Image
 
+from answer_correctness import is_correct_prediction
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 WORKSPACE_ROOT = REPO_ROOT.parent
 QVIK_ROOT = Path(os.environ.get("QVIK_ROOT", WORKSPACE_ROOT / "Q-ViK")).resolve()
@@ -103,6 +105,9 @@ class Sample:
     image_path: Path
     prompt: str
     answer: str | None = None
+    answers: tuple[str, ...] = ()
+    answer_index: int | None = None
+    choices: tuple[str, ...] = ()
 
 
 def _sanitize_id(value: Any) -> str:
@@ -141,11 +146,29 @@ def _resolve_image(path_value: str, data_root: Path) -> Path | None:
 
 
 def _load_gqa(args: argparse.Namespace) -> list[Sample]:
-    records = _read_json(Path(args.gqa_subset_json))
+    records = _read_json(Path(args.gqa_questions_json))
     samples: list[Sample] = []
-    for rec in records:
-        image_path = _resolve_image(str(rec["image_path"]), Path(args.data_root))
+    if isinstance(records, dict):
+        rows = [(str(qid), rec) for qid, rec in records.items()]
+    else:
+        rows = [
+            (str(rec.get("sample_id") or rec.get("question_id")), rec)
+            for rec in records
+        ]
+    for sample_id, rec in rows:
+        image_id = rec.get("imageId") or rec.get("image_id")
+        image_value = rec.get("image_path")
+        if image_value:
+            image_path = _resolve_image(str(image_value), Path(args.data_root))
+        elif image_id:
+            image_path = Path(args.gqa_images_root) / f"{image_id}.jpg"
+            image_path = image_path.resolve() if image_path.exists() else None
+        else:
+            image_path = None
         if image_path is None:
+            continue
+        answer = str(rec.get("answer", "")).strip()
+        if not answer:
             continue
         question = (
             f"{str(rec['question']).strip()}\n"
@@ -154,14 +177,16 @@ def _load_gqa(args: argparse.Namespace) -> list[Sample]:
         samples.append(
             Sample(
                 dataset="gqa",
-                sample_id=str(rec.get("sample_id") or rec.get("question_id")),
+                sample_id=sample_id,
                 question=question,
                 image_path=image_path,
                 prompt=_build_prompt(question, args.conv_template),
-                answer=str(rec.get("answer")) if rec.get("answer") is not None else None,
+                answer=answer,
+                answers=(answer,),
             )
         )
-    return samples[: args.n_samples]
+    random.Random(args.seed).shuffle(samples)
+    return samples[: args.max_candidates] if args.max_candidates > 0 else samples
 
 
 def _load_textvqa(args: argparse.Namespace) -> list[Sample]:
@@ -191,24 +216,26 @@ def _load_textvqa(args: argparse.Namespace) -> list[Sample]:
             image_path=image_path,
             prompt=_build_prompt(question, args.conv_template),
             answer=answer,
+            answers=tuple(str(value) for value in answers) if isinstance(answers, list) else (),
         )
-    return [sample for sample in chosen if sample is not None][: args.n_samples]
+    samples = [sample for sample in chosen if sample is not None]
+    return samples[: args.max_candidates] if args.max_candidates > 0 else samples
 
 
 def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
-    ids_payload = _read_json(Path(args.scienceqa_ids_json))
-    selected_ids = [str(x) for x in ids_payload["sample_ids"]]
     problems = _read_json(Path(args.scienceqa_problems_json))
     samples: list[Sample] = []
-    for qid in selected_ids:
-        prob = problems.get(qid)
-        if not prob:
-            continue
+    for qid, prob in problems.items():
         split = str(prob.get("split") or qid.split("_", 1)[0])
+        if split != args.scienceqa_split:
+            continue
         image_path = Path(args.scienceqa_images_root) / split / qid / str(prob.get("image", "image.png"))
         if not image_path.exists():
             continue
-        choices = prob.get("choices") or []
+        choices = tuple(str(choice) for choice in (prob.get("choices") or []))
+        answer_idx = prob.get("answer")
+        if not isinstance(answer_idx, int) or not 0 <= answer_idx < len(choices):
+            continue
         if args.scienceqa_prompt_style == "direct_letter":
             choice_lines = "\n".join(f"{chr(65 + i)}. {choice}" for i, choice in enumerate(choices))
             body_parts = []
@@ -225,8 +252,7 @@ def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
             if choices:
                 lettered = " ".join(f"({chr(65 + i)}) {choice}" for i, choice in enumerate(choices))
                 question = f"{question}\n{lettered}"
-        answer_idx = prob.get("answer")
-        answer = chr(65 + int(answer_idx)) if isinstance(answer_idx, int) else None
+        answer = chr(65 + answer_idx)
         samples.append(
             Sample(
                 dataset="scienceqa",
@@ -235,15 +261,19 @@ def _load_scienceqa(args: argparse.Namespace) -> list[Sample]:
                 image_path=image_path.resolve(),
                 prompt=_build_prompt(question, args.conv_template),
                 answer=answer,
+                answers=(choices[answer_idx],),
+                answer_index=answer_idx,
+                choices=choices,
             )
         )
-    return samples[: args.n_samples]
+    random.Random(args.seed).shuffle(samples)
+    return samples[: args.max_candidates] if args.max_candidates > 0 else samples
 
 
 def _load_samples_from_teacher_manifest(
     manifest_root: Path,
     dataset: str,
-    n_samples: int,
+    max_candidates: int,
 ) -> list[Sample]:
     """Reuse only sample metadata from an older cache; labels are recomputed."""
     samples: list[Sample] = []
@@ -254,6 +284,12 @@ def _load_samples_from_teacher_manifest(
             continue
         answers = rec.get("ground_truth_answers") or []
         answer = str(answers[0]) if answers else rec.get("answer")
+        choices = tuple(str(value) for value in rec.get("ground_truth_choices", ()))
+        answer_index = rec.get("ground_truth_answer_index")
+        if dataset == "scienceqa" and not choices:
+            continue
+        if not answers and answer is None:
+            continue
         prompt = str(rec["prompt_text"])
         samples.append(
             Sample(
@@ -263,9 +299,12 @@ def _load_samples_from_teacher_manifest(
                 image_path=image_path.resolve(),
                 prompt=prompt,
                 answer=str(answer) if answer is not None else None,
+                answers=tuple(str(value) for value in answers) or (str(answer),),
+                answer_index=int(answer_index) if answer_index is not None else None,
+                choices=choices,
             )
         )
-        if len(samples) >= n_samples:
+        if max_candidates > 0 and len(samples) >= max_candidates:
             break
     return samples
 
@@ -275,7 +314,7 @@ def load_samples(args: argparse.Namespace, dataset: str) -> list[Sample]:
         samples = _load_samples_from_teacher_manifest(
             Path(args.sample_manifest_root),
             dataset,
-            args.n_samples,
+            args.max_candidates,
         )
         if samples:
             return samples
@@ -328,8 +367,9 @@ def collect_one(
     device: torch.device,
     image_feature_len: int,
     question_weight: float,
+    require_correct: bool,
     eps: float,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any] | None, str, bool]:
     with Image.open(sample.image_path) as image:
         image = image.convert("RGB")
         image_size = image.size
@@ -361,6 +401,18 @@ def collect_one(
     t_steps = int(answer_ids.shape[1])
     decoded = tokenizer.decode(answer_ids[0], skip_special_tokens=True).strip()
     del generated
+    prediction_correct = is_correct_prediction(
+        sample.dataset,
+        decoded,
+        sample.answers,
+        answer_index=sample.answer_index,
+        choices=sample.choices,
+    )
+    if require_correct and not prediction_correct:
+        del answer_ids, input_ids, image_tensor
+        gc.collect()
+        torch.cuda.empty_cache()
+        return None, decoded, False
 
     full_input_ids = torch.cat([input_ids, answer_ids], dim=1)
     full_out = model(
@@ -419,7 +471,7 @@ def collect_one(
     gc.collect()
     torch.cuda.empty_cache()
 
-    return {
+    record = {
         "sample_id": sample.sample_id,
         "dataset": sample.dataset,
         "model": "llava-v1.5-7b-original",
@@ -427,6 +479,12 @@ def collect_one(
         "question": sample.question,
         "answer": sample.answer,
         "decoded": decoded,
+        "prediction": decoded,
+        "prediction_correct": prediction_correct,
+        "ground_truth_answers": list(sample.answers),
+        "ground_truth_answer_index": sample.answer_index,
+        "ground_truth_choices": list(sample.choices),
+        "require_correct": require_correct,
         "image_path": str(sample.image_path),
         "image_token_indices": image_positions.to(torch.long),
         "question_token_indices": question_positions.to(torch.long),
@@ -446,6 +504,7 @@ def collect_one(
         "n_img": int(n_img),
         "max_new_tokens": int(max_new_tokens),
     }
+    return record, decoded, prediction_correct
 
 
 def _load_model(args: argparse.Namespace) -> tuple[Any, Any, Any, int]:
@@ -485,17 +544,36 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--device-map", default="cuda:0")
     parser.add_argument("--datasets", nargs="+", default=["gqa", "textvqa", "scienceqa"])
-    parser.add_argument("--n-samples", type=int, default=300)
+    parser.add_argument(
+        "--n-samples",
+        type=int,
+        default=300,
+        help="Target number of teacher samples to save per dataset.",
+    )
+    parser.add_argument(
+        "--max-candidates",
+        type=int,
+        default=0,
+        help="Maximum shuffled candidates to inspect per dataset; 0 means all.",
+    )
     parser.add_argument("--max-new-tokens", type=int, default=32)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output-root", default=str(REPO_ROOT / "artifacts/original_llava_teacher/qa50_llava15_300"))
     parser.add_argument("--data-root", default=str(WORKSPACE_ROOT / "data/train"))
-    parser.add_argument("--gqa-subset-json", default=str(REPO_ROOT / "artifacts/original_llava_teacher/subsets/gqa_300_seed0.json"))
+    parser.add_argument(
+        "--gqa-questions-json",
+        default=str(WORKSPACE_ROOT / "data/train/gqa/val_balanced_questions.json"),
+    )
+    parser.add_argument(
+        "--gqa-images-root",
+        default=str(WORKSPACE_ROOT / "data/train/gqa/images"),
+    )
     parser.add_argument("--textvqa-json", default=str(WORKSPACE_ROOT / "data/train/textvqa/train/data.json"))
     parser.add_argument("--textvqa-ids-json", default=str(REPO_ROOT / "artifacts/original_llava_teacher/subsets/textvqa_300_seed0_ids.json"))
     parser.add_argument("--scienceqa-problems-json", default=str(WORKSPACE_ROOT / "data/train/scienceqa/problems.json"))
     parser.add_argument("--scienceqa-images-root", default=str(WORKSPACE_ROOT / "data/train/scienceqa/images"))
     parser.add_argument("--scienceqa-ids-json", default=str(REPO_ROOT / "artifacts/original_llava_teacher/subsets/scienceqa_300_seed0_ids.json"))
+    parser.add_argument("--scienceqa-split", default="train")
     parser.add_argument("--scienceqa-prompt-style", choices=["choices_only", "direct_letter"], default="choices_only")
     parser.add_argument(
         "--sample-manifest-root",
@@ -503,6 +581,12 @@ def parse_args() -> argparse.Namespace:
         help="Optional older cache used only to select sample IDs/prompts/images.",
     )
     parser.add_argument("--question-weight", type=float, default=0.5)
+    parser.add_argument(
+        "--require-correct",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Save teacher records only when the base-model prediction is correct.",
+    )
     parser.add_argument("--limit-per-dataset", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
@@ -530,22 +614,42 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         print(f"[dataset] {dataset} samples={len(samples)} out={out_dir}", flush=True)
 
-        saved = 0
+        existing = 0
+        existing_correct = 0
+        valid_existing_paths: set[Path] = set()
+        for path in sorted(out_dir.glob("*.pt")):
+            try:
+                rec = torch.load(path, weights_only=False, map_location="cpu")
+            except Exception:
+                continue
+            existing += 1
+            prediction_correct = bool(rec.get("prediction_correct", False))
+            existing_correct += int(prediction_correct)
+            if not args.require_correct or prediction_correct:
+                valid_existing_paths.add(path)
+
+        saved = len(valid_existing_paths)
+        newly_saved = 0
+        evaluated = 0
+        rejected_incorrect = 0
+        incorrect_examples: list[dict[str, Any]] = []
         skipped: list[dict[str, str]] = []
         t_values: list[int] = []
         t0 = time.time()
         for idx, sample in enumerate(samples, start=1):
+            if saved >= args.n_samples:
+                break
             out_path = out_dir / f"{_sanitize_id(sample.sample_id)}.pt"
-            if out_path.exists() and not args.overwrite:
+            if out_path in valid_existing_paths and not args.overwrite:
                 try:
                     rec = torch.load(out_path, map_location="cpu")
                     t_values.append(int(rec.get("T", 0)))
-                    saved += 1
                 except Exception:
                     skipped.append({"sample_id": sample.sample_id, "error": "existing file unreadable"})
                 continue
+            evaluated += 1
             try:
-                rec = collect_one(
+                rec, decoded, prediction_correct = collect_one(
                     model=model,
                     tokenizer=tokenizer,
                     image_processor=image_processor,
@@ -554,29 +658,52 @@ def main() -> int:
                     device=device,
                     image_feature_len=image_feature_len,
                     question_weight=args.question_weight,
+                    require_correct=args.require_correct,
                     eps=1e-8,
                 )
+                if rec is None:
+                    rejected_incorrect += 1
+                    if len(incorrect_examples) < 100:
+                        incorrect_examples.append(
+                            {
+                                "sample_id": sample.sample_id,
+                                "prediction": decoded,
+                                "answers": list(sample.answers),
+                                "answer_index": sample.answer_index,
+                            }
+                        )
+                    if idx % 25 == 0:
+                        print(
+                            f"[progress] {dataset} evaluated={evaluated}/{len(samples)} "
+                            f"saved={saved}/{args.n_samples} "
+                            f"rejected={rejected_incorrect} skipped={len(skipped)}",
+                            flush=True,
+                        )
+                    continue
                 torch.save(rec, out_path)
                 saved += 1
+                newly_saved += 1
                 t_values.append(int(rec["T"]))
-                if idx == 1:
+                if newly_saved == 1:
                     print(
                         f"[sanity] {dataset} sid={sample.sample_id} "
                         f"L={tuple(rec['teacher_raw'].shape)} T={rec['T']} "
-                        f"prompt_len_mm={rec['prompt_len_mm']} decoded={rec['decoded']!r}",
+                        f"prompt_len_mm={rec['prompt_len_mm']} decoded={rec['decoded']!r} "
+                        f"correct={prediction_correct}",
                         flush=True,
                     )
             except Exception as exc:  # noqa: BLE001
                 skipped.append({"sample_id": sample.sample_id, "error": repr(exc)})
                 print(f"[skip] {dataset} sid={sample.sample_id}: {exc}", flush=True)
 
-            if idx % 25 == 0 or idx == len(samples):
+            if idx % 25 == 0 or saved == args.n_samples:
                 elapsed = time.time() - t0
                 mean_t = float(np.mean(t_values)) if t_values else 0.0
                 hit_max = sum(1 for value in t_values if value >= args.max_new_tokens)
                 print(
-                    f"[progress] {dataset} {idx}/{len(samples)} saved={saved} "
-                    f"skipped={len(skipped)} rate={idx / max(elapsed, 1e-6):.3f}/s "
+                    f"[progress] {dataset} evaluated={evaluated}/{len(samples)} "
+                    f"saved={saved}/{args.n_samples} rejected={rejected_incorrect} "
+                    f"skipped={len(skipped)} rate={evaluated / max(elapsed, 1e-6):.3f}/s "
                     f"T_mean={mean_t:.3f} hit{args.max_new_tokens}={hit_max}/{len(t_values)}",
                     flush=True,
                 )
@@ -584,14 +711,22 @@ def main() -> int:
         elapsed = time.time() - t0
         summary = {
             "dataset": dataset,
-            "n_requested": len(samples),
+            "n_requested": args.n_samples,
             "n_saved": saved,
+            "n_existing": existing,
+            "n_existing_correct": existing_correct,
+            "n_newly_saved": newly_saved,
+            "n_candidates": len(samples),
+            "n_evaluated": evaluated,
+            "n_rejected_incorrect": rejected_incorrect,
+            "incorrect_examples": incorrect_examples,
             "n_skipped": len(skipped),
             "skipped": skipped,
             "elapsed_seconds": elapsed,
             "max_new_tokens": args.max_new_tokens,
             "question_weight": args.question_weight,
             "answer_weight": 1.0 - args.question_weight,
+            "require_correct": args.require_correct,
             "t_min": int(min(t_values)) if t_values else 0,
             "t_max": int(max(t_values)) if t_values else 0,
             "t_mean": float(np.mean(t_values)) if t_values else 0.0,
@@ -600,6 +735,13 @@ def main() -> int:
         (out_dir / "_summary.json").write_text(json.dumps(summary, indent=2))
         print(f"[done] {dataset} {summary}", flush=True)
         all_summaries[dataset] = summary
+        if saved != args.n_samples:
+            print(
+                f"[error] {dataset}: exhausted candidates before reaching target "
+                f"{saved}/{args.n_samples}",
+                flush=True,
+            )
+            return 2
 
     root_summary_path = output_root / "_summary.json"
     if root_summary_path.exists():

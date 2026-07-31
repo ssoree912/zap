@@ -1,0 +1,7 @@
+include: /workspace/nips/.conda/envs/qvik/lib/python3.10/site-packages/lmms_eval/tasks/textvqa/textvqa_val.yaml
+task: textvqa_local
+dataset_path: parquet
+dataset_name: null
+dataset_kwargs:
+  data_files:
+    validation: /workspace/nips/data/eval/TextVQA/data/validation-*.parquet

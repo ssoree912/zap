@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-20260727-007-full-vqa-pa-qa-paired",
+  "scope": "Full local GQA, TextVQA, DocVQA, and ChartQA evaluation of the strictly paired P+A and Q+A students; MileBench is excluded.",
+  "comparison_is_oracle": false,
+  "base_model": {
+    "path": "/workspace/nips/models/llava-v1.5-7b",
+    "model_name": "llava-v1.5-7b",
+    "conversation_template": "vicuna_v1"
+  },
+  "students": {
+    "prefill_answer_50_50": {
+      "path": "/workspace/nips/zap/artifacts/original_llava_teacher/student_llava15_prefill_answer50_paired_1800_e15_seed0",
+      "teacher_root": "/workspace/nips/data/train/teacher/zap_llava15_prefill_answer50_paired_n600_seed0",
+      "teacher_target": "L1(0.5 * L1(all expanded multimodal prefill-query attention to visual KVs) + 0.5 * L1(full-pass generated-answer-query attention to visual KVs))",
+      "first_component_query_rows": "[0, ..., N_prompt_mm - 1]",
+      "answer_query_rows": "[y_1, ..., y_T]",
+      "teacher_extraction_max_new_tokens": 64
+    },
+    "question_answer_50_50": {
+      "path": "/workspace/nips/zap/artifacts/original_llava_teacher/student_llava15_question_answer50_paired_1800_e15_seed0",
+      "teacher_root": "/workspace/nips/data/train/teacher/zap_llava15_question_answer50_paired_n600_seed0",
+      "teacher_target": "L1(0.5 * L1(post-image prompt-tail-query attention to visual KVs) + 0.5 * L1(full-pass generated-answer-query attention to visual KVs))",
+      "first_component_query_rows": "[last_visual_token + 1, ..., N_prompt_mm - 1]",
+      "answer_query_rows": "[y_1, ..., y_T]",
+      "teacher_extraction_max_new_tokens": 64
+    }
+  },
+  "paired_training_contract": {
+    "source_teacher_root": "/workspace/nips/data/train/teacher/zap_llava15_qa50_n600_seed0",
+    "teacher_derivation_experiment": "/workspace/nips/zap/experiments/EXP-20260727-006-paired-prefill-question-answer",
+    "verification_artifacts": {
+      "teacher": "/workspace/nips/zap/artifacts/paired_prefill_question_answer/runs/20260727_065959/teacher_verification.json",
+      "training": "/workspace/nips/zap/artifacts/paired_prefill_question_answer/training_runs/20260727_070541/training_verification.json"
+    },
+    "target_difference_only": "all-prefill query rows versus post-image prompt-tail query rows",
+    "answer_component": "The serialized fp16 teacher_answer_norm tensor is byte-identical between each paired P+A/Q+A record.",
+    "sample_manifest": "Exactly the same 600 GQA, 600 TextVQA, and 600 ScienceQA sample IDs, prompts, images, answer trajectories, and question-conditioning indices.",
+    "split_hashes": {
+      "all": "2ad770606721e126de78129e6d4d200a3badbdae8482a74befd43847546fbf7f",
+      "train": "75922bff1346cfd0171231d20786768bbb08140a6031c820ca775adfd715f66e",
+      "val": "3f62d3b757012ea2abc32fe37c6be0094a475e8072e4acd501fb21af108211f4"
+    }
+  },
+  "controlled_training_properties": {
+    "datasets": [
+      "gqa",
+      "textvqa",
+      "scienceqa"
+    ],
+    "seed": 0,
+    "epochs": 15,
+    "samples_per_dataset": 600,
+    "val_ratio": 0.1,
+    "expected_train_samples": 1620,
+    "expected_val_samples": 180,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0,
+    "lambda_rank": 0.1,
+    "rank_margin": 0.05,
+    "rank_top_ratio": 0.2,
+    "rank_bottom_ratio": 0.4,
+    "max_grad_norm": 1.0,
+    "log_every": 25,
+    "student_variant": "full",
+    "conv_dim": 256,
+    "proj_dim": 256,
+    "mlp_dim": 512,
+    "num_conv_blocks": 2,
+    "kernel_size": 7,
+    "grid_h": 24,
+    "grid_w": 24,
+    "hidden_dim": 4096,
+    "layer_indices": "0..31"
+  },
+  "checkpoint_provenance_policy": {
+    "sha_capture": "Checkpoint hashes are computed dynamically only after both completed checkpoints exist and are copied into the immutable run_manifest.json.",
+    "required_hashed_files": [
+      "pytorch_model.bin",
+      "config.json",
+      "train_config.json",
+      "train_log.jsonl"
+    ],
+    "required_presence_files": [
+      "last_checkpoint.pt"
+    ],
+    "training_completion": "train_log.jsonl must contain epochs 1..15 with train_seen=1620 and val_seen=180 for every epoch."
+  },
+  "evaluation": {
+    "local_dataset_root": "/workspace/nips/data/eval",
+    "keep_ratio_basis": "total_prompt_cache",
+    "requested_total_keep_ratio": 0.2,
+    "keep_budget_mode": "exact_total_ceil",
+    "budget_formula": "K_total=ceil(0.2*N_prompt); K_visual=clamp(K_total-N_text,0,N_visual)",
+    "text_tokens": "always retained",
+    "mask_policy": "Each student independently produces one layer-wise visual Top-K mask, broadcast unchanged to every KV head.",
+    "hidden_state_convention": "post_block_hidden_states[layer_idx + 1]",
+    "student_failure_policy": "raise; never silently replace a failed pruning sample with full-cache generation",
+    "paired_sample_policy": "Accept only the full expected count for both students with exact doc_id, document, prompt, target, input, and per-sample budget-trace equality. Any OOM or per-sample failure aborts the run.",
+    "metric_policy": "Use the official aggregate metrics emitted by LMMS-eval. Do not rescore DocVQA rows with the eval700 continuous ANLS implementation.",
+    "physical_gpu_allowlist": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "job_assignment": {
+      "0": [
+        "prefill_answer_50_50:gqa_local"
+      ],
+      "1": [
+        "question_answer_50_50:gqa_local"
+      ],
+      "2": [
+        "prefill_answer_50_50:textvqa_local",
+        "prefill_answer_50_50:docvqa_local",
+        "prefill_answer_50_50:chartqa_local"
+      ],
+      "3": [
+        "question_answer_50_50:textvqa_local",
+        "question_answer_50_50:docvqa_local",
+        "question_answer_50_50:chartqa_local"
+      ]
+    },
+    "tasks": {
+      "gqa_local": {
+        "expected_samples": 12578,
+        "primary_metrics": [
+          "exact_match,none"
+        ]
+      },
+      "textvqa_local": {
+        "expected_samples": 5000,
+        "primary_metrics": [
+          "exact_match,none"
+        ]
+      },
+      "docvqa_local": {
+        "expected_samples": 5349,
+        "primary_metrics": [
+          "anls,none"
+        ]
+      },
+      "chartqa_local": {
+        "expected_samples": 2500,
+        "primary_metrics": [
+          "relaxed_overall,none",
+          "relaxed_human_split,none",
+          "relaxed_augmented_split,none"
+        ]
+      }
+    }
+  }
+}

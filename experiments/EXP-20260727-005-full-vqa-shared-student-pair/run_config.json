@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-20260727-005-full-vqa-shared-student-pair",
+  "scope": "Full local GQA, TextVQA, DocVQA, and ChartQA only; MileBench is excluded.",
+  "comparison_is_oracle": false,
+  "base_model": {
+    "path": "/workspace/nips/models/llava-v1.5-7b",
+    "model_name": "llava-v1.5-7b",
+    "conversation_template": "vicuna_v1"
+  },
+  "students": {
+    "last_prompt_plus_answer_steps": {
+      "path": "/workspace/nips/zap/artifacts/rebuttal_tradeoff_llava15_zap_teacher_n600/checkpoints/base",
+      "pytorch_model_sha256": "96b8c11c1ad02dccd97f5235437621aaec89ee48051c0e00177e7eca7fbdb8cb",
+      "teacher_training_datasets": [
+        "GQA:600",
+        "TextVQA:600",
+        "ScienceQA:600"
+      ],
+      "teacher_target_query_rows": "[last_prompt_query, y_1, ..., y_(T-1)]",
+      "teacher_extraction_max_new_tokens": 32,
+      "last_prompt_query_preserved": true,
+      "label_warning": "This is a Future-trajectory target, not an all-prefill-plus-answer 50:50 target."
+    },
+    "question_answer_50_50": {
+      "path": "/workspace/nips/zap/artifacts/original_llava_teacher/student_llava15_qa50_1800_e15_gpu0_rerun",
+      "pytorch_model_sha256": "f555a158967336f33f003b59086c16063c1cd859f50ea511e0bbe9f2f7ab0709",
+      "teacher_training_datasets": [
+        "GQA:600",
+        "TextVQA:600",
+        "ScienceQA:600"
+      ],
+      "teacher_extraction_max_new_tokens": 64,
+      "teacher_target": "0.5 * L1(question-prompt-tail attention) + 0.5 * L1(full-pass generated-answer attention)",
+      "question_query_rows": "All causal prompt-tail rows after the final image token, including template/instruction tokens.",
+      "answer_query_rows": "[y_1, ..., y_T]",
+      "checkpoint_requirement": "The completed 15-epoch _rerun checkpoint; the non-rerun sibling is incomplete."
+    }
+  },
+  "controlled_training_properties": {
+    "seed": 0,
+    "epochs": 15,
+    "samples_per_dataset": 600,
+    "student_variant": "full",
+    "conv_dim": 256,
+    "proj_dim": 256,
+    "mlp_dim": 512,
+    "num_conv_blocks": 2,
+    "kernel_size": 7,
+    "grid": "24x24"
+  },
+  "known_teacher_target_caveat": "The two checkpoints use the same training sample identities and prompts, but their answer-side query-row definitions differ by one step: Future uses last_prompt_query through y_(T-1), while Q+A answer uses y_1 through y_T.",
+  "known_teacher_generation_length_caveat": "The base Future teachers were extracted with max_new_tokens=32, whereas the Q+A teachers used max_new_tokens=64. This is a checkpoint-lineage confound and is not changed by evaluation-time controls.",
+  "evaluation": {
+    "local_dataset_root": "/workspace/nips/data/eval",
+    "keep_ratio_basis": "total_prompt_cache",
+    "requested_total_keep_ratio": 0.2,
+    "keep_budget_mode": "exact_total_ceil",
+    "budget_formula": "K_total=ceil(0.2*N_prompt); K_visual=clamp(K_total-N_text,0,N_visual)",
+    "text_tokens": "always retained",
+    "mask_policy": "One layer-wise visual Top-K mask is broadcast unchanged to every KV head.",
+    "hidden_state_convention": "post_block_hidden_states[layer_idx + 1]",
+    "student_failure_policy": "raise; never silently replace a failed pruning sample with full-cache generation",
+    "paired_sample_policy": "A task is accepted only when both students contain the full expected count and exactly the same sample identities. No unmatched failure or intersection-only denominator is allowed. An unexpected OOM or per-sample failure aborts the run; any later exclusion rerun must use the union of failed identities as one common exclusion manifest for both students.",
+    "metric_policy": "Use the official aggregate metrics emitted by LMMS-eval. Do not rescore DocVQA rows with the eval700 continuous ANLS implementation.",
+    "legacy_result_policy": "Earlier Q+A full-VQA aggregates used legacy Python-round budgeting and are not aggregate regression references for this exact-ceil run.",
+    "physical_gpu_allowlist": [
+      0,
+      1,
+      2
+    ],
+    "tasks": {
+      "gqa_local": {
+        "expected_samples": 12578,
+        "primary_metrics": [
+          "exact_match,none"
+        ]
+      },
+      "textvqa_local": {
+        "expected_samples": 5000,
+        "primary_metrics": [
+          "exact_match,none"
+        ]
+      },
+      "docvqa_local": {
+        "expected_samples": 5349,
+        "primary_metrics": [
+          "anls,none"
+        ]
+      },
+      "chartqa_local": {
+        "expected_samples": 2500,
+        "primary_metrics": [
+          "relaxed_overall,none",
+          "relaxed_human_split,none",
+          "relaxed_augmented_split,none"
+        ]
+      }
+    }
+  }
+}

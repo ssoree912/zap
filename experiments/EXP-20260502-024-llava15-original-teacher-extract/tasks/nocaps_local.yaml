@@ -1,0 +1,11 @@
+include: /workspace/nips/.conda/envs/qvik/lib/python3.10/site-packages/lmms_eval/tasks/nocaps/nocaps_val.yaml
+task: nocaps_local
+dataset_path: parquet
+dataset_name: null
+dataset_kwargs:
+  data_files:
+    validation: /workspace/nips/data/eval/NoCaps/data/validation-*.parquet
+metric_list:
+  - metric: nocaps_ROUGE_L
+    aggregation: !function caption_rouge_utils.nocaps_rougel
+    higher_is_better: true

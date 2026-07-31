@@ -1,0 +1,7 @@
+include: /workspace/nips/.conda/envs/qvik/lib/python3.10/site-packages/lmms_eval/tasks/gqa/gqa.yaml
+task: gqa_local
+dataset_path: parquet
+dataset_name: null
+dataset_kwargs:
+  data_files:
+    testdev: /workspace/nips/data/eval/GQA/testdev_balanced_instructions/testdev-*.parquet
