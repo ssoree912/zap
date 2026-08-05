@@ -1,0 +1,38 @@
+dataset_path: parquet
+dataset_kwargs:
+  data_files: /workspace/hd/data/Video-MME/videomme/test-00000-of-00001.parquet
+  # cache_dir here is NOT read for dataset loading (dataset_path=parquet
+  # ignores it) -- utils.py hardcodes reading ./videomme.yaml (see the
+  # sibling copy in this directory) for this value instead, to resolve
+  # video file paths to $HF_HOME/videomme/data/<id>.mp4. Kept only so this
+  # file stays consistent with the vendored videomme.yaml's schema.
+  cache_dir: videomme
+task: videomme_local
+test_split: train
+output_type: generate_until
+doc_to_visual: !function utils.videomme_doc_to_visual
+doc_to_text: !function utils.videomme_doc_to_text
+doc_to_target: "answer"
+generation_kwargs:
+  max_new_tokens: 16
+  temperature: 0
+  top_p: 1.0
+  num_beams: 1
+  do_sample: false
+process_results: !function utils.videomme_process_results
+metric_list:
+  - metric: videomme_percetion_score
+    aggregation: !function utils.videomme_aggregate_results
+    higher_is_better: true
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: ""
+    post_prompt: "\nAnswer with the option's letter from the given choices directly."
+  gpt4v:
+    pre_prompt: ""
+    post_prompt: "\nAnswer the question with A, B, C, or D."
+  xcomposer2_4khd:
+    pre_prompt: "[UNUSED_TOKEN_146]user\n"
+    post_prompt: " Answer this question with A, B, C, or D.[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
+metadata:
+  - version: 0.0
