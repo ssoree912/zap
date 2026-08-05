@@ -76,9 +76,16 @@ _patch_torch_load_legacy_bin_mmap()
 
 from kvpress.presses.visual_utility_student_onevision import VisualUtilityStudentOneVision  # noqa: E402
 
+from .keep_budget import image_keep_budget, normalize_keep_ratio_basis  # noqa: E402
 from .kv_decode_utils import (  # noqa: E402
-    greedy_decode_with_kv,
     trim_kv_cache_per_layer,
+)
+from .one_token_replay import (  # noqa: E402
+    ChoiceTokenizationError,
+    choice_token_ids_for_labels,
+    choice_token_ids_for_prompt,
+    forward_one_token_with_kv,
+    greedy_decode_after_prompt_replay,
 )
 
 try:
@@ -113,6 +120,17 @@ def _resolve_eos_token_id(tokenizer, model_config) -> int:
         cfg = getattr(model_config, "eos_token_id", None)
         eos = cfg[0] if isinstance(cfg, (list, tuple)) and cfg else cfg
     return int(151645 if eos is None else eos)
+
+
+def _coerce_bool(value: bool | str) -> bool:
+    if isinstance(value, bool):
+        return value
+    normalized = value.strip().lower()
+    if normalized in {"1", "true", "yes", "y"}:
+        return True
+    if normalized in {"0", "false", "no", "n"}:
+        return False
+    raise ValueError(f"Expected a boolean value, got {value!r}")
 
 
 def _cache_seq_len(past_key_values) -> int:
@@ -186,6 +204,10 @@ class LlavaOnevisionOriginalStudent(lmms):
         attn_implementation: str = "sdpa",
         max_new_tokens: int = 64,
         stats_output_dir: str = "",
+        constrained_choices: str = "",
+        constrained_choice_labels: str = "",
+        delayed_replay: bool | str = True,
+        keep_ratio_basis: str = "total",
         **kwargs,
     ) -> None:
         super().__init__()
@@ -217,9 +239,17 @@ class LlavaOnevisionOriginalStudent(lmms):
         self.student = self.student.to(device=self._device, dtype=torch.float16).eval()
         self.student_path = student_path
         self.keep_ratio = float(keep_ratio)
+        self.keep_ratio_basis = normalize_keep_ratio_basis(keep_ratio_basis)
         self.conv_template = conv_template
         self.max_new_tokens = int(max_new_tokens)
         self.stats_output_dir = stats_output_dir
+        self.constrained_choices = constrained_choices.strip()
+        self.constrained_choice_labels = [
+            label.strip()
+            for label in constrained_choice_labels.replace("|", ",").split(",")
+            if label.strip()
+        ]
+        self.delayed_replay = _coerce_bool(delayed_replay)
         self._rank = 0
         self._world_size = 1
         self._reported_keep_budget = False
@@ -323,6 +353,7 @@ class LlavaOnevisionOriginalStudent(lmms):
             ).unsqueeze(0).to(self._device)
 
             output = self._generate_with_student(
+                prompt=prompt,
                 input_ids=input_ids,
                 image_tensor=image_tensor,
                 image_sizes=image_sizes,
@@ -369,6 +400,7 @@ class LlavaOnevisionOriginalStudent(lmms):
         summary = {
             "task": task_name,
             "keep_ratio": self.keep_ratio,
+            "keep_ratio_basis": self.keep_ratio_basis,
             "n_samples": n,
             "avg_total_keep_ratio": sum(s["total_keep_ratio"] for s in self._keep_stats) / n,
             "avg_image_keep_ratio": sum(s["image_keep_ratio"] for s in self._keep_stats) / n,
@@ -394,6 +426,7 @@ class LlavaOnevisionOriginalStudent(lmms):
     def _generate_with_student(
         self,
         *,
+        prompt: str,
         input_ids: torch.Tensor,
         image_tensor,
         image_sizes: list,
@@ -426,18 +459,79 @@ class LlavaOnevisionOriginalStudent(lmms):
                 max_new_tokens=max_new_tokens,
             )
 
-        if image_tensor is None or num_images == 0 or self.keep_ratio >= 1.0:
+        if image_tensor is None or num_images == 0 or input_ids.shape[1] < 2:
             return _safe_generate()
 
+        prefill_input_ids = input_ids[:, :-1].contiguous()
+        replay_input_ids = input_ids[:, -1:].contiguous()
+        needs_pruning = self.keep_ratio < 1.0
+
+        def _decode_from_answer_logits(answer_logits, past_kv, first_answer_position: int) -> str:
+            if self.constrained_choices or self.constrained_choice_labels:
+                labels = self.constrained_choice_labels or list(self.constrained_choices)
+                try:
+                    if self.constrained_choice_labels:
+                        choice_token_ids = choice_token_ids_for_labels(
+                            prompt,
+                            input_ids,
+                            self._tokenizer,
+                            IMAGE_TOKEN_INDEX,
+                            labels,
+                        )
+                    else:
+                        choice_token_ids = choice_token_ids_for_prompt(
+                            prompt,
+                            input_ids,
+                            self._tokenizer,
+                            IMAGE_TOKEN_INDEX,
+                            self.constrained_choices,
+                        )
+                except ChoiceTokenizationError as exc:
+                    print(
+                        f"[onevision-original-student] WARNING: constrained choice scoring failed ({exc}); "
+                        "falling back to greedy decode.",
+                        file=sys.stderr,
+                        flush=True,
+                    )
+                else:
+                    candidate_ids = torch.tensor(choice_token_ids, device=answer_logits.device)
+                    choice_idx = int(answer_logits[:, -1, candidate_ids].argmax(dim=-1).item())
+                    return labels[choice_idx]
+
+            next_token = answer_logits[:, -1, :].argmax(dim=-1, keepdim=True)
+            answer_ids = greedy_decode_after_prompt_replay(
+                self._model,
+                past_kv,
+                next_token,
+                prompt_len=first_answer_position,
+                eos_token_id=eos_token_id,
+                max_new_tokens=max_new_tokens,
+            )
+            return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
+
+        def _decode_after_replay(past_kv, prompt_len_after_prefill: int) -> str:
+            replay_logits, replay_past_kv = forward_one_token_with_kv(
+                self._model,
+                replay_input_ids,
+                past_kv,
+                absolute_position=prompt_len_after_prefill,
+            )
+            return _decode_from_answer_logits(
+                replay_logits,
+                replay_past_kv,
+                first_answer_position=prompt_len_after_prefill + 1,
+            )
+
         try:
+            prefill_for_model = prefill_input_ids if self.delayed_replay else input_ids
             prefill = self._model(
-                input_ids=input_ids,
-                attention_mask=torch.ones_like(input_ids),
+                input_ids=prefill_for_model,
+                attention_mask=torch.ones_like(prefill_for_model),
                 images=image_tensor,
                 image_sizes=image_sizes,
                 modalities=modalities,
                 use_cache=True,
-                output_hidden_states=True,
+                output_hidden_states=needs_pruning and self.delayed_replay,
                 output_attentions=False,
                 return_dict=True,
             )
@@ -449,29 +543,30 @@ class LlavaOnevisionOriginalStudent(lmms):
             )
             return _safe_generate()
 
-        H_all = prefill.hidden_states
         past_kv = prefill.past_key_values
         prompt_len = _cache_seq_len(past_kv)
-        next_token = prefill.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+        if not self.delayed_replay:
+            if needs_pruning:
+                raise ValueError("delayed_replay=False is only valid for full-cache checks.")
+            return _decode_from_answer_logits(prefill.logits, past_kv, first_answer_position=int(prompt_len))
+
+        if not needs_pruning:
+            return _decode_after_replay(past_kv, int(prompt_len))
 
         try:
-            image_positions, image_feature_len = _infer_image_positions(input_ids, prompt_len)
+            image_positions, image_feature_len = _infer_image_positions(prefill_input_ids, prompt_len)
         except ValueError:
-            answer_ids = greedy_decode_with_kv(
-                self._model,
-                past_kv,
-                next_token,
-                prompt_len=int(prompt_len),
-                eos_token_id=eos_token_id,
-                max_new_tokens=max_new_tokens,
-            )
-            return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
+            return _decode_after_replay(past_kv, int(prompt_len))
 
         question_positions = _infer_question_positions(prompt_len, image_positions)
         n_img = int(image_positions.numel())
         n_text = int(prompt_len) - n_img
-        n_keep = max(1, int(round(n_img - (1.0 - self.keep_ratio) * int(prompt_len))))
-        n_keep = min(n_keep, n_img)
+        n_keep = image_keep_budget(
+            n_img=n_img,
+            prompt_len=int(prompt_len),
+            keep_ratio=self.keep_ratio,
+            basis=self.keep_ratio_basis,
+        )
 
         self._img_keep_sum += n_keep
         self._img_total_sum += n_img
@@ -483,13 +578,15 @@ class LlavaOnevisionOriginalStudent(lmms):
                 "n_text": n_text,
                 "prompt_len": int(prompt_len),
                 "image_feature_len": image_feature_len,
+                "keep_ratio_basis": self.keep_ratio_basis,
                 "total_keep_ratio": (n_text + n_keep) / max(1, int(prompt_len)),
                 "image_keep_ratio": n_keep / max(1, n_img),
             }
         )
         if not self._reported_keep_budget:
             print(
-                f"[onevision-original-student] keep_ratio_basis=total keep_ratio={self.keep_ratio} "
+                f"[onevision-original-student] keep_ratio_basis={self.keep_ratio_basis} "
+                f"keep_ratio={self.keep_ratio} "
                 f"prompt_len={int(prompt_len)} image_tokens={n_img} text_tokens={n_text} "
                 f"image_tokens_kept={n_keep}",
                 file=sys.stderr,
@@ -506,37 +603,32 @@ class LlavaOnevisionOriginalStudent(lmms):
                 flush=True,
             )
 
-        image_idx_dev = image_positions.to(self._device)
-        q_idx_dev = question_positions.to(self._device)
         keep_masks: dict[int, torch.Tensor] = {}
-        for layer_idx in self.student.layer_indices:
-            if layer_idx + 1 >= len(H_all):
-                continue
-            H_l = H_all[layer_idx + 1]
-            scores = self.student.forward_layer(
-                layer_idx,
-                H_l,
-                image_idx_dev,
-                q_idx_dev,
-            ).squeeze(0)
-            if n_keep >= n_img:
-                continue
-            top = torch.topk(scores, k=n_keep, largest=True).indices
-            mask = torch.ones(int(prompt_len), dtype=torch.bool)
-            image_keep = torch.zeros(n_img, dtype=torch.bool)
-            image_keep[top.detach().cpu()] = True
-            mask[image_positions] = image_keep
-            keep_masks[layer_idx] = mask
+        if n_keep < n_img:
+            image_idx_dev = image_positions.to(self._device)
+            q_idx_dev = question_positions.to(self._device)
+            H_all = prefill.hidden_states
+            for layer_idx in self.student.layer_indices:
+                if layer_idx + 1 >= len(H_all):
+                    continue
+                H_l = H_all[layer_idx + 1]
+                scores = self.student.forward_layer(
+                    layer_idx,
+                    H_l,
+                    image_idx_dev,
+                    q_idx_dev,
+                ).squeeze(0)
+                top = torch.topk(scores, k=n_keep, largest=True).indices
+                mask = torch.ones(int(prompt_len), dtype=torch.bool)
+                image_keep = torch.zeros(n_img, dtype=torch.bool)
+                image_keep[top.detach().cpu()] = True
+                mask[image_positions] = image_keep
+                keep_masks[layer_idx] = mask
 
-        del H_all
-        past_kv = trim_kv_cache_per_layer(past_kv, keep_masks)
-        answer_ids = greedy_decode_with_kv(
-            self._model,
-            past_kv,
-            next_token,
-            prompt_len=int(prompt_len),
-            eos_token_id=eos_token_id,
-            max_new_tokens=max_new_tokens,
-        )
+            del H_all
+        if keep_masks:
+            past_kv = trim_kv_cache_per_layer(past_kv, keep_masks)
+
+        answer = _decode_after_replay(past_kv, int(prompt_len))
         torch.cuda.empty_cache()
-        return self._tokenizer.decode(answer_ids.tolist(), skip_special_tokens=True).strip()
+        return answer
