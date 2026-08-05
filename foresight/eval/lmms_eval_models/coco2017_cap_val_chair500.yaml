@@ -1,0 +1,25 @@
+dataset_path: parquet
+dataset_kwargs:
+  data_files:
+    val: /workspace/zap/data/eval/COCO-Caption2017/data/val-*.parquet
+task: "coco2017_cap_val_chair500"
+group : "coco_caption2017"
+test_split: val
+process_docs: !function utils.process_docs_chair500
+output_type: generate_until
+doc_to_visual: !function utils.coco_doc_to_visual
+doc_to_text: !function utils.coco_doc_to_text
+doc_to_target: "answer"
+generation_kwargs:
+  max_new_tokens: 64
+  temperature: 0
+  top_p: 1.0
+  num_beams: 1
+  do_sample: false
+process_results: !function utils.coco_process_result
+metric_list:
+  - metric: coco_ROUGE_L
+    aggregation : !function utils.coco_rougel
+    higher_is_better : true
+metadata:
+  - version: 0.0
