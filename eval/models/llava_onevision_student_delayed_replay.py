@@ -52,7 +52,9 @@ from llava.conversation import conv_templates
 from llava.mm_utils import process_images, tokenizer_image_token
 from transformers import DynamicCache
 
-for _p in ("/workspace/zap/look_rebuttal/onevision", "/workspace/zap"):
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_ZAP_ROOT = os.path.dirname(_THIS_DIR)
+for _p in (_THIS_DIR, _ZAP_ROOT):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
