@@ -210,6 +210,17 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
                 image_tensor = None
                 task_type = "text"
             elif isinstance(visual[0], Image.Image):
+                # Matches Llava_OneVision.generate_until: multi-image/multi-frame
+                # inputs (e.g. seedbench_local's 8 pre-decoded PIL frames) use
+                # "pad" aspect ratio rather than the checkpoint's default
+                # anyres_max_9, which would otherwise split each frame into up
+                # to 9 tiles. Without this override, delayed-replay processes a
+                # structurally different (much larger, tiled) visual input than
+                # full_cache/VisionZip/VFlowOpt do for the same samples -- single
+                # image tasks are unaffected since len(visual) == 1 never
+                # triggers it either way.
+                if len(visual) > 1 or "image_aspect_ratio" not in self._config.__dict__:
+                    self._config.image_aspect_ratio = "pad"
                 image_tensor = process_images(visual, self._image_processor, self._config)
                 if isinstance(image_tensor, list):
                     image_tensor = [_img.to(dtype=torch.float16, device=self.device) for _img in image_tensor]
@@ -242,7 +253,16 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
                 raise ValueError(f"Unsupported visual type for delayed-replay: {type(visual[0])}")
 
             if image_tensor is not None and DEFAULT_IMAGE_TOKEN not in context:
-                question = f"{DEFAULT_IMAGE_TOKEN}\n{context}"
+                # Matches Llava_OneVision.generate_until: multi-image/multi-frame
+                # inputs get one <image> placeholder per frame (placeholder_count
+                # = len(visual)), not one placeholder for the whole batch. For
+                # seedbench_local's 8-frame samples this means 8 tokens, not 1 --
+                # collapsing them to 1 changes how prepare_inputs_labels_for_multimodal
+                # lays out image features relative to text, which is exactly the
+                # kind of mismatch that's invisible on single-image tasks
+                # (placeholder_count == 1 either way) and material on video ones.
+                placeholder_count = len(visual) if task_type == "image" and isinstance(visual, list) else 1
+                question = " ".join([DEFAULT_IMAGE_TOKEN] * placeholder_count) + "\n" + context
             else:
                 question = context
 

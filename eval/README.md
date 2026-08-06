@@ -71,13 +71,38 @@ because this goes through a direct `self.model(...)` call rather than
 chain. Same fix `generate_onevision_student.py` needed on the standalone
 video path.
 
-Smoke-tested on 3 real `videomme_local` samples end to end (video decode
--> delayed-replay prefill/evict/replay -> lmms-eval's own
-`videomme_percetion_score` scoring): all 3 answers matched target exactly.
-**Not yet run at full scale or cross-checked in aggregate** against
-`../onevision/generate_onevision_student.py`'s numbers on the same
-samples -- that's the next step before trusting this for a real
-comparison table entry.
+**`videomme_local` (raw `.mp4`, `str` visual branch)**: smoke-tested on 3
+real samples end to end, all 3 matched target exactly. Still not run at
+full scale or cross-checked against `../onevision/generate_onevision_student.py`'s
+numbers -- unlike the seedbench fix below, nothing here has been
+re-verified since, so treat this path as untested until it gets its own
+full run.
+
+**`seedbench_local` (pre-decoded PIL frames, `Image.Image` visual branch)**:
+initially ran end to end (full 3757 samples) but landed 3.2pp below
+full_cache (53.77 vs 56.99) even at `image_keep_ratio=1.0` (no eviction at
+all) -- proving the gap was in the wrapper, not the pruning policy. Root
+cause was two divergences from `Llava_OneVision.generate_until`'s
+multi-image handling, both invisible on single-image tasks (where they're
+no-ops) and only material once `len(visual) > 1`:
+1. `self._config.image_aspect_ratio` was never overridden to `"pad"` for
+   multi-frame input, so frames went through the checkpoint's default
+   `anyres_max_9` tiling (up to 9 tiles/frame) instead of the simple
+   single-tile pad the stock class forces for `len(visual) > 1`.
+2. Only one `DEFAULT_IMAGE_TOKEN` placeholder was inserted into the prompt
+   regardless of frame count, instead of one placeholder per frame
+   (`placeholder_count = len(visual)`), changing how
+   `prepare_inputs_labels_for_multimodal` lays out image features relative
+   to text.
+
+Fixed 2026-08-06. Verified: a 40-sample controlled test (identical
+tensors through both a stock-style single-pass `.generate()` call and the
+delayed-replay wrapper) now matches the real full_cache pipeline's
+predictions 40/40; the full 3757-sample rerun gives `keep_ratio=1.0` ->
+0.5696 (full_cache: 0.5699, 0.03pp apart, fp16 noise) and the corrected
+`keep_ratio=0.1` -> 0.5693 (-0.06pp vs full_cache) -- both now trustworthy
+for the comparison table. The previous 0.5377 number measured this bug,
+not the pruning method, and should not be used.
 
 ## Layout
 
@@ -104,7 +129,7 @@ comparison table entry.
 | `llava_onevision` (full-cache, stock lmms-eval, not copied here) | verified against a comparison table, matches to ~2 decimal places | run for the video comparison table earlier this project |
 | `llava_onevision_training_free` (VFlowOpt) | verified against a comparison table, matches to 2 decimal places | run for the video comparison table earlier this project |
 | `llava_onevision_visionzip` (VisionZip) | verified against a comparison table, matches to 2 decimal places | run for the video comparison table earlier this project |
-| `llava_onevision_student_delayed_replay` (student) | verified against a comparison table, matches to 2 decimal places | smoke-tested only (3 samples, all correct) -- not yet run at scale or cross-checked against `../onevision/generate_onevision_student.py`'s numbers |
+| `llava_onevision_student_delayed_replay` (student) | verified against a comparison table, matches to 2 decimal places | `seedbench_local`: verified full-scale (3757 samples), matches full_cache to 0.03-0.06pp after the 2026-08-06 multi-frame fix (see above) -- trustworthy for the table. `videomme_local`: still smoke-tested only (3 samples), untested since that fix landed |
 
 For CHAIR scoring itself (turning generated captions into CHAIR_s/CHAIR_i),
 see `../chair/`. For AMBER, see `../amber/`. For the standalone
