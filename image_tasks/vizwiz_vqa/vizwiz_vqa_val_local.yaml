@@ -1,0 +1,26 @@
+dataset_path: /workspace/zap/data/eval/VizWiz-VQA
+task: vizwiz_vqa_val_local
+test_split: val
+output_type: generate_until
+doc_to_visual: !function utils.vizwiz_vqa_doc_to_visual
+doc_to_text: !function utils.vizwiz_vqa_doc_to_text
+doc_to_target: "answer"
+generation_kwargs:
+  max_new_tokens: 32
+  temperature: 0
+  do_sample: False
+  until:
+    - "ASSISTANT:"
+metadata:
+  - version: 0.0
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: ""
+    post_prompt: "\nWhen the provided information is insufficient, respond with 'Unanswerable'.\nAnswer the question using a single word or phrase."
+process_results: !function utils.vizwiz_vqa_process_results
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: true
