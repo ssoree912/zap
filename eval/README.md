@@ -1,10 +1,14 @@
 # Standalone lmms-eval driver for zap
 
 Everything under `models/` and `tasks/` here is enough, by itself, to drive
-the lmms-eval side of this project's evaluation (student/VFlowOpt/VisionZip
-vs. full-cache, on POPE/MME/MMBench/MMStar/VizWiz-VQA/Video-MME/SEED-Bench-video/
-CHAIR) -- no need to reach into VFlowOpt_llava1.5 or look_rebuttal for the
-model or task *definitions*. An actual lmms-eval installation (the
+the lmms-eval side of this project's evaluation -- no need to reach into
+VFlowOpt_llava1.5 or look_rebuttal for the model or task *definitions*.
+**Coverage is not uniform across models, see the compatibility table
+below** -- most notably, `llava_onevision_student_delayed_replay` is
+image-only and raises `ValueError: Unsupported visual type for
+delayed-replay: <class 'str'>` if pointed at a video task; student's video
+path is a separate, non-lmms-eval script (`../onevision/generate_onevision_student.py`).
+An actual lmms-eval installation (the
 framework itself: `lmms_eval/__main__.py`, `evaluator.py`, `api/`, the
 stock `llava_onevision.py` base class, etc.), the `llava` package, and a
 transformers build with the VFlowOpt `forward_illava` patch are still
@@ -49,6 +53,15 @@ the original run (against the "production" VFlowOpt_llava1.5 checkout) on
 all 5 samples. Model registration, task loading, and generation all work
 end to end from zap's own files.
 
+**Not covered by this verification**: any of the video tasks
+(`videomme_local`/`seedbench_local`) against `llava_onevision_student_delayed_replay`
+-- that combination does not work at all (see the compatibility table
+below), so it was never part of what got tested here. Confirmed
+2026-08-06 on a separate machine (GPU 3): pointing that model at a video
+task raises `ValueError: Unsupported visual type for delayed-replay:
+<class 'str'>` immediately, exactly as the code's own docstring says it
+would ("video/multi-image handling is dropped").
+
 ## Layout
 
 - `models/` -- `llava_onevision_student_delayed_replay.py` (delayed-replay,
@@ -67,13 +80,17 @@ end to end from zap's own files.
 - `tasks/{videomme_local,seedbench_local}/` -- video task defs, shared with
   the standalone workers in `../onevision/`
 
-Model CLI names, all runnable the same way once installed:
+## Model x task compatibility
 
-    --model llava_onevision                          (full-cache, stock lmms-eval, not copied here)
-    --model llava_onevision_training_free             (VFlowOpt)
-    --model llava_onevision_visionzip                 (VisionZip)
-    --model llava_onevision_student_delayed_replay     (student)
-    --tasks pope_local / mme_local / mmbench_en_dev_local / mmstar_local / vizwiz_vqa_val_local / videomme_local / seedbench_local / coco2017_cap_val_chair500
+Not a full cross-product -- `llava_onevision_student_delayed_replay` is
+image-only:
+
+| `--model` | image tasks (pope_local / mme_local / mmbench_en_dev_local / mmstar_local / vizwiz_vqa_val_local / coco2017_cap_val_chair500) | video tasks (videomme_local / seedbench_local) |
+|---|---|---|
+| `llava_onevision` (full-cache, stock lmms-eval, not copied here) | yes | yes |
+| `llava_onevision_training_free` (VFlowOpt) | yes | yes |
+| `llava_onevision_visionzip` (VisionZip) | yes | yes |
+| `llava_onevision_student_delayed_replay` (student) | yes | **no** -- raises `ValueError: Unsupported visual type for delayed-replay: <class 'str'>`. Use `../onevision/generate_onevision_student.py` instead (standalone, not lmms-eval, handles frame-path lists) |
 
 For CHAIR scoring itself (turning generated captions into CHAIR_s/CHAIR_i),
 see `../chair/`. For AMBER, see `../amber/`. For the standalone

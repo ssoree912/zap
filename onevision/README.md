@@ -20,9 +20,11 @@ lists everything needed to actually run them somewhere new.
 - `onevision/lmms_tasks/{seedbench_local,videomme_local}/` -- same video task defs as `../eval/tasks/`, kept here too since the standalone workers above reference this path directly
 - `../eval/` -- **the tested, standalone lmms-eval driver** (model classes +
   all task defs for POPE/MME/MMBench/MMStar/VizWiz-VQA/Video-MME/SEED-Bench-video/CHAIR).
-  Has its own `install.sh` and a verified-working walkthrough in its README
-  -- start there for anything lmms-eval-CLI-based (full-cache/VFlowOpt/VisionZip/student
-  on any of those benchmarks).
+  Has its own `install.sh`, a verified-working walkthrough, and a model x
+  task compatibility table in its README -- start there for anything
+  lmms-eval-CLI-based. Note student is image-only there (full-cache/VFlowOpt/VisionZip
+  cover video through the same CLI path, student's video side is the
+  standalone workers in this directory instead).
 - `../chair/` -- CHAIR_s/CHAIR_i scorer (COCO captions)
 - `../amber/` -- AMBER benchmark response generation + scoring adapter
 - `../foresight/eval/keep_budget.py` -- shared keep-ratio/keep-budget utility
