@@ -4,13 +4,30 @@ hidden states -> evict image KV -> replay the held-out last prompt token ->
 first answer token -> continue decode).
 
 Subclasses `Llava_OneVision` and copies its `generate_until` (single-image
-anyres path only -- video/multi-image handling is dropped since none of
-MME/MMBench/MMStar/POPE/VizWiz-VQA use them) so request batching, dataset
-plumbing, and prompt building are reused unchanged. Only the final
+anyres path, plus a video path added 2026-08-06 -- multi-image is still
+dropped since none of the tasks this runs use it) so request batching,
+dataset plumbing, and prompt building are reused unchanged. Only the final
 `self.model.generate(...)` call is replaced with the delayed-replay body,
 which is otherwise identical to `generate_onevision_student.py`'s
 `OneVisionStudentWorker.generate` -- already validated on 6457 video
-samples (Video-MME + SEED-Bench-video).
+samples (Video-MME + SEED-Bench-video), via a *different*, non-lmms-eval
+code path. This module's own video path reuses that worker's fix (explicit
+per-frame `image_sizes` passed into the raw `self.model(...)` prefill call,
+not omitted the way `Llava_OneVision.generate_until`'s video branch does
+it -- that omission only works through `.generate()`, not a direct
+`self.model(...)` call) but drives it through lmms-eval's standard
+`videomme_local`/`seedbench_local` tasks and scoring instead of the
+standalone script + MileBench-style `evaluate.py`, so results are
+comparable to full-cache/VFlowOpt/VisionZip's video numbers (all three
+already run via the standard lmms-eval CLI) on equal harness footing.
+
+Smoke-tested 2026-08-06 on 3 real videomme_local samples end to end
+(video decode -> delayed-replay prefill/evict/replay -> lmms-eval's own
+`videomme_percetion_score` scoring): all 3 answers matched target exactly
+(C/A/D). Not yet run at full scale or cross-checked in aggregate against
+the standalone worker's numbers on the same samples -- that comparison,
+and whatever discrepancy shows up between the two independently-coded
+video paths, is still open.
 
 Why this exists: the pre-existing student-probe sweep at
 /workspace/zap/logs/local_all_onevision_* shows near-flat accuracy across
@@ -46,6 +63,7 @@ from tqdm import tqdm
 from lmms_eval import utils
 from lmms_eval.api.registry import register_model
 from lmms_eval.models.llava_onevision import Llava_OneVision
+from lmms_eval.models.model_utils.load_video import read_video_pyav
 
 from llava.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
 from llava.conversation import conv_templates
@@ -82,11 +100,21 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
         self.num_layers = self._config.num_hidden_layers
 
     @torch.no_grad()
-    def _generate_one_delayed_replay(self, input_ids, image_tensor, image_sizes, gen_kwargs):
+    def _generate_one_delayed_replay(self, input_ids, image_tensor, image_sizes, gen_kwargs, modalities=None):
         prompt_len_raw = input_ids.shape[1]
         prefill_ids = input_ids[:, :-1].contiguous()
         replay_ids = input_ids[:, -1:].contiguous()
         max_new_tokens = gen_kwargs.get("max_new_tokens", 1024)
+
+        extra_kwargs = {}
+        if modalities is not None:
+            extra_kwargs["modalities"] = modalities
+            # Belt-and-suspenders, matching Llava_OneVision.generate_until's video
+            # branch: mm_spatial_pool_stride/mode are set from these same __init__
+            # kwargs already, but re-assert right before generation in case
+            # anything else touched self._config in between calls.
+            self._config.mm_spatial_pool_stride = self.mm_spatial_pool_stride
+            self._config.mm_spatial_pool_mode = self.mm_spatial_pool_mode
 
         prefill = self.model(
             input_ids=prefill_ids,
@@ -97,6 +125,7 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
             output_attentions=False,
             output_hidden_states=True,
             return_dict=True,
+            **extra_kwargs,
         )
         past_kv = prefill.past_key_values
         prompt_len = past_kv.get_seq_length()
@@ -176,6 +205,7 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
                 gen_kwargs.pop("until")
 
             visual, context = batched_visuals[0], batched_contexts[0]
+            modalities = None
             if visual is None or visual == []:
                 image_tensor = None
                 task_type = "text"
@@ -186,6 +216,28 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
                 else:
                     image_tensor = image_tensor.to(dtype=torch.float16, device=self.device)
                 task_type = "image"
+            elif isinstance(visual[0], str):
+                # Video: decode to frames here (raw .mp4/.mkv path(s) in `visual`,
+                # same as Llava_OneVision.generate_until's video branch), but --
+                # unlike that branch -- also compute explicit per-frame
+                # image_sizes, since this goes into a direct self.model(...)
+                # prefill call below rather than .generate(); omitting image_sizes
+                # only works through the .generate() call chain. Matches
+                # generate_onevision_student.py's _prepare_video, which hit this
+                # exact bug first on the standalone (non-lmms-eval) video path.
+                if self.video_decode_backend == "decord":
+                    frames = self.load_video(visual, self.max_frames_num)
+                elif self.video_decode_backend == "pyav":
+                    frames = read_video_pyav(visual[0], num_frm=self.max_frames_num)
+                else:
+                    raise ValueError(f"Unsupported video_decode_backend: {self.video_decode_backend}")
+                num_frames = frames.shape[0]
+                frame_h, frame_w = frames.shape[1], frames.shape[2]
+                video_image_sizes = [(frame_w, frame_h)] * num_frames
+                frames_processed = self._image_processor.preprocess(frames, return_tensors="pt")["pixel_values"]
+                image_tensor = [frames_processed.to(dtype=torch.float16, device=self.device)]
+                task_type = "video"
+                modalities = ["video"]
             else:
                 raise ValueError(f"Unsupported visual type for delayed-replay: {type(visual[0])}")
 
@@ -221,9 +273,14 @@ class Llava_OneVision_Student_DelayedReplay(Llava_OneVision):
                 .unsqueeze(0)
                 .to(self.device)
             )
-            image_sizes = [visual[idx].size for idx in range(len(visual))] if task_type == "image" else None
+            if task_type == "image":
+                image_sizes = [visual[idx].size for idx in range(len(visual))]
+            elif task_type == "video":
+                image_sizes = video_image_sizes
+            else:
+                image_sizes = None
 
-            text_output = self._generate_one_delayed_replay(input_ids, image_tensor, image_sizes, gen_kwargs)
+            text_output = self._generate_one_delayed_replay(input_ids, image_tensor, image_sizes, gen_kwargs, modalities=modalities)
             res.append(text_output)
             self.cache_hook.add_partial("generate_until", (context, gen_kwargs), text_output)
             pbar.update(1)
