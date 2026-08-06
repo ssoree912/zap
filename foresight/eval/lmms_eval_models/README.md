@@ -20,8 +20,14 @@ under an lmms-eval checkout, not run from here directly:
   VFlowOpt_llava1.5's vendored `src/transformers-4.46.0/` -- not vanilla
   transformers, and not copied here (see `../../onevision/README.md`).
 - `coco2017_cap_val_chair500.yaml` -> `lmms_eval/tasks/coco_cap/`
-  (needs `utils.py`'s `process_docs_chair500`, see this repo's
-  `foresight/eval/chair/` for the scorer that consumes its output)
+- `coco_cap_utils.py` -> `lmms_eval/tasks/coco_cap/utils.py` (this repo's
+  name has `coco_cap_` prefixed to avoid ambiguity with the other
+  `utils.py`-named files here; the task yaml above references it as plain
+  `utils.py` since lmms-eval resolves `!function utils.X` relative to the
+  yaml's own directory). Stock lmms-eval's `coco_cap/utils.py` plus one
+  added function, `process_docs_chair500` -- the 500-image fixed-seed
+  subset the CHAIR run actually used (see `foresight/eval/chair/` for the
+  scorer that consumes its output).
 
 The full-cache baseline and VisionZip's video runs use the same standard
 lmms-eval CLI path (`--model llava_onevision` / `llava_onevision_visionzip`
